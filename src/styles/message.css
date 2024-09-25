@@ -1,7 +1,7 @@
 .sc-message {
   width: 300px;
   margin: auto;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   display: flex;
 }
 
@@ -31,27 +31,51 @@
 }
 
 .sc-message--text {
-  padding: 17px 20px;
-  border-radius: 6px;
-  font-weight: 300;
+  padding: 8px;
+  border-radius: 5px;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 19px;
+  font-weight: 400;
   white-space: pre-wrap;
   -webkit-font-smoothing: subpixel-antialiased;
   word-wrap: break-word;
-  width: calc(100% - 90px);
+  display: flex;
+  align-items: center;
+}
+.sc-message--text img{
+  width: 20px;
+  height: 20px;
+}
+.sc-message--text .text_section{
+  padding: 0px 10px;
 }
 
 .sc-message--content.sent .sc-message--text {
-  color: white;
-  background-color: #4e8cff;
-  max-width: calc(100% - 120px);
+  color: #10163A;
+  background-color: #EDF0F7;
+  max-width: 180px;
   word-wrap: break-word;
+}
+.sc-message--content .sc-message--text h5{
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  margin: 0px 0px 2px;
+  color: #10163A;
+  font-family: "Inter", sans-serif;
+}
+.sc-message--content .sc-message--text p{
+  font-size: 8px;
+  line-height: 10px;
+  font-weight: 400;
+  margin: 0px;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Inter", sans-serif;
 }
 
 .sc-message--content.received .sc-message--text {
-  color: #263238;
-  background-color: #f4f7f9;
+  color: #10163A;
+  background-color: #CBF7FE;
   margin-right: 40px;
 }
 
@@ -62,16 +86,35 @@
 .sc-message--file {
   background: white;
   border: solid 0px #CCCDD1;
-  padding: 15px 20px;
   border-radius: 5px;
-  display: flex;
   font-weight: 300;
+  width: 200px;
   font-size: 14px;
   line-height: 1.4;
   cursor: pointer;
   text-decoration: none;
+  border-radius: 5px;
 }
-
+.sc-message--video video{
+  width: 200px;
+  height: 150px;
+  margin: 0px 0px 3px;
+  border-radius: 5px;
+}
+.sc-message--file img{
+  width: 200px;
+  height: 150px;
+  margin: 0px 0px 3px;
+  border-radius: 5px;
+}
+.sc-message p.date{
+  font-size: 8px;
+  line-height: 10px;
+  font-weight: 400;
+  margin: 0px;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Inter", sans-serif;
+}
 .sc-message--file p {
   margin: 0px 0px 0px 10px;
   color: rgba(86, 88, 103, 0.6);

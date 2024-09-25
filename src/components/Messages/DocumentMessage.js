@@ -1,5 +1,6 @@
 import React from 'react';
 import Linkify from 'react-linkify';
+import tabler_download from "../../assets/file/tabler_download.png";
 
 
 const DocumentMessage = (props) => {
@@ -47,8 +48,13 @@ const DocumentMessage = (props) => {
 
     <div className="sc-message--text">
       <PrintDocIcon type={props.data.media_mime_type} /> 
-      
-      {props.data.media_name}
+
+      <div className="text_section">
+        <h5>{props.data.media_name}</h5>
+        <p className="date">Mar 01 2024 - 12:26 PM </p>
+      </div>
+
+      <img src={tabler_download} />
     </div>
 
     );

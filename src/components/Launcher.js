@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ChatWindow from './ChatWindow';
-import launcherIcon from './../assets/logo-no-bg.svg';
+import launcherIcon from './../assets/tdesign_chat.png';
 import incomingMessageSound from './../assets/sounds/notification.mp3';
-import launcherIconActive from './../assets/close-icon.png';
+import launcherIconActive from './../assets/mingcute_close-fill.png';
 
 class Launcher extends Component {
 
@@ -51,10 +51,10 @@ class Launcher extends Component {
           <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
           <img className={'sc-open-icon'} src={launcherIconActive} />
           <img className={'sc-closed-icon'} src={launcherIcon} /> 
-          {this.props.widgetSettings?.widget_builder?.bubble_type == 1 &&
+          <p>{this.props.widgetSettings?.widget_builder?.bubble_type == 1 &&
 
               this.props.widgetSettings.widget_builder.bubble_text
-          }
+          }</p>
         </div>
 
         <ChatWindow

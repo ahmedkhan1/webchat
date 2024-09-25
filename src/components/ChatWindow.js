@@ -38,43 +38,45 @@ const ChatWindow = ({
         widgetSettings={widgetSettings}
       />
       {!start ? (
-        <div>
-          <div>We are Online</div>
-          <div>{widgetSettings?.widget_builder?.reply_time}</div>
-          <button type="button" onClick={() => {
-              localStorage.setItem('start', 1);
-              setStart(1)
-          }}>
-            {widgetSettings?.widget_builder?.start_conversation_text}
-          </button>
+        <div className="we_online_section">
+          <div className="text_section">
+            <h3>We are Online</h3>
+            <p>{widgetSettings?.widget_builder?.reply_time}</p>
+            <button className="btn btn_conversation" type="button" onClick={() => {
+                localStorage.setItem('start', 1);
+                setStart(1)
+            }}>
+              {widgetSettings?.widget_builder?.start_conversation_text}
+            </button>
+          </div>
         </div>
       ) : (
           <>
           {!formSubmit ? 
 
               <>
-
-              <div>Form</div>
-              {widgetSettings?.pre_chat_form?.form?.map(item => {
-
-
-                  return (
-                      <div>
-                      <div>{item.label}</div>
-                      <div>
-                        <input type={item.type} name={item.key} placeholder={item.place_holder} />
-                      </div>
-                      </div>
-                  )
+              <div className="we_online_section">
+                
+                {widgetSettings?.pre_chat_form?.form?.map(item => {
 
 
-              })}
-              <button type="button" onClick={() => {
-                  localStorage.setItem('form_submit', 1);
-                  setFormSubmit(1)
-              }}>
-                {widgetSettings?.widget_builder?.start_conversation_text}
-              </button>
+                    return (
+                        <div className="field_section">
+                        
+                          <input type={item.type} name={item.key} placeholder={item.place_holder} />
+                        
+                        </div>
+                    )
+
+
+                })}
+                <button className="btn_conversation" type="button" onClick={() => {
+                    localStorage.setItem('form_submit', 1);
+                    setFormSubmit(1)
+                }}>
+                  {widgetSettings?.widget_builder?.start_conversation_text}
+                </button>
+              </div>
               </>
 
           :

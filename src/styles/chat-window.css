@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 .sc-chat-window {
   width: 370px;
   height: calc(100% - 120px);
@@ -12,7 +13,7 @@
   flex-direction: column;
   justify-content: space-between;
   transition: 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 30px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -29,7 +30,65 @@
   background-size: 100%;
   padding: 40px 0px;
 }
-
+.sc-header .sc-header--team-name{
+  width: 76%;
+}
+.sc-header .sc-header--team-name h3{
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  margin: 0px 0px 3px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
+.sc-header .sc-header--team-name p{
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  margin: 0px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
+.we_online_section{
+  padding: 25px;
+}
+.we_online_section .text_section h3{
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  margin: 0px;
+  color: #767676;
+  font-family: "Inter", sans-serif;
+}
+.we_online_section .text_section p{
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  margin: 0px 0px 7px;
+  color: #767676;
+  font-family: "Inter", sans-serif;
+}
+.we_online_section .field_section{
+  margin-bottom: 15px;
+}
+.we_online_section .field_section input{
+  border: 1px solid #DCDBE2;
+  border-radius: 5px;
+  padding: 11px;
+  width: 93%;
+}
+.we_online_section .btn_conversation{
+  background-color: #286A50;
+  border: 1px solid #286A50;
+  border-radius: 5px;
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
 .sc-message--me {
   text-align: right;
 }
