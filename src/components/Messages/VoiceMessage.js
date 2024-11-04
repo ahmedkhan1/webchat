@@ -1,18 +1,29 @@
 import React from 'react';
 import FileIcon from './../icons/FileIcon';
-
+import Plyr from "plyr-react"
+import "plyr-react/plyr.css"
 
 const VoiceMessage = (props) => {
   
+
+  
+
   return (
     <>
     
     
-    <audio controls>
-      <source src={props.data.media_url} type="audio/ogg" />
-      <source src={props.data.media_url} type="audio/mpeg" />
-    Your browser does not support the audio element.
-    </audio>
+    <Plyr source={{
+              type: "audio",
+              // @ts-ignore
+              sources: [{ src: props.data.media_url }],
+            }}  
+
+           options={{controls:['play','progress','current-time','captions','pip','airplay','play-large'],
+           
+         }}
+             />
+        
+        
     </>
   );
 };

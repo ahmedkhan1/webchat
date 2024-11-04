@@ -10,9 +10,9 @@ var __esm = (fn, res) => function __init() {
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
+var __export = (target, all3) => {
+  for (var name in all3)
+    __defProp(target, name, { get: all3[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -259,20 +259,20 @@ var require_react_development = __commonJS({
         {
           Object.freeze(emptyObject);
         }
-        function Component10(props, context, updater) {
+        function Component9(props, context, updater) {
           this.props = props;
           this.context = context;
           this.refs = emptyObject;
           this.updater = updater || ReactNoopUpdateQueue;
         }
-        Component10.prototype.isReactComponent = {};
-        Component10.prototype.setState = function(partialState, callback) {
+        Component9.prototype.isReactComponent = {};
+        Component9.prototype.setState = function(partialState, callback) {
           if (typeof partialState !== "object" && typeof partialState !== "function" && partialState != null) {
             throw new Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");
           }
           this.updater.enqueueSetState(this, partialState, callback, "setState");
         };
-        Component10.prototype.forceUpdate = function(callback) {
+        Component9.prototype.forceUpdate = function(callback) {
           this.updater.enqueueForceUpdate(this, callback, "forceUpdate");
         };
         {
@@ -281,7 +281,7 @@ var require_react_development = __commonJS({
             replaceState: ["replaceState", "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."]
           };
           var defineDeprecationWarning = function(methodName, info) {
-            Object.defineProperty(Component10.prototype, methodName, {
+            Object.defineProperty(Component9.prototype, methodName, {
               get: function() {
                 warn("%s(...) is deprecated in plain JavaScript React classes. %s", info[0], info[1]);
                 return void 0;
@@ -296,7 +296,7 @@ var require_react_development = __commonJS({
         }
         function ComponentDummy() {
         }
-        ComponentDummy.prototype = Component10.prototype;
+        ComponentDummy.prototype = Component9.prototype;
         function PureComponent(props, context, updater) {
           this.props = props;
           this.context = context;
@@ -305,7 +305,7 @@ var require_react_development = __commonJS({
         }
         var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
         pureComponentPrototype.constructor = PureComponent;
-        assign(pureComponentPrototype, Component10.prototype);
+        assign(pureComponentPrototype, Component9.prototype);
         pureComponentPrototype.isPureReactComponent = true;
         function createRef() {
           var refObject = {
@@ -317,7 +317,7 @@ var require_react_development = __commonJS({
           return refObject;
         }
         var isArrayImpl = Array.isArray;
-        function isArray(a2) {
+        function isArray2(a2) {
           return isArrayImpl(a2);
         }
         function typeName(value) {
@@ -418,7 +418,7 @@ var require_react_development = __commonJS({
           }
           return null;
         }
-        var hasOwnProperty = Object.prototype.hasOwnProperty;
+        var hasOwnProperty2 = Object.prototype.hasOwnProperty;
         var RESERVED_PROPS = {
           key: true,
           ref: true,
@@ -431,7 +431,7 @@ var require_react_development = __commonJS({
         }
         function hasValidRef(config) {
           {
-            if (hasOwnProperty.call(config, "ref")) {
+            if (hasOwnProperty2.call(config, "ref")) {
               var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
               if (getter && getter.isReactWarning) {
                 return false;
@@ -442,7 +442,7 @@ var require_react_development = __commonJS({
         }
         function hasValidKey(config) {
           {
-            if (hasOwnProperty.call(config, "key")) {
+            if (hasOwnProperty2.call(config, "key")) {
               var getter = Object.getOwnPropertyDescriptor(config, "key").get;
               if (getter && getter.isReactWarning) {
                 return false;
@@ -554,7 +554,7 @@ var require_react_development = __commonJS({
             self2 = config.__self === void 0 ? null : config.__self;
             source = config.__source === void 0 ? null : config.__source;
             for (propName in config) {
-              if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+              if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
                 props[propName] = config[propName];
               }
             }
@@ -626,7 +626,7 @@ var require_react_development = __commonJS({
               defaultProps = element.type.defaultProps;
             }
             for (propName in config) {
-              if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+              if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
                 if (config[propName] === void 0 && defaultProps !== void 0) {
                   props[propName] = defaultProps[propName];
                 } else {
@@ -703,7 +703,7 @@ var require_react_development = __commonJS({
             var _child = children;
             var mappedChild = callback(_child);
             var childKey = nameSoFar === "" ? SEPARATOR + getElementKey(_child, 0) : nameSoFar;
-            if (isArray(mappedChild)) {
+            if (isArray2(mappedChild)) {
               var escapedChildKey = "";
               if (childKey != null) {
                 escapedChildKey = escapeUserProvidedKey(childKey) + "/";
@@ -738,7 +738,7 @@ var require_react_development = __commonJS({
           var nextName;
           var subtreeCount = 0;
           var nextNamePrefix = nameSoFar === "" ? SEPARATOR : nameSoFar + SUBSEPARATOR;
-          if (isArray(children)) {
+          if (isArray2(children)) {
             for (var i2 = 0; i2 < children.length; i2++) {
               child = children[i2];
               nextName = nextNamePrefix + getElementKey(child, i2);
@@ -794,7 +794,7 @@ var require_react_development = __commonJS({
             forEachFunc.apply(this, arguments);
           }, forEachContext);
         }
-        function toArray(children) {
+        function toArray2(children) {
           return mapChildren(children, function(child) {
             return child;
           }) || [];
@@ -992,7 +992,7 @@ var require_react_development = __commonJS({
           }
           return lazyType;
         }
-        function forwardRef(render) {
+        function forwardRef2(render) {
           {
             if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
               error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1105,7 +1105,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context);
         }
-        function useState3(initialState) {
+        function useState6(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1113,11 +1113,11 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useReducer(reducer, initialArg, init);
         }
-        function useRef3(initialValue) {
+        function useRef4(initialValue) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect3(create, deps) {
+        function useEffect4(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -1129,15 +1129,15 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useLayoutEffect(create, deps);
         }
-        function useCallback2(callback, deps) {
+        function useCallback3(callback, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useCallback(callback, deps);
         }
-        function useMemo(create, deps) {
+        function useMemo2(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useMemo(create, deps);
         }
-        function useImperativeHandle(ref, create, deps) {
+        function useImperativeHandle2(ref, create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useImperativeHandle(ref, create, deps);
         }
@@ -1370,9 +1370,9 @@ var require_react_development = __commonJS({
             return describeNativeComponentFrame(fn, false);
           }
         }
-        function shouldConstruct(Component11) {
-          var prototype = Component11.prototype;
-          return !!(prototype && prototype.isReactComponent);
+        function shouldConstruct(Component10) {
+          var prototype3 = Component10.prototype;
+          return !!(prototype3 && prototype3.isReactComponent);
         }
         function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
           if (type == null) {
@@ -1426,7 +1426,7 @@ var require_react_development = __commonJS({
         }
         function checkPropTypes(typeSpecs, values, location, componentName, element) {
           {
-            var has = Function.call.bind(hasOwnProperty);
+            var has = Function.call.bind(hasOwnProperty2);
             for (var typeSpecName in typeSpecs) {
               if (has(typeSpecs, typeSpecName)) {
                 var error$1 = void 0;
@@ -1528,7 +1528,7 @@ var require_react_development = __commonJS({
           if (typeof node !== "object") {
             return;
           }
-          if (isArray(node)) {
+          if (isArray2(node)) {
             for (var i2 = 0; i2 < node.length; i2++) {
               var child = node[i2];
               if (isValidElement(child)) {
@@ -1618,7 +1618,7 @@ var require_react_development = __commonJS({
             var typeString;
             if (type === null) {
               typeString = "null";
-            } else if (isArray(type)) {
+            } else if (isArray2(type)) {
               typeString = "array";
             } else if (type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE) {
               typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />";
@@ -1873,11 +1873,11 @@ var require_react_development = __commonJS({
           map: mapChildren,
           forEach: forEachChildren,
           count: countChildren,
-          toArray,
+          toArray: toArray2,
           only: onlyChild
         };
         exports.Children = Children;
-        exports.Component = Component10;
+        exports.Component = Component9;
         exports.Fragment = REACT_FRAGMENT_TYPE;
         exports.Profiler = REACT_PROFILER_TYPE;
         exports.PureComponent = PureComponent;
@@ -1890,25 +1890,25 @@ var require_react_development = __commonJS({
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
-        exports.forwardRef = forwardRef;
+        exports.forwardRef = forwardRef2;
         exports.isValidElement = isValidElement;
         exports.lazy = lazy;
         exports.memo = memo;
         exports.startTransition = startTransition;
         exports.unstable_act = act;
-        exports.useCallback = useCallback2;
+        exports.useCallback = useCallback3;
         exports.useContext = useContext;
         exports.useDebugValue = useDebugValue;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect3;
+        exports.useEffect = useEffect4;
         exports.useId = useId;
-        exports.useImperativeHandle = useImperativeHandle;
+        exports.useImperativeHandle = useImperativeHandle2;
         exports.useInsertionEffect = useInsertionEffect;
         exports.useLayoutEffect = useLayoutEffect;
-        exports.useMemo = useMemo;
+        exports.useMemo = useMemo2;
         exports.useReducer = useReducer;
-        exports.useRef = useRef3;
-        exports.useState = useState3;
+        exports.useRef = useRef4;
+        exports.useState = useState6;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -2404,9 +2404,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React20 = require_react();
+        var React23 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React20.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React23.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -2510,7 +2510,7 @@ var require_react_dom_development = __commonJS({
           }
         }
         var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-        var hasOwnProperty = Object.prototype.hasOwnProperty;
+        var hasOwnProperty2 = Object.prototype.hasOwnProperty;
         function typeName(value) {
           {
             var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
@@ -2592,10 +2592,10 @@ var require_react_dom_development = __commonJS({
         var illegalAttributeNameCache = {};
         var validatedAttributeNameCache = {};
         function isAttributeNameSafe(attributeName) {
-          if (hasOwnProperty.call(validatedAttributeNameCache, attributeName)) {
+          if (hasOwnProperty2.call(validatedAttributeNameCache, attributeName)) {
             return true;
           }
-          if (hasOwnProperty.call(illegalAttributeNameCache, attributeName)) {
+          if (hasOwnProperty2.call(illegalAttributeNameCache, attributeName)) {
             return false;
           }
           if (VALID_ATTRIBUTE_NAME_REGEX.test(attributeName)) {
@@ -3442,9 +3442,9 @@ var require_react_dom_development = __commonJS({
             return describeNativeComponentFrame(fn, false);
           }
         }
-        function shouldConstruct(Component10) {
-          var prototype = Component10.prototype;
-          return !!(prototype && prototype.isReactComponent);
+        function shouldConstruct(Component9) {
+          var prototype3 = Component9.prototype;
+          return !!(prototype3 && prototype3.isReactComponent);
         }
         function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
           if (type == null) {
@@ -3705,7 +3705,7 @@ var require_react_dom_development = __commonJS({
             isRendering = rendering;
           }
         }
-        function toString(value) {
+        function toString3(value) {
           return "" + value;
         }
         function getToStringValue(value) {
@@ -3910,10 +3910,10 @@ var require_react_dom_development = __commonJS({
               if (value === 0 && node.value === "" || // We explicitly want to coerce to number here if possible.
               // eslint-disable-next-line
               node.value != value) {
-                node.value = toString(value);
+                node.value = toString3(value);
               }
-            } else if (node.value !== toString(value)) {
-              node.value = toString(value);
+            } else if (node.value !== toString3(value)) {
+              node.value = toString3(value);
             }
           } else if (type === "submit" || type === "reset") {
             node.removeAttribute("value");
@@ -3940,7 +3940,7 @@ var require_react_dom_development = __commonJS({
             if (isButton && (props.value === void 0 || props.value === null)) {
               return;
             }
-            var initialValue = toString(node._wrapperState.initialValue);
+            var initialValue = toString3(node._wrapperState.initialValue);
             if (!isHydrating2) {
               {
                 if (initialValue !== node.value) {
@@ -4000,9 +4000,9 @@ var require_react_dom_development = __commonJS({
             type !== "number" || getActiveElement(node.ownerDocument) !== node
           ) {
             if (value == null) {
-              node.defaultValue = toString(node._wrapperState.initialValue);
-            } else if (node.defaultValue !== toString(value)) {
-              node.defaultValue = toString(value);
+              node.defaultValue = toString3(node._wrapperState.initialValue);
+            } else if (node.defaultValue !== toString3(value)) {
+              node.defaultValue = toString3(value);
             }
           }
         }
@@ -4013,7 +4013,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React20.Children.forEach(props.children, function(child) {
+                React23.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -4040,11 +4040,11 @@ var require_react_dom_development = __commonJS({
         }
         function postMountWrapper$1(element, props) {
           if (props.value != null) {
-            element.setAttribute("value", toString(getToStringValue(props.value)));
+            element.setAttribute("value", toString3(getToStringValue(props.value)));
           }
         }
         var isArrayImpl = Array.isArray;
-        function isArray(a2) {
+        function isArray2(a2) {
           return isArrayImpl(a2);
         }
         var didWarnValueDefaultValue$1;
@@ -4067,7 +4067,7 @@ var require_react_dom_development = __commonJS({
               if (props[propName] == null) {
                 continue;
               }
-              var propNameIsArray = isArray(props[propName]);
+              var propNameIsArray = isArray2(props[propName]);
               if (props.multiple && !propNameIsArray) {
                 error("The `%s` prop supplied to <select> must be an array if `multiple` is true.%s", propName, getDeclarationErrorAddendum());
               } else if (!props.multiple && propNameIsArray) {
@@ -4094,7 +4094,7 @@ var require_react_dom_development = __commonJS({
               }
             }
           } else {
-            var _selectedValue = toString(getToStringValue(propValue));
+            var _selectedValue = toString3(getToStringValue(propValue));
             var defaultSelected = null;
             for (var _i2 = 0; _i2 < options2.length; _i2++) {
               if (options2[_i2].value === _selectedValue) {
@@ -4174,7 +4174,7 @@ var require_react_dom_development = __commonJS({
           var hostProps = assign({}, props, {
             value: void 0,
             defaultValue: void 0,
-            children: toString(node._wrapperState.initialValue)
+            children: toString3(node._wrapperState.initialValue)
           });
           return hostProps;
         }
@@ -4198,7 +4198,7 @@ var require_react_dom_development = __commonJS({
                 if (defaultValue != null) {
                   throw new Error("If you supply `defaultValue` on a <textarea>, do not pass children.");
                 }
-                if (isArray(children)) {
+                if (isArray2(children)) {
                   if (children.length > 1) {
                     throw new Error("<textarea> can only have at most one child.");
                   }
@@ -4221,7 +4221,7 @@ var require_react_dom_development = __commonJS({
           var value = getToStringValue(props.value);
           var defaultValue = getToStringValue(props.defaultValue);
           if (value != null) {
-            var newValue = toString(value);
+            var newValue = toString3(value);
             if (newValue !== node.value) {
               node.value = newValue;
             }
@@ -4230,7 +4230,7 @@ var require_react_dom_development = __commonJS({
             }
           }
           if (defaultValue != null) {
-            node.defaultValue = toString(defaultValue);
+            node.defaultValue = toString3(defaultValue);
           }
         }
         function postMountWrapper$3(element, props) {
@@ -5209,7 +5209,7 @@ var require_react_dom_development = __commonJS({
         var rARIACamel = new RegExp("^(aria)[A-Z][" + ATTRIBUTE_NAME_CHAR + "]*$");
         function validateProperty(tagName, name) {
           {
-            if (hasOwnProperty.call(warnedProperties, name) && warnedProperties[name]) {
+            if (hasOwnProperty2.call(warnedProperties, name) && warnedProperties[name]) {
               return true;
             }
             if (rARIACamel.test(name)) {
@@ -5292,7 +5292,7 @@ var require_react_dom_development = __commonJS({
           var rARIA$1 = new RegExp("^(aria)-[" + ATTRIBUTE_NAME_CHAR + "]*$");
           var rARIACamel$1 = new RegExp("^(aria)[A-Z][" + ATTRIBUTE_NAME_CHAR + "]*$");
           validateProperty$1 = function(tagName, name, value, eventRegistry) {
-            if (hasOwnProperty.call(warnedProperties$1, name) && warnedProperties$1[name]) {
+            if (hasOwnProperty2.call(warnedProperties$1, name) && warnedProperties$1[name]) {
               return true;
             }
             var lowerCasedName = name.toLowerCase();
@@ -8433,7 +8433,7 @@ var require_react_dom_development = __commonJS({
           }
           for (var i2 = 0; i2 < keysA.length; i2++) {
             var currentKey = keysA[i2];
-            if (!hasOwnProperty.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
+            if (!hasOwnProperty2.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
               return false;
             }
           }
@@ -9374,10 +9374,10 @@ var require_react_dom_development = __commonJS({
         function getOwnerDocumentFromRootContainer(rootContainerElement) {
           return rootContainerElement.nodeType === DOCUMENT_NODE ? rootContainerElement : rootContainerElement.ownerDocument;
         }
-        function noop() {
+        function noop3() {
         }
         function trapClickOnNonInteractiveElement(node) {
-          node.onclick = noop;
+          node.onclick = noop3;
         }
         function setInitialDOMProperties(tag, domElement, rootContainerElement, nextProps, isCustomComponentTag) {
           for (var propKey in nextProps) {
@@ -9477,7 +9477,7 @@ var require_react_dom_development = __commonJS({
           }
           {
             if (namespaceURI === HTML_NAMESPACE) {
-              if (!isCustomComponentTag && Object.prototype.toString.call(domElement) === "[object HTMLUnknownElement]" && !hasOwnProperty.call(warnedUnknownTags, type)) {
+              if (!isCustomComponentTag && Object.prototype.toString.call(domElement) === "[object HTMLUnknownElement]" && !hasOwnProperty2.call(warnedUnknownTags, type)) {
                 warnedUnknownTags[type] = true;
                 error("The tag <%s> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.", type);
               }
@@ -10295,7 +10295,7 @@ var require_react_dom_development = __commonJS({
           eventsEnabled = null;
           selectionInformation = null;
         }
-        function createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
+        function createInstance2(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {
           var parentNamespace;
           {
             var hostContextDev = hostContext;
@@ -10828,7 +10828,7 @@ var require_react_dom_development = __commonJS({
         }
         function checkPropTypes(typeSpecs, values, location, componentName, element) {
           {
-            var has2 = Function.call.bind(hasOwnProperty);
+            var has2 = Function.call.bind(hasOwnProperty2);
             for (var typeSpecName in typeSpecs) {
               if (has2(typeSpecs, typeSpecName)) {
                 var error$1 = void 0;
@@ -10906,9 +10906,9 @@ var require_react_dom_development = __commonJS({
         var contextStackCursor = createCursor(emptyContextObject);
         var didPerformWorkStackCursor = createCursor(false);
         var previousContext = emptyContextObject;
-        function getUnmaskedContext(workInProgress2, Component10, didPushOwnContextIfProvider) {
+        function getUnmaskedContext(workInProgress2, Component9, didPushOwnContextIfProvider) {
           {
-            if (didPushOwnContextIfProvider && isContextProvider(Component10)) {
+            if (didPushOwnContextIfProvider && isContextProvider(Component9)) {
               return previousContext;
             }
             return contextStackCursor.current;
@@ -11045,8 +11045,8 @@ var require_react_dom_development = __commonJS({
                 case HostRoot:
                   return node.stateNode.context;
                 case ClassComponent: {
-                  var Component10 = node.type;
-                  if (isContextProvider(Component10)) {
+                  var Component9 = node.type;
+                  if (isContextProvider(Component9)) {
                     return node.stateNode.__reactInternalMemoizedMergedChildContext;
                   }
                   break;
@@ -12076,7 +12076,7 @@ var require_react_dom_development = __commonJS({
                   return createChild(returnFiber, init(payload), lanes);
                 }
               }
-              if (isArray(newChild) || getIteratorFn(newChild)) {
+              if (isArray2(newChild) || getIteratorFn(newChild)) {
                 var _created3 = createFiberFromFragment(newChild, returnFiber.mode, lanes, null);
                 _created3.return = returnFiber;
                 return _created3;
@@ -12120,7 +12120,7 @@ var require_react_dom_development = __commonJS({
                   return updateSlot(returnFiber, oldFiber, init(payload), lanes);
                 }
               }
-              if (isArray(newChild) || getIteratorFn(newChild)) {
+              if (isArray2(newChild) || getIteratorFn(newChild)) {
                 if (key !== null) {
                   return null;
                 }
@@ -12155,7 +12155,7 @@ var require_react_dom_development = __commonJS({
                   var init = newChild._init;
                   return updateFromMap(existingChildren, returnFiber, newIdx, init(payload), lanes);
               }
-              if (isArray(newChild) || getIteratorFn(newChild)) {
+              if (isArray2(newChild) || getIteratorFn(newChild)) {
                 var _matchedFiber3 = existingChildren.get(newIdx) || null;
                 return updateFragment2(returnFiber, _matchedFiber3, newChild, lanes, null);
               }
@@ -12529,7 +12529,7 @@ var require_react_dom_development = __commonJS({
                   var init = newChild._init;
                   return reconcileChildFibers2(returnFiber, currentFirstChild, init(payload), lanes);
               }
-              if (isArray(newChild)) {
+              if (isArray2(newChild)) {
                 return reconcileChildrenArray(returnFiber, currentFirstChild, newChild, lanes);
               }
               if (getIteratorFn(newChild)) {
@@ -13444,7 +13444,7 @@ var require_react_dom_development = __commonJS({
         }
         function checkDepsAreArrayDev(deps) {
           {
-            if (deps !== void 0 && deps !== null && !isArray(deps)) {
+            if (deps !== void 0 && deps !== null && !isArray2(deps)) {
               error("%s received a final argument that is not an array (instead, received `%s`). When specified, the final argument must be an array.", currentHookNameInDev, typeof deps);
             }
           }
@@ -13500,7 +13500,7 @@ var require_react_dom_development = __commonJS({
           }
           return true;
         }
-        function renderWithHooks(current2, workInProgress2, Component10, props, secondArg, nextRenderLanes) {
+        function renderWithHooks(current2, workInProgress2, Component9, props, secondArg, nextRenderLanes) {
           renderLanes = nextRenderLanes;
           currentlyRenderingFiber$1 = workInProgress2;
           {
@@ -13520,7 +13520,7 @@ var require_react_dom_development = __commonJS({
               ReactCurrentDispatcher$1.current = HooksDispatcherOnMountInDEV;
             }
           }
-          var children = Component10(props, secondArg);
+          var children = Component9(props, secondArg);
           if (didScheduleRenderPhaseUpdateDuringThisPass) {
             var numberOfReRenders = 0;
             do {
@@ -13540,7 +13540,7 @@ var require_react_dom_development = __commonJS({
                 hookTypesUpdateIndexDev = -1;
               }
               ReactCurrentDispatcher$1.current = HooksDispatcherOnRerenderInDEV;
-              children = Component10(props, secondArg);
+              children = Component9(props, secondArg);
             } while (didScheduleRenderPhaseUpdateDuringThisPass);
           }
           ReactCurrentDispatcher$1.current = ContextOnlyDispatcher;
@@ -13998,11 +13998,11 @@ var require_react_dom_development = __commonJS({
         function rerenderState(initialState) {
           return rerenderReducer(basicStateReducer);
         }
-        function pushEffect(tag, create, destroy, deps) {
+        function pushEffect(tag, create, destroy2, deps) {
           var effect = {
             tag,
             create,
-            destroy,
+            destroy: destroy2,
             deps,
             // Circular
             next: null
@@ -14048,20 +14048,20 @@ var require_react_dom_development = __commonJS({
         function updateEffectImpl(fiberFlags, hookFlags, create, deps) {
           var hook = updateWorkInProgressHook();
           var nextDeps = deps === void 0 ? null : deps;
-          var destroy = void 0;
+          var destroy2 = void 0;
           if (currentHook !== null) {
             var prevEffect = currentHook.memoizedState;
-            destroy = prevEffect.destroy;
+            destroy2 = prevEffect.destroy;
             if (nextDeps !== null) {
               var prevDeps = prevEffect.deps;
               if (areHookInputsEqual(nextDeps, prevDeps)) {
-                hook.memoizedState = pushEffect(hookFlags, create, destroy, nextDeps);
+                hook.memoizedState = pushEffect(hookFlags, create, destroy2, nextDeps);
                 return;
               }
             }
           }
           currentlyRenderingFiber$1.flags |= fiberFlags;
-          hook.memoizedState = pushEffect(HasEffect | hookFlags, create, destroy, nextDeps);
+          hook.memoizedState = pushEffect(HasEffect | hookFlags, create, destroy2, nextDeps);
         }
         function mountEffect(create, deps) {
           if ((currentlyRenderingFiber$1.mode & StrictEffectsMode) !== NoMode) {
@@ -15339,10 +15339,10 @@ var require_react_dom_development = __commonJS({
             child = child.sibling;
           }
         }
-        function resolveDefaultProps(Component10, baseProps) {
-          if (Component10 && Component10.defaultProps) {
+        function resolveDefaultProps(Component9, baseProps) {
+          if (Component9 && Component9.defaultProps) {
             var props = assign({}, baseProps);
-            var defaultProps = Component10.defaultProps;
+            var defaultProps = Component9.defaultProps;
             for (var propName in defaultProps) {
               if (props[propName] === void 0) {
                 props[propName] = defaultProps[propName];
@@ -15598,7 +15598,7 @@ var require_react_dom_development = __commonJS({
               error("%s: getSnapshotBeforeUpdate() is defined as a static method and will be ignored. Instead, declare it as an instance method.", name);
             }
             var _state = instance.state;
-            if (_state && (typeof _state !== "object" || isArray(_state))) {
+            if (_state && (typeof _state !== "object" || isArray2(_state))) {
               error("%s.state: must be set to an object or null", name);
             }
             if (typeof instance.getChildContext === "function" && typeof ctor.childContextTypes !== "object") {
@@ -16271,22 +16271,22 @@ var require_react_dom_development = __commonJS({
           workInProgress2.child = reconcileChildFibers(workInProgress2, current2.child, null, renderLanes2);
           workInProgress2.child = reconcileChildFibers(workInProgress2, null, nextChildren, renderLanes2);
         }
-        function updateForwardRef(current2, workInProgress2, Component10, nextProps, renderLanes2) {
+        function updateForwardRef(current2, workInProgress2, Component9, nextProps, renderLanes2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component10.propTypes;
+              var innerPropTypes = Component9.propTypes;
               if (innerPropTypes) {
                 checkPropTypes(
                   innerPropTypes,
                   nextProps,
                   // Resolved props
                   "prop",
-                  getComponentNameFromType(Component10)
+                  getComponentNameFromType(Component9)
                 );
               }
             }
           }
-          var render2 = Component10.render;
+          var render2 = Component9.render;
           var ref = workInProgress2.ref;
           var nextChildren;
           var hasId;
@@ -16324,11 +16324,11 @@ var require_react_dom_development = __commonJS({
           reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
           return workInProgress2.child;
         }
-        function updateMemoComponent(current2, workInProgress2, Component10, nextProps, renderLanes2) {
+        function updateMemoComponent(current2, workInProgress2, Component9, nextProps, renderLanes2) {
           if (current2 === null) {
-            var type = Component10.type;
-            if (isSimpleFunctionComponent(type) && Component10.compare === null && // SimpleMemoComponent codepath doesn't resolve outer props either.
-            Component10.defaultProps === void 0) {
+            var type = Component9.type;
+            if (isSimpleFunctionComponent(type) && Component9.compare === null && // SimpleMemoComponent codepath doesn't resolve outer props either.
+            Component9.defaultProps === void 0) {
               var resolvedType = type;
               {
                 resolvedType = resolveFunctionForHotReloading(type);
@@ -16351,7 +16351,7 @@ var require_react_dom_development = __commonJS({
                   getComponentNameFromType(type)
                 );
               }
-              if (Component10.defaultProps !== void 0) {
+              if (Component9.defaultProps !== void 0) {
                 var componentName = getComponentNameFromType(type) || "Unknown";
                 if (!didWarnAboutDefaultPropsOnFunctionComponent[componentName]) {
                   error("%s: Support for defaultProps will be removed from memo components in a future major release. Use JavaScript default parameters instead.", componentName);
@@ -16359,14 +16359,14 @@ var require_react_dom_development = __commonJS({
                 }
               }
             }
-            var child = createFiberFromTypeAndProps(Component10.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
+            var child = createFiberFromTypeAndProps(Component9.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
             child.ref = workInProgress2.ref;
             child.return = workInProgress2;
             workInProgress2.child = child;
             return child;
           }
           {
-            var _type = Component10.type;
+            var _type = Component9.type;
             var _innerPropTypes = _type.propTypes;
             if (_innerPropTypes) {
               checkPropTypes(
@@ -16382,7 +16382,7 @@ var require_react_dom_development = __commonJS({
           var hasScheduledUpdateOrContext = checkScheduledUpdateOrContext(current2, renderLanes2);
           if (!hasScheduledUpdateOrContext) {
             var prevProps = currentChild.memoizedProps;
-            var compare = Component10.compare;
+            var compare = Component9.compare;
             compare = compare !== null ? compare : shallowEqual;
             if (compare(prevProps, nextProps) && current2.ref === workInProgress2.ref) {
               return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
@@ -16395,7 +16395,7 @@ var require_react_dom_development = __commonJS({
           workInProgress2.child = newChild;
           return newChild;
         }
-        function updateSimpleMemoComponent(current2, workInProgress2, Component10, nextProps, renderLanes2) {
+        function updateSimpleMemoComponent(current2, workInProgress2, Component9, nextProps, renderLanes2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
               var outerMemoType = workInProgress2.elementType;
@@ -16435,7 +16435,7 @@ var require_react_dom_development = __commonJS({
               }
             }
           }
-          return updateFunctionComponent(current2, workInProgress2, Component10, nextProps, renderLanes2);
+          return updateFunctionComponent(current2, workInProgress2, Component9, nextProps, renderLanes2);
         }
         function updateOffscreenComponent(current2, workInProgress2, renderLanes2) {
           var nextProps = workInProgress2.pendingProps;
@@ -16525,24 +16525,24 @@ var require_react_dom_development = __commonJS({
             }
           }
         }
-        function updateFunctionComponent(current2, workInProgress2, Component10, nextProps, renderLanes2) {
+        function updateFunctionComponent(current2, workInProgress2, Component9, nextProps, renderLanes2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component10.propTypes;
+              var innerPropTypes = Component9.propTypes;
               if (innerPropTypes) {
                 checkPropTypes(
                   innerPropTypes,
                   nextProps,
                   // Resolved props
                   "prop",
-                  getComponentNameFromType(Component10)
+                  getComponentNameFromType(Component9)
                 );
               }
             }
           }
           var context;
           {
-            var unmaskedContext = getUnmaskedContext(workInProgress2, Component10, true);
+            var unmaskedContext = getUnmaskedContext(workInProgress2, Component9, true);
             context = getMaskedContext(workInProgress2, unmaskedContext);
           }
           var nextChildren;
@@ -16554,12 +16554,12 @@ var require_react_dom_development = __commonJS({
           {
             ReactCurrentOwner$1.current = workInProgress2;
             setIsRendering(true);
-            nextChildren = renderWithHooks(current2, workInProgress2, Component10, nextProps, context, renderLanes2);
+            nextChildren = renderWithHooks(current2, workInProgress2, Component9, nextProps, context, renderLanes2);
             hasId = checkDidRenderIdHook();
             if (workInProgress2.mode & StrictLegacyMode) {
               setIsStrictModeForDevtools(true);
               try {
-                nextChildren = renderWithHooks(current2, workInProgress2, Component10, nextProps, context, renderLanes2);
+                nextChildren = renderWithHooks(current2, workInProgress2, Component9, nextProps, context, renderLanes2);
                 hasId = checkDidRenderIdHook();
               } finally {
                 setIsStrictModeForDevtools(false);
@@ -16581,7 +16581,7 @@ var require_react_dom_development = __commonJS({
           reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
           return workInProgress2.child;
         }
-        function updateClassComponent(current2, workInProgress2, Component10, nextProps, renderLanes2) {
+        function updateClassComponent(current2, workInProgress2, Component9, nextProps, renderLanes2) {
           {
             switch (shouldError(workInProgress2)) {
               case false: {
@@ -16604,20 +16604,20 @@ var require_react_dom_development = __commonJS({
               }
             }
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component10.propTypes;
+              var innerPropTypes = Component9.propTypes;
               if (innerPropTypes) {
                 checkPropTypes(
                   innerPropTypes,
                   nextProps,
                   // Resolved props
                   "prop",
-                  getComponentNameFromType(Component10)
+                  getComponentNameFromType(Component9)
                 );
               }
             }
           }
           var hasContext;
-          if (isContextProvider(Component10)) {
+          if (isContextProvider(Component9)) {
             hasContext = true;
             pushContextProvider(workInProgress2);
           } else {
@@ -16628,15 +16628,15 @@ var require_react_dom_development = __commonJS({
           var shouldUpdate;
           if (instance === null) {
             resetSuspendedCurrentOnMountInLegacyMode(current2, workInProgress2);
-            constructClassInstance(workInProgress2, Component10, nextProps);
-            mountClassInstance(workInProgress2, Component10, nextProps, renderLanes2);
+            constructClassInstance(workInProgress2, Component9, nextProps);
+            mountClassInstance(workInProgress2, Component9, nextProps, renderLanes2);
             shouldUpdate = true;
           } else if (current2 === null) {
-            shouldUpdate = resumeMountClassInstance(workInProgress2, Component10, nextProps, renderLanes2);
+            shouldUpdate = resumeMountClassInstance(workInProgress2, Component9, nextProps, renderLanes2);
           } else {
-            shouldUpdate = updateClassInstance(current2, workInProgress2, Component10, nextProps, renderLanes2);
+            shouldUpdate = updateClassInstance(current2, workInProgress2, Component9, nextProps, renderLanes2);
           }
-          var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component10, shouldUpdate, hasContext, renderLanes2);
+          var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component9, shouldUpdate, hasContext, renderLanes2);
           {
             var inst = workInProgress2.stateNode;
             if (shouldUpdate && inst.props !== nextProps) {
@@ -16648,19 +16648,19 @@ var require_react_dom_development = __commonJS({
           }
           return nextUnitOfWork;
         }
-        function finishClassComponent(current2, workInProgress2, Component10, shouldUpdate, hasContext, renderLanes2) {
+        function finishClassComponent(current2, workInProgress2, Component9, shouldUpdate, hasContext, renderLanes2) {
           markRef(current2, workInProgress2);
           var didCaptureError = (workInProgress2.flags & DidCapture) !== NoFlags;
           if (!shouldUpdate && !didCaptureError) {
             if (hasContext) {
-              invalidateContextProvider(workInProgress2, Component10, false);
+              invalidateContextProvider(workInProgress2, Component9, false);
             }
             return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
           }
           var instance = workInProgress2.stateNode;
           ReactCurrentOwner$1.current = workInProgress2;
           var nextChildren;
-          if (didCaptureError && typeof Component10.getDerivedStateFromError !== "function") {
+          if (didCaptureError && typeof Component9.getDerivedStateFromError !== "function") {
             nextChildren = null;
             {
               stopProfilerTimerIfRunning();
@@ -16694,7 +16694,7 @@ var require_react_dom_development = __commonJS({
           }
           workInProgress2.memoizedState = instance.state;
           if (hasContext) {
-            invalidateContextProvider(workInProgress2, Component10, true);
+            invalidateContextProvider(workInProgress2, Component9, true);
           }
           return workInProgress2.child;
         }
@@ -16794,45 +16794,45 @@ var require_react_dom_development = __commonJS({
           var lazyComponent = elementType;
           var payload = lazyComponent._payload;
           var init = lazyComponent._init;
-          var Component10 = init(payload);
-          workInProgress2.type = Component10;
-          var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component10);
-          var resolvedProps = resolveDefaultProps(Component10, props);
+          var Component9 = init(payload);
+          workInProgress2.type = Component9;
+          var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component9);
+          var resolvedProps = resolveDefaultProps(Component9, props);
           var child;
           switch (resolvedTag) {
             case FunctionComponent: {
               {
-                validateFunctionComponentInDev(workInProgress2, Component10);
-                workInProgress2.type = Component10 = resolveFunctionForHotReloading(Component10);
+                validateFunctionComponentInDev(workInProgress2, Component9);
+                workInProgress2.type = Component9 = resolveFunctionForHotReloading(Component9);
               }
-              child = updateFunctionComponent(null, workInProgress2, Component10, resolvedProps, renderLanes2);
+              child = updateFunctionComponent(null, workInProgress2, Component9, resolvedProps, renderLanes2);
               return child;
             }
             case ClassComponent: {
               {
-                workInProgress2.type = Component10 = resolveClassForHotReloading(Component10);
+                workInProgress2.type = Component9 = resolveClassForHotReloading(Component9);
               }
-              child = updateClassComponent(null, workInProgress2, Component10, resolvedProps, renderLanes2);
+              child = updateClassComponent(null, workInProgress2, Component9, resolvedProps, renderLanes2);
               return child;
             }
             case ForwardRef: {
               {
-                workInProgress2.type = Component10 = resolveForwardRefForHotReloading(Component10);
+                workInProgress2.type = Component9 = resolveForwardRefForHotReloading(Component9);
               }
-              child = updateForwardRef(null, workInProgress2, Component10, resolvedProps, renderLanes2);
+              child = updateForwardRef(null, workInProgress2, Component9, resolvedProps, renderLanes2);
               return child;
             }
             case MemoComponent: {
               {
                 if (workInProgress2.type !== workInProgress2.elementType) {
-                  var outerPropTypes = Component10.propTypes;
+                  var outerPropTypes = Component9.propTypes;
                   if (outerPropTypes) {
                     checkPropTypes(
                       outerPropTypes,
                       resolvedProps,
                       // Resolved for outer only
                       "prop",
-                      getComponentNameFromType(Component10)
+                      getComponentNameFromType(Component9)
                     );
                   }
                 }
@@ -16840,8 +16840,8 @@ var require_react_dom_development = __commonJS({
               child = updateMemoComponent(
                 null,
                 workInProgress2,
-                Component10,
-                resolveDefaultProps(Component10.type, resolvedProps),
+                Component9,
+                resolveDefaultProps(Component9.type, resolvedProps),
                 // The inner type can have defaults too
                 renderLanes2
               );
@@ -16850,33 +16850,33 @@ var require_react_dom_development = __commonJS({
           }
           var hint = "";
           {
-            if (Component10 !== null && typeof Component10 === "object" && Component10.$$typeof === REACT_LAZY_TYPE) {
+            if (Component9 !== null && typeof Component9 === "object" && Component9.$$typeof === REACT_LAZY_TYPE) {
               hint = " Did you wrap a component in React.lazy() more than once?";
             }
           }
-          throw new Error("Element type is invalid. Received a promise that resolves to: " + Component10 + ". " + ("Lazy element type must resolve to a class or function." + hint));
+          throw new Error("Element type is invalid. Received a promise that resolves to: " + Component9 + ". " + ("Lazy element type must resolve to a class or function." + hint));
         }
-        function mountIncompleteClassComponent(_current, workInProgress2, Component10, nextProps, renderLanes2) {
+        function mountIncompleteClassComponent(_current, workInProgress2, Component9, nextProps, renderLanes2) {
           resetSuspendedCurrentOnMountInLegacyMode(_current, workInProgress2);
           workInProgress2.tag = ClassComponent;
           var hasContext;
-          if (isContextProvider(Component10)) {
+          if (isContextProvider(Component9)) {
             hasContext = true;
             pushContextProvider(workInProgress2);
           } else {
             hasContext = false;
           }
           prepareToReadContext(workInProgress2, renderLanes2);
-          constructClassInstance(workInProgress2, Component10, nextProps);
-          mountClassInstance(workInProgress2, Component10, nextProps, renderLanes2);
-          return finishClassComponent(null, workInProgress2, Component10, true, hasContext, renderLanes2);
+          constructClassInstance(workInProgress2, Component9, nextProps);
+          mountClassInstance(workInProgress2, Component9, nextProps, renderLanes2);
+          return finishClassComponent(null, workInProgress2, Component9, true, hasContext, renderLanes2);
         }
-        function mountIndeterminateComponent(_current, workInProgress2, Component10, renderLanes2) {
+        function mountIndeterminateComponent(_current, workInProgress2, Component9, renderLanes2) {
           resetSuspendedCurrentOnMountInLegacyMode(_current, workInProgress2);
           var props = workInProgress2.pendingProps;
           var context;
           {
-            var unmaskedContext = getUnmaskedContext(workInProgress2, Component10, false);
+            var unmaskedContext = getUnmaskedContext(workInProgress2, Component9, false);
             context = getMaskedContext(workInProgress2, unmaskedContext);
           }
           prepareToReadContext(workInProgress2, renderLanes2);
@@ -16886,8 +16886,8 @@ var require_react_dom_development = __commonJS({
             markComponentRenderStarted(workInProgress2);
           }
           {
-            if (Component10.prototype && typeof Component10.prototype.render === "function") {
-              var componentName = getComponentNameFromType(Component10) || "Unknown";
+            if (Component9.prototype && typeof Component9.prototype.render === "function") {
+              var componentName = getComponentNameFromType(Component9) || "Unknown";
               if (!didWarnAboutBadClass[componentName]) {
                 error("The <%s /> component appears to have a render method, but doesn't extend React.Component. This is likely to cause errors. Change %s to extend React.Component instead.", componentName, componentName);
                 didWarnAboutBadClass[componentName] = true;
@@ -16898,7 +16898,7 @@ var require_react_dom_development = __commonJS({
             }
             setIsRendering(true);
             ReactCurrentOwner$1.current = workInProgress2;
-            value = renderWithHooks(null, workInProgress2, Component10, props, context, renderLanes2);
+            value = renderWithHooks(null, workInProgress2, Component9, props, context, renderLanes2);
             hasId = checkDidRenderIdHook();
             setIsRendering(false);
           }
@@ -16908,7 +16908,7 @@ var require_react_dom_development = __commonJS({
           workInProgress2.flags |= PerformedWork;
           {
             if (typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === void 0) {
-              var _componentName = getComponentNameFromType(Component10) || "Unknown";
+              var _componentName = getComponentNameFromType(Component9) || "Unknown";
               if (!didWarnAboutModulePatternComponent[_componentName]) {
                 error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName, _componentName, _componentName);
                 didWarnAboutModulePatternComponent[_componentName] = true;
@@ -16921,7 +16921,7 @@ var require_react_dom_development = __commonJS({
             typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === void 0
           ) {
             {
-              var _componentName2 = getComponentNameFromType(Component10) || "Unknown";
+              var _componentName2 = getComponentNameFromType(Component9) || "Unknown";
               if (!didWarnAboutModulePatternComponent[_componentName2]) {
                 error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName2, _componentName2, _componentName2);
                 didWarnAboutModulePatternComponent[_componentName2] = true;
@@ -16931,7 +16931,7 @@ var require_react_dom_development = __commonJS({
             workInProgress2.memoizedState = null;
             workInProgress2.updateQueue = null;
             var hasContext = false;
-            if (isContextProvider(Component10)) {
+            if (isContextProvider(Component9)) {
               hasContext = true;
               pushContextProvider(workInProgress2);
             } else {
@@ -16940,15 +16940,15 @@ var require_react_dom_development = __commonJS({
             workInProgress2.memoizedState = value.state !== null && value.state !== void 0 ? value.state : null;
             initializeUpdateQueue(workInProgress2);
             adoptClassInstance(workInProgress2, value);
-            mountClassInstance(workInProgress2, Component10, props, renderLanes2);
-            return finishClassComponent(null, workInProgress2, Component10, true, hasContext, renderLanes2);
+            mountClassInstance(workInProgress2, Component9, props, renderLanes2);
+            return finishClassComponent(null, workInProgress2, Component9, true, hasContext, renderLanes2);
           } else {
             workInProgress2.tag = FunctionComponent;
             {
               if (workInProgress2.mode & StrictLegacyMode) {
                 setIsStrictModeForDevtools(true);
                 try {
-                  value = renderWithHooks(null, workInProgress2, Component10, props, context, renderLanes2);
+                  value = renderWithHooks(null, workInProgress2, Component9, props, context, renderLanes2);
                   hasId = checkDidRenderIdHook();
                 } finally {
                   setIsStrictModeForDevtools(false);
@@ -16960,16 +16960,16 @@ var require_react_dom_development = __commonJS({
             }
             reconcileChildren(null, workInProgress2, value, renderLanes2);
             {
-              validateFunctionComponentInDev(workInProgress2, Component10);
+              validateFunctionComponentInDev(workInProgress2, Component9);
             }
             return workInProgress2.child;
           }
         }
-        function validateFunctionComponentInDev(workInProgress2, Component10) {
+        function validateFunctionComponentInDev(workInProgress2, Component9) {
           {
-            if (Component10) {
-              if (Component10.childContextTypes) {
-                error("%s(...): childContextTypes cannot be defined on a function component.", Component10.displayName || Component10.name || "Component");
+            if (Component9) {
+              if (Component9.childContextTypes) {
+                error("%s(...): childContextTypes cannot be defined on a function component.", Component9.displayName || Component9.name || "Component");
               }
             }
             if (workInProgress2.ref !== null) {
@@ -16988,22 +16988,22 @@ var require_react_dom_development = __commonJS({
                 error("Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s", info);
               }
             }
-            if (Component10.defaultProps !== void 0) {
-              var componentName = getComponentNameFromType(Component10) || "Unknown";
+            if (Component9.defaultProps !== void 0) {
+              var componentName = getComponentNameFromType(Component9) || "Unknown";
               if (!didWarnAboutDefaultPropsOnFunctionComponent[componentName]) {
                 error("%s: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.", componentName);
                 didWarnAboutDefaultPropsOnFunctionComponent[componentName] = true;
               }
             }
-            if (typeof Component10.getDerivedStateFromProps === "function") {
-              var _componentName3 = getComponentNameFromType(Component10) || "Unknown";
+            if (typeof Component9.getDerivedStateFromProps === "function") {
+              var _componentName3 = getComponentNameFromType(Component9) || "Unknown";
               if (!didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3]) {
                 error("%s: Function components do not support getDerivedStateFromProps.", _componentName3);
                 didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3] = true;
               }
             }
-            if (typeof Component10.contextType === "object" && Component10.contextType !== null) {
-              var _componentName4 = getComponentNameFromType(Component10) || "Unknown";
+            if (typeof Component9.contextType === "object" && Component9.contextType !== null) {
+              var _componentName4 = getComponentNameFromType(Component9) || "Unknown";
               if (!didWarnAboutContextTypeOnFunctionComponent[_componentName4]) {
                 error("%s: Function components do not support contextType.", _componentName4);
                 didWarnAboutContextTypeOnFunctionComponent[_componentName4] = true;
@@ -17442,7 +17442,7 @@ var require_react_dom_development = __commonJS({
         }
         function validateSuspenseListNestedChild(childSlot, index2) {
           {
-            var isAnArray = isArray(childSlot);
+            var isAnArray = isArray2(childSlot);
             var isIterable = !isAnArray && typeof getIteratorFn(childSlot) === "function";
             if (isAnArray || isIterable) {
               var type = isAnArray ? "array" : "iterable";
@@ -17455,7 +17455,7 @@ var require_react_dom_development = __commonJS({
         function validateSuspenseListChildren(children, revealOrder) {
           {
             if ((revealOrder === "forwards" || revealOrder === "backwards") && children !== void 0 && children !== null && children !== false) {
-              if (isArray(children)) {
+              if (isArray2(children)) {
                 for (var i2 = 0; i2 < children.length; i2++) {
                   if (!validateSuspenseListNestedChild(children[i2], i2)) {
                     return;
@@ -17765,8 +17765,8 @@ var require_react_dom_development = __commonJS({
               pushHostContext(workInProgress2);
               break;
             case ClassComponent: {
-              var Component10 = workInProgress2.type;
-              if (isContextProvider(Component10)) {
+              var Component9 = workInProgress2.type;
+              if (isContextProvider(Component9)) {
                 pushContextProvider(workInProgress2);
               }
               break;
@@ -17893,10 +17893,10 @@ var require_react_dom_development = __commonJS({
               return mountLazyComponent(current2, workInProgress2, elementType, renderLanes2);
             }
             case FunctionComponent: {
-              var Component10 = workInProgress2.type;
+              var Component9 = workInProgress2.type;
               var unresolvedProps = workInProgress2.pendingProps;
-              var resolvedProps = workInProgress2.elementType === Component10 ? unresolvedProps : resolveDefaultProps(Component10, unresolvedProps);
-              return updateFunctionComponent(current2, workInProgress2, Component10, resolvedProps, renderLanes2);
+              var resolvedProps = workInProgress2.elementType === Component9 ? unresolvedProps : resolveDefaultProps(Component9, unresolvedProps);
+              return updateFunctionComponent(current2, workInProgress2, Component9, resolvedProps, renderLanes2);
             }
             case ClassComponent: {
               var _Component = workInProgress2.type;
@@ -18200,8 +18200,8 @@ var require_react_dom_development = __commonJS({
               bubbleProperties(workInProgress2);
               return null;
             case ClassComponent: {
-              var Component10 = workInProgress2.type;
-              if (isContextProvider(Component10)) {
+              var Component9 = workInProgress2.type;
+              if (isContextProvider(Component9)) {
                 popContext(workInProgress2);
               }
               bubbleProperties(workInProgress2);
@@ -18262,7 +18262,7 @@ var require_react_dom_development = __commonJS({
                     markUpdate(workInProgress2);
                   }
                 } else {
-                  var instance = createInstance(type, newProps, rootContainerInstance, currentHostContext, workInProgress2);
+                  var instance = createInstance2(type, newProps, rootContainerInstance, currentHostContext, workInProgress2);
                   appendAllChildren(instance, workInProgress2, false, false);
                   workInProgress2.stateNode = instance;
                   if (finalizeInitialChildren(instance, type, newProps, rootContainerInstance)) {
@@ -18519,8 +18519,8 @@ var require_react_dom_development = __commonJS({
           popTreeContext(workInProgress2);
           switch (workInProgress2.tag) {
             case ClassComponent: {
-              var Component10 = workInProgress2.type;
-              if (isContextProvider(Component10)) {
+              var Component9 = workInProgress2.type;
+              if (isContextProvider(Component9)) {
                 popContext(workInProgress2);
               }
               var flags = workInProgress2.flags;
@@ -18718,9 +18718,9 @@ var require_react_dom_development = __commonJS({
             }
           }
         }
-        function safelyCallDestroy(current2, nearestMountedAncestor, destroy) {
+        function safelyCallDestroy(current2, nearestMountedAncestor, destroy2) {
           try {
-            destroy();
+            destroy2();
           } catch (error2) {
             captureCommitPhaseError(current2, nearestMountedAncestor, error2);
           }
@@ -18832,9 +18832,9 @@ var require_react_dom_development = __commonJS({
             var effect = firstEffect;
             do {
               if ((effect.tag & flags) === flags) {
-                var destroy = effect.destroy;
+                var destroy2 = effect.destroy;
                 effect.destroy = void 0;
-                if (destroy !== void 0) {
+                if (destroy2 !== void 0) {
                   {
                     if ((flags & Passive$1) !== NoFlags$1) {
                       markComponentPassiveEffectUnmountStarted(finishedWork);
@@ -18847,7 +18847,7 @@ var require_react_dom_development = __commonJS({
                       setIsRunningInsertionEffect(true);
                     }
                   }
-                  safelyCallDestroy(finishedWork, nearestMountedAncestor, destroy);
+                  safelyCallDestroy(finishedWork, nearestMountedAncestor, destroy2);
                   {
                     if ((flags & Insertion) !== NoFlags$1) {
                       setIsRunningInsertionEffect(false);
@@ -18901,8 +18901,8 @@ var require_react_dom_development = __commonJS({
                   }
                 }
                 {
-                  var destroy = effect.destroy;
-                  if (destroy !== void 0 && typeof destroy !== "function") {
+                  var destroy2 = effect.destroy;
+                  if (destroy2 !== void 0 && typeof destroy2 !== "function") {
                     var hookName = void 0;
                     if ((effect.tag & Layout) !== NoFlags) {
                       hookName = "useLayoutEffect";
@@ -18912,12 +18912,12 @@ var require_react_dom_development = __commonJS({
                       hookName = "useEffect";
                     }
                     var addendum = void 0;
-                    if (destroy === null) {
+                    if (destroy2 === null) {
                       addendum = " You returned null. If your effect does not require clean up, return undefined (or nothing).";
-                    } else if (typeof destroy.then === "function") {
+                    } else if (typeof destroy2.then === "function") {
                       addendum = "\n\nIt looks like you wrote " + hookName + "(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:\n\n" + hookName + "(() => {\n  async function fetchData() {\n    // You can await here\n    const response = await MyAPI.getData(someId);\n    // ...\n  }\n  fetchData();\n}, [someId]); // Or [] if effect doesn't need props or state\n\nLearn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-fetching";
                     } else {
-                      addendum = " You returned: " + destroy;
+                      addendum = " You returned: " + destroy2;
                     }
                     error("%s must not return anything besides a function, which is used for clean-up.%s", hookName, addendum);
                   }
@@ -19526,20 +19526,20 @@ var require_react_dom_development = __commonJS({
                     var firstEffect = lastEffect.next;
                     var effect = firstEffect;
                     do {
-                      var _effect = effect, destroy = _effect.destroy, tag = _effect.tag;
-                      if (destroy !== void 0) {
+                      var _effect = effect, destroy2 = _effect.destroy, tag = _effect.tag;
+                      if (destroy2 !== void 0) {
                         if ((tag & Insertion) !== NoFlags$1) {
-                          safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy);
+                          safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy2);
                         } else if ((tag & Layout) !== NoFlags$1) {
                           {
                             markComponentLayoutEffectUnmountStarted(deletedFiber);
                           }
                           if (deletedFiber.mode & ProfileMode) {
                             startLayoutEffectTimer();
-                            safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy);
+                            safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy2);
                             recordLayoutEffectDuration(deletedFiber);
                           } else {
-                            safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy);
+                            safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy2);
                           }
                           {
                             markComponentLayoutEffectUnmountStopped();
@@ -22205,18 +22205,18 @@ var require_react_dom_development = __commonJS({
         var createFiber = function(tag, pendingProps, key, mode) {
           return new FiberNode(tag, pendingProps, key, mode);
         };
-        function shouldConstruct$1(Component10) {
-          var prototype = Component10.prototype;
-          return !!(prototype && prototype.isReactComponent);
+        function shouldConstruct$1(Component9) {
+          var prototype3 = Component9.prototype;
+          return !!(prototype3 && prototype3.isReactComponent);
         }
         function isSimpleFunctionComponent(type) {
           return typeof type === "function" && !shouldConstruct$1(type) && type.defaultProps === void 0;
         }
-        function resolveLazyComponentTag(Component10) {
-          if (typeof Component10 === "function") {
-            return shouldConstruct$1(Component10) ? ClassComponent : FunctionComponent;
-          } else if (Component10 !== void 0 && Component10 !== null) {
-            var $$typeof = Component10.$$typeof;
+        function resolveLazyComponentTag(Component9) {
+          if (typeof Component9 === "function") {
+            return shouldConstruct$1(Component9) ? ClassComponent : FunctionComponent;
+          } else if (Component9 !== void 0 && Component9 !== null) {
+            var $$typeof = Component9.$$typeof;
             if ($$typeof === REACT_FORWARD_REF_TYPE) {
               return ForwardRef;
             }
@@ -22657,9 +22657,9 @@ var require_react_dom_development = __commonJS({
           var fiber = get(parentComponent);
           var parentContext = findCurrentUnmaskedContext(fiber);
           if (fiber.tag === ClassComponent) {
-            var Component10 = fiber.type;
-            if (isContextProvider(Component10)) {
-              return processChildContext(fiber, Component10, parentContext);
+            var Component9 = fiber.type;
+            if (isContextProvider(Component9)) {
+              return processChildContext(fiber, Component9, parentContext);
             }
           }
           return parentContext;
@@ -22867,9 +22867,9 @@ var require_react_dom_development = __commonJS({
         {
           var copyWithDeleteImpl = function(obj, path, index2) {
             var key = path[index2];
-            var updated = isArray(obj) ? obj.slice() : assign({}, obj);
+            var updated = isArray2(obj) ? obj.slice() : assign({}, obj);
             if (index2 + 1 === path.length) {
-              if (isArray(updated)) {
+              if (isArray2(updated)) {
                 updated.splice(key, 1);
               } else {
                 delete updated[key];
@@ -22884,11 +22884,11 @@ var require_react_dom_development = __commonJS({
           };
           var copyWithRenameImpl = function(obj, oldPath, newPath, index2) {
             var oldKey = oldPath[index2];
-            var updated = isArray(obj) ? obj.slice() : assign({}, obj);
+            var updated = isArray2(obj) ? obj.slice() : assign({}, obj);
             if (index2 + 1 === oldPath.length) {
               var newKey = newPath[index2];
               updated[newKey] = updated[oldKey];
-              if (isArray(updated)) {
+              if (isArray2(updated)) {
                 updated.splice(oldKey, 1);
               } else {
                 delete updated[oldKey];
@@ -22923,7 +22923,7 @@ var require_react_dom_development = __commonJS({
               return value;
             }
             var key = path[index2];
-            var updated = isArray(obj) ? obj.slice() : assign({}, obj);
+            var updated = isArray2(obj) ? obj.slice() : assign({}, obj);
             updated[key] = copyWithSetImpl(obj[key], path, index2 + 1, value);
             return updated;
           };
@@ -23669,7 +23669,7 @@ var require_react_is_development = __commonJS({
         var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
         var ContextConsumer = REACT_CONTEXT_TYPE;
         var ContextProvider = REACT_PROVIDER_TYPE;
-        var Element = REACT_ELEMENT_TYPE;
+        var Element2 = REACT_ELEMENT_TYPE;
         var ForwardRef = REACT_FORWARD_REF_TYPE;
         var Fragment = REACT_FRAGMENT_TYPE;
         var Lazy = REACT_LAZY_TYPE;
@@ -23728,7 +23728,7 @@ var require_react_is_development = __commonJS({
         exports.ConcurrentMode = ConcurrentMode;
         exports.ContextConsumer = ContextConsumer;
         exports.ContextProvider = ContextProvider;
-        exports.Element = Element;
+        exports.Element = Element2;
         exports.ForwardRef = ForwardRef;
         exports.Fragment = Fragment;
         exports.Lazy = Lazy;
@@ -23774,7 +23774,7 @@ var require_object_assign = __commonJS({
   "node_modules/object-assign/index.js"(exports, module2) {
     "use strict";
     var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var hasOwnProperty2 = Object.prototype.hasOwnProperty;
     var propIsEnumerable = Object.prototype.propertyIsEnumerable;
     function toObject(val) {
       if (val === null || val === void 0) {
@@ -23821,7 +23821,7 @@ var require_object_assign = __commonJS({
       for (var s2 = 1; s2 < arguments.length; s2++) {
         from = Object(arguments[s2]);
         for (var key in from) {
-          if (hasOwnProperty.call(from, key)) {
+          if (hasOwnProperty2.call(from, key)) {
             to[key] = from[key];
           }
         }
@@ -24471,16 +24471,16 @@ var require_linkify_it = __commonJS({
     function _class(obj) {
       return Object.prototype.toString.call(obj);
     }
-    function isString(obj) {
+    function isString2(obj) {
       return _class(obj) === "[object String]";
     }
-    function isObject(obj) {
+    function isObject2(obj) {
       return _class(obj) === "[object Object]";
     }
-    function isRegExp(obj) {
+    function isRegExp2(obj) {
       return _class(obj) === "[object RegExp]";
     }
-    function isFunction(obj) {
+    function isFunction2(obj) {
       return _class(obj) === "[object Function]";
     }
     function escapeRE(str) {
@@ -24601,15 +24601,15 @@ var require_linkify_it = __commonJS({
         }
         var compiled = { validate: null, link: null };
         self2.__compiled__[name] = compiled;
-        if (isObject(val)) {
-          if (isRegExp(val.validate)) {
+        if (isObject2(val)) {
+          if (isRegExp2(val.validate)) {
             compiled.validate = createValidator(val.validate);
-          } else if (isFunction(val.validate)) {
+          } else if (isFunction2(val.validate)) {
             compiled.validate = val.validate;
           } else {
             schemaError(name, val);
           }
-          if (isFunction(val.normalize)) {
+          if (isFunction2(val.normalize)) {
             compiled.normalize = val.normalize;
           } else if (!val.normalize) {
             compiled.normalize = createNormalizer();
@@ -24618,7 +24618,7 @@ var require_linkify_it = __commonJS({
           }
           return;
         }
-        if (isString(val)) {
+        if (isString2(val)) {
           aliases.push(name);
           return;
         }
@@ -24688,7 +24688,7 @@ var require_linkify_it = __commonJS({
       this.__opts__ = assign(this.__opts__, options);
       return this;
     };
-    LinkifyIt.prototype.test = function test(text) {
+    LinkifyIt.prototype.test = function test2(text) {
       this.__text_cache__ = text;
       this.__index__ = -1;
       if (!text.length) {
@@ -26395,6 +26395,3165 @@ var require_Linkify = __commonJS({
       properties: {}
     };
     exports.default = Linkify3;
+  }
+});
+
+// node_modules/react/cjs/react-jsx-runtime.development.js
+var require_react_jsx_runtime_development = __commonJS({
+  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+    "use strict";
+    if (true) {
+      (function() {
+        "use strict";
+        var React23 = require_react();
+        var REACT_ELEMENT_TYPE = Symbol.for("react.element");
+        var REACT_PORTAL_TYPE = Symbol.for("react.portal");
+        var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+        var REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
+        var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+        var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
+        var REACT_CONTEXT_TYPE = Symbol.for("react.context");
+        var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
+        var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
+        var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
+        var REACT_MEMO_TYPE = Symbol.for("react.memo");
+        var REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
+        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
+        var FAUX_ITERATOR_SYMBOL = "@@iterator";
+        function getIteratorFn(maybeIterable) {
+          if (maybeIterable === null || typeof maybeIterable !== "object") {
+            return null;
+          }
+          var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+          if (typeof maybeIterator === "function") {
+            return maybeIterator;
+          }
+          return null;
+        }
+        var ReactSharedInternals = React23.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        function error(format) {
+          {
+            {
+              for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+                args[_key2 - 1] = arguments[_key2];
+              }
+              printWarning("error", format, args);
+            }
+          }
+        }
+        function printWarning(level, format, args) {
+          {
+            var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
+            var stack = ReactDebugCurrentFrame2.getStackAddendum();
+            if (stack !== "") {
+              format += "%s";
+              args = args.concat([stack]);
+            }
+            var argsWithFormat = args.map(function(item) {
+              return String(item);
+            });
+            argsWithFormat.unshift("Warning: " + format);
+            Function.prototype.apply.call(console[level], console, argsWithFormat);
+          }
+        }
+        var enableScopeAPI = false;
+        var enableCacheElement = false;
+        var enableTransitionTracing = false;
+        var enableLegacyHidden = false;
+        var enableDebugTracing = false;
+        var REACT_MODULE_REFERENCE;
+        {
+          REACT_MODULE_REFERENCE = Symbol.for("react.module.reference");
+        }
+        function isValidElementType(type) {
+          if (typeof type === "string" || typeof type === "function") {
+            return true;
+          }
+          if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) {
+            return true;
+          }
+          if (typeof type === "object" && type !== null) {
+            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+            // types supported by any Flight configuration anywhere since
+            // we don't know which Flight build this will end up being used
+            // with.
+            type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== void 0) {
+              return true;
+            }
+          }
+          return false;
+        }
+        function getWrappedName(outerType, innerType, wrapperName) {
+          var displayName = outerType.displayName;
+          if (displayName) {
+            return displayName;
+          }
+          var functionName = innerType.displayName || innerType.name || "";
+          return functionName !== "" ? wrapperName + "(" + functionName + ")" : wrapperName;
+        }
+        function getContextName(type) {
+          return type.displayName || "Context";
+        }
+        function getComponentNameFromType(type) {
+          if (type == null) {
+            return null;
+          }
+          {
+            if (typeof type.tag === "number") {
+              error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
+            }
+          }
+          if (typeof type === "function") {
+            return type.displayName || type.name || null;
+          }
+          if (typeof type === "string") {
+            return type;
+          }
+          switch (type) {
+            case REACT_FRAGMENT_TYPE:
+              return "Fragment";
+            case REACT_PORTAL_TYPE:
+              return "Portal";
+            case REACT_PROFILER_TYPE:
+              return "Profiler";
+            case REACT_STRICT_MODE_TYPE:
+              return "StrictMode";
+            case REACT_SUSPENSE_TYPE:
+              return "Suspense";
+            case REACT_SUSPENSE_LIST_TYPE:
+              return "SuspenseList";
+          }
+          if (typeof type === "object") {
+            switch (type.$$typeof) {
+              case REACT_CONTEXT_TYPE:
+                var context = type;
+                return getContextName(context) + ".Consumer";
+              case REACT_PROVIDER_TYPE:
+                var provider = type;
+                return getContextName(provider._context) + ".Provider";
+              case REACT_FORWARD_REF_TYPE:
+                return getWrappedName(type, type.render, "ForwardRef");
+              case REACT_MEMO_TYPE:
+                var outerName = type.displayName || null;
+                if (outerName !== null) {
+                  return outerName;
+                }
+                return getComponentNameFromType(type.type) || "Memo";
+              case REACT_LAZY_TYPE: {
+                var lazyComponent = type;
+                var payload = lazyComponent._payload;
+                var init = lazyComponent._init;
+                try {
+                  return getComponentNameFromType(init(payload));
+                } catch (x) {
+                  return null;
+                }
+              }
+            }
+          }
+          return null;
+        }
+        var assign = Object.assign;
+        var disabledDepth = 0;
+        var prevLog;
+        var prevInfo;
+        var prevWarn;
+        var prevError;
+        var prevGroup;
+        var prevGroupCollapsed;
+        var prevGroupEnd;
+        function disabledLog() {
+        }
+        disabledLog.__reactDisabledLog = true;
+        function disableLogs() {
+          {
+            if (disabledDepth === 0) {
+              prevLog = console.log;
+              prevInfo = console.info;
+              prevWarn = console.warn;
+              prevError = console.error;
+              prevGroup = console.group;
+              prevGroupCollapsed = console.groupCollapsed;
+              prevGroupEnd = console.groupEnd;
+              var props = {
+                configurable: true,
+                enumerable: true,
+                value: disabledLog,
+                writable: true
+              };
+              Object.defineProperties(console, {
+                info: props,
+                log: props,
+                warn: props,
+                error: props,
+                group: props,
+                groupCollapsed: props,
+                groupEnd: props
+              });
+            }
+            disabledDepth++;
+          }
+        }
+        function reenableLogs() {
+          {
+            disabledDepth--;
+            if (disabledDepth === 0) {
+              var props = {
+                configurable: true,
+                enumerable: true,
+                writable: true
+              };
+              Object.defineProperties(console, {
+                log: assign({}, props, {
+                  value: prevLog
+                }),
+                info: assign({}, props, {
+                  value: prevInfo
+                }),
+                warn: assign({}, props, {
+                  value: prevWarn
+                }),
+                error: assign({}, props, {
+                  value: prevError
+                }),
+                group: assign({}, props, {
+                  value: prevGroup
+                }),
+                groupCollapsed: assign({}, props, {
+                  value: prevGroupCollapsed
+                }),
+                groupEnd: assign({}, props, {
+                  value: prevGroupEnd
+                })
+              });
+            }
+            if (disabledDepth < 0) {
+              error("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
+            }
+          }
+        }
+        var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
+        var prefix;
+        function describeBuiltInComponentFrame(name, source, ownerFn) {
+          {
+            if (prefix === void 0) {
+              try {
+                throw Error();
+              } catch (x) {
+                var match = x.stack.trim().match(/\n( *(at )?)/);
+                prefix = match && match[1] || "";
+              }
+            }
+            return "\n" + prefix + name;
+          }
+        }
+        var reentry = false;
+        var componentFrameCache;
+        {
+          var PossiblyWeakMap = typeof WeakMap === "function" ? WeakMap : Map;
+          componentFrameCache = new PossiblyWeakMap();
+        }
+        function describeNativeComponentFrame(fn, construct) {
+          if (!fn || reentry) {
+            return "";
+          }
+          {
+            var frame = componentFrameCache.get(fn);
+            if (frame !== void 0) {
+              return frame;
+            }
+          }
+          var control;
+          reentry = true;
+          var previousPrepareStackTrace = Error.prepareStackTrace;
+          Error.prepareStackTrace = void 0;
+          var previousDispatcher;
+          {
+            previousDispatcher = ReactCurrentDispatcher.current;
+            ReactCurrentDispatcher.current = null;
+            disableLogs();
+          }
+          try {
+            if (construct) {
+              var Fake = function() {
+                throw Error();
+              };
+              Object.defineProperty(Fake.prototype, "props", {
+                set: function() {
+                  throw Error();
+                }
+              });
+              if (typeof Reflect === "object" && Reflect.construct) {
+                try {
+                  Reflect.construct(Fake, []);
+                } catch (x) {
+                  control = x;
+                }
+                Reflect.construct(fn, [], Fake);
+              } else {
+                try {
+                  Fake.call();
+                } catch (x) {
+                  control = x;
+                }
+                fn.call(Fake.prototype);
+              }
+            } else {
+              try {
+                throw Error();
+              } catch (x) {
+                control = x;
+              }
+              fn();
+            }
+          } catch (sample) {
+            if (sample && control && typeof sample.stack === "string") {
+              var sampleLines = sample.stack.split("\n");
+              var controlLines = control.stack.split("\n");
+              var s2 = sampleLines.length - 1;
+              var c2 = controlLines.length - 1;
+              while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
+                c2--;
+              }
+              for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
+                if (sampleLines[s2] !== controlLines[c2]) {
+                  if (s2 !== 1 || c2 !== 1) {
+                    do {
+                      s2--;
+                      c2--;
+                      if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
+                        var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
+                        if (fn.displayName && _frame.includes("<anonymous>")) {
+                          _frame = _frame.replace("<anonymous>", fn.displayName);
+                        }
+                        {
+                          if (typeof fn === "function") {
+                            componentFrameCache.set(fn, _frame);
+                          }
+                        }
+                        return _frame;
+                      }
+                    } while (s2 >= 1 && c2 >= 0);
+                  }
+                  break;
+                }
+              }
+            }
+          } finally {
+            reentry = false;
+            {
+              ReactCurrentDispatcher.current = previousDispatcher;
+              reenableLogs();
+            }
+            Error.prepareStackTrace = previousPrepareStackTrace;
+          }
+          var name = fn ? fn.displayName || fn.name : "";
+          var syntheticFrame = name ? describeBuiltInComponentFrame(name) : "";
+          {
+            if (typeof fn === "function") {
+              componentFrameCache.set(fn, syntheticFrame);
+            }
+          }
+          return syntheticFrame;
+        }
+        function describeFunctionComponentFrame(fn, source, ownerFn) {
+          {
+            return describeNativeComponentFrame(fn, false);
+          }
+        }
+        function shouldConstruct(Component9) {
+          var prototype3 = Component9.prototype;
+          return !!(prototype3 && prototype3.isReactComponent);
+        }
+        function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
+          if (type == null) {
+            return "";
+          }
+          if (typeof type === "function") {
+            {
+              return describeNativeComponentFrame(type, shouldConstruct(type));
+            }
+          }
+          if (typeof type === "string") {
+            return describeBuiltInComponentFrame(type);
+          }
+          switch (type) {
+            case REACT_SUSPENSE_TYPE:
+              return describeBuiltInComponentFrame("Suspense");
+            case REACT_SUSPENSE_LIST_TYPE:
+              return describeBuiltInComponentFrame("SuspenseList");
+          }
+          if (typeof type === "object") {
+            switch (type.$$typeof) {
+              case REACT_FORWARD_REF_TYPE:
+                return describeFunctionComponentFrame(type.render);
+              case REACT_MEMO_TYPE:
+                return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
+              case REACT_LAZY_TYPE: {
+                var lazyComponent = type;
+                var payload = lazyComponent._payload;
+                var init = lazyComponent._init;
+                try {
+                  return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
+                } catch (x) {
+                }
+              }
+            }
+          }
+          return "";
+        }
+        var hasOwnProperty2 = Object.prototype.hasOwnProperty;
+        var loggedTypeFailures = {};
+        var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+        function setCurrentlyValidatingElement(element) {
+          {
+            if (element) {
+              var owner = element._owner;
+              var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+              ReactDebugCurrentFrame.setExtraStackFrame(stack);
+            } else {
+              ReactDebugCurrentFrame.setExtraStackFrame(null);
+            }
+          }
+        }
+        function checkPropTypes(typeSpecs, values, location, componentName, element) {
+          {
+            var has = Function.call.bind(hasOwnProperty2);
+            for (var typeSpecName in typeSpecs) {
+              if (has(typeSpecs, typeSpecName)) {
+                var error$1 = void 0;
+                try {
+                  if (typeof typeSpecs[typeSpecName] !== "function") {
+                    var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                    err.name = "Invariant Violation";
+                    throw err;
+                  }
+                  error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                } catch (ex) {
+                  error$1 = ex;
+                }
+                if (error$1 && !(error$1 instanceof Error)) {
+                  setCurrentlyValidatingElement(element);
+                  error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                  setCurrentlyValidatingElement(null);
+                }
+                if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
+                  loggedTypeFailures[error$1.message] = true;
+                  setCurrentlyValidatingElement(element);
+                  error("Failed %s type: %s", location, error$1.message);
+                  setCurrentlyValidatingElement(null);
+                }
+              }
+            }
+          }
+        }
+        var isArrayImpl = Array.isArray;
+        function isArray2(a2) {
+          return isArrayImpl(a2);
+        }
+        function typeName(value) {
+          {
+            var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
+            var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+            return type;
+          }
+        }
+        function willCoercionThrow(value) {
+          {
+            try {
+              testStringCoercion(value);
+              return false;
+            } catch (e2) {
+              return true;
+            }
+          }
+        }
+        function testStringCoercion(value) {
+          return "" + value;
+        }
+        function checkKeyStringCoercion(value) {
+          {
+            if (willCoercionThrow(value)) {
+              error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
+              return testStringCoercion(value);
+            }
+          }
+        }
+        var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
+        var RESERVED_PROPS = {
+          key: true,
+          ref: true,
+          __self: true,
+          __source: true
+        };
+        var specialPropKeyWarningShown;
+        var specialPropRefWarningShown;
+        var didWarnAboutStringRefs;
+        {
+          didWarnAboutStringRefs = {};
+        }
+        function hasValidRef(config) {
+          {
+            if (hasOwnProperty2.call(config, "ref")) {
+              var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
+              if (getter && getter.isReactWarning) {
+                return false;
+              }
+            }
+          }
+          return config.ref !== void 0;
+        }
+        function hasValidKey(config) {
+          {
+            if (hasOwnProperty2.call(config, "key")) {
+              var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+              if (getter && getter.isReactWarning) {
+                return false;
+              }
+            }
+          }
+          return config.key !== void 0;
+        }
+        function warnIfStringRefCannotBeAutoConverted(config, self2) {
+          {
+            if (typeof config.ref === "string" && ReactCurrentOwner.current && self2 && ReactCurrentOwner.current.stateNode !== self2) {
+              var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
+              if (!didWarnAboutStringRefs[componentName]) {
+                error('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
+                didWarnAboutStringRefs[componentName] = true;
+              }
+            }
+          }
+        }
+        function defineKeyPropWarningGetter(props, displayName) {
+          {
+            var warnAboutAccessingKey = function() {
+              if (!specialPropKeyWarningShown) {
+                specialPropKeyWarningShown = true;
+                error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              }
+            };
+            warnAboutAccessingKey.isReactWarning = true;
+            Object.defineProperty(props, "key", {
+              get: warnAboutAccessingKey,
+              configurable: true
+            });
+          }
+        }
+        function defineRefPropWarningGetter(props, displayName) {
+          {
+            var warnAboutAccessingRef = function() {
+              if (!specialPropRefWarningShown) {
+                specialPropRefWarningShown = true;
+                error("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              }
+            };
+            warnAboutAccessingRef.isReactWarning = true;
+            Object.defineProperty(props, "ref", {
+              get: warnAboutAccessingRef,
+              configurable: true
+            });
+          }
+        }
+        var ReactElement = function(type, key, ref, self2, source, owner, props) {
+          var element = {
+            // This tag allows us to uniquely identify this as a React Element
+            $$typeof: REACT_ELEMENT_TYPE,
+            // Built-in properties that belong on the element
+            type,
+            key,
+            ref,
+            props,
+            // Record the component responsible for creating this element.
+            _owner: owner
+          };
+          {
+            element._store = {};
+            Object.defineProperty(element._store, "validated", {
+              configurable: false,
+              enumerable: false,
+              writable: true,
+              value: false
+            });
+            Object.defineProperty(element, "_self", {
+              configurable: false,
+              enumerable: false,
+              writable: false,
+              value: self2
+            });
+            Object.defineProperty(element, "_source", {
+              configurable: false,
+              enumerable: false,
+              writable: false,
+              value: source
+            });
+            if (Object.freeze) {
+              Object.freeze(element.props);
+              Object.freeze(element);
+            }
+          }
+          return element;
+        };
+        function jsxDEV(type, config, maybeKey, source, self2) {
+          {
+            var propName;
+            var props = {};
+            var key = null;
+            var ref = null;
+            if (maybeKey !== void 0) {
+              {
+                checkKeyStringCoercion(maybeKey);
+              }
+              key = "" + maybeKey;
+            }
+            if (hasValidKey(config)) {
+              {
+                checkKeyStringCoercion(config.key);
+              }
+              key = "" + config.key;
+            }
+            if (hasValidRef(config)) {
+              ref = config.ref;
+              warnIfStringRefCannotBeAutoConverted(config, self2);
+            }
+            for (propName in config) {
+              if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                props[propName] = config[propName];
+              }
+            }
+            if (type && type.defaultProps) {
+              var defaultProps = type.defaultProps;
+              for (propName in defaultProps) {
+                if (props[propName] === void 0) {
+                  props[propName] = defaultProps[propName];
+                }
+              }
+            }
+            if (key || ref) {
+              var displayName = typeof type === "function" ? type.displayName || type.name || "Unknown" : type;
+              if (key) {
+                defineKeyPropWarningGetter(props, displayName);
+              }
+              if (ref) {
+                defineRefPropWarningGetter(props, displayName);
+              }
+            }
+            return ReactElement(type, key, ref, self2, source, ReactCurrentOwner.current, props);
+          }
+        }
+        var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
+        var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
+        function setCurrentlyValidatingElement$1(element) {
+          {
+            if (element) {
+              var owner = element._owner;
+              var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+              ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
+            } else {
+              ReactDebugCurrentFrame$1.setExtraStackFrame(null);
+            }
+          }
+        }
+        var propTypesMisspellWarningShown;
+        {
+          propTypesMisspellWarningShown = false;
+        }
+        function isValidElement(object) {
+          {
+            return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+          }
+        }
+        function getDeclarationErrorAddendum() {
+          {
+            if (ReactCurrentOwner$1.current) {
+              var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
+              if (name) {
+                return "\n\nCheck the render method of `" + name + "`.";
+              }
+            }
+            return "";
+          }
+        }
+        function getSourceInfoErrorAddendum(source) {
+          {
+            if (source !== void 0) {
+              var fileName = source.fileName.replace(/^.*[\\\/]/, "");
+              var lineNumber = source.lineNumber;
+              return "\n\nCheck your code at " + fileName + ":" + lineNumber + ".";
+            }
+            return "";
+          }
+        }
+        var ownerHasKeyUseWarning = {};
+        function getCurrentComponentErrorInfo(parentType) {
+          {
+            var info = getDeclarationErrorAddendum();
+            if (!info) {
+              var parentName = typeof parentType === "string" ? parentType : parentType.displayName || parentType.name;
+              if (parentName) {
+                info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+              }
+            }
+            return info;
+          }
+        }
+        function validateExplicitKey(element, parentType) {
+          {
+            if (!element._store || element._store.validated || element.key != null) {
+              return;
+            }
+            element._store.validated = true;
+            var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
+            if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
+              return;
+            }
+            ownerHasKeyUseWarning[currentComponentErrorInfo] = true;
+            var childOwner = "";
+            if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
+              childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
+            }
+            setCurrentlyValidatingElement$1(element);
+            error('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+            setCurrentlyValidatingElement$1(null);
+          }
+        }
+        function validateChildKeys(node, parentType) {
+          {
+            if (typeof node !== "object") {
+              return;
+            }
+            if (isArray2(node)) {
+              for (var i2 = 0; i2 < node.length; i2++) {
+                var child = node[i2];
+                if (isValidElement(child)) {
+                  validateExplicitKey(child, parentType);
+                }
+              }
+            } else if (isValidElement(node)) {
+              if (node._store) {
+                node._store.validated = true;
+              }
+            } else if (node) {
+              var iteratorFn = getIteratorFn(node);
+              if (typeof iteratorFn === "function") {
+                if (iteratorFn !== node.entries) {
+                  var iterator = iteratorFn.call(node);
+                  var step;
+                  while (!(step = iterator.next()).done) {
+                    if (isValidElement(step.value)) {
+                      validateExplicitKey(step.value, parentType);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        function validatePropTypes(element) {
+          {
+            var type = element.type;
+            if (type === null || type === void 0 || typeof type === "string") {
+              return;
+            }
+            var propTypes;
+            if (typeof type === "function") {
+              propTypes = type.propTypes;
+            } else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+            // Inner props are checked in the reconciler.
+            type.$$typeof === REACT_MEMO_TYPE)) {
+              propTypes = type.propTypes;
+            } else {
+              return;
+            }
+            if (propTypes) {
+              var name = getComponentNameFromType(type);
+              checkPropTypes(propTypes, element.props, "prop", name, element);
+            } else if (type.PropTypes !== void 0 && !propTypesMisspellWarningShown) {
+              propTypesMisspellWarningShown = true;
+              var _name = getComponentNameFromType(type);
+              error("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
+            }
+            if (typeof type.getDefaultProps === "function" && !type.getDefaultProps.isReactClassApproved) {
+              error("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
+            }
+          }
+        }
+        function validateFragmentProps(fragment) {
+          {
+            var keys = Object.keys(fragment.props);
+            for (var i2 = 0; i2 < keys.length; i2++) {
+              var key = keys[i2];
+              if (key !== "children" && key !== "key") {
+                setCurrentlyValidatingElement$1(fragment);
+                error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
+                setCurrentlyValidatingElement$1(null);
+                break;
+              }
+            }
+            if (fragment.ref !== null) {
+              setCurrentlyValidatingElement$1(fragment);
+              error("Invalid attribute `ref` supplied to `React.Fragment`.");
+              setCurrentlyValidatingElement$1(null);
+            }
+          }
+        }
+        var didWarnAboutKeySpread = {};
+        function jsxWithValidation(type, props, key, isStaticChildren, source, self2) {
+          {
+            var validType = isValidElementType(type);
+            if (!validType) {
+              var info = "";
+              if (type === void 0 || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
+                info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+              }
+              var sourceInfo = getSourceInfoErrorAddendum(source);
+              if (sourceInfo) {
+                info += sourceInfo;
+              } else {
+                info += getDeclarationErrorAddendum();
+              }
+              var typeString;
+              if (type === null) {
+                typeString = "null";
+              } else if (isArray2(type)) {
+                typeString = "array";
+              } else if (type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE) {
+                typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />";
+                info = " Did you accidentally export a JSX literal instead of a component?";
+              } else {
+                typeString = typeof type;
+              }
+              error("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
+            }
+            var element = jsxDEV(type, props, key, source, self2);
+            if (element == null) {
+              return element;
+            }
+            if (validType) {
+              var children = props.children;
+              if (children !== void 0) {
+                if (isStaticChildren) {
+                  if (isArray2(children)) {
+                    for (var i2 = 0; i2 < children.length; i2++) {
+                      validateChildKeys(children[i2], type);
+                    }
+                    if (Object.freeze) {
+                      Object.freeze(children);
+                    }
+                  } else {
+                    error("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
+                  }
+                } else {
+                  validateChildKeys(children, type);
+                }
+              }
+            }
+            {
+              if (hasOwnProperty2.call(props, "key")) {
+                var componentName = getComponentNameFromType(type);
+                var keys = Object.keys(props).filter(function(k) {
+                  return k !== "key";
+                });
+                var beforeExample = keys.length > 0 ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
+                if (!didWarnAboutKeySpread[componentName + beforeExample]) {
+                  var afterExample = keys.length > 0 ? "{" + keys.join(": ..., ") + ": ...}" : "{}";
+                  error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', beforeExample, componentName, afterExample, componentName);
+                  didWarnAboutKeySpread[componentName + beforeExample] = true;
+                }
+              }
+            }
+            if (type === REACT_FRAGMENT_TYPE) {
+              validateFragmentProps(element);
+            } else {
+              validatePropTypes(element);
+            }
+            return element;
+          }
+        }
+        function jsxWithValidationStatic(type, props, key) {
+          {
+            return jsxWithValidation(type, props, key, true);
+          }
+        }
+        function jsxWithValidationDynamic(type, props, key) {
+          {
+            return jsxWithValidation(type, props, key, false);
+          }
+        }
+        var jsx2 = jsxWithValidationDynamic;
+        var jsxs = jsxWithValidationStatic;
+        exports.Fragment = REACT_FRAGMENT_TYPE;
+        exports.jsx = jsx2;
+        exports.jsxs = jsxs;
+      })();
+    }
+  }
+});
+
+// node_modules/react/jsx-runtime.js
+var require_jsx_runtime = __commonJS({
+  "node_modules/react/jsx-runtime.js"(exports, module2) {
+    "use strict";
+    if (false) {
+      module2.exports = null;
+    } else {
+      module2.exports = require_react_jsx_runtime_development();
+    }
+  }
+});
+
+// node_modules/plyr/dist/plyr.min.js
+var require_plyr_min = __commonJS({
+  "node_modules/plyr/dist/plyr.min.js"(exports, module2) {
+    "object" == typeof navigator && function(e2, t2) {
+      "object" == typeof exports && "undefined" != typeof module2 ? module2.exports = t2() : "function" == typeof define && define.amd ? define("Plyr", t2) : (e2 = "undefined" != typeof globalThis ? globalThis : e2 || self).Plyr = t2();
+    }(exports, function() {
+      "use strict";
+      function e2(e3, t3, i3) {
+        return (t3 = function(e4) {
+          var t4 = function(e5, t5) {
+            if ("object" != typeof e5 || null === e5) return e5;
+            var i4 = e5[Symbol.toPrimitive];
+            if (void 0 !== i4) {
+              var s3 = i4.call(e5, t5 || "default");
+              if ("object" != typeof s3) return s3;
+              throw new TypeError("@@toPrimitive must return a primitive value.");
+            }
+            return ("string" === t5 ? String : Number)(e5);
+          }(e4, "string");
+          return "symbol" == typeof t4 ? t4 : String(t4);
+        }(t3)) in e3 ? Object.defineProperty(e3, t3, { value: i3, enumerable: true, configurable: true, writable: true }) : e3[t3] = i3, e3;
+      }
+      function t2(e3, t3) {
+        for (var i3 = 0; i3 < t3.length; i3++) {
+          var s3 = t3[i3];
+          s3.enumerable = s3.enumerable || false, s3.configurable = true, "value" in s3 && (s3.writable = true), Object.defineProperty(e3, s3.key, s3);
+        }
+      }
+      function i2(e3, t3, i3) {
+        return t3 in e3 ? Object.defineProperty(e3, t3, { value: i3, enumerable: true, configurable: true, writable: true }) : e3[t3] = i3, e3;
+      }
+      function s2(e3, t3) {
+        var i3 = Object.keys(e3);
+        if (Object.getOwnPropertySymbols) {
+          var s3 = Object.getOwnPropertySymbols(e3);
+          t3 && (s3 = s3.filter(function(t4) {
+            return Object.getOwnPropertyDescriptor(e3, t4).enumerable;
+          })), i3.push.apply(i3, s3);
+        }
+        return i3;
+      }
+      function n2(e3) {
+        for (var t3 = 1; t3 < arguments.length; t3++) {
+          var n3 = null != arguments[t3] ? arguments[t3] : {};
+          t3 % 2 ? s2(Object(n3), true).forEach(function(t4) {
+            i2(e3, t4, n3[t4]);
+          }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e3, Object.getOwnPropertyDescriptors(n3)) : s2(Object(n3)).forEach(function(t4) {
+            Object.defineProperty(e3, t4, Object.getOwnPropertyDescriptor(n3, t4));
+          });
+        }
+        return e3;
+      }
+      var a2 = { addCSS: true, thumbWidth: 15, watch: true };
+      var l2 = function(e3) {
+        return null != e3 ? e3.constructor : null;
+      }, r2 = function(e3, t3) {
+        return !!(e3 && t3 && e3 instanceof t3);
+      }, o2 = function(e3) {
+        return null == e3;
+      }, c2 = function(e3) {
+        return l2(e3) === Object;
+      }, u2 = function(e3) {
+        return l2(e3) === String;
+      }, h2 = function(e3) {
+        return Array.isArray(e3);
+      }, d2 = function(e3) {
+        return r2(e3, NodeList);
+      }, m2 = { nullOrUndefined: o2, object: c2, number: function(e3) {
+        return l2(e3) === Number && !Number.isNaN(e3);
+      }, string: u2, boolean: function(e3) {
+        return l2(e3) === Boolean;
+      }, function: function(e3) {
+        return l2(e3) === Function;
+      }, array: h2, nodeList: d2, element: function(e3) {
+        return r2(e3, Element);
+      }, event: function(e3) {
+        return r2(e3, Event);
+      }, empty: function(e3) {
+        return o2(e3) || (u2(e3) || h2(e3) || d2(e3)) && !e3.length || c2(e3) && !Object.keys(e3).length;
+      } };
+      function p2(e3, t3) {
+        if (1 > t3) {
+          var i3 = function(e4) {
+            var t4 = "".concat(e4).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+            return t4 ? Math.max(0, (t4[1] ? t4[1].length : 0) - (t4[2] ? +t4[2] : 0)) : 0;
+          }(t3);
+          return parseFloat(e3.toFixed(i3));
+        }
+        return Math.round(e3 / t3) * t3;
+      }
+      var g2 = function() {
+        function e3(t3, i3) {
+          (function(e4, t4) {
+            if (!(e4 instanceof t4)) throw new TypeError("Cannot call a class as a function");
+          })(this, e3), m2.element(t3) ? this.element = t3 : m2.string(t3) && (this.element = document.querySelector(t3)), m2.element(this.element) && m2.empty(this.element.rangeTouch) && (this.config = n2({}, a2, {}, i3), this.init());
+        }
+        return function(e4, i3, s3) {
+          i3 && t2(e4.prototype, i3), s3 && t2(e4, s3);
+        }(e3, [{ key: "init", value: function() {
+          e3.enabled && (this.config.addCSS && (this.element.style.userSelect = "none", this.element.style.webKitUserSelect = "none", this.element.style.touchAction = "manipulation"), this.listeners(true), this.element.rangeTouch = this);
+        } }, { key: "destroy", value: function() {
+          e3.enabled && (this.config.addCSS && (this.element.style.userSelect = "", this.element.style.webKitUserSelect = "", this.element.style.touchAction = ""), this.listeners(false), this.element.rangeTouch = null);
+        } }, { key: "listeners", value: function(e4) {
+          var t3 = this, i3 = e4 ? "addEventListener" : "removeEventListener";
+          ["touchstart", "touchmove", "touchend"].forEach(function(e5) {
+            t3.element[i3](e5, function(e6) {
+              return t3.set(e6);
+            }, false);
+          });
+        } }, { key: "get", value: function(t3) {
+          if (!e3.enabled || !m2.event(t3)) return null;
+          var i3, s3 = t3.target, n3 = t3.changedTouches[0], a3 = parseFloat(s3.getAttribute("min")) || 0, l3 = parseFloat(s3.getAttribute("max")) || 100, r3 = parseFloat(s3.getAttribute("step")) || 1, o3 = s3.getBoundingClientRect(), c3 = 100 / o3.width * (this.config.thumbWidth / 2) / 100;
+          return 0 > (i3 = 100 / o3.width * (n3.clientX - o3.left)) ? i3 = 0 : 100 < i3 && (i3 = 100), 50 > i3 ? i3 -= (100 - 2 * i3) * c3 : 50 < i3 && (i3 += 2 * (i3 - 50) * c3), a3 + p2(i3 / 100 * (l3 - a3), r3);
+        } }, { key: "set", value: function(t3) {
+          e3.enabled && m2.event(t3) && !t3.target.disabled && (t3.preventDefault(), t3.target.value = this.get(t3), function(e4, t4) {
+            if (e4 && t4) {
+              var i3 = new Event(t4, { bubbles: true });
+              e4.dispatchEvent(i3);
+            }
+          }(t3.target, "touchend" === t3.type ? "change" : "input"));
+        } }], [{ key: "setup", value: function(t3) {
+          var i3 = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {}, s3 = null;
+          if (m2.empty(t3) || m2.string(t3) ? s3 = Array.from(document.querySelectorAll(m2.string(t3) ? t3 : 'input[type="range"]')) : m2.element(t3) ? s3 = [t3] : m2.nodeList(t3) ? s3 = Array.from(t3) : m2.array(t3) && (s3 = t3.filter(m2.element)), m2.empty(s3)) return null;
+          var l3 = n2({}, a2, {}, i3);
+          if (m2.string(t3) && l3.watch) {
+            var r3 = new MutationObserver(function(i4) {
+              Array.from(i4).forEach(function(i5) {
+                Array.from(i5.addedNodes).forEach(function(i6) {
+                  m2.element(i6) && function(e4, t4) {
+                    return function() {
+                      return Array.from(document.querySelectorAll(t4)).includes(this);
+                    }.call(e4, t4);
+                  }(i6, t3) && new e3(i6, l3);
+                });
+              });
+            });
+            r3.observe(document.body, { childList: true, subtree: true });
+          }
+          return s3.map(function(t4) {
+            return new e3(t4, i3);
+          });
+        } }, { key: "enabled", get: function() {
+          return "ontouchstart" in document.documentElement;
+        } }]), e3;
+      }();
+      const f2 = (e3) => null != e3 ? e3.constructor : null, y2 = (e3, t3) => Boolean(e3 && t3 && e3 instanceof t3), b2 = (e3) => null == e3, v2 = (e3) => f2(e3) === Object, w2 = (e3) => f2(e3) === String, T2 = (e3) => "function" == typeof e3, k = (e3) => Array.isArray(e3), C = (e3) => y2(e3, NodeList), A = (e3) => b2(e3) || (w2(e3) || k(e3) || C(e3)) && !e3.length || v2(e3) && !Object.keys(e3).length;
+      var S2 = { nullOrUndefined: b2, object: v2, number: (e3) => f2(e3) === Number && !Number.isNaN(e3), string: w2, boolean: (e3) => f2(e3) === Boolean, function: T2, array: k, weakMap: (e3) => y2(e3, WeakMap), nodeList: C, element: (e3) => null !== e3 && "object" == typeof e3 && 1 === e3.nodeType && "object" == typeof e3.style && "object" == typeof e3.ownerDocument, textNode: (e3) => f2(e3) === Text, event: (e3) => y2(e3, Event), keyboardEvent: (e3) => y2(e3, KeyboardEvent), cue: (e3) => y2(e3, window.TextTrackCue) || y2(e3, window.VTTCue), track: (e3) => y2(e3, TextTrack) || !b2(e3) && w2(e3.kind), promise: (e3) => y2(e3, Promise) && T2(e3.then), url: (e3) => {
+        if (y2(e3, window.URL)) return true;
+        if (!w2(e3)) return false;
+        let t3 = e3;
+        e3.startsWith("http://") && e3.startsWith("https://") || (t3 = `http://${e3}`);
+        try {
+          return !A(new URL(t3).hostname);
+        } catch (e4) {
+          return false;
+        }
+      }, empty: A };
+      const E2 = (() => {
+        const e3 = document.createElement("span"), t3 = { WebkitTransition: "webkitTransitionEnd", MozTransition: "transitionend", OTransition: "oTransitionEnd otransitionend", transition: "transitionend" }, i3 = Object.keys(t3).find((t4) => void 0 !== e3.style[t4]);
+        return !!S2.string(i3) && t3[i3];
+      })();
+      function P2(e3, t3) {
+        setTimeout(() => {
+          try {
+            e3.hidden = true, e3.offsetHeight, e3.hidden = false;
+          } catch (e4) {
+          }
+        }, t3);
+      }
+      var M = { isIE: Boolean(window.document.documentMode), isEdge: /Edge/g.test(navigator.userAgent), isWebKit: "WebkitAppearance" in document.documentElement.style && !/Edge/g.test(navigator.userAgent), isIPhone: /iPhone|iPod/gi.test(navigator.userAgent) && navigator.maxTouchPoints > 1, isIPadOS: "MacIntel" === navigator.platform && navigator.maxTouchPoints > 1, isIos: /iPad|iPhone|iPod/gi.test(navigator.userAgent) && navigator.maxTouchPoints > 1 };
+      function N(e3, t3) {
+        return t3.split(".").reduce((e4, t4) => e4 && e4[t4], e3);
+      }
+      function x(e3 = {}, ...t3) {
+        if (!t3.length) return e3;
+        const i3 = t3.shift();
+        return S2.object(i3) ? (Object.keys(i3).forEach((t4) => {
+          S2.object(i3[t4]) ? (Object.keys(e3).includes(t4) || Object.assign(e3, { [t4]: {} }), x(e3[t4], i3[t4])) : Object.assign(e3, { [t4]: i3[t4] });
+        }), x(e3, ...t3)) : e3;
+      }
+      function L2(e3, t3) {
+        const i3 = e3.length ? e3 : [e3];
+        Array.from(i3).reverse().forEach((e4, i4) => {
+          const s3 = i4 > 0 ? t3.cloneNode(true) : t3, n3 = e4.parentNode, a3 = e4.nextSibling;
+          s3.appendChild(e4), a3 ? n3.insertBefore(s3, a3) : n3.appendChild(s3);
+        });
+      }
+      function I(e3, t3) {
+        S2.element(e3) && !S2.empty(t3) && Object.entries(t3).filter(([, e4]) => !S2.nullOrUndefined(e4)).forEach(([t4, i3]) => e3.setAttribute(t4, i3));
+      }
+      function $(e3, t3, i3) {
+        const s3 = document.createElement(e3);
+        return S2.object(t3) && I(s3, t3), S2.string(i3) && (s3.innerText = i3), s3;
+      }
+      function _(e3, t3, i3, s3) {
+        S2.element(t3) && t3.appendChild($(e3, i3, s3));
+      }
+      function O(e3) {
+        S2.nodeList(e3) || S2.array(e3) ? Array.from(e3).forEach(O) : S2.element(e3) && S2.element(e3.parentNode) && e3.parentNode.removeChild(e3);
+      }
+      function j(e3) {
+        if (!S2.element(e3)) return;
+        let { length: t3 } = e3.childNodes;
+        for (; t3 > 0; ) e3.removeChild(e3.lastChild), t3 -= 1;
+      }
+      function q(e3, t3) {
+        return S2.element(t3) && S2.element(t3.parentNode) && S2.element(e3) ? (t3.parentNode.replaceChild(e3, t3), e3) : null;
+      }
+      function D(e3, t3) {
+        if (!S2.string(e3) || S2.empty(e3)) return {};
+        const i3 = {}, s3 = x({}, t3);
+        return e3.split(",").forEach((e4) => {
+          const t4 = e4.trim(), n3 = t4.replace(".", ""), a3 = t4.replace(/[[\]]/g, "").split("="), [l3] = a3, r3 = a3.length > 1 ? a3[1].replace(/["']/g, "") : "";
+          switch (t4.charAt(0)) {
+            case ".":
+              S2.string(s3.class) ? i3.class = `${s3.class} ${n3}` : i3.class = n3;
+              break;
+            case "#":
+              i3.id = t4.replace("#", "");
+              break;
+            case "[":
+              i3[l3] = r3;
+          }
+        }), x(s3, i3);
+      }
+      function H(e3, t3) {
+        if (!S2.element(e3)) return;
+        let i3 = t3;
+        S2.boolean(i3) || (i3 = !e3.hidden), e3.hidden = i3;
+      }
+      function R(e3, t3, i3) {
+        if (S2.nodeList(e3)) return Array.from(e3).map((e4) => R(e4, t3, i3));
+        if (S2.element(e3)) {
+          let s3 = "toggle";
+          return void 0 !== i3 && (s3 = i3 ? "add" : "remove"), e3.classList[s3](t3), e3.classList.contains(t3);
+        }
+        return false;
+      }
+      function F2(e3, t3) {
+        return S2.element(e3) && e3.classList.contains(t3);
+      }
+      function V(e3, t3) {
+        const { prototype: i3 } = Element;
+        return (i3.matches || i3.webkitMatchesSelector || i3.mozMatchesSelector || i3.msMatchesSelector || function() {
+          return Array.from(document.querySelectorAll(t3)).includes(this);
+        }).call(e3, t3);
+      }
+      function U(e3) {
+        return this.elements.container.querySelectorAll(e3);
+      }
+      function B(e3) {
+        return this.elements.container.querySelector(e3);
+      }
+      function W(e3 = null, t3 = false) {
+        S2.element(e3) && e3.focus({ preventScroll: true, focusVisible: t3 });
+      }
+      const z = { "audio/ogg": "vorbis", "audio/wav": "1", "video/webm": "vp8, vorbis", "video/mp4": "avc1.42E01E, mp4a.40.2", "video/ogg": "theora" }, K = { audio: "canPlayType" in document.createElement("audio"), video: "canPlayType" in document.createElement("video"), check(e3, t3) {
+        const i3 = K[e3] || "html5" !== t3;
+        return { api: i3, ui: i3 && K.rangeInput };
+      }, pip: !(M.isIPhone || !S2.function($("video").webkitSetPresentationMode) && (!document.pictureInPictureEnabled || $("video").disablePictureInPicture)), airplay: S2.function(window.WebKitPlaybackTargetAvailabilityEvent), playsinline: "playsInline" in document.createElement("video"), mime(e3) {
+        if (S2.empty(e3)) return false;
+        const [t3] = e3.split("/");
+        let i3 = e3;
+        if (!this.isHTML5 || t3 !== this.type) return false;
+        Object.keys(z).includes(i3) && (i3 += `; codecs="${z[e3]}"`);
+        try {
+          return Boolean(i3 && this.media.canPlayType(i3).replace(/no/, ""));
+        } catch (e4) {
+          return false;
+        }
+      }, textTracks: "textTracks" in document.createElement("video"), rangeInput: (() => {
+        const e3 = document.createElement("input");
+        return e3.type = "range", "range" === e3.type;
+      })(), touch: "ontouchstart" in document.documentElement, transitions: false !== E2, reducedMotion: "matchMedia" in window && window.matchMedia("(prefers-reduced-motion)").matches }, Y = (() => {
+        let e3 = false;
+        try {
+          const t3 = Object.defineProperty({}, "passive", { get: () => (e3 = true, null) });
+          window.addEventListener("test", null, t3), window.removeEventListener("test", null, t3);
+        } catch (e4) {
+        }
+        return e3;
+      })();
+      function Q(e3, t3, i3, s3 = false, n3 = true, a3 = false) {
+        if (!e3 || !("addEventListener" in e3) || S2.empty(t3) || !S2.function(i3)) return;
+        const l3 = t3.split(" ");
+        let r3 = a3;
+        Y && (r3 = { passive: n3, capture: a3 }), l3.forEach((t4) => {
+          this && this.eventListeners && s3 && this.eventListeners.push({ element: e3, type: t4, callback: i3, options: r3 }), e3[s3 ? "addEventListener" : "removeEventListener"](t4, i3, r3);
+        });
+      }
+      function X(e3, t3 = "", i3, s3 = true, n3 = false) {
+        Q.call(this, e3, t3, i3, true, s3, n3);
+      }
+      function J(e3, t3 = "", i3, s3 = true, n3 = false) {
+        Q.call(this, e3, t3, i3, false, s3, n3);
+      }
+      function G(e3, t3 = "", i3, s3 = true, n3 = false) {
+        const a3 = (...l3) => {
+          J(e3, t3, a3, s3, n3), i3.apply(this, l3);
+        };
+        Q.call(this, e3, t3, a3, true, s3, n3);
+      }
+      function Z(e3, t3 = "", i3 = false, s3 = {}) {
+        if (!S2.element(e3) || S2.empty(t3)) return;
+        const n3 = new CustomEvent(t3, { bubbles: i3, detail: { ...s3, plyr: this } });
+        e3.dispatchEvent(n3);
+      }
+      function ee() {
+        this && this.eventListeners && (this.eventListeners.forEach((e3) => {
+          const { element: t3, type: i3, callback: s3, options: n3 } = e3;
+          t3.removeEventListener(i3, s3, n3);
+        }), this.eventListeners = []);
+      }
+      function te() {
+        return new Promise((e3) => this.ready ? setTimeout(e3, 0) : X.call(this, this.elements.container, "ready", e3)).then(() => {
+        });
+      }
+      function ie(e3) {
+        S2.promise(e3) && e3.then(null, () => {
+        });
+      }
+      function se(e3) {
+        return S2.array(e3) ? e3.filter((t3, i3) => e3.indexOf(t3) === i3) : e3;
+      }
+      function ne(e3, t3) {
+        return S2.array(e3) && e3.length ? e3.reduce((e4, i3) => Math.abs(i3 - t3) < Math.abs(e4 - t3) ? i3 : e4) : null;
+      }
+      function ae(e3) {
+        return !(!window || !window.CSS) && window.CSS.supports(e3);
+      }
+      const le = [[1, 1], [4, 3], [3, 4], [5, 4], [4, 5], [3, 2], [2, 3], [16, 10], [10, 16], [16, 9], [9, 16], [21, 9], [9, 21], [32, 9], [9, 32]].reduce((e3, [t3, i3]) => ({ ...e3, [t3 / i3]: [t3, i3] }), {});
+      function re(e3) {
+        if (!(S2.array(e3) || S2.string(e3) && e3.includes(":"))) return false;
+        return (S2.array(e3) ? e3 : e3.split(":")).map(Number).every(S2.number);
+      }
+      function oe(e3) {
+        if (!S2.array(e3) || !e3.every(S2.number)) return null;
+        const [t3, i3] = e3, s3 = (e4, t4) => 0 === t4 ? e4 : s3(t4, e4 % t4), n3 = s3(t3, i3);
+        return [t3 / n3, i3 / n3];
+      }
+      function ce(e3) {
+        const t3 = (e4) => re(e4) ? e4.split(":").map(Number) : null;
+        let i3 = t3(e3);
+        if (null === i3 && (i3 = t3(this.config.ratio)), null === i3 && !S2.empty(this.embed) && S2.array(this.embed.ratio) && ({ ratio: i3 } = this.embed), null === i3 && this.isHTML5) {
+          const { videoWidth: e4, videoHeight: t4 } = this.media;
+          i3 = [e4, t4];
+        }
+        return oe(i3);
+      }
+      function ue(e3) {
+        if (!this.isVideo) return {};
+        const { wrapper: t3 } = this.elements, i3 = ce.call(this, e3);
+        if (!S2.array(i3)) return {};
+        const [s3, n3] = oe(i3), a3 = 100 / s3 * n3;
+        if (ae(`aspect-ratio: ${s3}/${n3}`) ? t3.style.aspectRatio = `${s3}/${n3}` : t3.style.paddingBottom = `${a3}%`, this.isVimeo && !this.config.vimeo.premium && this.supported.ui) {
+          const e4 = 100 / this.media.offsetWidth * parseInt(window.getComputedStyle(this.media).paddingBottom, 10), i4 = (e4 - a3) / (e4 / 50);
+          this.fullscreen.active ? t3.style.paddingBottom = null : this.media.style.transform = `translateY(-${i4}%)`;
+        } else this.isHTML5 && t3.classList.add(this.config.classNames.videoFixedRatio);
+        return { padding: a3, ratio: i3 };
+      }
+      function he(e3, t3, i3 = 0.05) {
+        const s3 = e3 / t3, n3 = ne(Object.keys(le), s3);
+        return Math.abs(n3 - s3) <= i3 ? le[n3] : [e3, t3];
+      }
+      const de = { getSources() {
+        if (!this.isHTML5) return [];
+        return Array.from(this.media.querySelectorAll("source")).filter((e3) => {
+          const t3 = e3.getAttribute("type");
+          return !!S2.empty(t3) || K.mime.call(this, t3);
+        });
+      }, getQualityOptions() {
+        return this.config.quality.forced ? this.config.quality.options : de.getSources.call(this).map((e3) => Number(e3.getAttribute("size"))).filter(Boolean);
+      }, setup() {
+        if (!this.isHTML5) return;
+        const e3 = this;
+        e3.options.speed = e3.config.speed.options, S2.empty(this.config.ratio) || ue.call(e3), Object.defineProperty(e3.media, "quality", { get() {
+          const t3 = de.getSources.call(e3).find((t4) => t4.getAttribute("src") === e3.source);
+          return t3 && Number(t3.getAttribute("size"));
+        }, set(t3) {
+          if (e3.quality !== t3) {
+            if (e3.config.quality.forced && S2.function(e3.config.quality.onChange)) e3.config.quality.onChange(t3);
+            else {
+              const i3 = de.getSources.call(e3).find((e4) => Number(e4.getAttribute("size")) === t3);
+              if (!i3) return;
+              const { currentTime: s3, paused: n3, preload: a3, readyState: l3, playbackRate: r3 } = e3.media;
+              e3.media.src = i3.getAttribute("src"), ("none" !== a3 || l3) && (e3.once("loadedmetadata", () => {
+                e3.speed = r3, e3.currentTime = s3, n3 || ie(e3.play());
+              }), e3.media.load());
+            }
+            Z.call(e3, e3.media, "qualitychange", false, { quality: t3 });
+          }
+        } });
+      }, cancelRequests() {
+        this.isHTML5 && (O(de.getSources.call(this)), this.media.setAttribute("src", this.config.blankVideo), this.media.load(), this.debug.log("Cancelled network requests"));
+      } };
+      function me(e3, ...t3) {
+        return S2.empty(e3) ? e3 : e3.toString().replace(/{(\d+)}/g, (e4, i3) => t3[i3].toString());
+      }
+      const pe = (e3 = "", t3 = "", i3 = "") => e3.replace(new RegExp(t3.toString().replace(/([.*+?^=!:${}()|[\]/\\])/g, "\\$1"), "g"), i3.toString()), ge = (e3 = "") => e3.toString().replace(/\w\S*/g, (e4) => e4.charAt(0).toUpperCase() + e4.slice(1).toLowerCase());
+      function fe(e3 = "") {
+        let t3 = e3.toString();
+        return t3 = function(e4 = "") {
+          let t4 = e4.toString();
+          return t4 = pe(t4, "-", " "), t4 = pe(t4, "_", " "), t4 = ge(t4), pe(t4, " ", "");
+        }(t3), t3.charAt(0).toLowerCase() + t3.slice(1);
+      }
+      function ye(e3) {
+        const t3 = document.createElement("div");
+        return t3.appendChild(e3), t3.innerHTML;
+      }
+      const be = { pip: "PIP", airplay: "AirPlay", html5: "HTML5", vimeo: "Vimeo", youtube: "YouTube" }, ve = { get(e3 = "", t3 = {}) {
+        if (S2.empty(e3) || S2.empty(t3)) return "";
+        let i3 = N(t3.i18n, e3);
+        if (S2.empty(i3)) return Object.keys(be).includes(e3) ? be[e3] : "";
+        const s3 = { "{seektime}": t3.seekTime, "{title}": t3.title };
+        return Object.entries(s3).forEach(([e4, t4]) => {
+          i3 = pe(i3, e4, t4);
+        }), i3;
+      } };
+      class we {
+        constructor(t3) {
+          e2(this, "get", (e3) => {
+            if (!we.supported || !this.enabled) return null;
+            const t4 = window.localStorage.getItem(this.key);
+            if (S2.empty(t4)) return null;
+            const i3 = JSON.parse(t4);
+            return S2.string(e3) && e3.length ? i3[e3] : i3;
+          }), e2(this, "set", (e3) => {
+            if (!we.supported || !this.enabled) return;
+            if (!S2.object(e3)) return;
+            let t4 = this.get();
+            S2.empty(t4) && (t4 = {}), x(t4, e3);
+            try {
+              window.localStorage.setItem(this.key, JSON.stringify(t4));
+            } catch (e4) {
+            }
+          }), this.enabled = t3.config.storage.enabled, this.key = t3.config.storage.key;
+        }
+        static get supported() {
+          try {
+            if (!("localStorage" in window)) return false;
+            const e3 = "___test";
+            return window.localStorage.setItem(e3, e3), window.localStorage.removeItem(e3), true;
+          } catch (e3) {
+            return false;
+          }
+        }
+      }
+      function Te(e3, t3 = "text") {
+        return new Promise((i3, s3) => {
+          try {
+            const s4 = new XMLHttpRequest();
+            if (!("withCredentials" in s4)) return;
+            s4.addEventListener("load", () => {
+              if ("text" === t3) try {
+                i3(JSON.parse(s4.responseText));
+              } catch (e4) {
+                i3(s4.responseText);
+              }
+              else i3(s4.response);
+            }), s4.addEventListener("error", () => {
+              throw new Error(s4.status);
+            }), s4.open("GET", e3, true), s4.responseType = t3, s4.send();
+          } catch (e4) {
+            s3(e4);
+          }
+        });
+      }
+      function ke(e3, t3) {
+        if (!S2.string(e3)) return;
+        const i3 = "cache", s3 = S2.string(t3);
+        let n3 = false;
+        const a3 = () => null !== document.getElementById(t3), l3 = (e4, t4) => {
+          e4.innerHTML = t4, s3 && a3() || document.body.insertAdjacentElement("afterbegin", e4);
+        };
+        if (!s3 || !a3()) {
+          const a4 = we.supported, r3 = document.createElement("div");
+          if (r3.setAttribute("hidden", ""), s3 && r3.setAttribute("id", t3), a4) {
+            const e4 = window.localStorage.getItem(`${i3}-${t3}`);
+            if (n3 = null !== e4, n3) {
+              const t4 = JSON.parse(e4);
+              l3(r3, t4.content);
+            }
+          }
+          Te(e3).then((e4) => {
+            if (!S2.empty(e4)) {
+              if (a4) try {
+                window.localStorage.setItem(`${i3}-${t3}`, JSON.stringify({ content: e4 }));
+              } catch (e5) {
+              }
+              l3(r3, e4);
+            }
+          }).catch(() => {
+          });
+        }
+      }
+      const Ce = (e3) => Math.trunc(e3 / 60 / 60 % 60, 10), Ae = (e3) => Math.trunc(e3 / 60 % 60, 10), Se = (e3) => Math.trunc(e3 % 60, 10);
+      function Ee(e3 = 0, t3 = false, i3 = false) {
+        if (!S2.number(e3)) return Ee(void 0, t3, i3);
+        const s3 = (e4) => `0${e4}`.slice(-2);
+        let n3 = Ce(e3);
+        const a3 = Ae(e3), l3 = Se(e3);
+        return n3 = t3 || n3 > 0 ? `${n3}:` : "", `${i3 && e3 > 0 ? "-" : ""}${n3}${s3(a3)}:${s3(l3)}`;
+      }
+      const Pe = { getIconUrl() {
+        const e3 = new URL(this.config.iconUrl, window.location), t3 = window.location.host ? window.location.host : window.top.location.host, i3 = e3.host !== t3 || M.isIE && !window.svg4everybody;
+        return { url: this.config.iconUrl, cors: i3 };
+      }, findElements() {
+        try {
+          return this.elements.controls = B.call(this, this.config.selectors.controls.wrapper), this.elements.buttons = { play: U.call(this, this.config.selectors.buttons.play), pause: B.call(this, this.config.selectors.buttons.pause), restart: B.call(this, this.config.selectors.buttons.restart), rewind: B.call(this, this.config.selectors.buttons.rewind), fastForward: B.call(this, this.config.selectors.buttons.fastForward), mute: B.call(this, this.config.selectors.buttons.mute), pip: B.call(this, this.config.selectors.buttons.pip), airplay: B.call(this, this.config.selectors.buttons.airplay), settings: B.call(this, this.config.selectors.buttons.settings), captions: B.call(this, this.config.selectors.buttons.captions), fullscreen: B.call(this, this.config.selectors.buttons.fullscreen) }, this.elements.progress = B.call(this, this.config.selectors.progress), this.elements.inputs = { seek: B.call(this, this.config.selectors.inputs.seek), volume: B.call(this, this.config.selectors.inputs.volume) }, this.elements.display = { buffer: B.call(this, this.config.selectors.display.buffer), currentTime: B.call(this, this.config.selectors.display.currentTime), duration: B.call(this, this.config.selectors.display.duration) }, S2.element(this.elements.progress) && (this.elements.display.seekTooltip = this.elements.progress.querySelector(`.${this.config.classNames.tooltip}`)), true;
+        } catch (e3) {
+          return this.debug.warn("It looks like there is a problem with your custom controls HTML", e3), this.toggleNativeControls(true), false;
+        }
+      }, createIcon(e3, t3) {
+        const i3 = "http://www.w3.org/2000/svg", s3 = Pe.getIconUrl.call(this), n3 = `${s3.cors ? "" : s3.url}#${this.config.iconPrefix}`, a3 = document.createElementNS(i3, "svg");
+        I(a3, x(t3, { "aria-hidden": "true", focusable: "false" }));
+        const l3 = document.createElementNS(i3, "use"), r3 = `${n3}-${e3}`;
+        return "href" in l3 && l3.setAttributeNS("http://www.w3.org/1999/xlink", "href", r3), l3.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", r3), a3.appendChild(l3), a3;
+      }, createLabel(e3, t3 = {}) {
+        const i3 = ve.get(e3, this.config);
+        return $("span", { ...t3, class: [t3.class, this.config.classNames.hidden].filter(Boolean).join(" ") }, i3);
+      }, createBadge(e3) {
+        if (S2.empty(e3)) return null;
+        const t3 = $("span", { class: this.config.classNames.menu.value });
+        return t3.appendChild($("span", { class: this.config.classNames.menu.badge }, e3)), t3;
+      }, createButton(e3, t3) {
+        const i3 = x({}, t3);
+        let s3 = fe(e3);
+        const n3 = { element: "button", toggle: false, label: null, icon: null, labelPressed: null, iconPressed: null };
+        switch (["element", "icon", "label"].forEach((e4) => {
+          Object.keys(i3).includes(e4) && (n3[e4] = i3[e4], delete i3[e4]);
+        }), "button" !== n3.element || Object.keys(i3).includes("type") || (i3.type = "button"), Object.keys(i3).includes("class") ? i3.class.split(" ").some((e4) => e4 === this.config.classNames.control) || x(i3, { class: `${i3.class} ${this.config.classNames.control}` }) : i3.class = this.config.classNames.control, e3) {
+          case "play":
+            n3.toggle = true, n3.label = "play", n3.labelPressed = "pause", n3.icon = "play", n3.iconPressed = "pause";
+            break;
+          case "mute":
+            n3.toggle = true, n3.label = "mute", n3.labelPressed = "unmute", n3.icon = "volume", n3.iconPressed = "muted";
+            break;
+          case "captions":
+            n3.toggle = true, n3.label = "enableCaptions", n3.labelPressed = "disableCaptions", n3.icon = "captions-off", n3.iconPressed = "captions-on";
+            break;
+          case "fullscreen":
+            n3.toggle = true, n3.label = "enterFullscreen", n3.labelPressed = "exitFullscreen", n3.icon = "enter-fullscreen", n3.iconPressed = "exit-fullscreen";
+            break;
+          case "play-large":
+            i3.class += ` ${this.config.classNames.control}--overlaid`, s3 = "play", n3.label = "play", n3.icon = "play";
+            break;
+          default:
+            S2.empty(n3.label) && (n3.label = s3), S2.empty(n3.icon) && (n3.icon = e3);
+        }
+        const a3 = $(n3.element);
+        return n3.toggle ? (a3.appendChild(Pe.createIcon.call(this, n3.iconPressed, { class: "icon--pressed" })), a3.appendChild(Pe.createIcon.call(this, n3.icon, { class: "icon--not-pressed" })), a3.appendChild(Pe.createLabel.call(this, n3.labelPressed, { class: "label--pressed" })), a3.appendChild(Pe.createLabel.call(this, n3.label, { class: "label--not-pressed" }))) : (a3.appendChild(Pe.createIcon.call(this, n3.icon)), a3.appendChild(Pe.createLabel.call(this, n3.label))), x(i3, D(this.config.selectors.buttons[s3], i3)), I(a3, i3), "play" === s3 ? (S2.array(this.elements.buttons[s3]) || (this.elements.buttons[s3] = []), this.elements.buttons[s3].push(a3)) : this.elements.buttons[s3] = a3, a3;
+      }, createRange(e3, t3) {
+        const i3 = $("input", x(D(this.config.selectors.inputs[e3]), { type: "range", min: 0, max: 100, step: 0.01, value: 0, autocomplete: "off", role: "slider", "aria-label": ve.get(e3, this.config), "aria-valuemin": 0, "aria-valuemax": 100, "aria-valuenow": 0 }, t3));
+        return this.elements.inputs[e3] = i3, Pe.updateRangeFill.call(this, i3), g2.setup(i3), i3;
+      }, createProgress(e3, t3) {
+        const i3 = $("progress", x(D(this.config.selectors.display[e3]), { min: 0, max: 100, value: 0, role: "progressbar", "aria-hidden": true }, t3));
+        if ("volume" !== e3) {
+          i3.appendChild($("span", null, "0"));
+          const t4 = { played: "played", buffer: "buffered" }[e3], s3 = t4 ? ve.get(t4, this.config) : "";
+          i3.innerText = `% ${s3.toLowerCase()}`;
+        }
+        return this.elements.display[e3] = i3, i3;
+      }, createTime(e3, t3) {
+        const i3 = D(this.config.selectors.display[e3], t3), s3 = $("div", x(i3, { class: `${i3.class ? i3.class : ""} ${this.config.classNames.display.time} `.trim(), "aria-label": ve.get(e3, this.config), role: "timer" }), "00:00");
+        return this.elements.display[e3] = s3, s3;
+      }, bindMenuItemShortcuts(e3, t3) {
+        X.call(this, e3, "keydown keyup", (i3) => {
+          if (![" ", "ArrowUp", "ArrowDown", "ArrowRight"].includes(i3.key)) return;
+          if (i3.preventDefault(), i3.stopPropagation(), "keydown" === i3.type) return;
+          const s3 = V(e3, '[role="menuitemradio"]');
+          if (!s3 && [" ", "ArrowRight"].includes(i3.key)) Pe.showMenuPanel.call(this, t3, true);
+          else {
+            let t4;
+            " " !== i3.key && ("ArrowDown" === i3.key || s3 && "ArrowRight" === i3.key ? (t4 = e3.nextElementSibling, S2.element(t4) || (t4 = e3.parentNode.firstElementChild)) : (t4 = e3.previousElementSibling, S2.element(t4) || (t4 = e3.parentNode.lastElementChild)), W.call(this, t4, true));
+          }
+        }, false), X.call(this, e3, "keyup", (e4) => {
+          "Return" === e4.key && Pe.focusFirstMenuItem.call(this, null, true);
+        });
+      }, createMenuItem({ value: e3, list: t3, type: i3, title: s3, badge: n3 = null, checked: a3 = false }) {
+        const l3 = D(this.config.selectors.inputs[i3]), r3 = $("button", x(l3, { type: "button", role: "menuitemradio", class: `${this.config.classNames.control} ${l3.class ? l3.class : ""}`.trim(), "aria-checked": a3, value: e3 })), o3 = $("span");
+        o3.innerHTML = s3, S2.element(n3) && o3.appendChild(n3), r3.appendChild(o3), Object.defineProperty(r3, "checked", { enumerable: true, get: () => "true" === r3.getAttribute("aria-checked"), set(e4) {
+          e4 && Array.from(r3.parentNode.children).filter((e5) => V(e5, '[role="menuitemradio"]')).forEach((e5) => e5.setAttribute("aria-checked", "false")), r3.setAttribute("aria-checked", e4 ? "true" : "false");
+        } }), this.listeners.bind(r3, "click keyup", (t4) => {
+          if (!S2.keyboardEvent(t4) || " " === t4.key) {
+            switch (t4.preventDefault(), t4.stopPropagation(), r3.checked = true, i3) {
+              case "language":
+                this.currentTrack = Number(e3);
+                break;
+              case "quality":
+                this.quality = e3;
+                break;
+              case "speed":
+                this.speed = parseFloat(e3);
+            }
+            Pe.showMenuPanel.call(this, "home", S2.keyboardEvent(t4));
+          }
+        }, i3, false), Pe.bindMenuItemShortcuts.call(this, r3, i3), t3.appendChild(r3);
+      }, formatTime(e3 = 0, t3 = false) {
+        if (!S2.number(e3)) return e3;
+        return Ee(e3, Ce(this.duration) > 0, t3);
+      }, updateTimeDisplay(e3 = null, t3 = 0, i3 = false) {
+        S2.element(e3) && S2.number(t3) && (e3.innerText = Pe.formatTime(t3, i3));
+      }, updateVolume() {
+        this.supported.ui && (S2.element(this.elements.inputs.volume) && Pe.setRange.call(this, this.elements.inputs.volume, this.muted ? 0 : this.volume), S2.element(this.elements.buttons.mute) && (this.elements.buttons.mute.pressed = this.muted || 0 === this.volume));
+      }, setRange(e3, t3 = 0) {
+        S2.element(e3) && (e3.value = t3, Pe.updateRangeFill.call(this, e3));
+      }, updateProgress(e3) {
+        if (!this.supported.ui || !S2.event(e3)) return;
+        let t3 = 0;
+        const i3 = (e4, t4) => {
+          const i4 = S2.number(t4) ? t4 : 0, s4 = S2.element(e4) ? e4 : this.elements.display.buffer;
+          if (S2.element(s4)) {
+            s4.value = i4;
+            const e5 = s4.getElementsByTagName("span")[0];
+            S2.element(e5) && (e5.childNodes[0].nodeValue = i4);
+          }
+        };
+        if (e3) switch (e3.type) {
+          case "timeupdate":
+          case "seeking":
+          case "seeked":
+            s3 = this.currentTime, n3 = this.duration, t3 = 0 === s3 || 0 === n3 || Number.isNaN(s3) || Number.isNaN(n3) ? 0 : (s3 / n3 * 100).toFixed(2), "timeupdate" === e3.type && Pe.setRange.call(this, this.elements.inputs.seek, t3);
+            break;
+          case "playing":
+          case "progress":
+            i3(this.elements.display.buffer, 100 * this.buffered);
+        }
+        var s3, n3;
+      }, updateRangeFill(e3) {
+        const t3 = S2.event(e3) ? e3.target : e3;
+        if (S2.element(t3) && "range" === t3.getAttribute("type")) {
+          if (V(t3, this.config.selectors.inputs.seek)) {
+            t3.setAttribute("aria-valuenow", this.currentTime);
+            const e4 = Pe.formatTime(this.currentTime), i3 = Pe.formatTime(this.duration), s3 = ve.get("seekLabel", this.config);
+            t3.setAttribute("aria-valuetext", s3.replace("{currentTime}", e4).replace("{duration}", i3));
+          } else if (V(t3, this.config.selectors.inputs.volume)) {
+            const e4 = 100 * t3.value;
+            t3.setAttribute("aria-valuenow", e4), t3.setAttribute("aria-valuetext", `${e4.toFixed(1)}%`);
+          } else t3.setAttribute("aria-valuenow", t3.value);
+          (M.isWebKit || M.isIPadOS) && t3.style.setProperty("--value", t3.value / t3.max * 100 + "%");
+        }
+      }, updateSeekTooltip(e3) {
+        var t3, i3;
+        if (!this.config.tooltips.seek || !S2.element(this.elements.inputs.seek) || !S2.element(this.elements.display.seekTooltip) || 0 === this.duration) return;
+        const s3 = this.elements.display.seekTooltip, n3 = `${this.config.classNames.tooltip}--visible`, a3 = (e4) => R(s3, n3, e4);
+        if (this.touch) return void a3(false);
+        let l3 = 0;
+        const r3 = this.elements.progress.getBoundingClientRect();
+        if (S2.event(e3)) l3 = 100 / r3.width * (e3.pageX - r3.left);
+        else {
+          if (!F2(s3, n3)) return;
+          l3 = parseFloat(s3.style.left, 10);
+        }
+        l3 < 0 ? l3 = 0 : l3 > 100 && (l3 = 100);
+        const o3 = this.duration / 100 * l3;
+        s3.innerText = Pe.formatTime(o3);
+        const c3 = null === (t3 = this.config.markers) || void 0 === t3 || null === (i3 = t3.points) || void 0 === i3 ? void 0 : i3.find(({ time: e4 }) => e4 === Math.round(o3));
+        c3 && s3.insertAdjacentHTML("afterbegin", `${c3.label}<br>`), s3.style.left = `${l3}%`, S2.event(e3) && ["mouseenter", "mouseleave"].includes(e3.type) && a3("mouseenter" === e3.type);
+      }, timeUpdate(e3) {
+        const t3 = !S2.element(this.elements.display.duration) && this.config.invertTime;
+        Pe.updateTimeDisplay.call(this, this.elements.display.currentTime, t3 ? this.duration - this.currentTime : this.currentTime, t3), e3 && "timeupdate" === e3.type && this.media.seeking || Pe.updateProgress.call(this, e3);
+      }, durationUpdate() {
+        if (!this.supported.ui || !this.config.invertTime && this.currentTime) return;
+        if (this.duration >= 2 ** 32) return H(this.elements.display.currentTime, true), void H(this.elements.progress, true);
+        S2.element(this.elements.inputs.seek) && this.elements.inputs.seek.setAttribute("aria-valuemax", this.duration);
+        const e3 = S2.element(this.elements.display.duration);
+        !e3 && this.config.displayDuration && this.paused && Pe.updateTimeDisplay.call(this, this.elements.display.currentTime, this.duration), e3 && Pe.updateTimeDisplay.call(this, this.elements.display.duration, this.duration), this.config.markers.enabled && Pe.setMarkers.call(this), Pe.updateSeekTooltip.call(this);
+      }, toggleMenuButton(e3, t3) {
+        H(this.elements.settings.buttons[e3], !t3);
+      }, updateSetting(e3, t3, i3) {
+        const s3 = this.elements.settings.panels[e3];
+        let n3 = null, a3 = t3;
+        if ("captions" === e3) n3 = this.currentTrack;
+        else {
+          if (n3 = S2.empty(i3) ? this[e3] : i3, S2.empty(n3) && (n3 = this.config[e3].default), !S2.empty(this.options[e3]) && !this.options[e3].includes(n3)) return void this.debug.warn(`Unsupported value of '${n3}' for ${e3}`);
+          if (!this.config[e3].options.includes(n3)) return void this.debug.warn(`Disabled value of '${n3}' for ${e3}`);
+        }
+        if (S2.element(a3) || (a3 = s3 && s3.querySelector('[role="menu"]')), !S2.element(a3)) return;
+        this.elements.settings.buttons[e3].querySelector(`.${this.config.classNames.menu.value}`).innerHTML = Pe.getLabel.call(this, e3, n3);
+        const l3 = a3 && a3.querySelector(`[value="${n3}"]`);
+        S2.element(l3) && (l3.checked = true);
+      }, getLabel(e3, t3) {
+        switch (e3) {
+          case "speed":
+            return 1 === t3 ? ve.get("normal", this.config) : `${t3}&times;`;
+          case "quality":
+            if (S2.number(t3)) {
+              const e4 = ve.get(`qualityLabel.${t3}`, this.config);
+              return e4.length ? e4 : `${t3}p`;
+            }
+            return ge(t3);
+          case "captions":
+            return xe.getLabel.call(this);
+          default:
+            return null;
+        }
+      }, setQualityMenu(e3) {
+        if (!S2.element(this.elements.settings.panels.quality)) return;
+        const t3 = "quality", i3 = this.elements.settings.panels.quality.querySelector('[role="menu"]');
+        S2.array(e3) && (this.options.quality = se(e3).filter((e4) => this.config.quality.options.includes(e4)));
+        const s3 = !S2.empty(this.options.quality) && this.options.quality.length > 1;
+        if (Pe.toggleMenuButton.call(this, t3, s3), j(i3), Pe.checkMenu.call(this), !s3) return;
+        const n3 = (e4) => {
+          const t4 = ve.get(`qualityBadge.${e4}`, this.config);
+          return t4.length ? Pe.createBadge.call(this, t4) : null;
+        };
+        this.options.quality.sort((e4, t4) => {
+          const i4 = this.config.quality.options;
+          return i4.indexOf(e4) > i4.indexOf(t4) ? 1 : -1;
+        }).forEach((e4) => {
+          Pe.createMenuItem.call(this, { value: e4, list: i3, type: t3, title: Pe.getLabel.call(this, "quality", e4), badge: n3(e4) });
+        }), Pe.updateSetting.call(this, t3, i3);
+      }, setCaptionsMenu() {
+        if (!S2.element(this.elements.settings.panels.captions)) return;
+        const e3 = "captions", t3 = this.elements.settings.panels.captions.querySelector('[role="menu"]'), i3 = xe.getTracks.call(this), s3 = Boolean(i3.length);
+        if (Pe.toggleMenuButton.call(this, e3, s3), j(t3), Pe.checkMenu.call(this), !s3) return;
+        const n3 = i3.map((e4, i4) => ({ value: i4, checked: this.captions.toggled && this.currentTrack === i4, title: xe.getLabel.call(this, e4), badge: e4.language && Pe.createBadge.call(this, e4.language.toUpperCase()), list: t3, type: "language" }));
+        n3.unshift({ value: -1, checked: !this.captions.toggled, title: ve.get("disabled", this.config), list: t3, type: "language" }), n3.forEach(Pe.createMenuItem.bind(this)), Pe.updateSetting.call(this, e3, t3);
+      }, setSpeedMenu() {
+        if (!S2.element(this.elements.settings.panels.speed)) return;
+        const e3 = "speed", t3 = this.elements.settings.panels.speed.querySelector('[role="menu"]');
+        this.options.speed = this.options.speed.filter((e4) => e4 >= this.minimumSpeed && e4 <= this.maximumSpeed);
+        const i3 = !S2.empty(this.options.speed) && this.options.speed.length > 1;
+        Pe.toggleMenuButton.call(this, e3, i3), j(t3), Pe.checkMenu.call(this), i3 && (this.options.speed.forEach((i4) => {
+          Pe.createMenuItem.call(this, { value: i4, list: t3, type: e3, title: Pe.getLabel.call(this, "speed", i4) });
+        }), Pe.updateSetting.call(this, e3, t3));
+      }, checkMenu() {
+        const { buttons: e3 } = this.elements.settings, t3 = !S2.empty(e3) && Object.values(e3).some((e4) => !e4.hidden);
+        H(this.elements.settings.menu, !t3);
+      }, focusFirstMenuItem(e3, t3 = false) {
+        if (this.elements.settings.popup.hidden) return;
+        let i3 = e3;
+        S2.element(i3) || (i3 = Object.values(this.elements.settings.panels).find((e4) => !e4.hidden));
+        const s3 = i3.querySelector('[role^="menuitem"]');
+        W.call(this, s3, t3);
+      }, toggleMenu(e3) {
+        const { popup: t3 } = this.elements.settings, i3 = this.elements.buttons.settings;
+        if (!S2.element(t3) || !S2.element(i3)) return;
+        const { hidden: s3 } = t3;
+        let n3 = s3;
+        if (S2.boolean(e3)) n3 = e3;
+        else if (S2.keyboardEvent(e3) && "Escape" === e3.key) n3 = false;
+        else if (S2.event(e3)) {
+          const s4 = S2.function(e3.composedPath) ? e3.composedPath()[0] : e3.target, a3 = t3.contains(s4);
+          if (a3 || !a3 && e3.target !== i3 && n3) return;
+        }
+        i3.setAttribute("aria-expanded", n3), H(t3, !n3), R(this.elements.container, this.config.classNames.menu.open, n3), n3 && S2.keyboardEvent(e3) ? Pe.focusFirstMenuItem.call(this, null, true) : n3 || s3 || W.call(this, i3, S2.keyboardEvent(e3));
+      }, getMenuSize(e3) {
+        const t3 = e3.cloneNode(true);
+        t3.style.position = "absolute", t3.style.opacity = 0, t3.removeAttribute("hidden"), e3.parentNode.appendChild(t3);
+        const i3 = t3.scrollWidth, s3 = t3.scrollHeight;
+        return O(t3), { width: i3, height: s3 };
+      }, showMenuPanel(e3 = "", t3 = false) {
+        const i3 = this.elements.container.querySelector(`#plyr-settings-${this.id}-${e3}`);
+        if (!S2.element(i3)) return;
+        const s3 = i3.parentNode, n3 = Array.from(s3.children).find((e4) => !e4.hidden);
+        if (K.transitions && !K.reducedMotion) {
+          s3.style.width = `${n3.scrollWidth}px`, s3.style.height = `${n3.scrollHeight}px`;
+          const e4 = Pe.getMenuSize.call(this, i3), t4 = (e5) => {
+            e5.target === s3 && ["width", "height"].includes(e5.propertyName) && (s3.style.width = "", s3.style.height = "", J.call(this, s3, E2, t4));
+          };
+          X.call(this, s3, E2, t4), s3.style.width = `${e4.width}px`, s3.style.height = `${e4.height}px`;
+        }
+        H(n3, true), H(i3, false), Pe.focusFirstMenuItem.call(this, i3, t3);
+      }, setDownloadUrl() {
+        const e3 = this.elements.buttons.download;
+        S2.element(e3) && e3.setAttribute("href", this.download);
+      }, create(e3) {
+        const { bindMenuItemShortcuts: t3, createButton: i3, createProgress: s3, createRange: n3, createTime: a3, setQualityMenu: l3, setSpeedMenu: r3, showMenuPanel: o3 } = Pe;
+        this.elements.controls = null, S2.array(this.config.controls) && this.config.controls.includes("play-large") && this.elements.container.appendChild(i3.call(this, "play-large"));
+        const c3 = $("div", D(this.config.selectors.controls.wrapper));
+        this.elements.controls = c3;
+        const u3 = { class: "plyr__controls__item" };
+        return se(S2.array(this.config.controls) ? this.config.controls : []).forEach((l4) => {
+          if ("restart" === l4 && c3.appendChild(i3.call(this, "restart", u3)), "rewind" === l4 && c3.appendChild(i3.call(this, "rewind", u3)), "play" === l4 && c3.appendChild(i3.call(this, "play", u3)), "fast-forward" === l4 && c3.appendChild(i3.call(this, "fast-forward", u3)), "progress" === l4) {
+            const t4 = $("div", { class: `${u3.class} plyr__progress__container` }), i4 = $("div", D(this.config.selectors.progress));
+            if (i4.appendChild(n3.call(this, "seek", { id: `plyr-seek-${e3.id}` })), i4.appendChild(s3.call(this, "buffer")), this.config.tooltips.seek) {
+              const e4 = $("span", { class: this.config.classNames.tooltip }, "00:00");
+              i4.appendChild(e4), this.elements.display.seekTooltip = e4;
+            }
+            this.elements.progress = i4, t4.appendChild(this.elements.progress), c3.appendChild(t4);
+          }
+          if ("current-time" === l4 && c3.appendChild(a3.call(this, "currentTime", u3)), "duration" === l4 && c3.appendChild(a3.call(this, "duration", u3)), "mute" === l4 || "volume" === l4) {
+            let { volume: t4 } = this.elements;
+            if (S2.element(t4) && c3.contains(t4) || (t4 = $("div", x({}, u3, { class: `${u3.class} plyr__volume`.trim() })), this.elements.volume = t4, c3.appendChild(t4)), "mute" === l4 && t4.appendChild(i3.call(this, "mute")), "volume" === l4 && !M.isIos && !M.isIPadOS) {
+              const i4 = { max: 1, step: 0.05, value: this.config.volume };
+              t4.appendChild(n3.call(this, "volume", x(i4, { id: `plyr-volume-${e3.id}` })));
+            }
+          }
+          if ("captions" === l4 && c3.appendChild(i3.call(this, "captions", u3)), "settings" === l4 && !S2.empty(this.config.settings)) {
+            const s4 = $("div", x({}, u3, { class: `${u3.class} plyr__menu`.trim(), hidden: "" }));
+            s4.appendChild(i3.call(this, "settings", { "aria-haspopup": true, "aria-controls": `plyr-settings-${e3.id}`, "aria-expanded": false }));
+            const n4 = $("div", { class: "plyr__menu__container", id: `plyr-settings-${e3.id}`, hidden: "" }), a4 = $("div"), l5 = $("div", { id: `plyr-settings-${e3.id}-home` }), r4 = $("div", { role: "menu" });
+            l5.appendChild(r4), a4.appendChild(l5), this.elements.settings.panels.home = l5, this.config.settings.forEach((i4) => {
+              const s5 = $("button", x(D(this.config.selectors.buttons.settings), { type: "button", class: `${this.config.classNames.control} ${this.config.classNames.control}--forward`, role: "menuitem", "aria-haspopup": true, hidden: "" }));
+              t3.call(this, s5, i4), X.call(this, s5, "click", () => {
+                o3.call(this, i4, false);
+              });
+              const n5 = $("span", null, ve.get(i4, this.config)), l6 = $("span", { class: this.config.classNames.menu.value });
+              l6.innerHTML = e3[i4], n5.appendChild(l6), s5.appendChild(n5), r4.appendChild(s5);
+              const c4 = $("div", { id: `plyr-settings-${e3.id}-${i4}`, hidden: "" }), u4 = $("button", { type: "button", class: `${this.config.classNames.control} ${this.config.classNames.control}--back` });
+              u4.appendChild($("span", { "aria-hidden": true }, ve.get(i4, this.config))), u4.appendChild($("span", { class: this.config.classNames.hidden }, ve.get("menuBack", this.config))), X.call(this, c4, "keydown", (e4) => {
+                "ArrowLeft" === e4.key && (e4.preventDefault(), e4.stopPropagation(), o3.call(this, "home", true));
+              }, false), X.call(this, u4, "click", () => {
+                o3.call(this, "home", false);
+              }), c4.appendChild(u4), c4.appendChild($("div", { role: "menu" })), a4.appendChild(c4), this.elements.settings.buttons[i4] = s5, this.elements.settings.panels[i4] = c4;
+            }), n4.appendChild(a4), s4.appendChild(n4), c3.appendChild(s4), this.elements.settings.popup = n4, this.elements.settings.menu = s4;
+          }
+          if ("pip" === l4 && K.pip && c3.appendChild(i3.call(this, "pip", u3)), "airplay" === l4 && K.airplay && c3.appendChild(i3.call(this, "airplay", u3)), "download" === l4) {
+            const e4 = x({}, u3, { element: "a", href: this.download, target: "_blank" });
+            this.isHTML5 && (e4.download = "");
+            const { download: t4 } = this.config.urls;
+            !S2.url(t4) && this.isEmbed && x(e4, { icon: `logo-${this.provider}`, label: this.provider }), c3.appendChild(i3.call(this, "download", e4));
+          }
+          "fullscreen" === l4 && c3.appendChild(i3.call(this, "fullscreen", u3));
+        }), this.isHTML5 && l3.call(this, de.getQualityOptions.call(this)), r3.call(this), c3;
+      }, inject() {
+        if (this.config.loadSprite) {
+          const e4 = Pe.getIconUrl.call(this);
+          e4.cors && ke(e4.url, "sprite-plyr");
+        }
+        this.id = Math.floor(1e4 * Math.random());
+        let e3 = null;
+        this.elements.controls = null;
+        const t3 = { id: this.id, seektime: this.config.seekTime, title: this.config.title };
+        let i3 = true;
+        S2.function(this.config.controls) && (this.config.controls = this.config.controls.call(this, t3)), this.config.controls || (this.config.controls = []), S2.element(this.config.controls) || S2.string(this.config.controls) ? e3 = this.config.controls : (e3 = Pe.create.call(this, { id: this.id, seektime: this.config.seekTime, speed: this.speed, quality: this.quality, captions: xe.getLabel.call(this) }), i3 = false);
+        let s3;
+        i3 && S2.string(this.config.controls) && (e3 = ((e4) => {
+          let i4 = e4;
+          return Object.entries(t3).forEach(([e5, t4]) => {
+            i4 = pe(i4, `{${e5}}`, t4);
+          }), i4;
+        })(e3)), S2.string(this.config.selectors.controls.container) && (s3 = document.querySelector(this.config.selectors.controls.container)), S2.element(s3) || (s3 = this.elements.container);
+        if (s3[S2.element(e3) ? "insertAdjacentElement" : "insertAdjacentHTML"]("afterbegin", e3), S2.element(this.elements.controls) || Pe.findElements.call(this), !S2.empty(this.elements.buttons)) {
+          const e4 = (e5) => {
+            const t4 = this.config.classNames.controlPressed;
+            e5.setAttribute("aria-pressed", "false"), Object.defineProperty(e5, "pressed", { configurable: true, enumerable: true, get: () => F2(e5, t4), set(i4 = false) {
+              R(e5, t4, i4), e5.setAttribute("aria-pressed", i4 ? "true" : "false");
+            } });
+          };
+          Object.values(this.elements.buttons).filter(Boolean).forEach((t4) => {
+            S2.array(t4) || S2.nodeList(t4) ? Array.from(t4).filter(Boolean).forEach(e4) : e4(t4);
+          });
+        }
+        if (M.isEdge && P2(s3), this.config.tooltips.controls) {
+          const { classNames: e4, selectors: t4 } = this.config, i4 = `${t4.controls.wrapper} ${t4.labels} .${e4.hidden}`, s4 = U.call(this, i4);
+          Array.from(s4).forEach((e5) => {
+            R(e5, this.config.classNames.hidden, false), R(e5, this.config.classNames.tooltip, true);
+          });
+        }
+      }, setMediaMetadata() {
+        try {
+          "mediaSession" in navigator && (navigator.mediaSession.metadata = new window.MediaMetadata({ title: this.config.mediaMetadata.title, artist: this.config.mediaMetadata.artist, album: this.config.mediaMetadata.album, artwork: this.config.mediaMetadata.artwork }));
+        } catch (e3) {
+        }
+      }, setMarkers() {
+        var e3, t3;
+        if (!this.duration || this.elements.markers) return;
+        const i3 = null === (e3 = this.config.markers) || void 0 === e3 || null === (t3 = e3.points) || void 0 === t3 ? void 0 : t3.filter(({ time: e4 }) => e4 > 0 && e4 < this.duration);
+        if (null == i3 || !i3.length) return;
+        const s3 = document.createDocumentFragment(), n3 = document.createDocumentFragment();
+        let a3 = null;
+        const l3 = `${this.config.classNames.tooltip}--visible`, r3 = (e4) => R(a3, l3, e4);
+        i3.forEach((e4) => {
+          const t4 = $("span", { class: this.config.classNames.marker }, ""), i4 = e4.time / this.duration * 100 + "%";
+          a3 && (t4.addEventListener("mouseenter", () => {
+            e4.label || (a3.style.left = i4, a3.innerHTML = e4.label, r3(true));
+          }), t4.addEventListener("mouseleave", () => {
+            r3(false);
+          })), t4.addEventListener("click", () => {
+            this.currentTime = e4.time;
+          }), t4.style.left = i4, n3.appendChild(t4);
+        }), s3.appendChild(n3), this.config.tooltips.seek || (a3 = $("span", { class: this.config.classNames.tooltip }, ""), s3.appendChild(a3)), this.elements.markers = { points: n3, tip: a3 }, this.elements.progress.appendChild(s3);
+      } };
+      function Me(e3, t3 = true) {
+        let i3 = e3;
+        if (t3) {
+          const e4 = document.createElement("a");
+          e4.href = i3, i3 = e4.href;
+        }
+        try {
+          return new URL(i3);
+        } catch (e4) {
+          return null;
+        }
+      }
+      function Ne(e3) {
+        const t3 = new URLSearchParams();
+        return S2.object(e3) && Object.entries(e3).forEach(([e4, i3]) => {
+          t3.set(e4, i3);
+        }), t3;
+      }
+      const xe = { setup() {
+        if (!this.supported.ui) return;
+        if (!this.isVideo || this.isYouTube || this.isHTML5 && !K.textTracks) return void (S2.array(this.config.controls) && this.config.controls.includes("settings") && this.config.settings.includes("captions") && Pe.setCaptionsMenu.call(this));
+        var e3, t3;
+        if (S2.element(this.elements.captions) || (this.elements.captions = $("div", D(this.config.selectors.captions)), this.elements.captions.setAttribute("dir", "auto"), e3 = this.elements.captions, t3 = this.elements.wrapper, S2.element(e3) && S2.element(t3) && t3.parentNode.insertBefore(e3, t3.nextSibling)), M.isIE && window.URL) {
+          const e4 = this.media.querySelectorAll("track");
+          Array.from(e4).forEach((e5) => {
+            const t4 = e5.getAttribute("src"), i4 = Me(t4);
+            null !== i4 && i4.hostname !== window.location.href.hostname && ["http:", "https:"].includes(i4.protocol) && Te(t4, "blob").then((t5) => {
+              e5.setAttribute("src", window.URL.createObjectURL(t5));
+            }).catch(() => {
+              O(e5);
+            });
+          });
+        }
+        const i3 = se((navigator.languages || [navigator.language || navigator.userLanguage || "en"]).map((e4) => e4.split("-")[0]));
+        let s3 = (this.storage.get("language") || this.config.captions.language || "auto").toLowerCase();
+        "auto" === s3 && ([s3] = i3);
+        let n3 = this.storage.get("captions");
+        if (S2.boolean(n3) || ({ active: n3 } = this.config.captions), Object.assign(this.captions, { toggled: false, active: n3, language: s3, languages: i3 }), this.isHTML5) {
+          const e4 = this.config.captions.update ? "addtrack removetrack" : "removetrack";
+          X.call(this, this.media.textTracks, e4, xe.update.bind(this));
+        }
+        setTimeout(xe.update.bind(this), 0);
+      }, update() {
+        const e3 = xe.getTracks.call(this, true), { active: t3, language: i3, meta: s3, currentTrackNode: n3 } = this.captions, a3 = Boolean(e3.find((e4) => e4.language === i3));
+        this.isHTML5 && this.isVideo && e3.filter((e4) => !s3.get(e4)).forEach((e4) => {
+          this.debug.log("Track added", e4), s3.set(e4, { default: "showing" === e4.mode }), "showing" === e4.mode && (e4.mode = "hidden"), X.call(this, e4, "cuechange", () => xe.updateCues.call(this));
+        }), (a3 && this.language !== i3 || !e3.includes(n3)) && (xe.setLanguage.call(this, i3), xe.toggle.call(this, t3 && a3)), this.elements && R(this.elements.container, this.config.classNames.captions.enabled, !S2.empty(e3)), S2.array(this.config.controls) && this.config.controls.includes("settings") && this.config.settings.includes("captions") && Pe.setCaptionsMenu.call(this);
+      }, toggle(e3, t3 = true) {
+        if (!this.supported.ui) return;
+        const { toggled: i3 } = this.captions, s3 = this.config.classNames.captions.active, n3 = S2.nullOrUndefined(e3) ? !i3 : e3;
+        if (n3 !== i3) {
+          if (t3 || (this.captions.active = n3, this.storage.set({ captions: n3 })), !this.language && n3 && !t3) {
+            const e4 = xe.getTracks.call(this), t4 = xe.findTrack.call(this, [this.captions.language, ...this.captions.languages], true);
+            return this.captions.language = t4.language, void xe.set.call(this, e4.indexOf(t4));
+          }
+          this.elements.buttons.captions && (this.elements.buttons.captions.pressed = n3), R(this.elements.container, s3, n3), this.captions.toggled = n3, Pe.updateSetting.call(this, "captions"), Z.call(this, this.media, n3 ? "captionsenabled" : "captionsdisabled");
+        }
+        setTimeout(() => {
+          n3 && this.captions.toggled && (this.captions.currentTrackNode.mode = "hidden");
+        });
+      }, set(e3, t3 = true) {
+        const i3 = xe.getTracks.call(this);
+        if (-1 !== e3) if (S2.number(e3)) if (e3 in i3) {
+          if (this.captions.currentTrack !== e3) {
+            this.captions.currentTrack = e3;
+            const s3 = i3[e3], { language: n3 } = s3 || {};
+            this.captions.currentTrackNode = s3, Pe.updateSetting.call(this, "captions"), t3 || (this.captions.language = n3, this.storage.set({ language: n3 })), this.isVimeo && this.embed.enableTextTrack(n3), Z.call(this, this.media, "languagechange");
+          }
+          xe.toggle.call(this, true, t3), this.isHTML5 && this.isVideo && xe.updateCues.call(this);
+        } else this.debug.warn("Track not found", e3);
+        else this.debug.warn("Invalid caption argument", e3);
+        else xe.toggle.call(this, false, t3);
+      }, setLanguage(e3, t3 = true) {
+        if (!S2.string(e3)) return void this.debug.warn("Invalid language argument", e3);
+        const i3 = e3.toLowerCase();
+        this.captions.language = i3;
+        const s3 = xe.getTracks.call(this), n3 = xe.findTrack.call(this, [i3]);
+        xe.set.call(this, s3.indexOf(n3), t3);
+      }, getTracks(e3 = false) {
+        return Array.from((this.media || {}).textTracks || []).filter((t3) => !this.isHTML5 || e3 || this.captions.meta.has(t3)).filter((e4) => ["captions", "subtitles"].includes(e4.kind));
+      }, findTrack(e3, t3 = false) {
+        const i3 = xe.getTracks.call(this), s3 = (e4) => Number((this.captions.meta.get(e4) || {}).default), n3 = Array.from(i3).sort((e4, t4) => s3(t4) - s3(e4));
+        let a3;
+        return e3.every((e4) => (a3 = n3.find((t4) => t4.language === e4), !a3)), a3 || (t3 ? n3[0] : void 0);
+      }, getCurrentTrack() {
+        return xe.getTracks.call(this)[this.currentTrack];
+      }, getLabel(e3) {
+        let t3 = e3;
+        return !S2.track(t3) && K.textTracks && this.captions.toggled && (t3 = xe.getCurrentTrack.call(this)), S2.track(t3) ? S2.empty(t3.label) ? S2.empty(t3.language) ? ve.get("enabled", this.config) : e3.language.toUpperCase() : t3.label : ve.get("disabled", this.config);
+      }, updateCues(e3) {
+        if (!this.supported.ui) return;
+        if (!S2.element(this.elements.captions)) return void this.debug.warn("No captions element to render to");
+        if (!S2.nullOrUndefined(e3) && !Array.isArray(e3)) return void this.debug.warn("updateCues: Invalid input", e3);
+        let t3 = e3;
+        if (!t3) {
+          const e4 = xe.getCurrentTrack.call(this);
+          t3 = Array.from((e4 || {}).activeCues || []).map((e5) => e5.getCueAsHTML()).map(ye);
+        }
+        const i3 = t3.map((e4) => e4.trim()).join("\n");
+        if (i3 !== this.elements.captions.innerHTML) {
+          j(this.elements.captions);
+          const e4 = $("span", D(this.config.selectors.caption));
+          e4.innerHTML = i3, this.elements.captions.appendChild(e4), Z.call(this, this.media, "cuechange");
+        }
+      } }, Le = { enabled: true, title: "", debug: false, autoplay: false, autopause: true, playsinline: true, seekTime: 10, volume: 1, muted: false, duration: null, displayDuration: true, invertTime: true, toggleInvert: true, ratio: null, clickToPlay: true, hideControls: true, resetOnEnd: false, disableContextMenu: true, loadSprite: true, iconPrefix: "plyr", iconUrl: "https://cdn.plyr.io/3.7.8/plyr.svg", blankVideo: "https://cdn.plyr.io/static/blank.mp4", quality: { default: 576, options: [4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240], forced: false, onChange: null }, loop: { active: false }, speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 4] }, keyboard: { focused: true, global: false }, tooltips: { controls: false, seek: true }, captions: { active: false, language: "auto", update: false }, fullscreen: { enabled: true, fallback: true, iosNative: false }, storage: { enabled: true, key: "plyr" }, controls: ["play-large", "play", "progress", "current-time", "mute", "volume", "captions", "settings", "pip", "airplay", "fullscreen"], settings: ["captions", "quality", "speed"], i18n: { restart: "Restart", rewind: "Rewind {seektime}s", play: "Play", pause: "Pause", fastForward: "Forward {seektime}s", seek: "Seek", seekLabel: "{currentTime} of {duration}", played: "Played", buffered: "Buffered", currentTime: "Current time", duration: "Duration", volume: "Volume", mute: "Mute", unmute: "Unmute", enableCaptions: "Enable captions", disableCaptions: "Disable captions", download: "Download", enterFullscreen: "Enter fullscreen", exitFullscreen: "Exit fullscreen", frameTitle: "Player for {title}", captions: "Captions", settings: "Settings", pip: "PIP", menuBack: "Go back to previous menu", speed: "Speed", normal: "Normal", quality: "Quality", loop: "Loop", start: "Start", end: "End", all: "All", reset: "Reset", disabled: "Disabled", enabled: "Enabled", advertisement: "Ad", qualityBadge: { 2160: "4K", 1440: "HD", 1080: "HD", 720: "HD", 576: "SD", 480: "SD" } }, urls: { download: null, vimeo: { sdk: "https://player.vimeo.com/api/player.js", iframe: "https://player.vimeo.com/video/{0}?{1}", api: "https://vimeo.com/api/oembed.json?url={0}" }, youtube: { sdk: "https://www.youtube.com/iframe_api", api: "https://noembed.com/embed?url=https://www.youtube.com/watch?v={0}" }, googleIMA: { sdk: "https://imasdk.googleapis.com/js/sdkloader/ima3.js" } }, listeners: { seek: null, play: null, pause: null, restart: null, rewind: null, fastForward: null, mute: null, volume: null, captions: null, download: null, fullscreen: null, pip: null, airplay: null, speed: null, quality: null, loop: null, language: null }, events: ["ended", "progress", "stalled", "playing", "waiting", "canplay", "canplaythrough", "loadstart", "loadeddata", "loadedmetadata", "timeupdate", "volumechange", "play", "pause", "error", "seeking", "seeked", "emptied", "ratechange", "cuechange", "download", "enterfullscreen", "exitfullscreen", "captionsenabled", "captionsdisabled", "languagechange", "controlshidden", "controlsshown", "ready", "statechange", "qualitychange", "adsloaded", "adscontentpause", "adscontentresume", "adstarted", "adsmidpoint", "adscomplete", "adsallcomplete", "adsimpression", "adsclick"], selectors: { editable: "input, textarea, select, [contenteditable]", container: ".plyr", controls: { container: null, wrapper: ".plyr__controls" }, labels: "[data-plyr]", buttons: { play: '[data-plyr="play"]', pause: '[data-plyr="pause"]', restart: '[data-plyr="restart"]', rewind: '[data-plyr="rewind"]', fastForward: '[data-plyr="fast-forward"]', mute: '[data-plyr="mute"]', captions: '[data-plyr="captions"]', download: '[data-plyr="download"]', fullscreen: '[data-plyr="fullscreen"]', pip: '[data-plyr="pip"]', airplay: '[data-plyr="airplay"]', settings: '[data-plyr="settings"]', loop: '[data-plyr="loop"]' }, inputs: { seek: '[data-plyr="seek"]', volume: '[data-plyr="volume"]', speed: '[data-plyr="speed"]', language: '[data-plyr="language"]', quality: '[data-plyr="quality"]' }, display: { currentTime: ".plyr__time--current", duration: ".plyr__time--duration", buffer: ".plyr__progress__buffer", loop: ".plyr__progress__loop", volume: ".plyr__volume--display" }, progress: ".plyr__progress", captions: ".plyr__captions", caption: ".plyr__caption" }, classNames: { type: "plyr--{0}", provider: "plyr--{0}", video: "plyr__video-wrapper", embed: "plyr__video-embed", videoFixedRatio: "plyr__video-wrapper--fixed-ratio", embedContainer: "plyr__video-embed__container", poster: "plyr__poster", posterEnabled: "plyr__poster-enabled", ads: "plyr__ads", control: "plyr__control", controlPressed: "plyr__control--pressed", playing: "plyr--playing", paused: "plyr--paused", stopped: "plyr--stopped", loading: "plyr--loading", hover: "plyr--hover", tooltip: "plyr__tooltip", cues: "plyr__cues", marker: "plyr__progress__marker", hidden: "plyr__sr-only", hideControls: "plyr--hide-controls", isTouch: "plyr--is-touch", uiSupported: "plyr--full-ui", noTransition: "plyr--no-transition", display: { time: "plyr__time" }, menu: { value: "plyr__menu__value", badge: "plyr__badge", open: "plyr--menu-open" }, captions: { enabled: "plyr--captions-enabled", active: "plyr--captions-active" }, fullscreen: { enabled: "plyr--fullscreen-enabled", fallback: "plyr--fullscreen-fallback" }, pip: { supported: "plyr--pip-supported", active: "plyr--pip-active" }, airplay: { supported: "plyr--airplay-supported", active: "plyr--airplay-active" }, previewThumbnails: { thumbContainer: "plyr__preview-thumb", thumbContainerShown: "plyr__preview-thumb--is-shown", imageContainer: "plyr__preview-thumb__image-container", timeContainer: "plyr__preview-thumb__time-container", scrubbingContainer: "plyr__preview-scrubbing", scrubbingContainerShown: "plyr__preview-scrubbing--is-shown" } }, attributes: { embed: { provider: "data-plyr-provider", id: "data-plyr-embed-id", hash: "data-plyr-embed-hash" } }, ads: { enabled: false, publisherId: "", tagUrl: "" }, previewThumbnails: { enabled: false, src: "" }, vimeo: { byline: false, portrait: false, title: false, speed: true, transparent: false, customControls: true, referrerPolicy: null, premium: false }, youtube: { rel: 0, showinfo: 0, iv_load_policy: 3, modestbranding: 1, customControls: true, noCookie: false }, mediaMetadata: { title: "", artist: "", album: "", artwork: [] }, markers: { enabled: false, points: [] } }, Ie = "picture-in-picture", $e = "inline", _e = { html5: "html5", youtube: "youtube", vimeo: "vimeo" }, Oe = "audio", je = "video";
+      const qe = () => {
+      };
+      class De {
+        constructor(e3 = false) {
+          this.enabled = window.console && e3, this.enabled && this.log("Debugging enabled");
+        }
+        get log() {
+          return this.enabled ? Function.prototype.bind.call(console.log, console) : qe;
+        }
+        get warn() {
+          return this.enabled ? Function.prototype.bind.call(console.warn, console) : qe;
+        }
+        get error() {
+          return this.enabled ? Function.prototype.bind.call(console.error, console) : qe;
+        }
+      }
+      class He {
+        constructor(t3) {
+          e2(this, "onChange", () => {
+            if (!this.supported) return;
+            const e3 = this.player.elements.buttons.fullscreen;
+            S2.element(e3) && (e3.pressed = this.active);
+            const t4 = this.target === this.player.media ? this.target : this.player.elements.container;
+            Z.call(this.player, t4, this.active ? "enterfullscreen" : "exitfullscreen", true);
+          }), e2(this, "toggleFallback", (e3 = false) => {
+            if (e3 ? this.scrollPosition = { x: window.scrollX ?? 0, y: window.scrollY ?? 0 } : window.scrollTo(this.scrollPosition.x, this.scrollPosition.y), document.body.style.overflow = e3 ? "hidden" : "", R(this.target, this.player.config.classNames.fullscreen.fallback, e3), M.isIos) {
+              let t4 = document.head.querySelector('meta[name="viewport"]');
+              const i3 = "viewport-fit=cover";
+              t4 || (t4 = document.createElement("meta"), t4.setAttribute("name", "viewport"));
+              const s3 = S2.string(t4.content) && t4.content.includes(i3);
+              e3 ? (this.cleanupViewport = !s3, s3 || (t4.content += `,${i3}`)) : this.cleanupViewport && (t4.content = t4.content.split(",").filter((e4) => e4.trim() !== i3).join(","));
+            }
+            this.onChange();
+          }), e2(this, "trapFocus", (e3) => {
+            if (M.isIos || M.isIPadOS || !this.active || "Tab" !== e3.key) return;
+            const t4 = document.activeElement, i3 = U.call(this.player, "a[href], button:not(:disabled), input:not(:disabled), [tabindex]"), [s3] = i3, n3 = i3[i3.length - 1];
+            t4 !== n3 || e3.shiftKey ? t4 === s3 && e3.shiftKey && (n3.focus(), e3.preventDefault()) : (s3.focus(), e3.preventDefault());
+          }), e2(this, "update", () => {
+            if (this.supported) {
+              let e3;
+              e3 = this.forceFallback ? "Fallback (forced)" : He.nativeSupported ? "Native" : "Fallback", this.player.debug.log(`${e3} fullscreen enabled`);
+            } else this.player.debug.log("Fullscreen not supported and fallback disabled");
+            R(this.player.elements.container, this.player.config.classNames.fullscreen.enabled, this.supported);
+          }), e2(this, "enter", () => {
+            this.supported && (M.isIos && this.player.config.fullscreen.iosNative ? this.player.isVimeo ? this.player.embed.requestFullscreen() : this.target.webkitEnterFullscreen() : !He.nativeSupported || this.forceFallback ? this.toggleFallback(true) : this.prefix ? S2.empty(this.prefix) || this.target[`${this.prefix}Request${this.property}`]() : this.target.requestFullscreen({ navigationUI: "hide" }));
+          }), e2(this, "exit", () => {
+            if (this.supported) if (M.isIos && this.player.config.fullscreen.iosNative) this.player.isVimeo ? this.player.embed.exitFullscreen() : this.target.webkitEnterFullscreen(), ie(this.player.play());
+            else if (!He.nativeSupported || this.forceFallback) this.toggleFallback(false);
+            else if (this.prefix) {
+              if (!S2.empty(this.prefix)) {
+                const e3 = "moz" === this.prefix ? "Cancel" : "Exit";
+                document[`${this.prefix}${e3}${this.property}`]();
+              }
+            } else (document.cancelFullScreen || document.exitFullscreen).call(document);
+          }), e2(this, "toggle", () => {
+            this.active ? this.exit() : this.enter();
+          }), this.player = t3, this.prefix = He.prefix, this.property = He.property, this.scrollPosition = { x: 0, y: 0 }, this.forceFallback = "force" === t3.config.fullscreen.fallback, this.player.elements.fullscreen = t3.config.fullscreen.container && function(e3, t4) {
+            const { prototype: i3 } = Element;
+            return (i3.closest || function() {
+              let e4 = this;
+              do {
+                if (V.matches(e4, t4)) return e4;
+                e4 = e4.parentElement || e4.parentNode;
+              } while (null !== e4 && 1 === e4.nodeType);
+              return null;
+            }).call(e3, t4);
+          }(this.player.elements.container, t3.config.fullscreen.container), X.call(this.player, document, "ms" === this.prefix ? "MSFullscreenChange" : `${this.prefix}fullscreenchange`, () => {
+            this.onChange();
+          }), X.call(this.player, this.player.elements.container, "dblclick", (e3) => {
+            S2.element(this.player.elements.controls) && this.player.elements.controls.contains(e3.target) || this.player.listeners.proxy(e3, this.toggle, "fullscreen");
+          }), X.call(this, this.player.elements.container, "keydown", (e3) => this.trapFocus(e3)), this.update();
+        }
+        static get nativeSupported() {
+          return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled);
+        }
+        get useNative() {
+          return He.nativeSupported && !this.forceFallback;
+        }
+        static get prefix() {
+          if (S2.function(document.exitFullscreen)) return "";
+          let e3 = "";
+          return ["webkit", "moz", "ms"].some((t3) => !(!S2.function(document[`${t3}ExitFullscreen`]) && !S2.function(document[`${t3}CancelFullScreen`])) && (e3 = t3, true)), e3;
+        }
+        static get property() {
+          return "moz" === this.prefix ? "FullScreen" : "Fullscreen";
+        }
+        get supported() {
+          return [this.player.config.fullscreen.enabled, this.player.isVideo, He.nativeSupported || this.player.config.fullscreen.fallback, !this.player.isYouTube || He.nativeSupported || !M.isIos || this.player.config.playsinline && !this.player.config.fullscreen.iosNative].every(Boolean);
+        }
+        get active() {
+          if (!this.supported) return false;
+          if (!He.nativeSupported || this.forceFallback) return F2(this.target, this.player.config.classNames.fullscreen.fallback);
+          const e3 = this.prefix ? this.target.getRootNode()[`${this.prefix}${this.property}Element`] : this.target.getRootNode().fullscreenElement;
+          return e3 && e3.shadowRoot ? e3 === this.target.getRootNode().host : e3 === this.target;
+        }
+        get target() {
+          return M.isIos && this.player.config.fullscreen.iosNative ? this.player.media : this.player.elements.fullscreen ?? this.player.elements.container;
+        }
+      }
+      function Re(e3, t3 = 1) {
+        return new Promise((i3, s3) => {
+          const n3 = new Image(), a3 = () => {
+            delete n3.onload, delete n3.onerror, (n3.naturalWidth >= t3 ? i3 : s3)(n3);
+          };
+          Object.assign(n3, { onload: a3, onerror: a3, src: e3 });
+        });
+      }
+      const Fe = { addStyleHook() {
+        R(this.elements.container, this.config.selectors.container.replace(".", ""), true), R(this.elements.container, this.config.classNames.uiSupported, this.supported.ui);
+      }, toggleNativeControls(e3 = false) {
+        e3 && this.isHTML5 ? this.media.setAttribute("controls", "") : this.media.removeAttribute("controls");
+      }, build() {
+        if (this.listeners.media(), !this.supported.ui) return this.debug.warn(`Basic support only for ${this.provider} ${this.type}`), void Fe.toggleNativeControls.call(this, true);
+        S2.element(this.elements.controls) || (Pe.inject.call(this), this.listeners.controls()), Fe.toggleNativeControls.call(this), this.isHTML5 && xe.setup.call(this), this.volume = null, this.muted = null, this.loop = null, this.quality = null, this.speed = null, Pe.updateVolume.call(this), Pe.timeUpdate.call(this), Pe.durationUpdate.call(this), Fe.checkPlaying.call(this), R(this.elements.container, this.config.classNames.pip.supported, K.pip && this.isHTML5 && this.isVideo), R(this.elements.container, this.config.classNames.airplay.supported, K.airplay && this.isHTML5), R(this.elements.container, this.config.classNames.isTouch, this.touch), this.ready = true, setTimeout(() => {
+          Z.call(this, this.media, "ready");
+        }, 0), Fe.setTitle.call(this), this.poster && Fe.setPoster.call(this, this.poster, false).catch(() => {
+        }), this.config.duration && Pe.durationUpdate.call(this), this.config.mediaMetadata && Pe.setMediaMetadata.call(this);
+      }, setTitle() {
+        let e3 = ve.get("play", this.config);
+        if (S2.string(this.config.title) && !S2.empty(this.config.title) && (e3 += `, ${this.config.title}`), Array.from(this.elements.buttons.play || []).forEach((t3) => {
+          t3.setAttribute("aria-label", e3);
+        }), this.isEmbed) {
+          const e4 = B.call(this, "iframe");
+          if (!S2.element(e4)) return;
+          const t3 = S2.empty(this.config.title) ? "video" : this.config.title, i3 = ve.get("frameTitle", this.config);
+          e4.setAttribute("title", i3.replace("{title}", t3));
+        }
+      }, togglePoster(e3) {
+        R(this.elements.container, this.config.classNames.posterEnabled, e3);
+      }, setPoster(e3, t3 = true) {
+        return t3 && this.poster ? Promise.reject(new Error("Poster already set")) : (this.media.setAttribute("data-poster", e3), this.elements.poster.removeAttribute("hidden"), te.call(this).then(() => Re(e3)).catch((t4) => {
+          throw e3 === this.poster && Fe.togglePoster.call(this, false), t4;
+        }).then(() => {
+          if (e3 !== this.poster) throw new Error("setPoster cancelled by later call to setPoster");
+        }).then(() => (Object.assign(this.elements.poster.style, { backgroundImage: `url('${e3}')`, backgroundSize: "" }), Fe.togglePoster.call(this, true), e3)));
+      }, checkPlaying(e3) {
+        R(this.elements.container, this.config.classNames.playing, this.playing), R(this.elements.container, this.config.classNames.paused, this.paused), R(this.elements.container, this.config.classNames.stopped, this.stopped), Array.from(this.elements.buttons.play || []).forEach((e4) => {
+          Object.assign(e4, { pressed: this.playing }), e4.setAttribute("aria-label", ve.get(this.playing ? "pause" : "play", this.config));
+        }), S2.event(e3) && "timeupdate" === e3.type || Fe.toggleControls.call(this);
+      }, checkLoading(e3) {
+        this.loading = ["stalled", "waiting"].includes(e3.type), clearTimeout(this.timers.loading), this.timers.loading = setTimeout(() => {
+          R(this.elements.container, this.config.classNames.loading, this.loading), Fe.toggleControls.call(this);
+        }, this.loading ? 250 : 0);
+      }, toggleControls(e3) {
+        const { controls: t3 } = this.elements;
+        if (t3 && this.config.hideControls) {
+          const i3 = this.touch && this.lastSeekTime + 2e3 > Date.now();
+          this.toggleControls(Boolean(e3 || this.loading || this.paused || t3.pressed || t3.hover || i3));
+        }
+      }, migrateStyles() {
+        Object.values({ ...this.media.style }).filter((e3) => !S2.empty(e3) && S2.string(e3) && e3.startsWith("--plyr")).forEach((e3) => {
+          this.elements.container.style.setProperty(e3, this.media.style.getPropertyValue(e3)), this.media.style.removeProperty(e3);
+        }), S2.empty(this.media.style) && this.media.removeAttribute("style");
+      } };
+      class Ve {
+        constructor(t3) {
+          e2(this, "firstTouch", () => {
+            const { player: e3 } = this, { elements: t4 } = e3;
+            e3.touch = true, R(t4.container, e3.config.classNames.isTouch, true);
+          }), e2(this, "global", (e3 = true) => {
+            const { player: t4 } = this;
+            t4.config.keyboard.global && Q.call(t4, window, "keydown keyup", this.handleKey, e3, false), Q.call(t4, document.body, "click", this.toggleMenu, e3), G.call(t4, document.body, "touchstart", this.firstTouch);
+          }), e2(this, "container", () => {
+            const { player: e3 } = this, { config: t4, elements: i3, timers: s3 } = e3;
+            !t4.keyboard.global && t4.keyboard.focused && X.call(e3, i3.container, "keydown keyup", this.handleKey, false), X.call(e3, i3.container, "mousemove mouseleave touchstart touchmove enterfullscreen exitfullscreen", (t5) => {
+              const { controls: n4 } = i3;
+              n4 && "enterfullscreen" === t5.type && (n4.pressed = false, n4.hover = false);
+              let a4 = 0;
+              ["touchstart", "touchmove", "mousemove"].includes(t5.type) && (Fe.toggleControls.call(e3, true), a4 = e3.touch ? 3e3 : 2e3), clearTimeout(s3.controls), s3.controls = setTimeout(() => Fe.toggleControls.call(e3, false), a4);
+            });
+            const n3 = () => {
+              if (!e3.isVimeo || e3.config.vimeo.premium) return;
+              const t5 = i3.wrapper, { active: s4 } = e3.fullscreen, [n4, a4] = ce.call(e3), l3 = ae(`aspect-ratio: ${n4} / ${a4}`);
+              if (!s4) return void (l3 ? (t5.style.width = null, t5.style.height = null) : (t5.style.maxWidth = null, t5.style.margin = null));
+              const [r3, o3] = [Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0), Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)], c3 = r3 / o3 > n4 / a4;
+              l3 ? (t5.style.width = c3 ? "auto" : "100%", t5.style.height = c3 ? "100%" : "auto") : (t5.style.maxWidth = c3 ? o3 / a4 * n4 + "px" : null, t5.style.margin = c3 ? "0 auto" : null);
+            }, a3 = () => {
+              clearTimeout(s3.resized), s3.resized = setTimeout(n3, 50);
+            };
+            X.call(e3, i3.container, "enterfullscreen exitfullscreen", (t5) => {
+              const { target: s4 } = e3.fullscreen;
+              if (s4 !== i3.container) return;
+              if (!e3.isEmbed && S2.empty(e3.config.ratio)) return;
+              n3();
+              ("enterfullscreen" === t5.type ? X : J).call(e3, window, "resize", a3);
+            });
+          }), e2(this, "media", () => {
+            const { player: e3 } = this, { elements: t4 } = e3;
+            if (X.call(e3, e3.media, "timeupdate seeking seeked", (t5) => Pe.timeUpdate.call(e3, t5)), X.call(e3, e3.media, "durationchange loadeddata loadedmetadata", (t5) => Pe.durationUpdate.call(e3, t5)), X.call(e3, e3.media, "ended", () => {
+              e3.isHTML5 && e3.isVideo && e3.config.resetOnEnd && (e3.restart(), e3.pause());
+            }), X.call(e3, e3.media, "progress playing seeking seeked", (t5) => Pe.updateProgress.call(e3, t5)), X.call(e3, e3.media, "volumechange", (t5) => Pe.updateVolume.call(e3, t5)), X.call(e3, e3.media, "playing play pause ended emptied timeupdate", (t5) => Fe.checkPlaying.call(e3, t5)), X.call(e3, e3.media, "waiting canplay seeked playing", (t5) => Fe.checkLoading.call(e3, t5)), e3.supported.ui && e3.config.clickToPlay && !e3.isAudio) {
+              const i4 = B.call(e3, `.${e3.config.classNames.video}`);
+              if (!S2.element(i4)) return;
+              X.call(e3, t4.container, "click", (s3) => {
+                ([t4.container, i4].includes(s3.target) || i4.contains(s3.target)) && (e3.touch && e3.config.hideControls || (e3.ended ? (this.proxy(s3, e3.restart, "restart"), this.proxy(s3, () => {
+                  ie(e3.play());
+                }, "play")) : this.proxy(s3, () => {
+                  ie(e3.togglePlay());
+                }, "play")));
+              });
+            }
+            e3.supported.ui && e3.config.disableContextMenu && X.call(e3, t4.wrapper, "contextmenu", (e4) => {
+              e4.preventDefault();
+            }, false), X.call(e3, e3.media, "volumechange", () => {
+              e3.storage.set({ volume: e3.volume, muted: e3.muted });
+            }), X.call(e3, e3.media, "ratechange", () => {
+              Pe.updateSetting.call(e3, "speed"), e3.storage.set({ speed: e3.speed });
+            }), X.call(e3, e3.media, "qualitychange", (t5) => {
+              Pe.updateSetting.call(e3, "quality", null, t5.detail.quality);
+            }), X.call(e3, e3.media, "ready qualitychange", () => {
+              Pe.setDownloadUrl.call(e3);
+            });
+            const i3 = e3.config.events.concat(["keyup", "keydown"]).join(" ");
+            X.call(e3, e3.media, i3, (i4) => {
+              let { detail: s3 = {} } = i4;
+              "error" === i4.type && (s3 = e3.media.error), Z.call(e3, t4.container, i4.type, true, s3);
+            });
+          }), e2(this, "proxy", (e3, t4, i3) => {
+            const { player: s3 } = this, n3 = s3.config.listeners[i3];
+            let a3 = true;
+            S2.function(n3) && (a3 = n3.call(s3, e3)), false !== a3 && S2.function(t4) && t4.call(s3, e3);
+          }), e2(this, "bind", (e3, t4, i3, s3, n3 = true) => {
+            const { player: a3 } = this, l3 = a3.config.listeners[s3], r3 = S2.function(l3);
+            X.call(a3, e3, t4, (e4) => this.proxy(e4, i3, s3), n3 && !r3);
+          }), e2(this, "controls", () => {
+            const { player: e3 } = this, { elements: t4 } = e3, i3 = M.isIE ? "change" : "input";
+            if (t4.buttons.play && Array.from(t4.buttons.play).forEach((t5) => {
+              this.bind(t5, "click", () => {
+                ie(e3.togglePlay());
+              }, "play");
+            }), this.bind(t4.buttons.restart, "click", e3.restart, "restart"), this.bind(t4.buttons.rewind, "click", () => {
+              e3.lastSeekTime = Date.now(), e3.rewind();
+            }, "rewind"), this.bind(t4.buttons.fastForward, "click", () => {
+              e3.lastSeekTime = Date.now(), e3.forward();
+            }, "fastForward"), this.bind(t4.buttons.mute, "click", () => {
+              e3.muted = !e3.muted;
+            }, "mute"), this.bind(t4.buttons.captions, "click", () => e3.toggleCaptions()), this.bind(t4.buttons.download, "click", () => {
+              Z.call(e3, e3.media, "download");
+            }, "download"), this.bind(t4.buttons.fullscreen, "click", () => {
+              e3.fullscreen.toggle();
+            }, "fullscreen"), this.bind(t4.buttons.pip, "click", () => {
+              e3.pip = "toggle";
+            }, "pip"), this.bind(t4.buttons.airplay, "click", e3.airplay, "airplay"), this.bind(t4.buttons.settings, "click", (t5) => {
+              t5.stopPropagation(), t5.preventDefault(), Pe.toggleMenu.call(e3, t5);
+            }, null, false), this.bind(t4.buttons.settings, "keyup", (t5) => {
+              [" ", "Enter"].includes(t5.key) && ("Enter" !== t5.key ? (t5.preventDefault(), t5.stopPropagation(), Pe.toggleMenu.call(e3, t5)) : Pe.focusFirstMenuItem.call(e3, null, true));
+            }, null, false), this.bind(t4.settings.menu, "keydown", (t5) => {
+              "Escape" === t5.key && Pe.toggleMenu.call(e3, t5);
+            }), this.bind(t4.inputs.seek, "mousedown mousemove", (e4) => {
+              const i4 = t4.progress.getBoundingClientRect(), s3 = 100 / i4.width * (e4.pageX - i4.left);
+              e4.currentTarget.setAttribute("seek-value", s3);
+            }), this.bind(t4.inputs.seek, "mousedown mouseup keydown keyup touchstart touchend", (t5) => {
+              const i4 = t5.currentTarget, s3 = "play-on-seeked";
+              if (S2.keyboardEvent(t5) && !["ArrowLeft", "ArrowRight"].includes(t5.key)) return;
+              e3.lastSeekTime = Date.now();
+              const n3 = i4.hasAttribute(s3), a3 = ["mouseup", "touchend", "keyup"].includes(t5.type);
+              n3 && a3 ? (i4.removeAttribute(s3), ie(e3.play())) : !a3 && e3.playing && (i4.setAttribute(s3, ""), e3.pause());
+            }), M.isIos) {
+              const t5 = U.call(e3, 'input[type="range"]');
+              Array.from(t5).forEach((e4) => this.bind(e4, i3, (e5) => P2(e5.target)));
+            }
+            this.bind(t4.inputs.seek, i3, (t5) => {
+              const i4 = t5.currentTarget;
+              let s3 = i4.getAttribute("seek-value");
+              S2.empty(s3) && (s3 = i4.value), i4.removeAttribute("seek-value"), e3.currentTime = s3 / i4.max * e3.duration;
+            }, "seek"), this.bind(t4.progress, "mouseenter mouseleave mousemove", (t5) => Pe.updateSeekTooltip.call(e3, t5)), this.bind(t4.progress, "mousemove touchmove", (t5) => {
+              const { previewThumbnails: i4 } = e3;
+              i4 && i4.loaded && i4.startMove(t5);
+            }), this.bind(t4.progress, "mouseleave touchend click", () => {
+              const { previewThumbnails: t5 } = e3;
+              t5 && t5.loaded && t5.endMove(false, true);
+            }), this.bind(t4.progress, "mousedown touchstart", (t5) => {
+              const { previewThumbnails: i4 } = e3;
+              i4 && i4.loaded && i4.startScrubbing(t5);
+            }), this.bind(t4.progress, "mouseup touchend", (t5) => {
+              const { previewThumbnails: i4 } = e3;
+              i4 && i4.loaded && i4.endScrubbing(t5);
+            }), M.isWebKit && Array.from(U.call(e3, 'input[type="range"]')).forEach((t5) => {
+              this.bind(t5, "input", (t6) => Pe.updateRangeFill.call(e3, t6.target));
+            }), e3.config.toggleInvert && !S2.element(t4.display.duration) && this.bind(t4.display.currentTime, "click", () => {
+              0 !== e3.currentTime && (e3.config.invertTime = !e3.config.invertTime, Pe.timeUpdate.call(e3));
+            }), this.bind(t4.inputs.volume, i3, (t5) => {
+              e3.volume = t5.target.value;
+            }, "volume"), this.bind(t4.controls, "mouseenter mouseleave", (i4) => {
+              t4.controls.hover = !e3.touch && "mouseenter" === i4.type;
+            }), t4.fullscreen && Array.from(t4.fullscreen.children).filter((e4) => !e4.contains(t4.container)).forEach((i4) => {
+              this.bind(i4, "mouseenter mouseleave", (i5) => {
+                t4.controls && (t4.controls.hover = !e3.touch && "mouseenter" === i5.type);
+              });
+            }), this.bind(t4.controls, "mousedown mouseup touchstart touchend touchcancel", (e4) => {
+              t4.controls.pressed = ["mousedown", "touchstart"].includes(e4.type);
+            }), this.bind(t4.controls, "focusin", () => {
+              const { config: i4, timers: s3 } = e3;
+              R(t4.controls, i4.classNames.noTransition, true), Fe.toggleControls.call(e3, true), setTimeout(() => {
+                R(t4.controls, i4.classNames.noTransition, false);
+              }, 0);
+              const n3 = this.touch ? 3e3 : 4e3;
+              clearTimeout(s3.controls), s3.controls = setTimeout(() => Fe.toggleControls.call(e3, false), n3);
+            }), this.bind(t4.inputs.volume, "wheel", (t5) => {
+              const i4 = t5.webkitDirectionInvertedFromDevice, [s3, n3] = [t5.deltaX, -t5.deltaY].map((e4) => i4 ? -e4 : e4), a3 = Math.sign(Math.abs(s3) > Math.abs(n3) ? s3 : n3);
+              e3.increaseVolume(a3 / 50);
+              const { volume: l3 } = e3.media;
+              (1 === a3 && l3 < 1 || -1 === a3 && l3 > 0) && t5.preventDefault();
+            }, "volume", false);
+          }), this.player = t3, this.lastKey = null, this.focusTimer = null, this.lastKeyDown = null, this.handleKey = this.handleKey.bind(this), this.toggleMenu = this.toggleMenu.bind(this), this.firstTouch = this.firstTouch.bind(this);
+        }
+        handleKey(e3) {
+          const { player: t3 } = this, { elements: i3 } = t3, { key: s3, type: n3, altKey: a3, ctrlKey: l3, metaKey: r3, shiftKey: o3 } = e3, c3 = "keydown" === n3, u3 = c3 && s3 === this.lastKey;
+          if (a3 || l3 || r3 || o3) return;
+          if (!s3) return;
+          if (c3) {
+            const n4 = document.activeElement;
+            if (S2.element(n4)) {
+              const { editable: s4 } = t3.config.selectors, { seek: a4 } = i3.inputs;
+              if (n4 !== a4 && V(n4, s4)) return;
+              if (" " === e3.key && V(n4, 'button, [role^="menuitem"]')) return;
+            }
+            switch ([" ", "ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "c", "f", "k", "l", "m"].includes(s3) && (e3.preventDefault(), e3.stopPropagation()), s3) {
+              case "0":
+              case "1":
+              case "2":
+              case "3":
+              case "4":
+              case "5":
+              case "6":
+              case "7":
+              case "8":
+              case "9":
+                u3 || (h3 = parseInt(s3, 10), t3.currentTime = t3.duration / 10 * h3);
+                break;
+              case " ":
+              case "k":
+                u3 || ie(t3.togglePlay());
+                break;
+              case "ArrowUp":
+                t3.increaseVolume(0.1);
+                break;
+              case "ArrowDown":
+                t3.decreaseVolume(0.1);
+                break;
+              case "m":
+                u3 || (t3.muted = !t3.muted);
+                break;
+              case "ArrowRight":
+                t3.forward();
+                break;
+              case "ArrowLeft":
+                t3.rewind();
+                break;
+              case "f":
+                t3.fullscreen.toggle();
+                break;
+              case "c":
+                u3 || t3.toggleCaptions();
+                break;
+              case "l":
+                t3.loop = !t3.loop;
+            }
+            "Escape" === s3 && !t3.fullscreen.usingNative && t3.fullscreen.active && t3.fullscreen.toggle(), this.lastKey = s3;
+          } else this.lastKey = null;
+          var h3;
+        }
+        toggleMenu(e3) {
+          Pe.toggleMenu.call(this.player, e3);
+        }
+      }
+      "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self && self;
+      var Ue = function(e3, t3) {
+        return e3(t3 = { exports: {} }, t3.exports), t3.exports;
+      }(function(e3, t3) {
+        e3.exports = function() {
+          var e4 = function() {
+          }, t4 = {}, i3 = {}, s3 = {};
+          function n3(e5, t5) {
+            e5 = e5.push ? e5 : [e5];
+            var n4, a4, l4, r4 = [], o4 = e5.length, c4 = o4;
+            for (n4 = function(e6, i4) {
+              i4.length && r4.push(e6), --c4 || t5(r4);
+            }; o4--; ) a4 = e5[o4], (l4 = i3[a4]) ? n4(a4, l4) : (s3[a4] = s3[a4] || []).push(n4);
+          }
+          function a3(e5, t5) {
+            if (e5) {
+              var n4 = s3[e5];
+              if (i3[e5] = t5, n4) for (; n4.length; ) n4[0](e5, t5), n4.splice(0, 1);
+            }
+          }
+          function l3(t5, i4) {
+            t5.call && (t5 = { success: t5 }), i4.length ? (t5.error || e4)(i4) : (t5.success || e4)(t5);
+          }
+          function r3(t5, i4, s4, n4) {
+            var a4, l4, o4 = document, c4 = s4.async, u3 = (s4.numRetries || 0) + 1, h3 = s4.before || e4, d3 = t5.replace(/[\?|#].*$/, ""), m3 = t5.replace(/^(css|img)!/, "");
+            n4 = n4 || 0, /(^css!|\.css$)/.test(d3) ? ((l4 = o4.createElement("link")).rel = "stylesheet", l4.href = m3, (a4 = "hideFocus" in l4) && l4.relList && (a4 = 0, l4.rel = "preload", l4.as = "style")) : /(^img!|\.(png|gif|jpg|svg|webp)$)/.test(d3) ? (l4 = o4.createElement("img")).src = m3 : ((l4 = o4.createElement("script")).src = t5, l4.async = void 0 === c4 || c4), l4.onload = l4.onerror = l4.onbeforeload = function(e5) {
+              var o5 = e5.type[0];
+              if (a4) try {
+                l4.sheet.cssText.length || (o5 = "e");
+              } catch (e6) {
+                18 != e6.code && (o5 = "e");
+              }
+              if ("e" == o5) {
+                if ((n4 += 1) < u3) return r3(t5, i4, s4, n4);
+              } else if ("preload" == l4.rel && "style" == l4.as) return l4.rel = "stylesheet";
+              i4(t5, o5, e5.defaultPrevented);
+            }, false !== h3(t5, l4) && o4.head.appendChild(l4);
+          }
+          function o3(e5, t5, i4) {
+            var s4, n4, a4 = (e5 = e5.push ? e5 : [e5]).length, l4 = a4, o4 = [];
+            for (s4 = function(e6, i5, s5) {
+              if ("e" == i5 && o4.push(e6), "b" == i5) {
+                if (!s5) return;
+                o4.push(e6);
+              }
+              --a4 || t5(o4);
+            }, n4 = 0; n4 < l4; n4++) r3(e5[n4], s4, i4);
+          }
+          function c3(e5, i4, s4) {
+            var n4, r4;
+            if (i4 && i4.trim && (n4 = i4), r4 = (n4 ? s4 : i4) || {}, n4) {
+              if (n4 in t4) throw "LoadJS";
+              t4[n4] = true;
+            }
+            function c4(t5, i5) {
+              o3(e5, function(e6) {
+                l3(r4, e6), t5 && l3({ success: t5, error: i5 }, e6), a3(n4, e6);
+              }, r4);
+            }
+            if (r4.returnPromise) return new Promise(c4);
+            c4();
+          }
+          return c3.ready = function(e5, t5) {
+            return n3(e5, function(e6) {
+              l3(t5, e6);
+            }), c3;
+          }, c3.done = function(e5) {
+            a3(e5, []);
+          }, c3.reset = function() {
+            t4 = {}, i3 = {}, s3 = {};
+          }, c3.isDefined = function(e5) {
+            return e5 in t4;
+          }, c3;
+        }();
+      });
+      function Be(e3) {
+        return new Promise((t3, i3) => {
+          Ue(e3, { success: t3, error: i3 });
+        });
+      }
+      function We(e3) {
+        e3 && !this.embed.hasPlayed && (this.embed.hasPlayed = true), this.media.paused === e3 && (this.media.paused = !e3, Z.call(this, this.media, e3 ? "play" : "pause"));
+      }
+      const ze = { setup() {
+        const e3 = this;
+        R(e3.elements.wrapper, e3.config.classNames.embed, true), e3.options.speed = e3.config.speed.options, ue.call(e3), S2.object(window.Vimeo) ? ze.ready.call(e3) : Be(e3.config.urls.vimeo.sdk).then(() => {
+          ze.ready.call(e3);
+        }).catch((t3) => {
+          e3.debug.warn("Vimeo SDK (player.js) failed to load", t3);
+        });
+      }, ready() {
+        const e3 = this, t3 = e3.config.vimeo, { premium: i3, referrerPolicy: s3, ...n3 } = t3;
+        let a3 = e3.media.getAttribute("src"), l3 = "";
+        S2.empty(a3) ? (a3 = e3.media.getAttribute(e3.config.attributes.embed.id), l3 = e3.media.getAttribute(e3.config.attributes.embed.hash)) : l3 = function(e4) {
+          const t4 = e4.match(/^.*(vimeo.com\/|video\/)(\d+)(\?.*&*h=|\/)+([\d,a-f]+)/);
+          return t4 && 5 === t4.length ? t4[4] : null;
+        }(a3);
+        const r3 = l3 ? { h: l3 } : {};
+        i3 && Object.assign(n3, { controls: false, sidedock: false });
+        const o3 = Ne({ loop: e3.config.loop.active, autoplay: e3.autoplay, muted: e3.muted, gesture: "media", playsinline: e3.config.playsinline, ...r3, ...n3 }), c3 = (u3 = a3, S2.empty(u3) ? null : S2.number(Number(u3)) ? u3 : u3.match(/^.*(vimeo.com\/|video\/)(\d+).*/) ? RegExp.$2 : u3);
+        var u3;
+        const h3 = $("iframe"), d3 = me(e3.config.urls.vimeo.iframe, c3, o3);
+        if (h3.setAttribute("src", d3), h3.setAttribute("allowfullscreen", ""), h3.setAttribute("allow", ["autoplay", "fullscreen", "picture-in-picture", "encrypted-media", "accelerometer", "gyroscope"].join("; ")), S2.empty(s3) || h3.setAttribute("referrerPolicy", s3), i3 || !t3.customControls) h3.setAttribute("data-poster", e3.poster), e3.media = q(h3, e3.media);
+        else {
+          const t4 = $("div", { class: e3.config.classNames.embedContainer, "data-poster": e3.poster });
+          t4.appendChild(h3), e3.media = q(t4, e3.media);
+        }
+        t3.customControls || Te(me(e3.config.urls.vimeo.api, d3)).then((t4) => {
+          !S2.empty(t4) && t4.thumbnail_url && Fe.setPoster.call(e3, t4.thumbnail_url).catch(() => {
+          });
+        }), e3.embed = new window.Vimeo.Player(h3, { autopause: e3.config.autopause, muted: e3.muted }), e3.media.paused = true, e3.media.currentTime = 0, e3.supported.ui && e3.embed.disableTextTrack(), e3.media.play = () => (We.call(e3, true), e3.embed.play()), e3.media.pause = () => (We.call(e3, false), e3.embed.pause()), e3.media.stop = () => {
+          e3.pause(), e3.currentTime = 0;
+        };
+        let { currentTime: m3 } = e3.media;
+        Object.defineProperty(e3.media, "currentTime", { get: () => m3, set(t4) {
+          const { embed: i4, media: s4, paused: n4, volume: a4 } = e3, l4 = n4 && !i4.hasPlayed;
+          s4.seeking = true, Z.call(e3, s4, "seeking"), Promise.resolve(l4 && i4.setVolume(0)).then(() => i4.setCurrentTime(t4)).then(() => l4 && i4.pause()).then(() => l4 && i4.setVolume(a4)).catch(() => {
+          });
+        } });
+        let p3 = e3.config.speed.selected;
+        Object.defineProperty(e3.media, "playbackRate", { get: () => p3, set(t4) {
+          e3.embed.setPlaybackRate(t4).then(() => {
+            p3 = t4, Z.call(e3, e3.media, "ratechange");
+          }).catch(() => {
+            e3.options.speed = [1];
+          });
+        } });
+        let { volume: g3 } = e3.config;
+        Object.defineProperty(e3.media, "volume", { get: () => g3, set(t4) {
+          e3.embed.setVolume(t4).then(() => {
+            g3 = t4, Z.call(e3, e3.media, "volumechange");
+          });
+        } });
+        let { muted: f3 } = e3.config;
+        Object.defineProperty(e3.media, "muted", { get: () => f3, set(t4) {
+          const i4 = !!S2.boolean(t4) && t4;
+          e3.embed.setMuted(!!i4 || e3.config.muted).then(() => {
+            f3 = i4, Z.call(e3, e3.media, "volumechange");
+          });
+        } });
+        let y3, { loop: b3 } = e3.config;
+        Object.defineProperty(e3.media, "loop", { get: () => b3, set(t4) {
+          const i4 = S2.boolean(t4) ? t4 : e3.config.loop.active;
+          e3.embed.setLoop(i4).then(() => {
+            b3 = i4;
+          });
+        } }), e3.embed.getVideoUrl().then((t4) => {
+          y3 = t4, Pe.setDownloadUrl.call(e3);
+        }).catch((e4) => {
+          this.debug.warn(e4);
+        }), Object.defineProperty(e3.media, "currentSrc", { get: () => y3 }), Object.defineProperty(e3.media, "ended", { get: () => e3.currentTime === e3.duration }), Promise.all([e3.embed.getVideoWidth(), e3.embed.getVideoHeight()]).then((t4) => {
+          const [i4, s4] = t4;
+          e3.embed.ratio = he(i4, s4), ue.call(this);
+        }), e3.embed.setAutopause(e3.config.autopause).then((t4) => {
+          e3.config.autopause = t4;
+        }), e3.embed.getVideoTitle().then((t4) => {
+          e3.config.title = t4, Fe.setTitle.call(this);
+        }), e3.embed.getCurrentTime().then((t4) => {
+          m3 = t4, Z.call(e3, e3.media, "timeupdate");
+        }), e3.embed.getDuration().then((t4) => {
+          e3.media.duration = t4, Z.call(e3, e3.media, "durationchange");
+        }), e3.embed.getTextTracks().then((t4) => {
+          e3.media.textTracks = t4, xe.setup.call(e3);
+        }), e3.embed.on("cuechange", ({ cues: t4 = [] }) => {
+          const i4 = t4.map((e4) => function(e5) {
+            const t5 = document.createDocumentFragment(), i5 = document.createElement("div");
+            return t5.appendChild(i5), i5.innerHTML = e5, t5.firstChild.innerText;
+          }(e4.text));
+          xe.updateCues.call(e3, i4);
+        }), e3.embed.on("loaded", () => {
+          if (e3.embed.getPaused().then((t4) => {
+            We.call(e3, !t4), t4 || Z.call(e3, e3.media, "playing");
+          }), S2.element(e3.embed.element) && e3.supported.ui) {
+            e3.embed.element.setAttribute("tabindex", -1);
+          }
+        }), e3.embed.on("bufferstart", () => {
+          Z.call(e3, e3.media, "waiting");
+        }), e3.embed.on("bufferend", () => {
+          Z.call(e3, e3.media, "playing");
+        }), e3.embed.on("play", () => {
+          We.call(e3, true), Z.call(e3, e3.media, "playing");
+        }), e3.embed.on("pause", () => {
+          We.call(e3, false);
+        }), e3.embed.on("timeupdate", (t4) => {
+          e3.media.seeking = false, m3 = t4.seconds, Z.call(e3, e3.media, "timeupdate");
+        }), e3.embed.on("progress", (t4) => {
+          e3.media.buffered = t4.percent, Z.call(e3, e3.media, "progress"), 1 === parseInt(t4.percent, 10) && Z.call(e3, e3.media, "canplaythrough"), e3.embed.getDuration().then((t5) => {
+            t5 !== e3.media.duration && (e3.media.duration = t5, Z.call(e3, e3.media, "durationchange"));
+          });
+        }), e3.embed.on("seeked", () => {
+          e3.media.seeking = false, Z.call(e3, e3.media, "seeked");
+        }), e3.embed.on("ended", () => {
+          e3.media.paused = true, Z.call(e3, e3.media, "ended");
+        }), e3.embed.on("error", (t4) => {
+          e3.media.error = t4, Z.call(e3, e3.media, "error");
+        }), t3.customControls && setTimeout(() => Fe.build.call(e3), 0);
+      } };
+      function Ke(e3) {
+        e3 && !this.embed.hasPlayed && (this.embed.hasPlayed = true), this.media.paused === e3 && (this.media.paused = !e3, Z.call(this, this.media, e3 ? "play" : "pause"));
+      }
+      function Ye(e3) {
+        return e3.noCookie ? "https://www.youtube-nocookie.com" : "http:" === window.location.protocol ? "http://www.youtube.com" : void 0;
+      }
+      const Qe = { setup() {
+        if (R(this.elements.wrapper, this.config.classNames.embed, true), S2.object(window.YT) && S2.function(window.YT.Player)) Qe.ready.call(this);
+        else {
+          const e3 = window.onYouTubeIframeAPIReady;
+          window.onYouTubeIframeAPIReady = () => {
+            S2.function(e3) && e3(), Qe.ready.call(this);
+          }, Be(this.config.urls.youtube.sdk).catch((e4) => {
+            this.debug.warn("YouTube API failed to load", e4);
+          });
+        }
+      }, getTitle(e3) {
+        Te(me(this.config.urls.youtube.api, e3)).then((e4) => {
+          if (S2.object(e4)) {
+            const { title: t3, height: i3, width: s3 } = e4;
+            this.config.title = t3, Fe.setTitle.call(this), this.embed.ratio = he(s3, i3);
+          }
+          ue.call(this);
+        }).catch(() => {
+          ue.call(this);
+        });
+      }, ready() {
+        const e3 = this, t3 = e3.config.youtube, i3 = e3.media && e3.media.getAttribute("id");
+        if (!S2.empty(i3) && i3.startsWith("youtube-")) return;
+        let s3 = e3.media.getAttribute("src");
+        S2.empty(s3) && (s3 = e3.media.getAttribute(this.config.attributes.embed.id));
+        const n3 = (a3 = s3, S2.empty(a3) ? null : a3.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/) ? RegExp.$2 : a3);
+        var a3;
+        const l3 = $("div", { id: `${e3.provider}-${Math.floor(1e4 * Math.random())}`, "data-poster": t3.customControls ? e3.poster : void 0 });
+        if (e3.media = q(l3, e3.media), t3.customControls) {
+          const t4 = (e4) => `https://i.ytimg.com/vi/${n3}/${e4}default.jpg`;
+          Re(t4("maxres"), 121).catch(() => Re(t4("sd"), 121)).catch(() => Re(t4("hq"))).then((t5) => Fe.setPoster.call(e3, t5.src)).then((t5) => {
+            t5.includes("maxres") || (e3.elements.poster.style.backgroundSize = "cover");
+          }).catch(() => {
+          });
+        }
+        e3.embed = new window.YT.Player(e3.media, { videoId: n3, host: Ye(t3), playerVars: x({}, { autoplay: e3.config.autoplay ? 1 : 0, hl: e3.config.hl, controls: e3.supported.ui && t3.customControls ? 0 : 1, disablekb: 1, playsinline: e3.config.playsinline && !e3.config.fullscreen.iosNative ? 1 : 0, cc_load_policy: e3.captions.active ? 1 : 0, cc_lang_pref: e3.config.captions.language, widget_referrer: window ? window.location.href : null }, t3), events: { onError(t4) {
+          if (!e3.media.error) {
+            const i4 = t4.data, s4 = { 2: "The request contains an invalid parameter value. For example, this error occurs if you specify a video ID that does not have 11 characters, or if the video ID contains invalid characters, such as exclamation points or asterisks.", 5: "The requested content cannot be played in an HTML5 player or another error related to the HTML5 player has occurred.", 100: "The video requested was not found. This error occurs when a video has been removed (for any reason) or has been marked as private.", 101: "The owner of the requested video does not allow it to be played in embedded players.", 150: "The owner of the requested video does not allow it to be played in embedded players." }[i4] || "An unknown error occurred";
+            e3.media.error = { code: i4, message: s4 }, Z.call(e3, e3.media, "error");
+          }
+        }, onPlaybackRateChange(t4) {
+          const i4 = t4.target;
+          e3.media.playbackRate = i4.getPlaybackRate(), Z.call(e3, e3.media, "ratechange");
+        }, onReady(i4) {
+          if (S2.function(e3.media.play)) return;
+          const s4 = i4.target;
+          Qe.getTitle.call(e3, n3), e3.media.play = () => {
+            Ke.call(e3, true), s4.playVideo();
+          }, e3.media.pause = () => {
+            Ke.call(e3, false), s4.pauseVideo();
+          }, e3.media.stop = () => {
+            s4.stopVideo();
+          }, e3.media.duration = s4.getDuration(), e3.media.paused = true, e3.media.currentTime = 0, Object.defineProperty(e3.media, "currentTime", { get: () => Number(s4.getCurrentTime()), set(t4) {
+            e3.paused && !e3.embed.hasPlayed && e3.embed.mute(), e3.media.seeking = true, Z.call(e3, e3.media, "seeking"), s4.seekTo(t4);
+          } }), Object.defineProperty(e3.media, "playbackRate", { get: () => s4.getPlaybackRate(), set(e4) {
+            s4.setPlaybackRate(e4);
+          } });
+          let { volume: a4 } = e3.config;
+          Object.defineProperty(e3.media, "volume", { get: () => a4, set(t4) {
+            a4 = t4, s4.setVolume(100 * a4), Z.call(e3, e3.media, "volumechange");
+          } });
+          let { muted: l4 } = e3.config;
+          Object.defineProperty(e3.media, "muted", { get: () => l4, set(t4) {
+            const i5 = S2.boolean(t4) ? t4 : l4;
+            l4 = i5, s4[i5 ? "mute" : "unMute"](), s4.setVolume(100 * a4), Z.call(e3, e3.media, "volumechange");
+          } }), Object.defineProperty(e3.media, "currentSrc", { get: () => s4.getVideoUrl() }), Object.defineProperty(e3.media, "ended", { get: () => e3.currentTime === e3.duration });
+          const r3 = s4.getAvailablePlaybackRates();
+          e3.options.speed = r3.filter((t4) => e3.config.speed.options.includes(t4)), e3.supported.ui && t3.customControls && e3.media.setAttribute("tabindex", -1), Z.call(e3, e3.media, "timeupdate"), Z.call(e3, e3.media, "durationchange"), clearInterval(e3.timers.buffering), e3.timers.buffering = setInterval(() => {
+            e3.media.buffered = s4.getVideoLoadedFraction(), (null === e3.media.lastBuffered || e3.media.lastBuffered < e3.media.buffered) && Z.call(e3, e3.media, "progress"), e3.media.lastBuffered = e3.media.buffered, 1 === e3.media.buffered && (clearInterval(e3.timers.buffering), Z.call(e3, e3.media, "canplaythrough"));
+          }, 200), t3.customControls && setTimeout(() => Fe.build.call(e3), 50);
+        }, onStateChange(i4) {
+          const s4 = i4.target;
+          clearInterval(e3.timers.playing);
+          switch (e3.media.seeking && [1, 2].includes(i4.data) && (e3.media.seeking = false, Z.call(e3, e3.media, "seeked")), i4.data) {
+            case -1:
+              Z.call(e3, e3.media, "timeupdate"), e3.media.buffered = s4.getVideoLoadedFraction(), Z.call(e3, e3.media, "progress");
+              break;
+            case 0:
+              Ke.call(e3, false), e3.media.loop ? (s4.stopVideo(), s4.playVideo()) : Z.call(e3, e3.media, "ended");
+              break;
+            case 1:
+              t3.customControls && !e3.config.autoplay && e3.media.paused && !e3.embed.hasPlayed ? e3.media.pause() : (Ke.call(e3, true), Z.call(e3, e3.media, "playing"), e3.timers.playing = setInterval(() => {
+                Z.call(e3, e3.media, "timeupdate");
+              }, 50), e3.media.duration !== s4.getDuration() && (e3.media.duration = s4.getDuration(), Z.call(e3, e3.media, "durationchange")));
+              break;
+            case 2:
+              e3.muted || e3.embed.unMute(), Ke.call(e3, false);
+              break;
+            case 3:
+              Z.call(e3, e3.media, "waiting");
+          }
+          Z.call(e3, e3.elements.container, "statechange", false, { code: i4.data });
+        } } });
+      } }, Xe = { setup() {
+        this.media ? (R(this.elements.container, this.config.classNames.type.replace("{0}", this.type), true), R(this.elements.container, this.config.classNames.provider.replace("{0}", this.provider), true), this.isEmbed && R(this.elements.container, this.config.classNames.type.replace("{0}", "video"), true), this.isVideo && (this.elements.wrapper = $("div", { class: this.config.classNames.video }), L2(this.media, this.elements.wrapper), this.elements.poster = $("div", { class: this.config.classNames.poster }), this.elements.wrapper.appendChild(this.elements.poster)), this.isHTML5 ? de.setup.call(this) : this.isYouTube ? Qe.setup.call(this) : this.isVimeo && ze.setup.call(this)) : this.debug.warn("No media element found!");
+      } };
+      class Je {
+        constructor(t3) {
+          e2(this, "load", () => {
+            this.enabled && (S2.object(window.google) && S2.object(window.google.ima) ? this.ready() : Be(this.player.config.urls.googleIMA.sdk).then(() => {
+              this.ready();
+            }).catch(() => {
+              this.trigger("error", new Error("Google IMA SDK failed to load"));
+            }));
+          }), e2(this, "ready", () => {
+            var e3;
+            this.enabled || ((e3 = this).manager && e3.manager.destroy(), e3.elements.displayContainer && e3.elements.displayContainer.destroy(), e3.elements.container.remove()), this.startSafetyTimer(12e3, "ready()"), this.managerPromise.then(() => {
+              this.clearSafetyTimer("onAdsManagerLoaded()");
+            }), this.listeners(), this.setupIMA();
+          }), e2(this, "setupIMA", () => {
+            this.elements.container = $("div", { class: this.player.config.classNames.ads }), this.player.elements.container.appendChild(this.elements.container), google.ima.settings.setVpaidMode(google.ima.ImaSdkSettings.VpaidMode.ENABLED), google.ima.settings.setLocale(this.player.config.ads.language), google.ima.settings.setDisableCustomPlaybackForIOS10Plus(this.player.config.playsinline), this.elements.displayContainer = new google.ima.AdDisplayContainer(this.elements.container, this.player.media), this.loader = new google.ima.AdsLoader(this.elements.displayContainer), this.loader.addEventListener(google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED, (e3) => this.onAdsManagerLoaded(e3), false), this.loader.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, (e3) => this.onAdError(e3), false), this.requestAds();
+          }), e2(this, "requestAds", () => {
+            const { container: e3 } = this.player.elements;
+            try {
+              const t4 = new google.ima.AdsRequest();
+              t4.adTagUrl = this.tagUrl, t4.linearAdSlotWidth = e3.offsetWidth, t4.linearAdSlotHeight = e3.offsetHeight, t4.nonLinearAdSlotWidth = e3.offsetWidth, t4.nonLinearAdSlotHeight = e3.offsetHeight, t4.forceNonLinearFullSlot = false, t4.setAdWillPlayMuted(!this.player.muted), this.loader.requestAds(t4);
+            } catch (e4) {
+              this.onAdError(e4);
+            }
+          }), e2(this, "pollCountdown", (e3 = false) => {
+            if (!e3) return clearInterval(this.countdownTimer), void this.elements.container.removeAttribute("data-badge-text");
+            this.countdownTimer = setInterval(() => {
+              const e4 = Ee(Math.max(this.manager.getRemainingTime(), 0)), t4 = `${ve.get("advertisement", this.player.config)} - ${e4}`;
+              this.elements.container.setAttribute("data-badge-text", t4);
+            }, 100);
+          }), e2(this, "onAdsManagerLoaded", (e3) => {
+            if (!this.enabled) return;
+            const t4 = new google.ima.AdsRenderingSettings();
+            t4.restoreCustomPlaybackStateOnAdBreakComplete = true, t4.enablePreloading = true, this.manager = e3.getAdsManager(this.player, t4), this.cuePoints = this.manager.getCuePoints(), this.manager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, (e4) => this.onAdError(e4)), Object.keys(google.ima.AdEvent.Type).forEach((e4) => {
+              this.manager.addEventListener(google.ima.AdEvent.Type[e4], (e5) => this.onAdEvent(e5));
+            }), this.trigger("loaded");
+          }), e2(this, "addCuePoints", () => {
+            S2.empty(this.cuePoints) || this.cuePoints.forEach((e3) => {
+              if (0 !== e3 && -1 !== e3 && e3 < this.player.duration) {
+                const t4 = this.player.elements.progress;
+                if (S2.element(t4)) {
+                  const i3 = 100 / this.player.duration * e3, s3 = $("span", { class: this.player.config.classNames.cues });
+                  s3.style.left = `${i3.toString()}%`, t4.appendChild(s3);
+                }
+              }
+            });
+          }), e2(this, "onAdEvent", (e3) => {
+            const { container: t4 } = this.player.elements, i3 = e3.getAd(), s3 = e3.getAdData();
+            switch (((e4) => {
+              Z.call(this.player, this.player.media, `ads${e4.replace(/_/g, "").toLowerCase()}`);
+            })(e3.type), e3.type) {
+              case google.ima.AdEvent.Type.LOADED:
+                this.trigger("loaded"), this.pollCountdown(true), i3.isLinear() || (i3.width = t4.offsetWidth, i3.height = t4.offsetHeight);
+                break;
+              case google.ima.AdEvent.Type.STARTED:
+                this.manager.setVolume(this.player.volume);
+                break;
+              case google.ima.AdEvent.Type.ALL_ADS_COMPLETED:
+                this.player.ended ? this.loadAds() : this.loader.contentComplete();
+                break;
+              case google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED:
+                this.pauseContent();
+                break;
+              case google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED:
+                this.pollCountdown(), this.resumeContent();
+                break;
+              case google.ima.AdEvent.Type.LOG:
+                s3.adError && this.player.debug.warn(`Non-fatal ad error: ${s3.adError.getMessage()}`);
+            }
+          }), e2(this, "onAdError", (e3) => {
+            this.cancel(), this.player.debug.warn("Ads error", e3);
+          }), e2(this, "listeners", () => {
+            const { container: e3 } = this.player.elements;
+            let t4;
+            this.player.on("canplay", () => {
+              this.addCuePoints();
+            }), this.player.on("ended", () => {
+              this.loader.contentComplete();
+            }), this.player.on("timeupdate", () => {
+              t4 = this.player.currentTime;
+            }), this.player.on("seeked", () => {
+              const e4 = this.player.currentTime;
+              S2.empty(this.cuePoints) || this.cuePoints.forEach((i3, s3) => {
+                t4 < i3 && i3 < e4 && (this.manager.discardAdBreak(), this.cuePoints.splice(s3, 1));
+              });
+            }), window.addEventListener("resize", () => {
+              this.manager && this.manager.resize(e3.offsetWidth, e3.offsetHeight, google.ima.ViewMode.NORMAL);
+            });
+          }), e2(this, "play", () => {
+            const { container: e3 } = this.player.elements;
+            this.managerPromise || this.resumeContent(), this.managerPromise.then(() => {
+              this.manager.setVolume(this.player.volume), this.elements.displayContainer.initialize();
+              try {
+                this.initialized || (this.manager.init(e3.offsetWidth, e3.offsetHeight, google.ima.ViewMode.NORMAL), this.manager.start()), this.initialized = true;
+              } catch (e4) {
+                this.onAdError(e4);
+              }
+            }).catch(() => {
+            });
+          }), e2(this, "resumeContent", () => {
+            this.elements.container.style.zIndex = "", this.playing = false, ie(this.player.media.play());
+          }), e2(this, "pauseContent", () => {
+            this.elements.container.style.zIndex = 3, this.playing = true, this.player.media.pause();
+          }), e2(this, "cancel", () => {
+            this.initialized && this.resumeContent(), this.trigger("error"), this.loadAds();
+          }), e2(this, "loadAds", () => {
+            this.managerPromise.then(() => {
+              this.manager && this.manager.destroy(), this.managerPromise = new Promise((e3) => {
+                this.on("loaded", e3), this.player.debug.log(this.manager);
+              }), this.initialized = false, this.requestAds();
+            }).catch(() => {
+            });
+          }), e2(this, "trigger", (e3, ...t4) => {
+            const i3 = this.events[e3];
+            S2.array(i3) && i3.forEach((e4) => {
+              S2.function(e4) && e4.apply(this, t4);
+            });
+          }), e2(this, "on", (e3, t4) => (S2.array(this.events[e3]) || (this.events[e3] = []), this.events[e3].push(t4), this)), e2(this, "startSafetyTimer", (e3, t4) => {
+            this.player.debug.log(`Safety timer invoked from: ${t4}`), this.safetyTimer = setTimeout(() => {
+              this.cancel(), this.clearSafetyTimer("startSafetyTimer()");
+            }, e3);
+          }), e2(this, "clearSafetyTimer", (e3) => {
+            S2.nullOrUndefined(this.safetyTimer) || (this.player.debug.log(`Safety timer cleared from: ${e3}`), clearTimeout(this.safetyTimer), this.safetyTimer = null);
+          }), this.player = t3, this.config = t3.config.ads, this.playing = false, this.initialized = false, this.elements = { container: null, displayContainer: null }, this.manager = null, this.loader = null, this.cuePoints = null, this.events = {}, this.safetyTimer = null, this.countdownTimer = null, this.managerPromise = new Promise((e3, t4) => {
+            this.on("loaded", e3), this.on("error", t4);
+          }), this.load();
+        }
+        get enabled() {
+          const { config: e3 } = this;
+          return this.player.isHTML5 && this.player.isVideo && e3.enabled && (!S2.empty(e3.publisherId) || S2.url(e3.tagUrl));
+        }
+        get tagUrl() {
+          const { config: e3 } = this;
+          if (S2.url(e3.tagUrl)) return e3.tagUrl;
+          return `https://go.aniview.com/api/adserver6/vast/?${Ne({ AV_PUBLISHERID: "58c25bb0073ef448b1087ad6", AV_CHANNELID: "5a0458dc28a06145e4519d21", AV_URL: window.location.hostname, cb: Date.now(), AV_WIDTH: 640, AV_HEIGHT: 480, AV_CDIM2: e3.publisherId })}`;
+        }
+      }
+      function Ge(e3 = 0, t3 = 0, i3 = 255) {
+        return Math.min(Math.max(e3, t3), i3);
+      }
+      const Ze = (e3) => {
+        const t3 = [];
+        return e3.split(/\r\n\r\n|\n\n|\r\r/).forEach((e4) => {
+          const i3 = {};
+          e4.split(/\r\n|\n|\r/).forEach((e5) => {
+            if (S2.number(i3.startTime)) {
+              if (!S2.empty(e5.trim()) && S2.empty(i3.text)) {
+                const t4 = e5.trim().split("#xywh=");
+                [i3.text] = t4, t4[1] && ([i3.x, i3.y, i3.w, i3.h] = t4[1].split(","));
+              }
+            } else {
+              const t4 = e5.match(/([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/);
+              t4 && (i3.startTime = 60 * Number(t4[1] || 0) * 60 + 60 * Number(t4[2]) + Number(t4[3]) + Number(`0.${t4[4]}`), i3.endTime = 60 * Number(t4[6] || 0) * 60 + 60 * Number(t4[7]) + Number(t4[8]) + Number(`0.${t4[9]}`));
+            }
+          }), i3.text && t3.push(i3);
+        }), t3;
+      }, et = (e3, t3) => {
+        const i3 = {};
+        return e3 > t3.width / t3.height ? (i3.width = t3.width, i3.height = 1 / e3 * t3.width) : (i3.height = t3.height, i3.width = e3 * t3.height), i3;
+      };
+      class tt {
+        constructor(t3) {
+          e2(this, "load", () => {
+            this.player.elements.display.seekTooltip && (this.player.elements.display.seekTooltip.hidden = this.enabled), this.enabled && this.getThumbnails().then(() => {
+              this.enabled && (this.render(), this.determineContainerAutoSizing(), this.listeners(), this.loaded = true);
+            });
+          }), e2(this, "getThumbnails", () => new Promise((e3) => {
+            const { src: t4 } = this.player.config.previewThumbnails;
+            if (S2.empty(t4)) throw new Error("Missing previewThumbnails.src config attribute");
+            const i3 = () => {
+              this.thumbnails.sort((e4, t5) => e4.height - t5.height), this.player.debug.log("Preview thumbnails", this.thumbnails), e3();
+            };
+            if (S2.function(t4)) t4((e4) => {
+              this.thumbnails = e4, i3();
+            });
+            else {
+              const e4 = (S2.string(t4) ? [t4] : t4).map((e5) => this.getThumbnail(e5));
+              Promise.all(e4).then(i3);
+            }
+          })), e2(this, "getThumbnail", (e3) => new Promise((t4) => {
+            Te(e3).then((i3) => {
+              const s3 = { frames: Ze(i3), height: null, urlPrefix: "" };
+              s3.frames[0].text.startsWith("/") || s3.frames[0].text.startsWith("http://") || s3.frames[0].text.startsWith("https://") || (s3.urlPrefix = e3.substring(0, e3.lastIndexOf("/") + 1));
+              const n3 = new Image();
+              n3.onload = () => {
+                s3.height = n3.naturalHeight, s3.width = n3.naturalWidth, this.thumbnails.push(s3), t4();
+              }, n3.src = s3.urlPrefix + s3.frames[0].text;
+            });
+          })), e2(this, "startMove", (e3) => {
+            if (this.loaded && S2.event(e3) && ["touchmove", "mousemove"].includes(e3.type) && this.player.media.duration) {
+              if ("touchmove" === e3.type) this.seekTime = this.player.media.duration * (this.player.elements.inputs.seek.value / 100);
+              else {
+                var t4, i3;
+                const s3 = this.player.elements.progress.getBoundingClientRect(), n3 = 100 / s3.width * (e3.pageX - s3.left);
+                this.seekTime = this.player.media.duration * (n3 / 100), this.seekTime < 0 && (this.seekTime = 0), this.seekTime > this.player.media.duration - 1 && (this.seekTime = this.player.media.duration - 1), this.mousePosX = e3.pageX, this.elements.thumb.time.innerText = Ee(this.seekTime);
+                const a3 = null === (t4 = this.player.config.markers) || void 0 === t4 || null === (i3 = t4.points) || void 0 === i3 ? void 0 : i3.find(({ time: e4 }) => e4 === Math.round(this.seekTime));
+                a3 && this.elements.thumb.time.insertAdjacentHTML("afterbegin", `${a3.label}<br>`);
+              }
+              this.showImageAtCurrentTime();
+            }
+          }), e2(this, "endMove", () => {
+            this.toggleThumbContainer(false, true);
+          }), e2(this, "startScrubbing", (e3) => {
+            (S2.nullOrUndefined(e3.button) || false === e3.button || 0 === e3.button) && (this.mouseDown = true, this.player.media.duration && (this.toggleScrubbingContainer(true), this.toggleThumbContainer(false, true), this.showImageAtCurrentTime()));
+          }), e2(this, "endScrubbing", () => {
+            this.mouseDown = false, Math.ceil(this.lastTime) === Math.ceil(this.player.media.currentTime) ? this.toggleScrubbingContainer(false) : G.call(this.player, this.player.media, "timeupdate", () => {
+              this.mouseDown || this.toggleScrubbingContainer(false);
+            });
+          }), e2(this, "listeners", () => {
+            this.player.on("play", () => {
+              this.toggleThumbContainer(false, true);
+            }), this.player.on("seeked", () => {
+              this.toggleThumbContainer(false);
+            }), this.player.on("timeupdate", () => {
+              this.lastTime = this.player.media.currentTime;
+            });
+          }), e2(this, "render", () => {
+            this.elements.thumb.container = $("div", { class: this.player.config.classNames.previewThumbnails.thumbContainer }), this.elements.thumb.imageContainer = $("div", { class: this.player.config.classNames.previewThumbnails.imageContainer }), this.elements.thumb.container.appendChild(this.elements.thumb.imageContainer);
+            const e3 = $("div", { class: this.player.config.classNames.previewThumbnails.timeContainer });
+            this.elements.thumb.time = $("span", {}, "00:00"), e3.appendChild(this.elements.thumb.time), this.elements.thumb.imageContainer.appendChild(e3), S2.element(this.player.elements.progress) && this.player.elements.progress.appendChild(this.elements.thumb.container), this.elements.scrubbing.container = $("div", { class: this.player.config.classNames.previewThumbnails.scrubbingContainer }), this.player.elements.wrapper.appendChild(this.elements.scrubbing.container);
+          }), e2(this, "destroy", () => {
+            this.elements.thumb.container && this.elements.thumb.container.remove(), this.elements.scrubbing.container && this.elements.scrubbing.container.remove();
+          }), e2(this, "showImageAtCurrentTime", () => {
+            this.mouseDown ? this.setScrubbingContainerSize() : this.setThumbContainerSizeAndPos();
+            const e3 = this.thumbnails[0].frames.findIndex((e4) => this.seekTime >= e4.startTime && this.seekTime <= e4.endTime), t4 = e3 >= 0;
+            let i3 = 0;
+            this.mouseDown || this.toggleThumbContainer(t4), t4 && (this.thumbnails.forEach((t5, s3) => {
+              this.loadedImages.includes(t5.frames[e3].text) && (i3 = s3);
+            }), e3 !== this.showingThumb && (this.showingThumb = e3, this.loadImage(i3)));
+          }), e2(this, "loadImage", (e3 = 0) => {
+            const t4 = this.showingThumb, i3 = this.thumbnails[e3], { urlPrefix: s3 } = i3, n3 = i3.frames[t4], a3 = i3.frames[t4].text, l3 = s3 + a3;
+            if (this.currentImageElement && this.currentImageElement.dataset.filename === a3) this.showImage(this.currentImageElement, n3, e3, t4, a3, false), this.currentImageElement.dataset.index = t4, this.removeOldImages(this.currentImageElement);
+            else {
+              this.loadingImage && this.usingSprites && (this.loadingImage.onload = null);
+              const i4 = new Image();
+              i4.src = l3, i4.dataset.index = t4, i4.dataset.filename = a3, this.showingThumbFilename = a3, this.player.debug.log(`Loading image: ${l3}`), i4.onload = () => this.showImage(i4, n3, e3, t4, a3, true), this.loadingImage = i4, this.removeOldImages(i4);
+            }
+          }), e2(this, "showImage", (e3, t4, i3, s3, n3, a3 = true) => {
+            this.player.debug.log(`Showing thumb: ${n3}. num: ${s3}. qual: ${i3}. newimg: ${a3}`), this.setImageSizeAndOffset(e3, t4), a3 && (this.currentImageContainer.appendChild(e3), this.currentImageElement = e3, this.loadedImages.includes(n3) || this.loadedImages.push(n3)), this.preloadNearby(s3, true).then(this.preloadNearby(s3, false)).then(this.getHigherQuality(i3, e3, t4, n3));
+          }), e2(this, "removeOldImages", (e3) => {
+            Array.from(this.currentImageContainer.children).forEach((t4) => {
+              if ("img" !== t4.tagName.toLowerCase()) return;
+              const i3 = this.usingSprites ? 500 : 1e3;
+              if (t4.dataset.index !== e3.dataset.index && !t4.dataset.deleting) {
+                t4.dataset.deleting = true;
+                const { currentImageContainer: e4 } = this;
+                setTimeout(() => {
+                  e4.removeChild(t4), this.player.debug.log(`Removing thumb: ${t4.dataset.filename}`);
+                }, i3);
+              }
+            });
+          }), e2(this, "preloadNearby", (e3, t4 = true) => new Promise((i3) => {
+            setTimeout(() => {
+              const s3 = this.thumbnails[0].frames[e3].text;
+              if (this.showingThumbFilename === s3) {
+                let n3;
+                n3 = t4 ? this.thumbnails[0].frames.slice(e3) : this.thumbnails[0].frames.slice(0, e3).reverse();
+                let a3 = false;
+                n3.forEach((e4) => {
+                  const t5 = e4.text;
+                  if (t5 !== s3 && !this.loadedImages.includes(t5)) {
+                    a3 = true, this.player.debug.log(`Preloading thumb filename: ${t5}`);
+                    const { urlPrefix: e5 } = this.thumbnails[0], s4 = e5 + t5, n4 = new Image();
+                    n4.src = s4, n4.onload = () => {
+                      this.player.debug.log(`Preloaded thumb filename: ${t5}`), this.loadedImages.includes(t5) || this.loadedImages.push(t5), i3();
+                    };
+                  }
+                }), a3 || i3();
+              }
+            }, 300);
+          })), e2(this, "getHigherQuality", (e3, t4, i3, s3) => {
+            if (e3 < this.thumbnails.length - 1) {
+              let n3 = t4.naturalHeight;
+              this.usingSprites && (n3 = i3.h), n3 < this.thumbContainerHeight && setTimeout(() => {
+                this.showingThumbFilename === s3 && (this.player.debug.log(`Showing higher quality thumb for: ${s3}`), this.loadImage(e3 + 1));
+              }, 300);
+            }
+          }), e2(this, "toggleThumbContainer", (e3 = false, t4 = false) => {
+            const i3 = this.player.config.classNames.previewThumbnails.thumbContainerShown;
+            this.elements.thumb.container.classList.toggle(i3, e3), !e3 && t4 && (this.showingThumb = null, this.showingThumbFilename = null);
+          }), e2(this, "toggleScrubbingContainer", (e3 = false) => {
+            const t4 = this.player.config.classNames.previewThumbnails.scrubbingContainerShown;
+            this.elements.scrubbing.container.classList.toggle(t4, e3), e3 || (this.showingThumb = null, this.showingThumbFilename = null);
+          }), e2(this, "determineContainerAutoSizing", () => {
+            (this.elements.thumb.imageContainer.clientHeight > 20 || this.elements.thumb.imageContainer.clientWidth > 20) && (this.sizeSpecifiedInCSS = true);
+          }), e2(this, "setThumbContainerSizeAndPos", () => {
+            const { imageContainer: e3 } = this.elements.thumb;
+            if (this.sizeSpecifiedInCSS) {
+              if (e3.clientHeight > 20 && e3.clientWidth < 20) {
+                const t4 = Math.floor(e3.clientHeight * this.thumbAspectRatio);
+                e3.style.width = `${t4}px`;
+              } else if (e3.clientHeight < 20 && e3.clientWidth > 20) {
+                const t4 = Math.floor(e3.clientWidth / this.thumbAspectRatio);
+                e3.style.height = `${t4}px`;
+              }
+            } else {
+              const t4 = Math.floor(this.thumbContainerHeight * this.thumbAspectRatio);
+              e3.style.height = `${this.thumbContainerHeight}px`, e3.style.width = `${t4}px`;
+            }
+            this.setThumbContainerPos();
+          }), e2(this, "setThumbContainerPos", () => {
+            const e3 = this.player.elements.progress.getBoundingClientRect(), t4 = this.player.elements.container.getBoundingClientRect(), { container: i3 } = this.elements.thumb, s3 = t4.left - e3.left + 10, n3 = t4.right - e3.left - i3.clientWidth - 10, a3 = this.mousePosX - e3.left - i3.clientWidth / 2, l3 = Ge(a3, s3, n3);
+            i3.style.left = `${l3}px`, i3.style.setProperty("--preview-arrow-offset", a3 - l3 + "px");
+          }), e2(this, "setScrubbingContainerSize", () => {
+            const { width: e3, height: t4 } = et(this.thumbAspectRatio, { width: this.player.media.clientWidth, height: this.player.media.clientHeight });
+            this.elements.scrubbing.container.style.width = `${e3}px`, this.elements.scrubbing.container.style.height = `${t4}px`;
+          }), e2(this, "setImageSizeAndOffset", (e3, t4) => {
+            if (!this.usingSprites) return;
+            const i3 = this.thumbContainerHeight / t4.h;
+            e3.style.height = e3.naturalHeight * i3 + "px", e3.style.width = e3.naturalWidth * i3 + "px", e3.style.left = `-${t4.x * i3}px`, e3.style.top = `-${t4.y * i3}px`;
+          }), this.player = t3, this.thumbnails = [], this.loaded = false, this.lastMouseMoveTime = Date.now(), this.mouseDown = false, this.loadedImages = [], this.elements = { thumb: {}, scrubbing: {} }, this.load();
+        }
+        get enabled() {
+          return this.player.isHTML5 && this.player.isVideo && this.player.config.previewThumbnails.enabled;
+        }
+        get currentImageContainer() {
+          return this.mouseDown ? this.elements.scrubbing.container : this.elements.thumb.imageContainer;
+        }
+        get usingSprites() {
+          return Object.keys(this.thumbnails[0].frames[0]).includes("w");
+        }
+        get thumbAspectRatio() {
+          return this.usingSprites ? this.thumbnails[0].frames[0].w / this.thumbnails[0].frames[0].h : this.thumbnails[0].width / this.thumbnails[0].height;
+        }
+        get thumbContainerHeight() {
+          if (this.mouseDown) {
+            const { height: e3 } = et(this.thumbAspectRatio, { width: this.player.media.clientWidth, height: this.player.media.clientHeight });
+            return e3;
+          }
+          return this.sizeSpecifiedInCSS ? this.elements.thumb.imageContainer.clientHeight : Math.floor(this.player.media.clientWidth / this.thumbAspectRatio / 4);
+        }
+        get currentImageElement() {
+          return this.mouseDown ? this.currentScrubbingImageElement : this.currentThumbnailImageElement;
+        }
+        set currentImageElement(e3) {
+          this.mouseDown ? this.currentScrubbingImageElement = e3 : this.currentThumbnailImageElement = e3;
+        }
+      }
+      const it = { insertElements(e3, t3) {
+        S2.string(t3) ? _(e3, this.media, { src: t3 }) : S2.array(t3) && t3.forEach((t4) => {
+          _(e3, this.media, t4);
+        });
+      }, change(e3) {
+        N(e3, "sources.length") ? (de.cancelRequests.call(this), this.destroy.call(this, () => {
+          this.options.quality = [], O(this.media), this.media = null, S2.element(this.elements.container) && this.elements.container.removeAttribute("class");
+          const { sources: t3, type: i3 } = e3, [{ provider: s3 = _e.html5, src: n3 }] = t3, a3 = "html5" === s3 ? i3 : "div", l3 = "html5" === s3 ? {} : { src: n3 };
+          Object.assign(this, { provider: s3, type: i3, supported: K.check(i3, s3, this.config.playsinline), media: $(a3, l3) }), this.elements.container.appendChild(this.media), S2.boolean(e3.autoplay) && (this.config.autoplay = e3.autoplay), this.isHTML5 && (this.config.crossorigin && this.media.setAttribute("crossorigin", ""), this.config.autoplay && this.media.setAttribute("autoplay", ""), S2.empty(e3.poster) || (this.poster = e3.poster), this.config.loop.active && this.media.setAttribute("loop", ""), this.config.muted && this.media.setAttribute("muted", ""), this.config.playsinline && this.media.setAttribute("playsinline", "")), Fe.addStyleHook.call(this), this.isHTML5 && it.insertElements.call(this, "source", t3), this.config.title = e3.title, Xe.setup.call(this), this.isHTML5 && Object.keys(e3).includes("tracks") && it.insertElements.call(this, "track", e3.tracks), (this.isHTML5 || this.isEmbed && !this.supported.ui) && Fe.build.call(this), this.isHTML5 && this.media.load(), S2.empty(e3.previewThumbnails) || (Object.assign(this.config.previewThumbnails, e3.previewThumbnails), this.previewThumbnails && this.previewThumbnails.loaded && (this.previewThumbnails.destroy(), this.previewThumbnails = null), this.config.previewThumbnails.enabled && (this.previewThumbnails = new tt(this))), this.fullscreen.update();
+        }, true)) : this.debug.warn("Invalid source format");
+      } };
+      class st {
+        constructor(t3, i3) {
+          if (e2(this, "play", () => S2.function(this.media.play) ? (this.ads && this.ads.enabled && this.ads.managerPromise.then(() => this.ads.play()).catch(() => ie(this.media.play())), this.media.play()) : null), e2(this, "pause", () => this.playing && S2.function(this.media.pause) ? this.media.pause() : null), e2(this, "togglePlay", (e3) => (S2.boolean(e3) ? e3 : !this.playing) ? this.play() : this.pause()), e2(this, "stop", () => {
+            this.isHTML5 ? (this.pause(), this.restart()) : S2.function(this.media.stop) && this.media.stop();
+          }), e2(this, "restart", () => {
+            this.currentTime = 0;
+          }), e2(this, "rewind", (e3) => {
+            this.currentTime -= S2.number(e3) ? e3 : this.config.seekTime;
+          }), e2(this, "forward", (e3) => {
+            this.currentTime += S2.number(e3) ? e3 : this.config.seekTime;
+          }), e2(this, "increaseVolume", (e3) => {
+            const t4 = this.media.muted ? 0 : this.volume;
+            this.volume = t4 + (S2.number(e3) ? e3 : 0);
+          }), e2(this, "decreaseVolume", (e3) => {
+            this.increaseVolume(-e3);
+          }), e2(this, "airplay", () => {
+            K.airplay && this.media.webkitShowPlaybackTargetPicker();
+          }), e2(this, "toggleControls", (e3) => {
+            if (this.supported.ui && !this.isAudio) {
+              const t4 = F2(this.elements.container, this.config.classNames.hideControls), i4 = void 0 === e3 ? void 0 : !e3, s4 = R(this.elements.container, this.config.classNames.hideControls, i4);
+              if (s4 && S2.array(this.config.controls) && this.config.controls.includes("settings") && !S2.empty(this.config.settings) && Pe.toggleMenu.call(this, false), s4 !== t4) {
+                const e4 = s4 ? "controlshidden" : "controlsshown";
+                Z.call(this, this.media, e4);
+              }
+              return !s4;
+            }
+            return false;
+          }), e2(this, "on", (e3, t4) => {
+            X.call(this, this.elements.container, e3, t4);
+          }), e2(this, "once", (e3, t4) => {
+            G.call(this, this.elements.container, e3, t4);
+          }), e2(this, "off", (e3, t4) => {
+            J(this.elements.container, e3, t4);
+          }), e2(this, "destroy", (e3, t4 = false) => {
+            if (!this.ready) return;
+            const i4 = () => {
+              document.body.style.overflow = "", this.embed = null, t4 ? (Object.keys(this.elements).length && (O(this.elements.buttons.play), O(this.elements.captions), O(this.elements.controls), O(this.elements.wrapper), this.elements.buttons.play = null, this.elements.captions = null, this.elements.controls = null, this.elements.wrapper = null), S2.function(e3) && e3()) : (ee.call(this), de.cancelRequests.call(this), q(this.elements.original, this.elements.container), Z.call(this, this.elements.original, "destroyed", true), S2.function(e3) && e3.call(this.elements.original), this.ready = false, setTimeout(() => {
+                this.elements = null, this.media = null;
+              }, 200));
+            };
+            this.stop(), clearTimeout(this.timers.loading), clearTimeout(this.timers.controls), clearTimeout(this.timers.resized), this.isHTML5 ? (Fe.toggleNativeControls.call(this, true), i4()) : this.isYouTube ? (clearInterval(this.timers.buffering), clearInterval(this.timers.playing), null !== this.embed && S2.function(this.embed.destroy) && this.embed.destroy(), i4()) : this.isVimeo && (null !== this.embed && this.embed.unload().then(i4), setTimeout(i4, 200));
+          }), e2(this, "supports", (e3) => K.mime.call(this, e3)), this.timers = {}, this.ready = false, this.loading = false, this.failed = false, this.touch = K.touch, this.media = t3, S2.string(this.media) && (this.media = document.querySelectorAll(this.media)), (window.jQuery && this.media instanceof jQuery || S2.nodeList(this.media) || S2.array(this.media)) && (this.media = this.media[0]), this.config = x({}, Le, st.defaults, i3 || {}, (() => {
+            try {
+              return JSON.parse(this.media.getAttribute("data-plyr-config"));
+            } catch (e3) {
+              return {};
+            }
+          })()), this.elements = { container: null, fullscreen: null, captions: null, buttons: {}, display: {}, progress: {}, inputs: {}, settings: { popup: null, menu: null, panels: {}, buttons: {} } }, this.captions = { active: null, currentTrack: -1, meta: /* @__PURE__ */ new WeakMap() }, this.fullscreen = { active: false }, this.options = { speed: [], quality: [] }, this.debug = new De(this.config.debug), this.debug.log("Config", this.config), this.debug.log("Support", K), S2.nullOrUndefined(this.media) || !S2.element(this.media)) return void this.debug.error("Setup failed: no suitable element passed");
+          if (this.media.plyr) return void this.debug.warn("Target already setup");
+          if (!this.config.enabled) return void this.debug.error("Setup failed: disabled by config");
+          if (!K.check().api) return void this.debug.error("Setup failed: no support");
+          const s3 = this.media.cloneNode(true);
+          s3.autoplay = false, this.elements.original = s3;
+          const n3 = this.media.tagName.toLowerCase();
+          let a3 = null, l3 = null;
+          switch (n3) {
+            case "div":
+              if (a3 = this.media.querySelector("iframe"), S2.element(a3)) {
+                if (l3 = Me(a3.getAttribute("src")), this.provider = function(e3) {
+                  return /^(https?:\/\/)?(www\.)?(youtube\.com|youtube-nocookie\.com|youtu\.?be)\/.+$/.test(e3) ? _e.youtube : /^https?:\/\/player.vimeo.com\/video\/\d{0,9}(?=\b|\/)/.test(e3) ? _e.vimeo : null;
+                }(l3.toString()), this.elements.container = this.media, this.media = a3, this.elements.container.className = "", l3.search.length) {
+                  const e3 = ["1", "true"];
+                  e3.includes(l3.searchParams.get("autoplay")) && (this.config.autoplay = true), e3.includes(l3.searchParams.get("loop")) && (this.config.loop.active = true), this.isYouTube ? (this.config.playsinline = e3.includes(l3.searchParams.get("playsinline")), this.config.youtube.hl = l3.searchParams.get("hl")) : this.config.playsinline = true;
+                }
+              } else this.provider = this.media.getAttribute(this.config.attributes.embed.provider), this.media.removeAttribute(this.config.attributes.embed.provider);
+              if (S2.empty(this.provider) || !Object.values(_e).includes(this.provider)) return void this.debug.error("Setup failed: Invalid provider");
+              this.type = je;
+              break;
+            case "video":
+            case "audio":
+              this.type = n3, this.provider = _e.html5, this.media.hasAttribute("crossorigin") && (this.config.crossorigin = true), this.media.hasAttribute("autoplay") && (this.config.autoplay = true), (this.media.hasAttribute("playsinline") || this.media.hasAttribute("webkit-playsinline")) && (this.config.playsinline = true), this.media.hasAttribute("muted") && (this.config.muted = true), this.media.hasAttribute("loop") && (this.config.loop.active = true);
+              break;
+            default:
+              return void this.debug.error("Setup failed: unsupported type");
+          }
+          this.supported = K.check(this.type, this.provider), this.supported.api ? (this.eventListeners = [], this.listeners = new Ve(this), this.storage = new we(this), this.media.plyr = this, S2.element(this.elements.container) || (this.elements.container = $("div"), L2(this.media, this.elements.container)), Fe.migrateStyles.call(this), Fe.addStyleHook.call(this), Xe.setup.call(this), this.config.debug && X.call(this, this.elements.container, this.config.events.join(" "), (e3) => {
+            this.debug.log(`event: ${e3.type}`);
+          }), this.fullscreen = new He(this), (this.isHTML5 || this.isEmbed && !this.supported.ui) && Fe.build.call(this), this.listeners.container(), this.listeners.global(), this.config.ads.enabled && (this.ads = new Je(this)), this.isHTML5 && this.config.autoplay && this.once("canplay", () => ie(this.play())), this.lastSeekTime = 0, this.config.previewThumbnails.enabled && (this.previewThumbnails = new tt(this))) : this.debug.error("Setup failed: no support");
+        }
+        get isHTML5() {
+          return this.provider === _e.html5;
+        }
+        get isEmbed() {
+          return this.isYouTube || this.isVimeo;
+        }
+        get isYouTube() {
+          return this.provider === _e.youtube;
+        }
+        get isVimeo() {
+          return this.provider === _e.vimeo;
+        }
+        get isVideo() {
+          return this.type === je;
+        }
+        get isAudio() {
+          return this.type === Oe;
+        }
+        get playing() {
+          return Boolean(this.ready && !this.paused && !this.ended);
+        }
+        get paused() {
+          return Boolean(this.media.paused);
+        }
+        get stopped() {
+          return Boolean(this.paused && 0 === this.currentTime);
+        }
+        get ended() {
+          return Boolean(this.media.ended);
+        }
+        set currentTime(e3) {
+          if (!this.duration) return;
+          const t3 = S2.number(e3) && e3 > 0;
+          this.media.currentTime = t3 ? Math.min(e3, this.duration) : 0, this.debug.log(`Seeking to ${this.currentTime} seconds`);
+        }
+        get currentTime() {
+          return Number(this.media.currentTime);
+        }
+        get buffered() {
+          const { buffered: e3 } = this.media;
+          return S2.number(e3) ? e3 : e3 && e3.length && this.duration > 0 ? e3.end(0) / this.duration : 0;
+        }
+        get seeking() {
+          return Boolean(this.media.seeking);
+        }
+        get duration() {
+          const e3 = parseFloat(this.config.duration), t3 = (this.media || {}).duration, i3 = S2.number(t3) && t3 !== 1 / 0 ? t3 : 0;
+          return e3 || i3;
+        }
+        set volume(e3) {
+          let t3 = e3;
+          S2.string(t3) && (t3 = Number(t3)), S2.number(t3) || (t3 = this.storage.get("volume")), S2.number(t3) || ({ volume: t3 } = this.config), t3 > 1 && (t3 = 1), t3 < 0 && (t3 = 0), this.config.volume = t3, this.media.volume = t3, !S2.empty(e3) && this.muted && t3 > 0 && (this.muted = false);
+        }
+        get volume() {
+          return Number(this.media.volume);
+        }
+        set muted(e3) {
+          let t3 = e3;
+          S2.boolean(t3) || (t3 = this.storage.get("muted")), S2.boolean(t3) || (t3 = this.config.muted), this.config.muted = t3, this.media.muted = t3;
+        }
+        get muted() {
+          return Boolean(this.media.muted);
+        }
+        get hasAudio() {
+          return !this.isHTML5 || (!!this.isAudio || (Boolean(this.media.mozHasAudio) || Boolean(this.media.webkitAudioDecodedByteCount) || Boolean(this.media.audioTracks && this.media.audioTracks.length)));
+        }
+        set speed(e3) {
+          let t3 = null;
+          S2.number(e3) && (t3 = e3), S2.number(t3) || (t3 = this.storage.get("speed")), S2.number(t3) || (t3 = this.config.speed.selected);
+          const { minimumSpeed: i3, maximumSpeed: s3 } = this;
+          t3 = Ge(t3, i3, s3), this.config.speed.selected = t3, setTimeout(() => {
+            this.media && (this.media.playbackRate = t3);
+          }, 0);
+        }
+        get speed() {
+          return Number(this.media.playbackRate);
+        }
+        get minimumSpeed() {
+          return this.isYouTube ? Math.min(...this.options.speed) : this.isVimeo ? 0.5 : 0.0625;
+        }
+        get maximumSpeed() {
+          return this.isYouTube ? Math.max(...this.options.speed) : this.isVimeo ? 2 : 16;
+        }
+        set quality(e3) {
+          const t3 = this.config.quality, i3 = this.options.quality;
+          if (!i3.length) return;
+          let s3 = [!S2.empty(e3) && Number(e3), this.storage.get("quality"), t3.selected, t3.default].find(S2.number), n3 = true;
+          if (!i3.includes(s3)) {
+            const e4 = ne(i3, s3);
+            this.debug.warn(`Unsupported quality option: ${s3}, using ${e4} instead`), s3 = e4, n3 = false;
+          }
+          t3.selected = s3, this.media.quality = s3, n3 && this.storage.set({ quality: s3 });
+        }
+        get quality() {
+          return this.media.quality;
+        }
+        set loop(e3) {
+          const t3 = S2.boolean(e3) ? e3 : this.config.loop.active;
+          this.config.loop.active = t3, this.media.loop = t3;
+        }
+        get loop() {
+          return Boolean(this.media.loop);
+        }
+        set source(e3) {
+          it.change.call(this, e3);
+        }
+        get source() {
+          return this.media.currentSrc;
+        }
+        get download() {
+          const { download: e3 } = this.config.urls;
+          return S2.url(e3) ? e3 : this.source;
+        }
+        set download(e3) {
+          S2.url(e3) && (this.config.urls.download = e3, Pe.setDownloadUrl.call(this));
+        }
+        set poster(e3) {
+          this.isVideo ? Fe.setPoster.call(this, e3, false).catch(() => {
+          }) : this.debug.warn("Poster can only be set for video");
+        }
+        get poster() {
+          return this.isVideo ? this.media.getAttribute("poster") || this.media.getAttribute("data-poster") : null;
+        }
+        get ratio() {
+          if (!this.isVideo) return null;
+          const e3 = oe(ce.call(this));
+          return S2.array(e3) ? e3.join(":") : e3;
+        }
+        set ratio(e3) {
+          this.isVideo ? S2.string(e3) && re(e3) ? (this.config.ratio = oe(e3), ue.call(this)) : this.debug.error(`Invalid aspect ratio specified (${e3})`) : this.debug.warn("Aspect ratio can only be set for video");
+        }
+        set autoplay(e3) {
+          this.config.autoplay = S2.boolean(e3) ? e3 : this.config.autoplay;
+        }
+        get autoplay() {
+          return Boolean(this.config.autoplay);
+        }
+        toggleCaptions(e3) {
+          xe.toggle.call(this, e3, false);
+        }
+        set currentTrack(e3) {
+          xe.set.call(this, e3, false), xe.setup.call(this);
+        }
+        get currentTrack() {
+          const { toggled: e3, currentTrack: t3 } = this.captions;
+          return e3 ? t3 : -1;
+        }
+        set language(e3) {
+          xe.setLanguage.call(this, e3, false);
+        }
+        get language() {
+          return (xe.getCurrentTrack.call(this) || {}).language;
+        }
+        set pip(e3) {
+          if (!K.pip) return;
+          const t3 = S2.boolean(e3) ? e3 : !this.pip;
+          S2.function(this.media.webkitSetPresentationMode) && this.media.webkitSetPresentationMode(t3 ? Ie : $e), S2.function(this.media.requestPictureInPicture) && (!this.pip && t3 ? this.media.requestPictureInPicture() : this.pip && !t3 && document.exitPictureInPicture());
+        }
+        get pip() {
+          return K.pip ? S2.empty(this.media.webkitPresentationMode) ? this.media === document.pictureInPictureElement : this.media.webkitPresentationMode === Ie : null;
+        }
+        setPreviewThumbnails(e3) {
+          this.previewThumbnails && this.previewThumbnails.loaded && (this.previewThumbnails.destroy(), this.previewThumbnails = null), Object.assign(this.config.previewThumbnails, e3), this.config.previewThumbnails.enabled && (this.previewThumbnails = new tt(this));
+        }
+        static supported(e3, t3) {
+          return K.check(e3, t3);
+        }
+        static loadSprite(e3, t3) {
+          return ke(e3, t3);
+        }
+        static setup(e3, t3 = {}) {
+          let i3 = null;
+          return S2.string(e3) ? i3 = Array.from(document.querySelectorAll(e3)) : S2.nodeList(e3) ? i3 = Array.from(e3) : S2.array(e3) && (i3 = e3.filter(S2.element)), S2.empty(i3) ? null : i3.map((e4) => new st(e4, t3));
+        }
+      }
+      var nt;
+      return st.defaults = (nt = Le, JSON.parse(JSON.stringify(nt))), st;
+    });
   }
 });
 
@@ -28831,31 +31990,33 @@ var init_web_vitals = __esm({
 });
 
 // src/index.js
-var import_react19 = __toESM(require_react());
+var import_react22 = __toESM(require_react());
 var import_client = __toESM(require_client());
 
 // src/App.js
-var import_react18 = __toESM(require_react());
+var import_react21 = __toESM(require_react());
 
 // src/components/Launcher.js
-var import_prop_types3 = __toESM(require_prop_types());
-var import_react16 = __toESM(require_react());
+var import_prop_types4 = __toESM(require_prop_types());
+var import_react18 = __toESM(require_react());
 
 // src/components/ChatWindow.js
-var import_prop_types2 = __toESM(require_prop_types());
-var import_react15 = __toESM(require_react());
+var import_prop_types3 = __toESM(require_prop_types());
+var import_react17 = __toESM(require_react());
 
 // src/components/MessageList.js
-var import_react8 = __toESM(require_react());
+var import_react10 = __toESM(require_react());
 
 // src/components/Messages/index.js
-var import_react7 = __toESM(require_react());
+var import_react9 = __toESM(require_react());
 
 // src/components/Messages/TextMessage.js
 var import_react = __toESM(require_react());
 var import_react_linkify = __toESM(require_Linkify());
 var TextMessage = (props) => {
-  return /* @__PURE__ */ import_react.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react.default.createElement(import_react_linkify.default, { properties: { target: "_blank" } }, props.data));
+  let msg = props.data;
+  msg = msg.replaceAll("\\\\n", "<br />");
+  return /* @__PURE__ */ import_react.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react.default.createElement(import_react_linkify.default, { properties: { target: "_blank" } }, /* @__PURE__ */ import_react.default.createElement("h5", null, /* @__PURE__ */ import_react.default.createElement("span", { dangerouslySetInnerHTML: { __html: msg } })), /* @__PURE__ */ import_react.default.createElement("p", { className: "date" }, "Mar 01 2024 - 12:26 PM ")));
 };
 var TextMessage_default = TextMessage;
 
@@ -28907,103 +32068,275 @@ var FileIcon_default = FileIcon;
 
 // src/components/Messages/FileMessage.js
 var FileMessage = (props) => {
-  return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement("a", { className: "sc-message--file", href: props.data.media_url, download: props.data.media_url }, /* @__PURE__ */ import_react4.default.createElement("img", { src: props.data.media_url, width: "200", height: "150" }), props.data.mi));
+  return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement("a", { className: "sc-message--file", href: props.data.media_url, download: props.data.media_url }, /* @__PURE__ */ import_react4.default.createElement("img", { src: props.data.media_url }), /* @__PURE__ */ import_react4.default.createElement("p", { className: "date" }, "Mar 01 2024 - 12:26 PM "), props.data.mi));
 };
 var FileMessage_default = FileMessage;
 
 // src/components/Messages/VideoMessage.js
 var import_react5 = __toESM(require_react());
 var VideoMessage = (props) => {
-  return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("video", { width: "200", height: "150", controls: true }, /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/mp4" }), /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/ogg" }), "Your browser does not support the video tag."));
+  return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("div", { className: "sc-message--video" }, /* @__PURE__ */ import_react5.default.createElement("video", { controls: true }, /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/mp4" }), /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/ogg" }), "Your browser does not support the video tag."), /* @__PURE__ */ import_react5.default.createElement("p", { className: "date" }, "Mar 01 2024 - 12:26 PM ")));
 };
 var VideoMessage_default = VideoMessage;
 
-// src/components/Messages/DocumentMessage.js
+// src/components/Messages/VoiceMessage.js
+var import_react7 = __toESM(require_react());
+
+// node_modules/plyr-react/esm/index.js
+var import_jsx_runtime = __toESM(require_jsx_runtime());
+var React6 = __toESM(require_react());
+var import_plyr = __toESM(require_plyr_min());
+var import_prop_types = __toESM(require_prop_types());
+
+// node_modules/react-aptor/esm/index.js
 var import_react6 = __toESM(require_react());
+function useAptor(ref, configuration, deps = []) {
+  const [instance, setInstance] = (0, import_react6.useState)(null);
+  const domRef = (0, import_react6.useRef)(null);
+  const { instantiate: instantiate2, destroy: destroy2, getAPI: getAPI2, params } = configuration;
+  (0, import_react6.useEffect)(() => {
+    const instanceReference = instantiate2(domRef.current, params);
+    setInstance(instanceReference);
+    return () => {
+      if (destroy2)
+        destroy2(instanceReference, params);
+    };
+  }, deps);
+  const api = (0, import_react6.useMemo)(() => getAPI2(instance, params), [instance]);
+  (0, import_react6.useImperativeHandle)(ref, api, [api]);
+  return domRef;
+}
+
+// node_modules/plyr-react/esm/index.js
+var import_meta = {};
+var instantiate = (_, params) => {
+  const plyr = new import_plyr.default(".plyr-react", params.options || {});
+  if (params.source)
+    plyr.source = params.source;
+  return plyr;
+};
+var destroy = (plyr) => {
+  if (plyr)
+    plyr.destroy();
+};
+var noop = () => {
+};
+var getAPI = (plyr) => {
+  if (!plyr) {
+    return () => new Proxy({ plyr: { source: null } }, {
+      get: (target, prop) => {
+        if (prop === "plyr") {
+          return target[prop];
+        }
+        return noop;
+      }
+    });
+  }
+  return () => ({
+    /**
+     * Plyr instance with all of its functionality
+     */
+    plyr
+  });
+};
+function usePlyr(ref, params, deps = null) {
+  return useAptor(
+    ref,
+    {
+      instantiate,
+      getAPI,
+      destroy,
+      params
+    },
+    deps || [params.options, params.source]
+  );
+}
+var Plyr = React6.forwardRef((props, ref) => {
+  const { source, options = null, ...rest } = props;
+  const raptorRef = usePlyr(ref, {
+    source,
+    options
+  });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("video", { ref: raptorRef, className: "plyr-react plyr", ...rest });
+});
+if ((import_meta.env && import_meta.env.MODE) !== "production") {
+  Plyr.displayName = "Plyr";
+  Plyr.defaultProps = {
+    options: {
+      controls: [
+        "rewind",
+        "play",
+        "fast-forward",
+        "progress",
+        "current-time",
+        "duration",
+        "mute",
+        "volume",
+        "settings",
+        "fullscreen"
+      ],
+      i18n: {
+        restart: "Restart",
+        rewind: "Rewind {seektime}s",
+        play: "Play",
+        pause: "Pause",
+        fastForward: "Forward {seektime}s",
+        seek: "Seek",
+        seekLabel: "{currentTime} of {duration}",
+        played: "Played",
+        buffered: "Buffered",
+        currentTime: "Current time",
+        duration: "Duration",
+        volume: "Volume",
+        mute: "Mute",
+        unmute: "Unmute",
+        enableCaptions: "Enable captions",
+        disableCaptions: "Disable captions",
+        download: "Download",
+        enterFullscreen: "Enter fullscreen",
+        exitFullscreen: "Exit fullscreen",
+        frameTitle: "Player for {title}",
+        captions: "Captions",
+        settings: "Settings",
+        menuBack: "Go back to previous menu",
+        speed: "Speed",
+        normal: "Normal",
+        quality: "Quality",
+        loop: "Loop"
+      }
+    },
+    source: {
+      type: "video",
+      sources: [
+        {
+          src: "https://cdn.plyr.io/static/blank.mp4",
+          type: "video/mp4",
+          size: 720
+        },
+        {
+          src: "https://cdn.plyr.io/static/blank.mp4",
+          type: "video/mp4",
+          size: 1080
+        }
+      ]
+    }
+  };
+  Plyr.propTypes = {
+    options: import_prop_types.default.object,
+    source: import_prop_types.default.any
+  };
+}
+
+// src/components/Messages/VoiceMessage.js
+var VoiceMessage = (props) => {
+  return /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null, /* @__PURE__ */ import_react7.default.createElement(
+    Plyr,
+    {
+      source: {
+        type: "audio",
+        // @ts-ignore
+        sources: [{ src: props.data.media_url }]
+      },
+      options: {
+        controls: ["play", "progress", "current-time", "captions", "pip", "airplay", "play-large"]
+      }
+    }
+  ));
+};
+var VoiceMessage_default = VoiceMessage;
+
+// src/components/Messages/DocumentMessage.js
+var import_react8 = __toESM(require_react());
 var import_react_linkify2 = __toESM(require_Linkify());
+
+// src/assets/file/tabler_download.png
+var tabler_download_default = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACySURBVHgB3ZRhDcIwEIUfBAGTUAcgAQk4QAISmAQcYAUUTMJwAA7KHeklZWuX12z7sX3Jy7Lm7kuaawushVPIZDSSlincgqMi62ghzXKFFwxP9SypUYBO1IdG+28jmQc5dcN1pCaMZQ6FuEiqeY+R5aRFMi28oX+ITZqT3SWHxPpvaj7TVCF9W1zoqW1hB44PWfcntKar5AmOffgmj5BuSV8VX5gmlmwS4iP4Sb4kD8zJF6F+NWGh3M3tAAAAAElFTkSuQmCC";
+
+// src/components/Messages/DocumentMessage.js
 var DocumentMessage = (props) => {
   const PrintDocIcon = ({ type }) => {
     if (type == "application/pdf") {
-      return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_pdf() });
+      return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_pdf() });
     }
     if (type == "application/vnd.ms-excel" || type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-      return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_excel() });
+      return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_excel() });
     }
     if (type == "text/csv") {
-      return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_csv() });
+      return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_csv() });
     }
     if (type == "application/msword" || type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-      return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_doc() });
+      return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_doc() });
     }
     if (type == "application/zip") {
-      return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_zip() });
+      return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_zip() });
     }
     if (type == "application/vnd.ms-powerpoint") {
-      return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_ppt() });
+      return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_ppt() });
     }
     if (type == "video/mp4") {
-      return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_music() });
+      return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_music() });
     }
-    return /* @__PURE__ */ import_react6.default.createElement("img", { src: require_gala_file() });
+    return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_gala_file() });
   };
-  return /* @__PURE__ */ import_react6.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react6.default.createElement(PrintDocIcon, { type: props.data.media_mime_type }), props.data.media_name);
+  return /* @__PURE__ */ import_react8.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react8.default.createElement(PrintDocIcon, { type: props.data.media_mime_type }), /* @__PURE__ */ import_react8.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react8.default.createElement("h5", null, props.data.media_name), /* @__PURE__ */ import_react8.default.createElement("p", { className: "date" }, "Mar 01 2024 - 12:26 PM ")), /* @__PURE__ */ import_react8.default.createElement("img", { src: tabler_download_default }));
 };
 var DocumentMessage_default = DocumentMessage;
 
 // src/components/Messages/index.js
-var Message = class extends import_react7.Component {
-  _renderMessageOfType(type) {
-    console.log(type);
+var Message = class extends import_react9.Component {
+  _renderMessageOfType(typex) {
+    const type = typex.toString();
     switch (type) {
       case "0":
-        return /* @__PURE__ */ import_react7.default.createElement(TextMessage_default, { ...this.props.message });
+        return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
+      case "19":
+        return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
       case "emoji":
-        return /* @__PURE__ */ import_react7.default.createElement(EmojiMessage_default, { ...this.props.message });
+        return /* @__PURE__ */ import_react9.default.createElement(EmojiMessage_default, { ...this.props.message });
       case "1":
-        return /* @__PURE__ */ import_react7.default.createElement(FileMessage_default, { data: this.props.message });
+        return /* @__PURE__ */ import_react9.default.createElement(FileMessage_default, { data: this.props.message });
       case "3":
-        return /* @__PURE__ */ import_react7.default.createElement(VideoMessage_default, { data: this.props.message });
+        return /* @__PURE__ */ import_react9.default.createElement(VideoMessage_default, { data: this.props.message });
       case "2":
-        return /* @__PURE__ */ import_react7.default.createElement(VideoMessage_default, { data: this.props.message });
+        return /* @__PURE__ */ import_react9.default.createElement(VoiceMessage_default, { data: this.props.message });
       case "9":
-        return /* @__PURE__ */ import_react7.default.createElement(DocumentMessage_default, { data: this.props.message });
+        return /* @__PURE__ */ import_react9.default.createElement(DocumentMessage_default, { data: this.props.message });
       default:
         console.error(`Attempting to load message with unsupported file type '${type}'`);
     }
   }
   render() {
-    console.log(this.props.message);
     let contentClassList = [
       "sc-message--content",
       this.props.message.key_from_me === 0 ? "sent" : "received"
     ];
-    return /* @__PURE__ */ import_react7.default.createElement("div", { className: "sc-message" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
+    return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
   }
 };
 var Messages_default = Message;
 
 // src/components/MessageList.js
-var MessageList = class extends import_react8.Component {
+var MessageList = class extends import_react10.Component {
   componentDidUpdate(_prevProps, _prevState) {
     this.scrollList.scrollTop = this.scrollList.scrollHeight;
   }
   render() {
-    return /* @__PURE__ */ import_react8.default.createElement("div", { className: "sc-message-list", ref: (el) => this.scrollList = el }, this.props.messages.map((message, i2) => {
-      return /* @__PURE__ */ import_react8.default.createElement(Messages_default, { message, key: i2 });
+    return /* @__PURE__ */ import_react10.default.createElement("div", { className: "sc-message-list", ref: (el) => this.scrollList = el }, this.props.messages.map((message, i2) => {
+      return /* @__PURE__ */ import_react10.default.createElement(Messages_default, { clickMe: this.props.clickMe, message, key: i2 });
     }));
   }
 };
 var MessageList_default = MessageList;
 
 // src/components/UserInput.js
-var import_prop_types = __toESM(require_prop_types());
-var import_react13 = __toESM(require_react());
+var import_prop_types2 = __toESM(require_prop_types());
+var import_react15 = __toESM(require_react());
 
 // src/components/icons/SendIcon.js
-var import_react9 = __toESM(require_react());
-var SendIcon = class extends import_react9.Component {
+var import_react11 = __toESM(require_react());
+var SendIcon = class extends import_react11.Component {
   render() {
-    return /* @__PURE__ */ import_react9.default.createElement(
+    return /* @__PURE__ */ import_react11.default.createElement(
       "button",
       {
         onFocus: this.props.onFocus,
@@ -29014,7 +32347,7 @@ var SendIcon = class extends import_react9.Component {
         },
         className: "sc-user-input--send-icon-wrapper"
       },
-      /* @__PURE__ */ import_react9.default.createElement(
+      /* @__PURE__ */ import_react11.default.createElement(
         "svg",
         {
           version: "1.1",
@@ -29027,7 +32360,7 @@ var SendIcon = class extends import_react9.Component {
           viewBox: "0 0 37.393 37.393",
           enableBackground: "new 0 0 37.393 37.393"
         },
-        /* @__PURE__ */ import_react9.default.createElement("g", { id: "Layer_2" }, /* @__PURE__ */ import_react9.default.createElement("path", { d: "M36.511,17.594L2.371,2.932c-0.374-0.161-0.81-0.079-1.1,0.21C0.982,3.43,0.896,3.865,1.055,4.241l5.613,13.263\n          L2.082,32.295c-0.115,0.372-0.004,0.777,0.285,1.038c0.188,0.169,0.427,0.258,0.67,0.258c0.132,0,0.266-0.026,0.392-0.08\n          l33.079-14.078c0.368-0.157,0.607-0.519,0.608-0.919S36.879,17.752,36.511,17.594z M4.632,30.825L8.469,18.45h8.061\n          c0.552,0,1-0.448,1-1s-0.448-1-1-1H8.395L3.866,5.751l29.706,12.757L4.632,30.825z" }))
+        /* @__PURE__ */ import_react11.default.createElement("g", { id: "Layer_2" }, /* @__PURE__ */ import_react11.default.createElement("path", { d: "M36.511,17.594L2.371,2.932c-0.374-0.161-0.81-0.079-1.1,0.21C0.982,3.43,0.896,3.865,1.055,4.241l5.613,13.263\n          L2.082,32.295c-0.115,0.372-0.004,0.777,0.285,1.038c0.188,0.169,0.427,0.258,0.67,0.258c0.132,0,0.266-0.026,0.392-0.08\n          l33.079-14.078c0.368-0.157,0.607-0.519,0.608-0.919S36.879,17.752,36.511,17.594z M4.632,30.825L8.469,18.45h8.061\n          c0.552,0,1-0.448,1-1s-0.448-1-1-1H8.395L3.866,5.751l29.706,12.757L4.632,30.825z" }))
       )
     );
   }
@@ -29035,8 +32368,8 @@ var SendIcon = class extends import_react9.Component {
 var SendIcon_default = SendIcon;
 
 // src/components/icons/EmojiIcon.js
-var import_react10 = __toESM(require_react());
-var EmojiIcon = ({ tooltip, onClick, isActive }) => /* @__PURE__ */ import_react10.default.createElement("div", { className: "sc-user-input--picker-wrapper" }, tooltip, /* @__PURE__ */ import_react10.default.createElement("button", { id: "sc-emoji-picker-button", className: "sc-user-input--emoji-icon-wrapper", onClick }, /* @__PURE__ */ import_react10.default.createElement(
+var import_react12 = __toESM(require_react());
+var EmojiIcon = ({ tooltip, onClick, isActive }) => /* @__PURE__ */ import_react12.default.createElement("div", { className: "sc-user-input--picker-wrapper" }, tooltip, /* @__PURE__ */ import_react12.default.createElement("button", { id: "sc-emoji-picker-button", className: "sc-user-input--emoji-icon-wrapper", onClick }, /* @__PURE__ */ import_react12.default.createElement(
   "svg",
   {
     className: `sc-user-input--emoji-icon ${isActive ? "active" : ""}`,
@@ -29049,15 +32382,15 @@ var EmojiIcon = ({ tooltip, onClick, isActive }) => /* @__PURE__ */ import_react
     viewBox: "0 0 37 37",
     enableBackground: "new 0 0 37 37"
   },
-  /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement(
+  /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement(
     "path",
     {
       d: "M18.696,37C8.387,37,0,29.006,0,18.696C0,8.387,8.387,0,18.696,0c10.31,0,18.696,8.387,18.696,18.696 C37,29.006,29.006,37,18.696,37z M18.696,2C9.49,2,2,9.49,2,18.696c0,9.206,7.49,16.696,16.696,16.696 c9.206,0,16.696-7.49,16.696-16.696C35.393,9.49,27.902,2,18.696,2z"
     }
   )),
-  /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement("circle", { cx: "12.379", cy: "14.359", r: "1.938" })),
-  /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement("circle", { cx: "24.371", cy: "14.414", r: "1.992" })),
-  /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement(
+  /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement("circle", { cx: "12.379", cy: "14.359", r: "1.938" })),
+  /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement("circle", { cx: "24.371", cy: "14.414", r: "1.992" })),
+  /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement(
     "path",
     {
       d: "M18.035,27.453c-5.748,0-8.342-4.18-8.449-4.357c-0.286-0.473-0.135-1.087,0.338-1.373 c0.471-0.286,1.084-0.136,1.372,0.335c0.094,0.151,2.161,3.396,6.74,3.396c4.713,0,7.518-3.462,7.545-3.497 c0.343-0.432,0.973-0.504,1.405-0.161c0.433,0.344,0.505,0.973,0.161,1.405C27.009,23.374,23.703,27.453,18.035,27.453z"
@@ -29067,8 +32400,8 @@ var EmojiIcon = ({ tooltip, onClick, isActive }) => /* @__PURE__ */ import_react
 var EmojiIcon_default = EmojiIcon;
 
 // src/components/popups/PopupWindow.js
-var import_react11 = __toESM(require_react());
-var PopupWindow = class extends import_react11.Component {
+var import_react13 = __toESM(require_react());
+var PopupWindow = class extends import_react13.Component {
   componentDidMount() {
     this.scLauncher = document.querySelector("#sc-launcher");
     this.scLauncher.addEventListener("click", this.interceptLauncherClick);
@@ -29083,7 +32416,7 @@ var PopupWindow = class extends import_react11.Component {
   };
   render() {
     const { isOpen, children } = this.props;
-    return /* @__PURE__ */ import_react11.default.createElement("div", { className: "sc-popup-window", ref: (e2) => this.emojiPopup = e2 }, /* @__PURE__ */ import_react11.default.createElement("div", { className: `sc-popup-window--cointainer ${isOpen ? "" : "closed"}` }, /* @__PURE__ */ import_react11.default.createElement(
+    return /* @__PURE__ */ import_react13.default.createElement("div", { className: "sc-popup-window", ref: (e2) => this.emojiPopup = e2 }, /* @__PURE__ */ import_react13.default.createElement("div", { className: `sc-popup-window--cointainer ${isOpen ? "" : "closed"}` }, /* @__PURE__ */ import_react13.default.createElement(
       "input",
       {
         onChange: this.props.onInputChange,
@@ -29096,7 +32429,7 @@ var PopupWindow = class extends import_react11.Component {
 var PopupWindow_default = PopupWindow;
 
 // src/components/emoji-picker/EmojiPicker.js
-var import_react12 = __toESM(require_react());
+var import_react14 = __toESM(require_react());
 var import_emoji_js = __toESM(require_emoji());
 
 // src/components/emoji-picker/emojiData.json
@@ -29105,10 +32438,10 @@ var emojiData_default = [{ name: "People", emojis: [{ no: 6, code: "1F604", char
 // src/components/emoji-picker/EmojiPicker.js
 var emojiConvertor = new import_emoji_js.default();
 emojiConvertor.init_env();
-var EmojiPicker = ({ onEmojiPicked, filter }) => /* @__PURE__ */ import_react12.default.createElement("div", { className: "sc-emoji-picker" }, emojiData_default.map((category) => {
-  const filteredEmojis = category.emojis.filter(({ name }) => name.includes(filter));
-  return /* @__PURE__ */ import_react12.default.createElement("div", { className: "sc-emoji-picker--category", key: category.name }, filteredEmojis.length > 0 && /* @__PURE__ */ import_react12.default.createElement("div", { className: "sc-emoji-picker--category-title" }, category.name), filteredEmojis.map(({ char, _name }) => {
-    return /* @__PURE__ */ import_react12.default.createElement(
+var EmojiPicker = ({ onEmojiPicked, filter: filter2 }) => /* @__PURE__ */ import_react14.default.createElement("div", { className: "sc-emoji-picker" }, emojiData_default.map((category) => {
+  const filteredEmojis = category.emojis.filter(({ name }) => name.includes(filter2));
+  return /* @__PURE__ */ import_react14.default.createElement("div", { className: "sc-emoji-picker--category", key: category.name }, filteredEmojis.length > 0 && /* @__PURE__ */ import_react14.default.createElement("div", { className: "sc-emoji-picker--category-title" }, category.name), filteredEmojis.map(({ char, _name }) => {
+    return /* @__PURE__ */ import_react14.default.createElement(
       "span",
       {
         key: char,
@@ -29122,7 +32455,7 @@ var EmojiPicker = ({ onEmojiPicked, filter }) => /* @__PURE__ */ import_react12.
 var EmojiPicker_default = EmojiPicker;
 
 // src/components/UserInput.js
-var UserInput = class extends import_react13.Component {
+var UserInput = class extends import_react15.Component {
   constructor() {
     super();
     this.state = {
@@ -29193,14 +32526,14 @@ var UserInput = class extends import_react13.Component {
     const emojiFilter = event.target.value;
     this.setState({ emojiFilter });
   };
-  _renderEmojiPopup = () => /* @__PURE__ */ import_react13.default.createElement(
+  _renderEmojiPopup = () => /* @__PURE__ */ import_react15.default.createElement(
     PopupWindow_default,
     {
       isOpen: this.state.emojiPickerIsOpen,
       onClickedOutside: this.closeEmojiPicker,
       onInputChange: this.handleEmojiFilterChange
     },
-    /* @__PURE__ */ import_react13.default.createElement(
+    /* @__PURE__ */ import_react15.default.createElement(
       EmojiPicker_default,
       {
         onEmojiPicked: this._handleEmojiPicked,
@@ -29210,9 +32543,9 @@ var UserInput = class extends import_react13.Component {
   );
   _renderSendOrFileIcon() {
     if (this.state.inputHasText) {
-      return /* @__PURE__ */ import_react13.default.createElement("div", { className: "sc-user-input--button" }, /* @__PURE__ */ import_react13.default.createElement(SendIcon_default, { onClick: this._submitText.bind(this) }));
+      return /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--button" }, /* @__PURE__ */ import_react15.default.createElement(SendIcon_default, { onClick: this._submitText.bind(this) }));
     }
-    return /* @__PURE__ */ import_react13.default.createElement("div", { className: "sc-user-input--button" }, /* @__PURE__ */ import_react13.default.createElement(FileIcon_default, { onClick: this._showFilePicker.bind(this) }), /* @__PURE__ */ import_react13.default.createElement(
+    return /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--button" }, /* @__PURE__ */ import_react15.default.createElement(FileIcon_default, { onClick: this._showFilePicker.bind(this) }), /* @__PURE__ */ import_react15.default.createElement(
       "input",
       {
         type: "file",
@@ -29227,7 +32560,7 @@ var UserInput = class extends import_react13.Component {
   }
   render() {
     const { emojiPickerIsOpen, inputActive } = this.state;
-    return /* @__PURE__ */ import_react13.default.createElement("form", { className: `sc-user-input ${inputActive ? "active" : ""}` }, /* @__PURE__ */ import_react13.default.createElement(
+    return /* @__PURE__ */ import_react15.default.createElement("form", { className: `sc-user-input ${inputActive ? "active" : ""}` }, /* @__PURE__ */ import_react15.default.createElement(
       "div",
       {
         role: "button",
@@ -29247,7 +32580,7 @@ var UserInput = class extends import_react13.Component {
         placeholder: "Write a reply...",
         className: "sc-user-input--text"
       }
-    ), /* @__PURE__ */ import_react13.default.createElement("div", { className: "sc-user-input--buttons" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "sc-user-input--button" }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "sc-user-input--button" }, this.props.showEmoji && /* @__PURE__ */ import_react13.default.createElement(
+    ), /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--buttons" }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--button" }), /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--button" }, this.props.showEmoji && /* @__PURE__ */ import_react15.default.createElement(
       EmojiIcon_default,
       {
         onClick: this.toggleEmojiPicker,
@@ -29258,88 +32591,112 @@ var UserInput = class extends import_react13.Component {
   }
 };
 UserInput.propTypes = {
-  onSubmit: import_prop_types.default.func.isRequired,
-  onFilesSelected: import_prop_types.default.func.isRequired,
-  showEmoji: import_prop_types.default.bool
+  onSubmit: import_prop_types2.default.func.isRequired,
+  onFilesSelected: import_prop_types2.default.func.isRequired,
+  showEmoji: import_prop_types2.default.bool
 };
 var UserInput_default = UserInput;
 
 // src/components/Header.js
-var import_react14 = __toESM(require_react());
-
-// src/assets/close-icon.png
-var close_icon_default = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAfCAMAAACxiD++AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAtUExURUxpcf///////////////////////////////////////////////////////3EAnbYAAAAOdFJOUwADZ66SoQjEhnS7/gsNGQL7+wAAAKtJREFUKM+F01sOhCAQRNESFV/I/pc70Og0YJfyJbmHhBAbGGYHstw8IPV4EOGOmERYIhGpxyUAJxHSz/xlC+1FxE64qB1yj1ZID7oXsel+63ovnj2JXUXue+hvrcLugL+EdG+9XBG8X+Kl34J3YM1g/egvIvdx5EK691RIz78YEXdnQrst6m6JqemXmNo+D/WJNAyVePZWWL0WdlfB+l+UAQQReaAc65DB/wGsZgzLN0IQWAAAAABJRU5ErkJggg==";
-
-// src/components/Header.js
-var Header = class extends import_react14.Component {
+var import_react16 = __toESM(require_react());
+var Header = class extends import_react16.Component {
   render() {
-    return /* @__PURE__ */ import_react14.default.createElement("div", { className: "sc-header" }, /* @__PURE__ */ import_react14.default.createElement("img", { className: "sc-header--img", src: this.props.imageUrl, alt: "" }), /* @__PURE__ */ import_react14.default.createElement("div", { className: "sc-header--team-name" }, " ", this.props.teamName, " "), /* @__PURE__ */ import_react14.default.createElement("div", { className: "sc-header--close-button", onClick: this.props.onClose }, /* @__PURE__ */ import_react14.default.createElement("img", { src: close_icon_default, alt: "" })));
+    return /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header--team-name" }, /* @__PURE__ */ import_react16.default.createElement("h3", null, this.props.widgetSettings?.widget_builder?.welcome_heading, " "), /* @__PURE__ */ import_react16.default.createElement("p", null, this.props.widgetSettings?.widget_builder?.welcome_tagline, " ")));
   }
 };
 var Header_default = Header;
 
 // src/components/ChatWindow.js
-var ChatWindow = class extends import_react15.Component {
-  constructor(props) {
-    super(props);
-  }
-  onUserInputSubmit(message) {
-    this.props.onUserInputSubmit(message);
-  }
-  onFilesSelected(filesList) {
-    this.props.onFilesSelected(filesList);
-  }
-  render() {
-    let messageList = this.props.messageList || [];
-    let classList = [
-      "sc-chat-window",
-      this.props.isOpen ? "opened" : "closed"
-    ];
-    return /* @__PURE__ */ import_react15.default.createElement("div", { className: classList.join(" ") }, /* @__PURE__ */ import_react15.default.createElement(
-      Header_default,
-      {
-        teamName: this.props.agentProfile.teamName,
-        imageUrl: this.props.agentProfile.imageUrl,
-        onClose: this.props.onClose
-      }
-    ), /* @__PURE__ */ import_react15.default.createElement(
-      MessageList_default,
-      {
-        messages: messageList,
-        imageUrl: this.props.agentProfile.imageUrl
-      }
-    ), /* @__PURE__ */ import_react15.default.createElement(
-      UserInput_default,
-      {
-        onSubmit: this.onUserInputSubmit.bind(this),
-        onFilesSelected: this.onFilesSelected.bind(this),
-        showEmoji: this.props.showEmoji
-      }
-    ));
-  }
+var ChatWindow = ({
+  agentProfile,
+  isOpen,
+  onClose,
+  onFilesSelected,
+  onUserInputSubmit,
+  showEmoji,
+  messageList = [],
+  widgetSettings,
+  clickMe
+}) => {
+  const [start, setStart] = (0, import_react17.useState)(localStorage.getItem("start"));
+  const [formSubmit, setFormSubmit] = (0, import_react17.useState)(localStorage.getItem("form_submit"));
+  const handleUserInputSubmit = (0, import_react17.useCallback)((message) => {
+    onUserInputSubmit(message);
+  }, [onUserInputSubmit]);
+  const handleFilesSelected = (0, import_react17.useCallback)((filesList) => {
+    onFilesSelected && onFilesSelected(filesList);
+  }, [onFilesSelected]);
+  const classList = [
+    "sc-chat-window",
+    isOpen ? "opened" : "closed"
+  ];
+  const handleSubmit = (event) => {
+    const formData = new FormData(event.currentTarget);
+    event.preventDefault();
+    const formVal = [];
+    for (let [key, value] of formData.entries()) {
+      formVal[key] = value;
+    }
+    localStorage.setItem("form_submit", formVal["name"]);
+    setFormSubmit(1);
+  };
+  return /* @__PURE__ */ import_react17.default.createElement("div", { className: classList.join(" ") }, /* @__PURE__ */ import_react17.default.createElement(
+    Header_default,
+    {
+      teamName: agentProfile.teamName,
+      imageUrl: agentProfile.imageUrl,
+      onClose,
+      widgetSettings
+    }
+  ), !start ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react17.default.createElement("h3", null, "We are Online"), /* @__PURE__ */ import_react17.default.createElement("p", null, widgetSettings?.widget_builder?.reply_time), /* @__PURE__ */ import_react17.default.createElement("button", { className: "btn btn_conversation", style: { backgroundColor: widgetSettings?.widget_builder?.widget_color }, type: "button", onClick: () => {
+    localStorage.setItem("start", 1);
+    setStart(1);
+  } }, widgetSettings?.widget_builder?.start_conversation_text))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, !formSubmit ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("form", { onSubmit: handleSubmit }, widgetSettings?.pre_chat_form?.form?.map((item) => {
+    return /* @__PURE__ */ import_react17.default.createElement("div", { className: "field_section" }, /* @__PURE__ */ import_react17.default.createElement("input", { type: item.type, name: item.key, placeholder: item.place_holder }));
+  }), /* @__PURE__ */ import_react17.default.createElement("button", { className: "btn_conversation", style: { backgroundColor: widgetSettings?.widget_builder?.widget_color }, type: "submit", onCldick: () => {
+  } }, widgetSettings?.widget_builder?.start_conversation_text)))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement(
+    MessageList_default,
+    {
+      messages: messageList,
+      imageUrl: agentProfile.imageUrl,
+      clickMe
+    }
+  ), /* @__PURE__ */ import_react17.default.createElement(
+    UserInput_default,
+    {
+      onSubmit: handleUserInputSubmit,
+      onFilesSelected: handleFilesSelected,
+      showEmoji
+    }
+  ))));
 };
 ChatWindow.propTypes = {
-  agentProfile: import_prop_types2.default.object.isRequired,
-  isOpen: import_prop_types2.default.bool.isRequired,
-  onClose: import_prop_types2.default.func.isRequired,
-  onFilesSelected: import_prop_types2.default.func,
-  onUserInputSubmit: import_prop_types2.default.func.isRequired,
-  showEmoji: import_prop_types2.default.bool
+  agentProfile: import_prop_types3.default.object.isRequired,
+  isOpen: import_prop_types3.default.bool.isRequired,
+  onClose: import_prop_types3.default.func.isRequired,
+  onFilesSelected: import_prop_types3.default.func,
+  onUserInputSubmit: import_prop_types3.default.func.isRequired,
+  showEmoji: import_prop_types3.default.bool,
+  messageList: import_prop_types3.default.array,
+  widgetSettings: import_prop_types3.default.object
 };
 var ChatWindow_default = ChatWindow;
 
-// src/assets/logo-no-bg.svg
-var logo_no_bg_default = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-4749.48 -5020 35.036 35.036"><defs><style>.a{fill:none;}.b{fill:%234e8cff;}.c{clip-path:url(%23a);}.d{fill:%23fff;}.e{fill:%23eff4f9;}</style><clipPath id="a"><path class="a" d="M0-399.479H17.555v17.555H0Z" transform="translate(0 399.479)"/></clipPath></defs><g transform="translate(-4886 -5075)"><g transform="translate(145.13 64)"><g class="c"><g transform="translate(0 0)"><path class="d" d="M-381.924-190.962a8.778,8.778,0,0,0-8.778-8.778,8.778,8.778,0,0,0-8.778,8.778,8.745,8.745,0,0,0,2.26,5.879v1.442c0,.8.492,1.457,1.1,1.457h5.83a.843.843,0,0,0,.183-.02,8.778,8.778,0,0,0,8.184-8.757" transform="translate(399.479 199.74)"/></g><g transform="translate(0 0)"><path class="e" d="M-68.763-194.079a9.292,9.292,0,0,1,6.38-8.888c-.252-.022-.506-.033-.763-.033a8.774,8.774,0,0,0-8.778,8.778A9.508,9.508,0,0,0-69.7-188.3c.005,0,0,.009,0,.01-.311.352-1.924,2.849.021,2.849h2.25c-1.23-.022,1.263-2.107.269-3.494a8.225,8.225,0,0,1-1.6-5.141" transform="translate(71.924 203)"/></g></g></g></g></svg>';
+// src/assets/tdesign_chat.png
+var tdesign_chat_default = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADBSURBVHgB7dfhCcIwEAXgO3GAjFBdwI6kTuAIbqAjOIEjOIIjqDiAdALPF7yKaCIiSRR7D15TSOCD9kcSoq6F/UNEHIYZlcmSmZsWrjDsKX8EHQI+9OhLCcETThi6/s7pO3CRGGywwQYb/PtwPzaBPdoPHJvHxiOUGlZ0gK7R+sWatLCiG7RqncCa6Nf4FB6hC9QpuEKPlC7N7c2fueQ5Z3ROOROAT+iYcucB9mhNJXIH7/SoWyYKb4uiCju9Tfx/LmYMfrOAIwpEAAAAAElFTkSuQmCC";
 
 // src/assets/sounds/notification.mp3
 var notification_default = __toBinary("SUQzAwAAAAAAH1RYWFgAAAAVAAAAU29mdHdhcmUATGF2ZjUyLjU0LjD/+5DEAAAAAAAAAAAAAAAAAAAAAABJbmZvAAAADwAAAAkAABBSABwcHBwcHBwcHBwcODg4ODg4ODg4ODhVVVVVVVVVVVVVVXFxcXFxcXFxcXFxjo6Ojo6Ojo6Ojo6qqqqqqqqqqqqqqsfHx8fHx8fHx8fH4+Pj4+Pj4+Pj4+P//////////////wAAADlMQU1FMy45OHIBzQAAAAAAAAAAFIAkCQBCAACAAAAQUlJFfEcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/+5DEAAMSYgj2IQX3wrDA4sqfIANQPRTCRxZFq+zL1MUccQcn/mJNgMrtAH82wH5JP+MxuY5Df+MY+UCGMbMfkjkAgLmMhkAAJXyUYxgXkD/G/TX9Imd/GoavV8fGXmveRkiZkUc9KMCsTisYEPj0ay3nXCZKqyKc6j2fg9BCDIUZ/k7VcNnswIYz3w8lZ8MByELLmpiEHuohNEIUhO1GT8NWS9bJ4OAACgjt5b0exqNEGgaCFjfQo8BJxDxDydkLKpuJ4C5wWkW4UoAlQORA2IDIABgEehicOIAwIDIgbEDiJEQHE7izxcaBfFICDyAGqS1izxQYzZaTVqLhiRcnEX8zIue/TUX31mQ5hoh/2oO6tN2agpFBOtWhrUplNRVpa6a///////bV9nZqCD6S32dBFFK62O0lHFzPQSTc3OLQoUXTe7l43LpPJspNzQnEkC2CqgAAAgQL0Psgh9MQKj8OrZU9iaOOnkVTNnDbCGAgR8m1nIs4Lcg3SDCIGzafwHozUAN1g6IFgDA2uBYDYXsA60KkA1vnvAyfidG4OoX/+5LEJgAb2S0mWbsAA0Kb5IM54AAmLPHGGBBsicwSAsBiJCGBgNAYBgmA4HPOni1FmEAEBSKpAGggAwcBCAwaAOAwAgEAwRAeIchOnpFSqgieUDYgDAoBwAYGAhOBgOAEGqTp+SHNTAwFsJxbgBAPAOBQAkA4Nmwu0AkAYbX/0/8DAOAMNrHAcMyJhisUcUB/9//IX////9OWQKEPyDr+b+IrFpJQMJguIDGo2iku10xaMjDp8uR2rWNhv45fWIDBoEjoUE5gmkuHZHj2YiZLpxkSpmEyL0ZsOBxvhIzjQQ5gzA+mZiLSYKYAxQBAYGYUxggAcrHMGoFUwBgNzBOBFMB4BON1o0VAMamMSeswEQHx4BgwEQJEJKRhgBgAT2sapfiE9/zAPAcYwYBYBxd5WYuVS1reGrX/vv+t5CcW+lbRZejzv/pYKu8//1+XxGBX5knV4z0pjP6rFgZd6f//////FGOcC7Adf+XkmAiOKu+4NvBBp0Y1lYzzf//7x3jcjVGWmBiKctyn8PIGBQAwYGEJBFoGDlAEoGGMjdAGaUmM//uSxBSDWkG9Bh27gALtN6BJ/KJYQHIPIh4GWtDtoGH9AlIGCOg4gGCFAG4GB1guAGDAgmQGBngSgGAcgCQWlCkROpOmReTLA5whYLfgsKEfgYAWAXALAB4CgACLCalgxWvzY9+sxHQKWIEkyK/3b2eosafVZ0Fqr9bMTJbTM1XUtFKrSWmg1S1KdBSkDz/W3Xqfb7PW1rKSM0aRmuZl06bOkiaLNTpqTxZPnDMzZMi5UIaQxBFZScnS8bzpAAwv6sd/////95MtQqMAUACTAKQB4wDcBQMA2AkzAQwR4wGoLzMFYB+zUoBIUweMFqMCCAmQbgHWnicch5q3KFS3dnD/x1awqzTXh0wtcyeEU/w9bktvjHDf//CYTrXc/xb79Rt3FM8RBvDU7s3Y9JZGLbU2cYIDv7C1NEPM8w1200pl01Wzv6P//U8cwsJweXBpriME5lh8OMHwIofIPEwK3LgHJwiDswJAFQgD0Jg7EgSA4EwNBQGgNwNVv95/8xt4Z5c/51pyA0wBQADANAaMAYD8wDQhjAMF3MP4us6BimTDNP/7ksQUA1Z9vQAPGZfDDLdgBp/QAiwMCoEUlAQKAAQwBoHAEgEAh7t7393f/nyaSW0xr+/cfYf/8r53fDcd23nvj77b55uzcUZNnxkJrKw7z8mEDKlGrEM/QhfrZMQJwfy7FWgcpH05yLxSH7eEtZsi5j9WJ+O/3s8cPpPjpUnnh6fqoh/Q1KEWCQR0axMwG5DZMSgORsqCAqggKmoiWPKETN9+kR48yrGR5AzXZkj+QFCADQqDRgaVpj85J7IepheKRgcAYUACQqiZqsNPZWNbqVMMMM8+9wxt9lVy19ephz+591lT287eVS9vWtf///3s88MsNd/ufc7lirvf6/K5jcrZZZ4W93rVqc+xjZpLXeTOeWN2lx1TZ27tTP6uGc7q/2997VevZ7zKz3LX/r8O91/OVb3Kmud7VlWf3bU79e9enI9DMLmX4jsspp6nhmHJR2tagOnpKtNAb+0Muu4xJu0bBCAQAAAEAgSABYBAAA37gtCC4SYkZU84poYMAGVoocnVJYMipkYOawomPyV1sJgjgKGBMC2YJIlhh2jv2cv/+5LEHwAdrTkvub8AAvcjpMuf4AADC7BpMPMFEwQAGjMaQCOAcLUyMgR8aS95gcgVmBeAaXkaAYaYIhgnhBGAeByPACS/OnwxXAy+HGkOKYFAHZgMAfGBiBmYEYGRgkAV91zPma61L4AgR5IfBoBxfYoAPHgBTAAAFQIfr///qTEpd9r8cnDAVAbBwCQIAbEADw6AAVgIhwAv/////85X7hzPPCwqqxBK92mitkrP07P///////Y/9c/PP/+Myi3Uq1MLQABgcpOSEogyjqUUhoq5hUKAYUqqBYi5mAOAoYDoDRgFgEmAQA+JA0mA2CoYHYNBhzi9GRuwwcfxmxj1ilGGOAIYFQMJgmAdgYAAwEwGDANAWMCsAguCrDCZRFnelbTWawE7ztOU5UPNNh6fKoEoCAhL84T0QcqHXRry2z9flaXSqlx/VNuWy2Ou9DUuyr4Y039ztfrPG1jzmu6/GllMNO9PZd/HD/3Zxx5hnUx5Z/987jTP9j3mVYr/////9yoCZA1TXbNNf06SmTixmW3MnSQTJxRl01ACQDkwWgKw//uSxA+DFjW9FE9kVUNON6BN9D+gICOYLgGBg8hOmJ0KIaIIcpoLS+mE2KYYCQIpgagXGtG+gkCZ7gCmlDSmXK3K6ntQEoFAuX53nSROU5LYsNZaXOU5SFWK/O2UuNa7++ZymW/v7sZjMt5UYC1GmyylVO1mHY1bx1Ko1TZKBAQE/lRpditUvlYraqXqY66G//////Ne3uzJU1NIQyzqFMMyhDuwRjw4EiIAF/////PL///wp4xJ3oQFmABABRgBoA6YBEAdGAigNZgQwGcYKKDemLXE0prW54cYgmASmCdAG5gRoBQYCUAJmAUgAwYAQiwAUvR0I7fxsfW//1z6N3ofWKucwBkAwCABqbkfZXnlqArFW34tHQZogQRmMICcCJUjaaiKFIPGNArEPnqUjwkkwVK0Ul7JZR7q+WXpzMFNvxe0rcJmV8zPXz3DRFevtqNSfdoFMVtVy04+M3OTlI3tDUjH8ZiWDoYm66mO9DIRQOBhQGZnkN1lUdUwP1rDD/3j3//9brbsRaKN+rSVgBkwGgkD+FFNjlWLnMmgNkwqwf/7ksQTABYBvQAvGZtSB5ij6GwyCmjBMArMCUBQwDgAwgAZXMHymNUu8uf//rOl3T1alyIySP1IV0xpuDP8/Of42PnPV/M0/eKYwskX7XGHvTGShTWLukc1NdjKVa7csjcfHZZZm5Zi5nz3Nl7f/O6W+O1bUQTfIIrVtb7svQmcP6gq6Fprj1Cx6I4SsHI4+FMZiOq8mErhISBUW4jATgGvUElkSA///fbiIIECAAIAC7JvG8F3qCC2jB1iUlvt3ve9AGAgBwGgNBEEgRBHEsSyWTyWZk87MAaAgDQKBEOBIHwRxHHczP168/Xnh4weGCxYeHCNDXr17a9e+scLChREpPATFwOfB8IOMDC7zb3hBACYXFwu0f////UX+Xe7Fi5gIzMzN8YCAgICAhR4xGHW4tqoqiwFRk26zN7SBATmRAqXpdldqmrOWuu015nTOmdOU5T/P9DL+v6/r+w6/sOy2mFhYWBsDYPjmUkVVVVVZrhmaGX1WtV52Zr//1hrYWFr2v//moatma1UVaG6hmb19a9mZmuGYk1V9V4Ksk1Vgo3/+5LEQIPUObj4Ie0PQAAANIAAAASueyRU2VWskwBYTsUDY6mk1QeABCcAUACHorRQcg1BSGpMQU1FMy45OC4yqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqTEFNRTMuOTguMqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//uSxLYDwAABpAAAACAAADSAAAAEqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqg==");
 
+// src/assets/mingcute_close-fill.png
+var mingcute_close_fill_default = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADOSURBVHgB7ZZhDsIgDIXBE3gEj+Cu4MHxCHoS8QbPNmKCRqDVdvvDS162BNpvbGshhKmpNQXgQD4XH5Wx7KXEJs6lCeagl7IUXkFzFZ++zd0J8u3Jw5UzlLSQU4nRiyEfT91deWOlrBuUn0oMN4Vq4OZQCbwx9j9UAPeDDuC+UAFcDZXU8XZCu2T8XnUH6vdzYdAc4FFOEHYkWDYQKNogjPu0KpEZHO/7sShBB67aj1HdZ/IpxngNHdE4Xy48l3wPvwjPo08qXu/oMzVloQfHKCbSGEOCCwAAAABJRU5ErkJggg==";
+
 // src/components/Launcher.js
-var Launcher = class extends import_react16.Component {
+var Launcher = class extends import_react18.Component {
   constructor() {
     super();
     this.state = {
-      launcherIcon: logo_no_bg_default,
+      launcherIcon: tdesign_chat_default,
       isOpen: false
     };
   }
@@ -29373,7 +32730,7 @@ var Launcher = class extends import_react16.Component {
       "sc-launcher",
       isOpen ? "opened" : ""
     ];
-    return /* @__PURE__ */ import_react16.default.createElement("div", { id: "sc-launcher" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: classList.join(" "), onClick: this.handleClick.bind(this) }, /* @__PURE__ */ import_react16.default.createElement(MessageCount, { count: this.props.newMessagesCount, isOpen }), /* @__PURE__ */ import_react16.default.createElement("img", { className: "sc-open-icon", src: close_icon_default }), /* @__PURE__ */ import_react16.default.createElement("img", { className: "sc-closed-icon", src: logo_no_bg_default })), /* @__PURE__ */ import_react16.default.createElement(
+    return /* @__PURE__ */ import_react18.default.createElement("div", { id: "sc-launcher" }, /* @__PURE__ */ import_react18.default.createElement("div", { className: classList.join(" "), onClick: this.handleClick.bind(this) }, /* @__PURE__ */ import_react18.default.createElement(MessageCount, { count: this.props.newMessagesCount, isOpen }), /* @__PURE__ */ import_react18.default.createElement("img", { className: "sc-open-icon", src: mingcute_close_fill_default }), /* @__PURE__ */ import_react18.default.createElement("img", { className: "sc-closed-icon", src: tdesign_chat_default }), /* @__PURE__ */ import_react18.default.createElement("p", null, this.props.widgetSettings?.widget_builder?.bubble_type == 1 && this.props.widgetSettings.widget_builder.bubble_text)), /* @__PURE__ */ import_react18.default.createElement(
       ChatWindow_default,
       {
         messageList: this.props.messageList,
@@ -29382,7 +32739,9 @@ var Launcher = class extends import_react16.Component {
         agentProfile: this.props.agentProfile,
         isOpen,
         onClose: this.handleClick.bind(this),
-        showEmoji: this.props.showEmoji
+        showEmoji: this.props.showEmoji,
+        widgetSettings: this.props.widgetSettings,
+        clickMe: this.props.clickMe
       }
     ));
   }
@@ -29391,17 +32750,17 @@ var MessageCount = (props) => {
   if (props.count === 0 || props.isOpen === true) {
     return null;
   }
-  return /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-new-messages-count" }, props.count);
+  return /* @__PURE__ */ import_react18.default.createElement("div", { className: "sc-new-messages-count" }, props.count);
 };
 Launcher.propTypes = {
-  onMessageWasReceived: import_prop_types3.default.func,
-  onMessageWasSent: import_prop_types3.default.func,
-  newMessagesCount: import_prop_types3.default.number,
-  isOpen: import_prop_types3.default.bool,
-  handleClick: import_prop_types3.default.func,
-  messageList: import_prop_types3.default.arrayOf(import_prop_types3.default.object),
-  mute: import_prop_types3.default.bool,
-  showEmoji: import_prop_types3.default.bool
+  onMessageWasReceived: import_prop_types4.default.func,
+  onMessageWasSent: import_prop_types4.default.func,
+  newMessagesCount: import_prop_types4.default.number,
+  isOpen: import_prop_types4.default.bool,
+  handleClick: import_prop_types4.default.func,
+  messageList: import_prop_types4.default.arrayOf(import_prop_types4.default.object),
+  mute: import_prop_types4.default.bool,
+  showEmoji: import_prop_types4.default.bool
 };
 Launcher.defaultProps = {
   newMessagesCount: 0,
@@ -29464,23 +32823,2521 @@ function v4(options, buf, offset) {
 }
 var v4_default = v4;
 
-// src/components/helpers/useInterval.js
-var import_react17 = __toESM(require_react());
-function useInterval(callback, delay) {
-  const savedCallback = (0, import_react17.useRef)();
-  (0, import_react17.useEffect)(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-  (0, import_react17.useEffect)(() => {
-    function func() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(func, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
+// node_modules/axios/lib/helpers/bind.js
+function bind(fn, thisArg) {
+  return function wrap() {
+    return fn.apply(thisArg, arguments);
+  };
 }
+
+// node_modules/axios/lib/utils.js
+var { toString } = Object.prototype;
+var { getPrototypeOf } = Object;
+var kindOf = /* @__PURE__ */ ((cache) => (thing) => {
+  const str = toString.call(thing);
+  return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
+})(/* @__PURE__ */ Object.create(null));
+var kindOfTest = (type) => {
+  type = type.toLowerCase();
+  return (thing) => kindOf(thing) === type;
+};
+var typeOfTest = (type) => (thing) => typeof thing === type;
+var { isArray } = Array;
+var isUndefined = typeOfTest("undefined");
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && isFunction(val.constructor.isBuffer) && val.constructor.isBuffer(val);
+}
+var isArrayBuffer = kindOfTest("ArrayBuffer");
+function isArrayBufferView(val) {
+  let result;
+  if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = val && val.buffer && isArrayBuffer(val.buffer);
+  }
+  return result;
+}
+var isString = typeOfTest("string");
+var isFunction = typeOfTest("function");
+var isNumber = typeOfTest("number");
+var isObject = (thing) => thing !== null && typeof thing === "object";
+var isBoolean = (thing) => thing === true || thing === false;
+var isPlainObject = (val) => {
+  if (kindOf(val) !== "object") {
+    return false;
+  }
+  const prototype3 = getPrototypeOf(val);
+  return (prototype3 === null || prototype3 === Object.prototype || Object.getPrototypeOf(prototype3) === null) && !(Symbol.toStringTag in val) && !(Symbol.iterator in val);
+};
+var isDate = kindOfTest("Date");
+var isFile = kindOfTest("File");
+var isBlob = kindOfTest("Blob");
+var isFileList = kindOfTest("FileList");
+var isStream = (val) => isObject(val) && isFunction(val.pipe);
+var isFormData = (thing) => {
+  let kind;
+  return thing && (typeof FormData === "function" && thing instanceof FormData || isFunction(thing.append) && ((kind = kindOf(thing)) === "formdata" || // detect form-data instance
+  kind === "object" && isFunction(thing.toString) && thing.toString() === "[object FormData]"));
+};
+var isURLSearchParams = kindOfTest("URLSearchParams");
+var [isReadableStream, isRequest, isResponse, isHeaders] = ["ReadableStream", "Request", "Response", "Headers"].map(kindOfTest);
+var trim = (str) => str.trim ? str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
+function forEach(obj, fn, { allOwnKeys = false } = {}) {
+  if (obj === null || typeof obj === "undefined") {
+    return;
+  }
+  let i2;
+  let l2;
+  if (typeof obj !== "object") {
+    obj = [obj];
+  }
+  if (isArray(obj)) {
+    for (i2 = 0, l2 = obj.length; i2 < l2; i2++) {
+      fn.call(null, obj[i2], i2, obj);
+    }
+  } else {
+    const keys = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
+    const len = keys.length;
+    let key;
+    for (i2 = 0; i2 < len; i2++) {
+      key = keys[i2];
+      fn.call(null, obj[key], key, obj);
+    }
+  }
+}
+function findKey(obj, key) {
+  key = key.toLowerCase();
+  const keys = Object.keys(obj);
+  let i2 = keys.length;
+  let _key;
+  while (i2-- > 0) {
+    _key = keys[i2];
+    if (key === _key.toLowerCase()) {
+      return _key;
+    }
+  }
+  return null;
+}
+var _global = (() => {
+  if (typeof globalThis !== "undefined") return globalThis;
+  return typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : global;
+})();
+var isContextDefined = (context) => !isUndefined(context) && context !== _global;
+function merge() {
+  const { caseless } = isContextDefined(this) && this || {};
+  const result = {};
+  const assignValue = (val, key) => {
+    const targetKey = caseless && findKey(result, key) || key;
+    if (isPlainObject(result[targetKey]) && isPlainObject(val)) {
+      result[targetKey] = merge(result[targetKey], val);
+    } else if (isPlainObject(val)) {
+      result[targetKey] = merge({}, val);
+    } else if (isArray(val)) {
+      result[targetKey] = val.slice();
+    } else {
+      result[targetKey] = val;
+    }
+  };
+  for (let i2 = 0, l2 = arguments.length; i2 < l2; i2++) {
+    arguments[i2] && forEach(arguments[i2], assignValue);
+  }
+  return result;
+}
+var extend = (a2, b2, thisArg, { allOwnKeys } = {}) => {
+  forEach(b2, (val, key) => {
+    if (thisArg && isFunction(val)) {
+      a2[key] = bind(val, thisArg);
+    } else {
+      a2[key] = val;
+    }
+  }, { allOwnKeys });
+  return a2;
+};
+var stripBOM = (content) => {
+  if (content.charCodeAt(0) === 65279) {
+    content = content.slice(1);
+  }
+  return content;
+};
+var inherits = (constructor, superConstructor, props, descriptors2) => {
+  constructor.prototype = Object.create(superConstructor.prototype, descriptors2);
+  constructor.prototype.constructor = constructor;
+  Object.defineProperty(constructor, "super", {
+    value: superConstructor.prototype
+  });
+  props && Object.assign(constructor.prototype, props);
+};
+var toFlatObject = (sourceObj, destObj, filter2, propFilter) => {
+  let props;
+  let i2;
+  let prop;
+  const merged = {};
+  destObj = destObj || {};
+  if (sourceObj == null) return destObj;
+  do {
+    props = Object.getOwnPropertyNames(sourceObj);
+    i2 = props.length;
+    while (i2-- > 0) {
+      prop = props[i2];
+      if ((!propFilter || propFilter(prop, sourceObj, destObj)) && !merged[prop]) {
+        destObj[prop] = sourceObj[prop];
+        merged[prop] = true;
+      }
+    }
+    sourceObj = filter2 !== false && getPrototypeOf(sourceObj);
+  } while (sourceObj && (!filter2 || filter2(sourceObj, destObj)) && sourceObj !== Object.prototype);
+  return destObj;
+};
+var endsWith = (str, searchString, position) => {
+  str = String(str);
+  if (position === void 0 || position > str.length) {
+    position = str.length;
+  }
+  position -= searchString.length;
+  const lastIndex = str.indexOf(searchString, position);
+  return lastIndex !== -1 && lastIndex === position;
+};
+var toArray = (thing) => {
+  if (!thing) return null;
+  if (isArray(thing)) return thing;
+  let i2 = thing.length;
+  if (!isNumber(i2)) return null;
+  const arr = new Array(i2);
+  while (i2-- > 0) {
+    arr[i2] = thing[i2];
+  }
+  return arr;
+};
+var isTypedArray = /* @__PURE__ */ ((TypedArray) => {
+  return (thing) => {
+    return TypedArray && thing instanceof TypedArray;
+  };
+})(typeof Uint8Array !== "undefined" && getPrototypeOf(Uint8Array));
+var forEachEntry = (obj, fn) => {
+  const generator = obj && obj[Symbol.iterator];
+  const iterator = generator.call(obj);
+  let result;
+  while ((result = iterator.next()) && !result.done) {
+    const pair = result.value;
+    fn.call(obj, pair[0], pair[1]);
+  }
+};
+var matchAll = (regExp, str) => {
+  let matches;
+  const arr = [];
+  while ((matches = regExp.exec(str)) !== null) {
+    arr.push(matches);
+  }
+  return arr;
+};
+var isHTMLForm = kindOfTest("HTMLFormElement");
+var toCamelCase = (str) => {
+  return str.toLowerCase().replace(
+    /[-_\s]([a-z\d])(\w*)/g,
+    function replacer(m2, p1, p2) {
+      return p1.toUpperCase() + p2;
+    }
+  );
+};
+var hasOwnProperty = (({ hasOwnProperty: hasOwnProperty2 }) => (obj, prop) => hasOwnProperty2.call(obj, prop))(Object.prototype);
+var isRegExp = kindOfTest("RegExp");
+var reduceDescriptors = (obj, reducer) => {
+  const descriptors2 = Object.getOwnPropertyDescriptors(obj);
+  const reducedDescriptors = {};
+  forEach(descriptors2, (descriptor, name) => {
+    let ret;
+    if ((ret = reducer(descriptor, name, obj)) !== false) {
+      reducedDescriptors[name] = ret || descriptor;
+    }
+  });
+  Object.defineProperties(obj, reducedDescriptors);
+};
+var freezeMethods = (obj) => {
+  reduceDescriptors(obj, (descriptor, name) => {
+    if (isFunction(obj) && ["arguments", "caller", "callee"].indexOf(name) !== -1) {
+      return false;
+    }
+    const value = obj[name];
+    if (!isFunction(value)) return;
+    descriptor.enumerable = false;
+    if ("writable" in descriptor) {
+      descriptor.writable = false;
+      return;
+    }
+    if (!descriptor.set) {
+      descriptor.set = () => {
+        throw Error("Can not rewrite read-only method '" + name + "'");
+      };
+    }
+  });
+};
+var toObjectSet = (arrayOrString, delimiter) => {
+  const obj = {};
+  const define2 = (arr) => {
+    arr.forEach((value) => {
+      obj[value] = true;
+    });
+  };
+  isArray(arrayOrString) ? define2(arrayOrString) : define2(String(arrayOrString).split(delimiter));
+  return obj;
+};
+var noop2 = () => {
+};
+var toFiniteNumber = (value, defaultValue) => {
+  return value != null && Number.isFinite(value = +value) ? value : defaultValue;
+};
+var ALPHA = "abcdefghijklmnopqrstuvwxyz";
+var DIGIT = "0123456789";
+var ALPHABET = {
+  DIGIT,
+  ALPHA,
+  ALPHA_DIGIT: ALPHA + ALPHA.toUpperCase() + DIGIT
+};
+var generateString = (size = 16, alphabet = ALPHABET.ALPHA_DIGIT) => {
+  let str = "";
+  const { length } = alphabet;
+  while (size--) {
+    str += alphabet[Math.random() * length | 0];
+  }
+  return str;
+};
+function isSpecCompliantForm(thing) {
+  return !!(thing && isFunction(thing.append) && thing[Symbol.toStringTag] === "FormData" && thing[Symbol.iterator]);
+}
+var toJSONObject = (obj) => {
+  const stack = new Array(10);
+  const visit = (source, i2) => {
+    if (isObject(source)) {
+      if (stack.indexOf(source) >= 0) {
+        return;
+      }
+      if (!("toJSON" in source)) {
+        stack[i2] = source;
+        const target = isArray(source) ? [] : {};
+        forEach(source, (value, key) => {
+          const reducedValue = visit(value, i2 + 1);
+          !isUndefined(reducedValue) && (target[key] = reducedValue);
+        });
+        stack[i2] = void 0;
+        return target;
+      }
+    }
+    return source;
+  };
+  return visit(obj, 0);
+};
+var isAsyncFn = kindOfTest("AsyncFunction");
+var isThenable = (thing) => thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
+var _setImmediate = ((setImmediateSupported, postMessageSupported) => {
+  if (setImmediateSupported) {
+    return setImmediate;
+  }
+  return postMessageSupported ? ((token, callbacks) => {
+    _global.addEventListener("message", ({ source, data }) => {
+      if (source === _global && data === token) {
+        callbacks.length && callbacks.shift()();
+      }
+    }, false);
+    return (cb) => {
+      callbacks.push(cb);
+      _global.postMessage(token, "*");
+    };
+  })(`axios@${Math.random()}`, []) : (cb) => setTimeout(cb);
+})(
+  typeof setImmediate === "function",
+  isFunction(_global.postMessage)
+);
+var asap = typeof queueMicrotask !== "undefined" ? queueMicrotask.bind(_global) : typeof process !== "undefined" && process.nextTick || _setImmediate;
+var utils_default = {
+  isArray,
+  isArrayBuffer,
+  isBuffer,
+  isFormData,
+  isArrayBufferView,
+  isString,
+  isNumber,
+  isBoolean,
+  isObject,
+  isPlainObject,
+  isReadableStream,
+  isRequest,
+  isResponse,
+  isHeaders,
+  isUndefined,
+  isDate,
+  isFile,
+  isBlob,
+  isRegExp,
+  isFunction,
+  isStream,
+  isURLSearchParams,
+  isTypedArray,
+  isFileList,
+  forEach,
+  merge,
+  extend,
+  trim,
+  stripBOM,
+  inherits,
+  toFlatObject,
+  kindOf,
+  kindOfTest,
+  endsWith,
+  toArray,
+  forEachEntry,
+  matchAll,
+  isHTMLForm,
+  hasOwnProperty,
+  hasOwnProp: hasOwnProperty,
+  // an alias to avoid ESLint no-prototype-builtins detection
+  reduceDescriptors,
+  freezeMethods,
+  toObjectSet,
+  toCamelCase,
+  noop: noop2,
+  toFiniteNumber,
+  findKey,
+  global: _global,
+  isContextDefined,
+  ALPHABET,
+  generateString,
+  isSpecCompliantForm,
+  toJSONObject,
+  isAsyncFn,
+  isThenable,
+  setImmediate: _setImmediate,
+  asap
+};
+
+// node_modules/axios/lib/core/AxiosError.js
+function AxiosError(message, code, config, request2, response) {
+  Error.call(this);
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    this.stack = new Error().stack;
+  }
+  this.message = message;
+  this.name = "AxiosError";
+  code && (this.code = code);
+  config && (this.config = config);
+  request2 && (this.request = request2);
+  if (response) {
+    this.response = response;
+    this.status = response.status ? response.status : null;
+  }
+}
+utils_default.inherits(AxiosError, Error, {
+  toJSON: function toJSON() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: utils_default.toJSONObject(this.config),
+      code: this.code,
+      status: this.status
+    };
+  }
+});
+var prototype = AxiosError.prototype;
+var descriptors = {};
+[
+  "ERR_BAD_OPTION_VALUE",
+  "ERR_BAD_OPTION",
+  "ECONNABORTED",
+  "ETIMEDOUT",
+  "ERR_NETWORK",
+  "ERR_FR_TOO_MANY_REDIRECTS",
+  "ERR_DEPRECATED",
+  "ERR_BAD_RESPONSE",
+  "ERR_BAD_REQUEST",
+  "ERR_CANCELED",
+  "ERR_NOT_SUPPORT",
+  "ERR_INVALID_URL"
+  // eslint-disable-next-line func-names
+].forEach((code) => {
+  descriptors[code] = { value: code };
+});
+Object.defineProperties(AxiosError, descriptors);
+Object.defineProperty(prototype, "isAxiosError", { value: true });
+AxiosError.from = (error, code, config, request2, response, customProps) => {
+  const axiosError = Object.create(prototype);
+  utils_default.toFlatObject(error, axiosError, function filter2(obj) {
+    return obj !== Error.prototype;
+  }, (prop) => {
+    return prop !== "isAxiosError";
+  });
+  AxiosError.call(axiosError, error.message, code, config, request2, response);
+  axiosError.cause = error;
+  axiosError.name = error.name;
+  customProps && Object.assign(axiosError, customProps);
+  return axiosError;
+};
+var AxiosError_default = AxiosError;
+
+// node_modules/axios/lib/helpers/null.js
+var null_default = null;
+
+// node_modules/axios/lib/helpers/toFormData.js
+function isVisitable(thing) {
+  return utils_default.isPlainObject(thing) || utils_default.isArray(thing);
+}
+function removeBrackets(key) {
+  return utils_default.endsWith(key, "[]") ? key.slice(0, -2) : key;
+}
+function renderKey(path, key, dots) {
+  if (!path) return key;
+  return path.concat(key).map(function each(token, i2) {
+    token = removeBrackets(token);
+    return !dots && i2 ? "[" + token + "]" : token;
+  }).join(dots ? "." : "");
+}
+function isFlatArray(arr) {
+  return utils_default.isArray(arr) && !arr.some(isVisitable);
+}
+var predicates = utils_default.toFlatObject(utils_default, {}, null, function filter(prop) {
+  return /^is[A-Z]/.test(prop);
+});
+function toFormData(obj, formData, options) {
+  if (!utils_default.isObject(obj)) {
+    throw new TypeError("target must be an object");
+  }
+  formData = formData || new (null_default || FormData)();
+  options = utils_default.toFlatObject(options, {
+    metaTokens: true,
+    dots: false,
+    indexes: false
+  }, false, function defined(option, source) {
+    return !utils_default.isUndefined(source[option]);
+  });
+  const metaTokens = options.metaTokens;
+  const visitor = options.visitor || defaultVisitor;
+  const dots = options.dots;
+  const indexes = options.indexes;
+  const _Blob = options.Blob || typeof Blob !== "undefined" && Blob;
+  const useBlob = _Blob && utils_default.isSpecCompliantForm(formData);
+  if (!utils_default.isFunction(visitor)) {
+    throw new TypeError("visitor must be a function");
+  }
+  function convertValue(value) {
+    if (value === null) return "";
+    if (utils_default.isDate(value)) {
+      return value.toISOString();
+    }
+    if (!useBlob && utils_default.isBlob(value)) {
+      throw new AxiosError_default("Blob is not supported. Use a Buffer instead.");
+    }
+    if (utils_default.isArrayBuffer(value) || utils_default.isTypedArray(value)) {
+      return useBlob && typeof Blob === "function" ? new Blob([value]) : Buffer.from(value);
+    }
+    return value;
+  }
+  function defaultVisitor(value, key, path) {
+    let arr = value;
+    if (value && !path && typeof value === "object") {
+      if (utils_default.endsWith(key, "{}")) {
+        key = metaTokens ? key : key.slice(0, -2);
+        value = JSON.stringify(value);
+      } else if (utils_default.isArray(value) && isFlatArray(value) || (utils_default.isFileList(value) || utils_default.endsWith(key, "[]")) && (arr = utils_default.toArray(value))) {
+        key = removeBrackets(key);
+        arr.forEach(function each(el, index) {
+          !(utils_default.isUndefined(el) || el === null) && formData.append(
+            // eslint-disable-next-line no-nested-ternary
+            indexes === true ? renderKey([key], index, dots) : indexes === null ? key : key + "[]",
+            convertValue(el)
+          );
+        });
+        return false;
+      }
+    }
+    if (isVisitable(value)) {
+      return true;
+    }
+    formData.append(renderKey(path, key, dots), convertValue(value));
+    return false;
+  }
+  const stack = [];
+  const exposedHelpers = Object.assign(predicates, {
+    defaultVisitor,
+    convertValue,
+    isVisitable
+  });
+  function build(value, path) {
+    if (utils_default.isUndefined(value)) return;
+    if (stack.indexOf(value) !== -1) {
+      throw Error("Circular reference detected in " + path.join("."));
+    }
+    stack.push(value);
+    utils_default.forEach(value, function each(el, key) {
+      const result = !(utils_default.isUndefined(el) || el === null) && visitor.call(
+        formData,
+        el,
+        utils_default.isString(key) ? key.trim() : key,
+        path,
+        exposedHelpers
+      );
+      if (result === true) {
+        build(el, path ? path.concat(key) : [key]);
+      }
+    });
+    stack.pop();
+  }
+  if (!utils_default.isObject(obj)) {
+    throw new TypeError("data must be an object");
+  }
+  build(obj);
+  return formData;
+}
+var toFormData_default = toFormData;
+
+// node_modules/axios/lib/helpers/AxiosURLSearchParams.js
+function encode(str) {
+  const charMap = {
+    "!": "%21",
+    "'": "%27",
+    "(": "%28",
+    ")": "%29",
+    "~": "%7E",
+    "%20": "+",
+    "%00": "\0"
+  };
+  return encodeURIComponent(str).replace(/[!'()~]|%20|%00/g, function replacer(match) {
+    return charMap[match];
+  });
+}
+function AxiosURLSearchParams(params, options) {
+  this._pairs = [];
+  params && toFormData_default(params, this, options);
+}
+var prototype2 = AxiosURLSearchParams.prototype;
+prototype2.append = function append(name, value) {
+  this._pairs.push([name, value]);
+};
+prototype2.toString = function toString2(encoder) {
+  const _encode = encoder ? function(value) {
+    return encoder.call(this, value, encode);
+  } : encode;
+  return this._pairs.map(function each(pair) {
+    return _encode(pair[0]) + "=" + _encode(pair[1]);
+  }, "").join("&");
+};
+var AxiosURLSearchParams_default = AxiosURLSearchParams;
+
+// node_modules/axios/lib/helpers/buildURL.js
+function encode2(val) {
+  return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
+}
+function buildURL(url, params, options) {
+  if (!params) {
+    return url;
+  }
+  const _encode = options && options.encode || encode2;
+  const serializeFn = options && options.serialize;
+  let serializedParams;
+  if (serializeFn) {
+    serializedParams = serializeFn(params, options);
+  } else {
+    serializedParams = utils_default.isURLSearchParams(params) ? params.toString() : new AxiosURLSearchParams_default(params, options).toString(_encode);
+  }
+  if (serializedParams) {
+    const hashmarkIndex = url.indexOf("#");
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+    url += (url.indexOf("?") === -1 ? "?" : "&") + serializedParams;
+  }
+  return url;
+}
+
+// node_modules/axios/lib/core/InterceptorManager.js
+var InterceptorManager = class {
+  constructor() {
+    this.handlers = [];
+  }
+  /**
+   * Add a new interceptor to the stack
+   *
+   * @param {Function} fulfilled The function to handle `then` for a `Promise`
+   * @param {Function} rejected The function to handle `reject` for a `Promise`
+   *
+   * @return {Number} An ID used to remove interceptor later
+   */
+  use(fulfilled, rejected, options) {
+    this.handlers.push({
+      fulfilled,
+      rejected,
+      synchronous: options ? options.synchronous : false,
+      runWhen: options ? options.runWhen : null
+    });
+    return this.handlers.length - 1;
+  }
+  /**
+   * Remove an interceptor from the stack
+   *
+   * @param {Number} id The ID that was returned by `use`
+   *
+   * @returns {Boolean} `true` if the interceptor was removed, `false` otherwise
+   */
+  eject(id) {
+    if (this.handlers[id]) {
+      this.handlers[id] = null;
+    }
+  }
+  /**
+   * Clear all interceptors from the stack
+   *
+   * @returns {void}
+   */
+  clear() {
+    if (this.handlers) {
+      this.handlers = [];
+    }
+  }
+  /**
+   * Iterate over all the registered interceptors
+   *
+   * This method is particularly useful for skipping over any
+   * interceptors that may have become `null` calling `eject`.
+   *
+   * @param {Function} fn The function to call for each interceptor
+   *
+   * @returns {void}
+   */
+  forEach(fn) {
+    utils_default.forEach(this.handlers, function forEachHandler(h2) {
+      if (h2 !== null) {
+        fn(h2);
+      }
+    });
+  }
+};
+var InterceptorManager_default = InterceptorManager;
+
+// node_modules/axios/lib/defaults/transitional.js
+var transitional_default = {
+  silentJSONParsing: true,
+  forcedJSONParsing: true,
+  clarifyTimeoutError: false
+};
+
+// node_modules/axios/lib/platform/browser/classes/URLSearchParams.js
+var URLSearchParams_default = typeof URLSearchParams !== "undefined" ? URLSearchParams : AxiosURLSearchParams_default;
+
+// node_modules/axios/lib/platform/browser/classes/FormData.js
+var FormData_default = typeof FormData !== "undefined" ? FormData : null;
+
+// node_modules/axios/lib/platform/browser/classes/Blob.js
+var Blob_default = typeof Blob !== "undefined" ? Blob : null;
+
+// node_modules/axios/lib/platform/browser/index.js
+var browser_default = {
+  isBrowser: true,
+  classes: {
+    URLSearchParams: URLSearchParams_default,
+    FormData: FormData_default,
+    Blob: Blob_default
+  },
+  protocols: ["http", "https", "file", "blob", "url", "data"]
+};
+
+// node_modules/axios/lib/platform/common/utils.js
+var utils_exports = {};
+__export(utils_exports, {
+  hasBrowserEnv: () => hasBrowserEnv,
+  hasStandardBrowserEnv: () => hasStandardBrowserEnv,
+  hasStandardBrowserWebWorkerEnv: () => hasStandardBrowserWebWorkerEnv,
+  navigator: () => _navigator,
+  origin: () => origin
+});
+var hasBrowserEnv = typeof window !== "undefined" && typeof document !== "undefined";
+var _navigator = typeof navigator === "object" && navigator || void 0;
+var hasStandardBrowserEnv = hasBrowserEnv && (!_navigator || ["ReactNative", "NativeScript", "NS"].indexOf(_navigator.product) < 0);
+var hasStandardBrowserWebWorkerEnv = (() => {
+  return typeof WorkerGlobalScope !== "undefined" && // eslint-disable-next-line no-undef
+  self instanceof WorkerGlobalScope && typeof self.importScripts === "function";
+})();
+var origin = hasBrowserEnv && window.location.href || "http://localhost";
+
+// node_modules/axios/lib/platform/index.js
+var platform_default = {
+  ...utils_exports,
+  ...browser_default
+};
+
+// node_modules/axios/lib/helpers/toURLEncodedForm.js
+function toURLEncodedForm(data, options) {
+  return toFormData_default(data, new platform_default.classes.URLSearchParams(), Object.assign({
+    visitor: function(value, key, path, helpers) {
+      if (platform_default.isNode && utils_default.isBuffer(value)) {
+        this.append(key, value.toString("base64"));
+        return false;
+      }
+      return helpers.defaultVisitor.apply(this, arguments);
+    }
+  }, options));
+}
+
+// node_modules/axios/lib/helpers/formDataToJSON.js
+function parsePropPath(name) {
+  return utils_default.matchAll(/\w+|\[(\w*)]/g, name).map((match) => {
+    return match[0] === "[]" ? "" : match[1] || match[0];
+  });
+}
+function arrayToObject(arr) {
+  const obj = {};
+  const keys = Object.keys(arr);
+  let i2;
+  const len = keys.length;
+  let key;
+  for (i2 = 0; i2 < len; i2++) {
+    key = keys[i2];
+    obj[key] = arr[key];
+  }
+  return obj;
+}
+function formDataToJSON(formData) {
+  function buildPath(path, value, target, index) {
+    let name = path[index++];
+    if (name === "__proto__") return true;
+    const isNumericKey = Number.isFinite(+name);
+    const isLast = index >= path.length;
+    name = !name && utils_default.isArray(target) ? target.length : name;
+    if (isLast) {
+      if (utils_default.hasOwnProp(target, name)) {
+        target[name] = [target[name], value];
+      } else {
+        target[name] = value;
+      }
+      return !isNumericKey;
+    }
+    if (!target[name] || !utils_default.isObject(target[name])) {
+      target[name] = [];
+    }
+    const result = buildPath(path, value, target[name], index);
+    if (result && utils_default.isArray(target[name])) {
+      target[name] = arrayToObject(target[name]);
+    }
+    return !isNumericKey;
+  }
+  if (utils_default.isFormData(formData) && utils_default.isFunction(formData.entries)) {
+    const obj = {};
+    utils_default.forEachEntry(formData, (name, value) => {
+      buildPath(parsePropPath(name), value, obj, 0);
+    });
+    return obj;
+  }
+  return null;
+}
+var formDataToJSON_default = formDataToJSON;
+
+// node_modules/axios/lib/defaults/index.js
+function stringifySafely(rawValue, parser, encoder) {
+  if (utils_default.isString(rawValue)) {
+    try {
+      (parser || JSON.parse)(rawValue);
+      return utils_default.trim(rawValue);
+    } catch (e2) {
+      if (e2.name !== "SyntaxError") {
+        throw e2;
+      }
+    }
+  }
+  return (encoder || JSON.stringify)(rawValue);
+}
+var defaults = {
+  transitional: transitional_default,
+  adapter: ["xhr", "http", "fetch"],
+  transformRequest: [function transformRequest(data, headers) {
+    const contentType = headers.getContentType() || "";
+    const hasJSONContentType = contentType.indexOf("application/json") > -1;
+    const isObjectPayload = utils_default.isObject(data);
+    if (isObjectPayload && utils_default.isHTMLForm(data)) {
+      data = new FormData(data);
+    }
+    const isFormData2 = utils_default.isFormData(data);
+    if (isFormData2) {
+      return hasJSONContentType ? JSON.stringify(formDataToJSON_default(data)) : data;
+    }
+    if (utils_default.isArrayBuffer(data) || utils_default.isBuffer(data) || utils_default.isStream(data) || utils_default.isFile(data) || utils_default.isBlob(data) || utils_default.isReadableStream(data)) {
+      return data;
+    }
+    if (utils_default.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils_default.isURLSearchParams(data)) {
+      headers.setContentType("application/x-www-form-urlencoded;charset=utf-8", false);
+      return data.toString();
+    }
+    let isFileList2;
+    if (isObjectPayload) {
+      if (contentType.indexOf("application/x-www-form-urlencoded") > -1) {
+        return toURLEncodedForm(data, this.formSerializer).toString();
+      }
+      if ((isFileList2 = utils_default.isFileList(data)) || contentType.indexOf("multipart/form-data") > -1) {
+        const _FormData = this.env && this.env.FormData;
+        return toFormData_default(
+          isFileList2 ? { "files[]": data } : data,
+          _FormData && new _FormData(),
+          this.formSerializer
+        );
+      }
+    }
+    if (isObjectPayload || hasJSONContentType) {
+      headers.setContentType("application/json", false);
+      return stringifySafely(data);
+    }
+    return data;
+  }],
+  transformResponse: [function transformResponse(data) {
+    const transitional2 = this.transitional || defaults.transitional;
+    const forcedJSONParsing = transitional2 && transitional2.forcedJSONParsing;
+    const JSONRequested = this.responseType === "json";
+    if (utils_default.isResponse(data) || utils_default.isReadableStream(data)) {
+      return data;
+    }
+    if (data && utils_default.isString(data) && (forcedJSONParsing && !this.responseType || JSONRequested)) {
+      const silentJSONParsing = transitional2 && transitional2.silentJSONParsing;
+      const strictJSONParsing = !silentJSONParsing && JSONRequested;
+      try {
+        return JSON.parse(data);
+      } catch (e2) {
+        if (strictJSONParsing) {
+          if (e2.name === "SyntaxError") {
+            throw AxiosError_default.from(e2, AxiosError_default.ERR_BAD_RESPONSE, this, null, this.response);
+          }
+          throw e2;
+        }
+      }
+    }
+    return data;
+  }],
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+  xsrfCookieName: "XSRF-TOKEN",
+  xsrfHeaderName: "X-XSRF-TOKEN",
+  maxContentLength: -1,
+  maxBodyLength: -1,
+  env: {
+    FormData: platform_default.classes.FormData,
+    Blob: platform_default.classes.Blob
+  },
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  },
+  headers: {
+    common: {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": void 0
+    }
+  }
+};
+utils_default.forEach(["delete", "get", "head", "post", "put", "patch"], (method) => {
+  defaults.headers[method] = {};
+});
+var defaults_default = defaults;
+
+// node_modules/axios/lib/helpers/parseHeaders.js
+var ignoreDuplicateOf = utils_default.toObjectSet([
+  "age",
+  "authorization",
+  "content-length",
+  "content-type",
+  "etag",
+  "expires",
+  "from",
+  "host",
+  "if-modified-since",
+  "if-unmodified-since",
+  "last-modified",
+  "location",
+  "max-forwards",
+  "proxy-authorization",
+  "referer",
+  "retry-after",
+  "user-agent"
+]);
+var parseHeaders_default = (rawHeaders) => {
+  const parsed = {};
+  let key;
+  let val;
+  let i2;
+  rawHeaders && rawHeaders.split("\n").forEach(function parser(line) {
+    i2 = line.indexOf(":");
+    key = line.substring(0, i2).trim().toLowerCase();
+    val = line.substring(i2 + 1).trim();
+    if (!key || parsed[key] && ignoreDuplicateOf[key]) {
+      return;
+    }
+    if (key === "set-cookie") {
+      if (parsed[key]) {
+        parsed[key].push(val);
+      } else {
+        parsed[key] = [val];
+      }
+    } else {
+      parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
+    }
+  });
+  return parsed;
+};
+
+// node_modules/axios/lib/core/AxiosHeaders.js
+var $internals = Symbol("internals");
+function normalizeHeader(header) {
+  return header && String(header).trim().toLowerCase();
+}
+function normalizeValue(value) {
+  if (value === false || value == null) {
+    return value;
+  }
+  return utils_default.isArray(value) ? value.map(normalizeValue) : String(value);
+}
+function parseTokens(str) {
+  const tokens = /* @__PURE__ */ Object.create(null);
+  const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
+  let match;
+  while (match = tokensRE.exec(str)) {
+    tokens[match[1]] = match[2];
+  }
+  return tokens;
+}
+var isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
+function matchHeaderValue(context, value, header, filter2, isHeaderNameFilter) {
+  if (utils_default.isFunction(filter2)) {
+    return filter2.call(this, value, header);
+  }
+  if (isHeaderNameFilter) {
+    value = header;
+  }
+  if (!utils_default.isString(value)) return;
+  if (utils_default.isString(filter2)) {
+    return value.indexOf(filter2) !== -1;
+  }
+  if (utils_default.isRegExp(filter2)) {
+    return filter2.test(value);
+  }
+}
+function formatHeader(header) {
+  return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w2, char, str) => {
+    return char.toUpperCase() + str;
+  });
+}
+function buildAccessors(obj, header) {
+  const accessorName = utils_default.toCamelCase(" " + header);
+  ["get", "set", "has"].forEach((methodName) => {
+    Object.defineProperty(obj, methodName + accessorName, {
+      value: function(arg1, arg2, arg3) {
+        return this[methodName].call(this, header, arg1, arg2, arg3);
+      },
+      configurable: true
+    });
+  });
+}
+var AxiosHeaders = class {
+  constructor(headers) {
+    headers && this.set(headers);
+  }
+  set(header, valueOrRewrite, rewrite) {
+    const self2 = this;
+    function setHeader(_value, _header, _rewrite) {
+      const lHeader = normalizeHeader(_header);
+      if (!lHeader) {
+        throw new Error("header name must be a non-empty string");
+      }
+      const key = utils_default.findKey(self2, lHeader);
+      if (!key || self2[key] === void 0 || _rewrite === true || _rewrite === void 0 && self2[key] !== false) {
+        self2[key || _header] = normalizeValue(_value);
+      }
+    }
+    const setHeaders = (headers, _rewrite) => utils_default.forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
+    if (utils_default.isPlainObject(header) || header instanceof this.constructor) {
+      setHeaders(header, valueOrRewrite);
+    } else if (utils_default.isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
+      setHeaders(parseHeaders_default(header), valueOrRewrite);
+    } else if (utils_default.isHeaders(header)) {
+      for (const [key, value] of header.entries()) {
+        setHeader(value, key, rewrite);
+      }
+    } else {
+      header != null && setHeader(valueOrRewrite, header, rewrite);
+    }
+    return this;
+  }
+  get(header, parser) {
+    header = normalizeHeader(header);
+    if (header) {
+      const key = utils_default.findKey(this, header);
+      if (key) {
+        const value = this[key];
+        if (!parser) {
+          return value;
+        }
+        if (parser === true) {
+          return parseTokens(value);
+        }
+        if (utils_default.isFunction(parser)) {
+          return parser.call(this, value, key);
+        }
+        if (utils_default.isRegExp(parser)) {
+          return parser.exec(value);
+        }
+        throw new TypeError("parser must be boolean|regexp|function");
+      }
+    }
+  }
+  has(header, matcher) {
+    header = normalizeHeader(header);
+    if (header) {
+      const key = utils_default.findKey(this, header);
+      return !!(key && this[key] !== void 0 && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
+    }
+    return false;
+  }
+  delete(header, matcher) {
+    const self2 = this;
+    let deleted = false;
+    function deleteHeader(_header) {
+      _header = normalizeHeader(_header);
+      if (_header) {
+        const key = utils_default.findKey(self2, _header);
+        if (key && (!matcher || matchHeaderValue(self2, self2[key], key, matcher))) {
+          delete self2[key];
+          deleted = true;
+        }
+      }
+    }
+    if (utils_default.isArray(header)) {
+      header.forEach(deleteHeader);
+    } else {
+      deleteHeader(header);
+    }
+    return deleted;
+  }
+  clear(matcher) {
+    const keys = Object.keys(this);
+    let i2 = keys.length;
+    let deleted = false;
+    while (i2--) {
+      const key = keys[i2];
+      if (!matcher || matchHeaderValue(this, this[key], key, matcher, true)) {
+        delete this[key];
+        deleted = true;
+      }
+    }
+    return deleted;
+  }
+  normalize(format) {
+    const self2 = this;
+    const headers = {};
+    utils_default.forEach(this, (value, header) => {
+      const key = utils_default.findKey(headers, header);
+      if (key) {
+        self2[key] = normalizeValue(value);
+        delete self2[header];
+        return;
+      }
+      const normalized = format ? formatHeader(header) : String(header).trim();
+      if (normalized !== header) {
+        delete self2[header];
+      }
+      self2[normalized] = normalizeValue(value);
+      headers[normalized] = true;
+    });
+    return this;
+  }
+  concat(...targets) {
+    return this.constructor.concat(this, ...targets);
+  }
+  toJSON(asStrings) {
+    const obj = /* @__PURE__ */ Object.create(null);
+    utils_default.forEach(this, (value, header) => {
+      value != null && value !== false && (obj[header] = asStrings && utils_default.isArray(value) ? value.join(", ") : value);
+    });
+    return obj;
+  }
+  [Symbol.iterator]() {
+    return Object.entries(this.toJSON())[Symbol.iterator]();
+  }
+  toString() {
+    return Object.entries(this.toJSON()).map(([header, value]) => header + ": " + value).join("\n");
+  }
+  get [Symbol.toStringTag]() {
+    return "AxiosHeaders";
+  }
+  static from(thing) {
+    return thing instanceof this ? thing : new this(thing);
+  }
+  static concat(first, ...targets) {
+    const computed = new this(first);
+    targets.forEach((target) => computed.set(target));
+    return computed;
+  }
+  static accessor(header) {
+    const internals = this[$internals] = this[$internals] = {
+      accessors: {}
+    };
+    const accessors = internals.accessors;
+    const prototype3 = this.prototype;
+    function defineAccessor(_header) {
+      const lHeader = normalizeHeader(_header);
+      if (!accessors[lHeader]) {
+        buildAccessors(prototype3, _header);
+        accessors[lHeader] = true;
+      }
+    }
+    utils_default.isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
+    return this;
+  }
+};
+AxiosHeaders.accessor(["Content-Type", "Content-Length", "Accept", "Accept-Encoding", "User-Agent", "Authorization"]);
+utils_default.reduceDescriptors(AxiosHeaders.prototype, ({ value }, key) => {
+  let mapped = key[0].toUpperCase() + key.slice(1);
+  return {
+    get: () => value,
+    set(headerValue) {
+      this[mapped] = headerValue;
+    }
+  };
+});
+utils_default.freezeMethods(AxiosHeaders);
+var AxiosHeaders_default = AxiosHeaders;
+
+// node_modules/axios/lib/core/transformData.js
+function transformData(fns, response) {
+  const config = this || defaults_default;
+  const context = response || config;
+  const headers = AxiosHeaders_default.from(context.headers);
+  let data = context.data;
+  utils_default.forEach(fns, function transform(fn) {
+    data = fn.call(config, data, headers.normalize(), response ? response.status : void 0);
+  });
+  headers.normalize();
+  return data;
+}
+
+// node_modules/axios/lib/cancel/isCancel.js
+function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+}
+
+// node_modules/axios/lib/cancel/CanceledError.js
+function CanceledError(message, config, request2) {
+  AxiosError_default.call(this, message == null ? "canceled" : message, AxiosError_default.ERR_CANCELED, config, request2);
+  this.name = "CanceledError";
+}
+utils_default.inherits(CanceledError, AxiosError_default, {
+  __CANCEL__: true
+});
+var CanceledError_default = CanceledError;
+
+// node_modules/axios/lib/core/settle.js
+function settle(resolve, reject, response) {
+  const validateStatus2 = response.config.validateStatus;
+  if (!response.status || !validateStatus2 || validateStatus2(response.status)) {
+    resolve(response);
+  } else {
+    reject(new AxiosError_default(
+      "Request failed with status code " + response.status,
+      [AxiosError_default.ERR_BAD_REQUEST, AxiosError_default.ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4],
+      response.config,
+      response.request,
+      response
+    ));
+  }
+}
+
+// node_modules/axios/lib/helpers/parseProtocol.js
+function parseProtocol(url) {
+  const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
+  return match && match[1] || "";
+}
+
+// node_modules/axios/lib/helpers/speedometer.js
+function speedometer(samplesCount, min) {
+  samplesCount = samplesCount || 10;
+  const bytes = new Array(samplesCount);
+  const timestamps = new Array(samplesCount);
+  let head = 0;
+  let tail = 0;
+  let firstSampleTS;
+  min = min !== void 0 ? min : 1e3;
+  return function push(chunkLength) {
+    const now = Date.now();
+    const startedAt = timestamps[tail];
+    if (!firstSampleTS) {
+      firstSampleTS = now;
+    }
+    bytes[head] = chunkLength;
+    timestamps[head] = now;
+    let i2 = tail;
+    let bytesCount = 0;
+    while (i2 !== head) {
+      bytesCount += bytes[i2++];
+      i2 = i2 % samplesCount;
+    }
+    head = (head + 1) % samplesCount;
+    if (head === tail) {
+      tail = (tail + 1) % samplesCount;
+    }
+    if (now - firstSampleTS < min) {
+      return;
+    }
+    const passed = startedAt && now - startedAt;
+    return passed ? Math.round(bytesCount * 1e3 / passed) : void 0;
+  };
+}
+var speedometer_default = speedometer;
+
+// node_modules/axios/lib/helpers/throttle.js
+function throttle(fn, freq) {
+  let timestamp = 0;
+  let threshold = 1e3 / freq;
+  let lastArgs;
+  let timer;
+  const invoke = (args, now = Date.now()) => {
+    timestamp = now;
+    lastArgs = null;
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    fn.apply(null, args);
+  };
+  const throttled = (...args) => {
+    const now = Date.now();
+    const passed = now - timestamp;
+    if (passed >= threshold) {
+      invoke(args, now);
+    } else {
+      lastArgs = args;
+      if (!timer) {
+        timer = setTimeout(() => {
+          timer = null;
+          invoke(lastArgs);
+        }, threshold - passed);
+      }
+    }
+  };
+  const flush = () => lastArgs && invoke(lastArgs);
+  return [throttled, flush];
+}
+var throttle_default = throttle;
+
+// node_modules/axios/lib/helpers/progressEventReducer.js
+var progressEventReducer = (listener, isDownloadStream, freq = 3) => {
+  let bytesNotified = 0;
+  const _speedometer = speedometer_default(50, 250);
+  return throttle_default((e2) => {
+    const loaded = e2.loaded;
+    const total = e2.lengthComputable ? e2.total : void 0;
+    const progressBytes = loaded - bytesNotified;
+    const rate = _speedometer(progressBytes);
+    const inRange = loaded <= total;
+    bytesNotified = loaded;
+    const data = {
+      loaded,
+      total,
+      progress: total ? loaded / total : void 0,
+      bytes: progressBytes,
+      rate: rate ? rate : void 0,
+      estimated: rate && total && inRange ? (total - loaded) / rate : void 0,
+      event: e2,
+      lengthComputable: total != null,
+      [isDownloadStream ? "download" : "upload"]: true
+    };
+    listener(data);
+  }, freq);
+};
+var progressEventDecorator = (total, throttled) => {
+  const lengthComputable = total != null;
+  return [(loaded) => throttled[0]({
+    lengthComputable,
+    total,
+    loaded
+  }), throttled[1]];
+};
+var asyncDecorator = (fn) => (...args) => utils_default.asap(() => fn(...args));
+
+// node_modules/axios/lib/helpers/isURLSameOrigin.js
+var isURLSameOrigin_default = platform_default.hasStandardBrowserEnv ? (
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+  function standardBrowserEnv() {
+    const msie = platform_default.navigator && /(msie|trident)/i.test(platform_default.navigator.userAgent);
+    const urlParsingNode = document.createElement("a");
+    let originURL;
+    function resolveURL(url) {
+      let href = url;
+      if (msie) {
+        urlParsingNode.setAttribute("href", href);
+        href = urlParsingNode.href;
+      }
+      urlParsingNode.setAttribute("href", href);
+      return {
+        href: urlParsingNode.href,
+        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, "") : "",
+        host: urlParsingNode.host,
+        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, "") : "",
+        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, "") : "",
+        hostname: urlParsingNode.hostname,
+        port: urlParsingNode.port,
+        pathname: urlParsingNode.pathname.charAt(0) === "/" ? urlParsingNode.pathname : "/" + urlParsingNode.pathname
+      };
+    }
+    originURL = resolveURL(window.location.href);
+    return function isURLSameOrigin(requestURL) {
+      const parsed = utils_default.isString(requestURL) ? resolveURL(requestURL) : requestURL;
+      return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
+    };
+  }()
+) : (
+  // Non standard browser envs (web workers, react-native) lack needed support.
+  /* @__PURE__ */ function nonStandardBrowserEnv() {
+    return function isURLSameOrigin() {
+      return true;
+    };
+  }()
+);
+
+// node_modules/axios/lib/helpers/cookies.js
+var cookies_default = platform_default.hasStandardBrowserEnv ? (
+  // Standard browser envs support document.cookie
+  {
+    write(name, value, expires, path, domain, secure) {
+      const cookie = [name + "=" + encodeURIComponent(value)];
+      utils_default.isNumber(expires) && cookie.push("expires=" + new Date(expires).toGMTString());
+      utils_default.isString(path) && cookie.push("path=" + path);
+      utils_default.isString(domain) && cookie.push("domain=" + domain);
+      secure === true && cookie.push("secure");
+      document.cookie = cookie.join("; ");
+    },
+    read(name) {
+      const match = document.cookie.match(new RegExp("(^|;\\s*)(" + name + ")=([^;]*)"));
+      return match ? decodeURIComponent(match[3]) : null;
+    },
+    remove(name) {
+      this.write(name, "", Date.now() - 864e5);
+    }
+  }
+) : (
+  // Non-standard browser env (web workers, react-native) lack needed support.
+  {
+    write() {
+    },
+    read() {
+      return null;
+    },
+    remove() {
+    }
+  }
+);
+
+// node_modules/axios/lib/helpers/isAbsoluteURL.js
+function isAbsoluteURL(url) {
+  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
+}
+
+// node_modules/axios/lib/helpers/combineURLs.js
+function combineURLs(baseURL, relativeURL) {
+  return relativeURL ? baseURL.replace(/\/?\/$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
+}
+
+// node_modules/axios/lib/core/buildFullPath.js
+function buildFullPath(baseURL, requestedURL) {
+  if (baseURL && !isAbsoluteURL(requestedURL)) {
+    return combineURLs(baseURL, requestedURL);
+  }
+  return requestedURL;
+}
+
+// node_modules/axios/lib/core/mergeConfig.js
+var headersToObject = (thing) => thing instanceof AxiosHeaders_default ? { ...thing } : thing;
+function mergeConfig(config1, config2) {
+  config2 = config2 || {};
+  const config = {};
+  function getMergedValue(target, source, caseless) {
+    if (utils_default.isPlainObject(target) && utils_default.isPlainObject(source)) {
+      return utils_default.merge.call({ caseless }, target, source);
+    } else if (utils_default.isPlainObject(source)) {
+      return utils_default.merge({}, source);
+    } else if (utils_default.isArray(source)) {
+      return source.slice();
+    }
+    return source;
+  }
+  function mergeDeepProperties(a2, b2, caseless) {
+    if (!utils_default.isUndefined(b2)) {
+      return getMergedValue(a2, b2, caseless);
+    } else if (!utils_default.isUndefined(a2)) {
+      return getMergedValue(void 0, a2, caseless);
+    }
+  }
+  function valueFromConfig2(a2, b2) {
+    if (!utils_default.isUndefined(b2)) {
+      return getMergedValue(void 0, b2);
+    }
+  }
+  function defaultToConfig2(a2, b2) {
+    if (!utils_default.isUndefined(b2)) {
+      return getMergedValue(void 0, b2);
+    } else if (!utils_default.isUndefined(a2)) {
+      return getMergedValue(void 0, a2);
+    }
+  }
+  function mergeDirectKeys(a2, b2, prop) {
+    if (prop in config2) {
+      return getMergedValue(a2, b2);
+    } else if (prop in config1) {
+      return getMergedValue(void 0, a2);
+    }
+  }
+  const mergeMap = {
+    url: valueFromConfig2,
+    method: valueFromConfig2,
+    data: valueFromConfig2,
+    baseURL: defaultToConfig2,
+    transformRequest: defaultToConfig2,
+    transformResponse: defaultToConfig2,
+    paramsSerializer: defaultToConfig2,
+    timeout: defaultToConfig2,
+    timeoutMessage: defaultToConfig2,
+    withCredentials: defaultToConfig2,
+    withXSRFToken: defaultToConfig2,
+    adapter: defaultToConfig2,
+    responseType: defaultToConfig2,
+    xsrfCookieName: defaultToConfig2,
+    xsrfHeaderName: defaultToConfig2,
+    onUploadProgress: defaultToConfig2,
+    onDownloadProgress: defaultToConfig2,
+    decompress: defaultToConfig2,
+    maxContentLength: defaultToConfig2,
+    maxBodyLength: defaultToConfig2,
+    beforeRedirect: defaultToConfig2,
+    transport: defaultToConfig2,
+    httpAgent: defaultToConfig2,
+    httpsAgent: defaultToConfig2,
+    cancelToken: defaultToConfig2,
+    socketPath: defaultToConfig2,
+    responseEncoding: defaultToConfig2,
+    validateStatus: mergeDirectKeys,
+    headers: (a2, b2) => mergeDeepProperties(headersToObject(a2), headersToObject(b2), true)
+  };
+  utils_default.forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
+    const merge2 = mergeMap[prop] || mergeDeepProperties;
+    const configValue = merge2(config1[prop], config2[prop], prop);
+    utils_default.isUndefined(configValue) && merge2 !== mergeDirectKeys || (config[prop] = configValue);
+  });
+  return config;
+}
+
+// node_modules/axios/lib/helpers/resolveConfig.js
+var resolveConfig_default = (config) => {
+  const newConfig = mergeConfig({}, config);
+  let { data, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers, auth } = newConfig;
+  newConfig.headers = headers = AxiosHeaders_default.from(headers);
+  newConfig.url = buildURL(buildFullPath(newConfig.baseURL, newConfig.url), config.params, config.paramsSerializer);
+  if (auth) {
+    headers.set(
+      "Authorization",
+      "Basic " + btoa((auth.username || "") + ":" + (auth.password ? unescape(encodeURIComponent(auth.password)) : ""))
+    );
+  }
+  let contentType;
+  if (utils_default.isFormData(data)) {
+    if (platform_default.hasStandardBrowserEnv || platform_default.hasStandardBrowserWebWorkerEnv) {
+      headers.setContentType(void 0);
+    } else if ((contentType = headers.getContentType()) !== false) {
+      const [type, ...tokens] = contentType ? contentType.split(";").map((token) => token.trim()).filter(Boolean) : [];
+      headers.setContentType([type || "multipart/form-data", ...tokens].join("; "));
+    }
+  }
+  if (platform_default.hasStandardBrowserEnv) {
+    withXSRFToken && utils_default.isFunction(withXSRFToken) && (withXSRFToken = withXSRFToken(newConfig));
+    if (withXSRFToken || withXSRFToken !== false && isURLSameOrigin_default(newConfig.url)) {
+      const xsrfValue = xsrfHeaderName && xsrfCookieName && cookies_default.read(xsrfCookieName);
+      if (xsrfValue) {
+        headers.set(xsrfHeaderName, xsrfValue);
+      }
+    }
+  }
+  return newConfig;
+};
+
+// node_modules/axios/lib/adapters/xhr.js
+var isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
+var xhr_default = isXHRAdapterSupported && function(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    const _config = resolveConfig_default(config);
+    let requestData = _config.data;
+    const requestHeaders = AxiosHeaders_default.from(_config.headers).normalize();
+    let { responseType, onUploadProgress, onDownloadProgress } = _config;
+    let onCanceled;
+    let uploadThrottled, downloadThrottled;
+    let flushUpload, flushDownload;
+    function done() {
+      flushUpload && flushUpload();
+      flushDownload && flushDownload();
+      _config.cancelToken && _config.cancelToken.unsubscribe(onCanceled);
+      _config.signal && _config.signal.removeEventListener("abort", onCanceled);
+    }
+    let request2 = new XMLHttpRequest();
+    request2.open(_config.method.toUpperCase(), _config.url, true);
+    request2.timeout = _config.timeout;
+    function onloadend() {
+      if (!request2) {
+        return;
+      }
+      const responseHeaders = AxiosHeaders_default.from(
+        "getAllResponseHeaders" in request2 && request2.getAllResponseHeaders()
+      );
+      const responseData = !responseType || responseType === "text" || responseType === "json" ? request2.responseText : request2.response;
+      const response = {
+        data: responseData,
+        status: request2.status,
+        statusText: request2.statusText,
+        headers: responseHeaders,
+        config,
+        request: request2
+      };
+      settle(function _resolve(value) {
+        resolve(value);
+        done();
+      }, function _reject(err) {
+        reject(err);
+        done();
+      }, response);
+      request2 = null;
+    }
+    if ("onloadend" in request2) {
+      request2.onloadend = onloadend;
+    } else {
+      request2.onreadystatechange = function handleLoad() {
+        if (!request2 || request2.readyState !== 4) {
+          return;
+        }
+        if (request2.status === 0 && !(request2.responseURL && request2.responseURL.indexOf("file:") === 0)) {
+          return;
+        }
+        setTimeout(onloadend);
+      };
+    }
+    request2.onabort = function handleAbort() {
+      if (!request2) {
+        return;
+      }
+      reject(new AxiosError_default("Request aborted", AxiosError_default.ECONNABORTED, config, request2));
+      request2 = null;
+    };
+    request2.onerror = function handleError() {
+      reject(new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config, request2));
+      request2 = null;
+    };
+    request2.ontimeout = function handleTimeout() {
+      let timeoutErrorMessage = _config.timeout ? "timeout of " + _config.timeout + "ms exceeded" : "timeout exceeded";
+      const transitional2 = _config.transitional || transitional_default;
+      if (_config.timeoutErrorMessage) {
+        timeoutErrorMessage = _config.timeoutErrorMessage;
+      }
+      reject(new AxiosError_default(
+        timeoutErrorMessage,
+        transitional2.clarifyTimeoutError ? AxiosError_default.ETIMEDOUT : AxiosError_default.ECONNABORTED,
+        config,
+        request2
+      ));
+      request2 = null;
+    };
+    requestData === void 0 && requestHeaders.setContentType(null);
+    if ("setRequestHeader" in request2) {
+      utils_default.forEach(requestHeaders.toJSON(), function setRequestHeader(val, key) {
+        request2.setRequestHeader(key, val);
+      });
+    }
+    if (!utils_default.isUndefined(_config.withCredentials)) {
+      request2.withCredentials = !!_config.withCredentials;
+    }
+    if (responseType && responseType !== "json") {
+      request2.responseType = _config.responseType;
+    }
+    if (onDownloadProgress) {
+      [downloadThrottled, flushDownload] = progressEventReducer(onDownloadProgress, true);
+      request2.addEventListener("progress", downloadThrottled);
+    }
+    if (onUploadProgress && request2.upload) {
+      [uploadThrottled, flushUpload] = progressEventReducer(onUploadProgress);
+      request2.upload.addEventListener("progress", uploadThrottled);
+      request2.upload.addEventListener("loadend", flushUpload);
+    }
+    if (_config.cancelToken || _config.signal) {
+      onCanceled = (cancel) => {
+        if (!request2) {
+          return;
+        }
+        reject(!cancel || cancel.type ? new CanceledError_default(null, config, request2) : cancel);
+        request2.abort();
+        request2 = null;
+      };
+      _config.cancelToken && _config.cancelToken.subscribe(onCanceled);
+      if (_config.signal) {
+        _config.signal.aborted ? onCanceled() : _config.signal.addEventListener("abort", onCanceled);
+      }
+    }
+    const protocol = parseProtocol(_config.url);
+    if (protocol && platform_default.protocols.indexOf(protocol) === -1) {
+      reject(new AxiosError_default("Unsupported protocol " + protocol + ":", AxiosError_default.ERR_BAD_REQUEST, config));
+      return;
+    }
+    request2.send(requestData || null);
+  });
+};
+
+// node_modules/axios/lib/helpers/composeSignals.js
+var composeSignals = (signals, timeout) => {
+  const { length } = signals = signals ? signals.filter(Boolean) : [];
+  if (timeout || length) {
+    let controller = new AbortController();
+    let aborted;
+    const onabort = function(reason) {
+      if (!aborted) {
+        aborted = true;
+        unsubscribe();
+        const err = reason instanceof Error ? reason : this.reason;
+        controller.abort(err instanceof AxiosError_default ? err : new CanceledError_default(err instanceof Error ? err.message : err));
+      }
+    };
+    let timer = timeout && setTimeout(() => {
+      timer = null;
+      onabort(new AxiosError_default(`timeout ${timeout} of ms exceeded`, AxiosError_default.ETIMEDOUT));
+    }, timeout);
+    const unsubscribe = () => {
+      if (signals) {
+        timer && clearTimeout(timer);
+        timer = null;
+        signals.forEach((signal2) => {
+          signal2.unsubscribe ? signal2.unsubscribe(onabort) : signal2.removeEventListener("abort", onabort);
+        });
+        signals = null;
+      }
+    };
+    signals.forEach((signal2) => signal2.addEventListener("abort", onabort));
+    const { signal } = controller;
+    signal.unsubscribe = () => utils_default.asap(unsubscribe);
+    return signal;
+  }
+};
+var composeSignals_default = composeSignals;
+
+// node_modules/axios/lib/helpers/trackStream.js
+var streamChunk = function* (chunk, chunkSize) {
+  let len = chunk.byteLength;
+  if (!chunkSize || len < chunkSize) {
+    yield chunk;
+    return;
+  }
+  let pos = 0;
+  let end;
+  while (pos < len) {
+    end = pos + chunkSize;
+    yield chunk.slice(pos, end);
+    pos = end;
+  }
+};
+var readBytes = async function* (iterable, chunkSize) {
+  for await (const chunk of readStream(iterable)) {
+    yield* streamChunk(chunk, chunkSize);
+  }
+};
+var readStream = async function* (stream) {
+  if (stream[Symbol.asyncIterator]) {
+    yield* stream;
+    return;
+  }
+  const reader = stream.getReader();
+  try {
+    for (; ; ) {
+      const { done, value } = await reader.read();
+      if (done) {
+        break;
+      }
+      yield value;
+    }
+  } finally {
+    await reader.cancel();
+  }
+};
+var trackStream = (stream, chunkSize, onProgress, onFinish) => {
+  const iterator = readBytes(stream, chunkSize);
+  let bytes = 0;
+  let done;
+  let _onFinish = (e2) => {
+    if (!done) {
+      done = true;
+      onFinish && onFinish(e2);
+    }
+  };
+  return new ReadableStream({
+    async pull(controller) {
+      try {
+        const { done: done2, value } = await iterator.next();
+        if (done2) {
+          _onFinish();
+          controller.close();
+          return;
+        }
+        let len = value.byteLength;
+        if (onProgress) {
+          let loadedBytes = bytes += len;
+          onProgress(loadedBytes);
+        }
+        controller.enqueue(new Uint8Array(value));
+      } catch (err) {
+        _onFinish(err);
+        throw err;
+      }
+    },
+    cancel(reason) {
+      _onFinish(reason);
+      return iterator.return();
+    }
+  }, {
+    highWaterMark: 2
+  });
+};
+
+// node_modules/axios/lib/adapters/fetch.js
+var isFetchSupported = typeof fetch === "function" && typeof Request === "function" && typeof Response === "function";
+var isReadableStreamSupported = isFetchSupported && typeof ReadableStream === "function";
+var encodeText = isFetchSupported && (typeof TextEncoder === "function" ? /* @__PURE__ */ ((encoder) => (str) => encoder.encode(str))(new TextEncoder()) : async (str) => new Uint8Array(await new Response(str).arrayBuffer()));
+var test = (fn, ...args) => {
+  try {
+    return !!fn(...args);
+  } catch (e2) {
+    return false;
+  }
+};
+var supportsRequestStream = isReadableStreamSupported && test(() => {
+  let duplexAccessed = false;
+  const hasContentType = new Request(platform_default.origin, {
+    body: new ReadableStream(),
+    method: "POST",
+    get duplex() {
+      duplexAccessed = true;
+      return "half";
+    }
+  }).headers.has("Content-Type");
+  return duplexAccessed && !hasContentType;
+});
+var DEFAULT_CHUNK_SIZE = 64 * 1024;
+var supportsResponseStream = isReadableStreamSupported && test(() => utils_default.isReadableStream(new Response("").body));
+var resolvers = {
+  stream: supportsResponseStream && ((res) => res.body)
+};
+isFetchSupported && ((res) => {
+  ["text", "arrayBuffer", "blob", "formData", "stream"].forEach((type) => {
+    !resolvers[type] && (resolvers[type] = utils_default.isFunction(res[type]) ? (res2) => res2[type]() : (_, config) => {
+      throw new AxiosError_default(`Response type '${type}' is not supported`, AxiosError_default.ERR_NOT_SUPPORT, config);
+    });
+  });
+})(new Response());
+var getBodyLength = async (body) => {
+  if (body == null) {
+    return 0;
+  }
+  if (utils_default.isBlob(body)) {
+    return body.size;
+  }
+  if (utils_default.isSpecCompliantForm(body)) {
+    const _request = new Request(platform_default.origin, {
+      method: "POST",
+      body
+    });
+    return (await _request.arrayBuffer()).byteLength;
+  }
+  if (utils_default.isArrayBufferView(body) || utils_default.isArrayBuffer(body)) {
+    return body.byteLength;
+  }
+  if (utils_default.isURLSearchParams(body)) {
+    body = body + "";
+  }
+  if (utils_default.isString(body)) {
+    return (await encodeText(body)).byteLength;
+  }
+};
+var resolveBodyLength = async (headers, body) => {
+  const length = utils_default.toFiniteNumber(headers.getContentLength());
+  return length == null ? getBodyLength(body) : length;
+};
+var fetch_default = isFetchSupported && (async (config) => {
+  let {
+    url,
+    method,
+    data,
+    signal,
+    cancelToken,
+    timeout,
+    onDownloadProgress,
+    onUploadProgress,
+    responseType,
+    headers,
+    withCredentials = "same-origin",
+    fetchOptions
+  } = resolveConfig_default(config);
+  responseType = responseType ? (responseType + "").toLowerCase() : "text";
+  let composedSignal = composeSignals_default([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
+  let request2;
+  const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
+    composedSignal.unsubscribe();
+  });
+  let requestContentLength;
+  try {
+    if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
+      let _request = new Request(url, {
+        method: "POST",
+        body: data,
+        duplex: "half"
+      });
+      let contentTypeHeader;
+      if (utils_default.isFormData(data) && (contentTypeHeader = _request.headers.get("content-type"))) {
+        headers.setContentType(contentTypeHeader);
+      }
+      if (_request.body) {
+        const [onProgress, flush] = progressEventDecorator(
+          requestContentLength,
+          progressEventReducer(asyncDecorator(onUploadProgress))
+        );
+        data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
+      }
+    }
+    if (!utils_default.isString(withCredentials)) {
+      withCredentials = withCredentials ? "include" : "omit";
+    }
+    const isCredentialsSupported = "credentials" in Request.prototype;
+    request2 = new Request(url, {
+      ...fetchOptions,
+      signal: composedSignal,
+      method: method.toUpperCase(),
+      headers: headers.normalize().toJSON(),
+      body: data,
+      duplex: "half",
+      credentials: isCredentialsSupported ? withCredentials : void 0
+    });
+    let response = await fetch(request2);
+    const isStreamResponse = supportsResponseStream && (responseType === "stream" || responseType === "response");
+    if (supportsResponseStream && (onDownloadProgress || isStreamResponse && unsubscribe)) {
+      const options = {};
+      ["status", "statusText", "headers"].forEach((prop) => {
+        options[prop] = response[prop];
+      });
+      const responseContentLength = utils_default.toFiniteNumber(response.headers.get("content-length"));
+      const [onProgress, flush] = onDownloadProgress && progressEventDecorator(
+        responseContentLength,
+        progressEventReducer(asyncDecorator(onDownloadProgress), true)
+      ) || [];
+      response = new Response(
+        trackStream(response.body, DEFAULT_CHUNK_SIZE, onProgress, () => {
+          flush && flush();
+          unsubscribe && unsubscribe();
+        }),
+        options
+      );
+    }
+    responseType = responseType || "text";
+    let responseData = await resolvers[utils_default.findKey(resolvers, responseType) || "text"](response, config);
+    !isStreamResponse && unsubscribe && unsubscribe();
+    return await new Promise((resolve, reject) => {
+      settle(resolve, reject, {
+        data: responseData,
+        headers: AxiosHeaders_default.from(response.headers),
+        status: response.status,
+        statusText: response.statusText,
+        config,
+        request: request2
+      });
+    });
+  } catch (err) {
+    unsubscribe && unsubscribe();
+    if (err && err.name === "TypeError" && /fetch/i.test(err.message)) {
+      throw Object.assign(
+        new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config, request2),
+        {
+          cause: err.cause || err
+        }
+      );
+    }
+    throw AxiosError_default.from(err, err && err.code, config, request2);
+  }
+});
+
+// node_modules/axios/lib/adapters/adapters.js
+var knownAdapters = {
+  http: null_default,
+  xhr: xhr_default,
+  fetch: fetch_default
+};
+utils_default.forEach(knownAdapters, (fn, value) => {
+  if (fn) {
+    try {
+      Object.defineProperty(fn, "name", { value });
+    } catch (e2) {
+    }
+    Object.defineProperty(fn, "adapterName", { value });
+  }
+});
+var renderReason = (reason) => `- ${reason}`;
+var isResolvedHandle = (adapter) => utils_default.isFunction(adapter) || adapter === null || adapter === false;
+var adapters_default = {
+  getAdapter: (adapters) => {
+    adapters = utils_default.isArray(adapters) ? adapters : [adapters];
+    const { length } = adapters;
+    let nameOrAdapter;
+    let adapter;
+    const rejectedReasons = {};
+    for (let i2 = 0; i2 < length; i2++) {
+      nameOrAdapter = adapters[i2];
+      let id;
+      adapter = nameOrAdapter;
+      if (!isResolvedHandle(nameOrAdapter)) {
+        adapter = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
+        if (adapter === void 0) {
+          throw new AxiosError_default(`Unknown adapter '${id}'`);
+        }
+      }
+      if (adapter) {
+        break;
+      }
+      rejectedReasons[id || "#" + i2] = adapter;
+    }
+    if (!adapter) {
+      const reasons = Object.entries(rejectedReasons).map(
+        ([id, state]) => `adapter ${id} ` + (state === false ? "is not supported by the environment" : "is not available in the build")
+      );
+      let s2 = length ? reasons.length > 1 ? "since :\n" + reasons.map(renderReason).join("\n") : " " + renderReason(reasons[0]) : "as no adapter specified";
+      throw new AxiosError_default(
+        `There is no suitable adapter to dispatch the request ` + s2,
+        "ERR_NOT_SUPPORT"
+      );
+    }
+    return adapter;
+  },
+  adapters: knownAdapters
+};
+
+// node_modules/axios/lib/core/dispatchRequest.js
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+  if (config.signal && config.signal.aborted) {
+    throw new CanceledError_default(null, config);
+  }
+}
+function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+  config.headers = AxiosHeaders_default.from(config.headers);
+  config.data = transformData.call(
+    config,
+    config.transformRequest
+  );
+  if (["post", "put", "patch"].indexOf(config.method) !== -1) {
+    config.headers.setContentType("application/x-www-form-urlencoded", false);
+  }
+  const adapter = adapters_default.getAdapter(config.adapter || defaults_default.adapter);
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+    response.data = transformData.call(
+      config,
+      config.transformResponse,
+      response
+    );
+    response.headers = AxiosHeaders_default.from(response.headers);
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+      if (reason && reason.response) {
+        reason.response.data = transformData.call(
+          config,
+          config.transformResponse,
+          reason.response
+        );
+        reason.response.headers = AxiosHeaders_default.from(reason.response.headers);
+      }
+    }
+    return Promise.reject(reason);
+  });
+}
+
+// node_modules/axios/lib/env/data.js
+var VERSION = "1.7.7";
+
+// node_modules/axios/lib/helpers/validator.js
+var validators = {};
+["object", "boolean", "number", "function", "string", "symbol"].forEach((type, i2) => {
+  validators[type] = function validator(thing) {
+    return typeof thing === type || "a" + (i2 < 1 ? "n " : " ") + type;
+  };
+});
+var deprecatedWarnings = {};
+validators.transitional = function transitional(validator, version, message) {
+  function formatMessage(opt, desc) {
+    return "[Axios v" + VERSION + "] Transitional option '" + opt + "'" + desc + (message ? ". " + message : "");
+  }
+  return (value, opt, opts) => {
+    if (validator === false) {
+      throw new AxiosError_default(
+        formatMessage(opt, " has been removed" + (version ? " in " + version : "")),
+        AxiosError_default.ERR_DEPRECATED
+      );
+    }
+    if (version && !deprecatedWarnings[opt]) {
+      deprecatedWarnings[opt] = true;
+      console.warn(
+        formatMessage(
+          opt,
+          " has been deprecated since v" + version + " and will be removed in the near future"
+        )
+      );
+    }
+    return validator ? validator(value, opt, opts) : true;
+  };
+};
+function assertOptions(options, schema, allowUnknown) {
+  if (typeof options !== "object") {
+    throw new AxiosError_default("options must be an object", AxiosError_default.ERR_BAD_OPTION_VALUE);
+  }
+  const keys = Object.keys(options);
+  let i2 = keys.length;
+  while (i2-- > 0) {
+    const opt = keys[i2];
+    const validator = schema[opt];
+    if (validator) {
+      const value = options[opt];
+      const result = value === void 0 || validator(value, opt, options);
+      if (result !== true) {
+        throw new AxiosError_default("option " + opt + " must be " + result, AxiosError_default.ERR_BAD_OPTION_VALUE);
+      }
+      continue;
+    }
+    if (allowUnknown !== true) {
+      throw new AxiosError_default("Unknown option " + opt, AxiosError_default.ERR_BAD_OPTION);
+    }
+  }
+}
+var validator_default = {
+  assertOptions,
+  validators
+};
+
+// node_modules/axios/lib/core/Axios.js
+var validators2 = validator_default.validators;
+var Axios = class {
+  constructor(instanceConfig) {
+    this.defaults = instanceConfig;
+    this.interceptors = {
+      request: new InterceptorManager_default(),
+      response: new InterceptorManager_default()
+    };
+  }
+  /**
+   * Dispatch a request
+   *
+   * @param {String|Object} configOrUrl The config specific for this request (merged with this.defaults)
+   * @param {?Object} config
+   *
+   * @returns {Promise} The Promise to be fulfilled
+   */
+  async request(configOrUrl, config) {
+    try {
+      return await this._request(configOrUrl, config);
+    } catch (err) {
+      if (err instanceof Error) {
+        let dummy;
+        Error.captureStackTrace ? Error.captureStackTrace(dummy = {}) : dummy = new Error();
+        const stack = dummy.stack ? dummy.stack.replace(/^.+\n/, "") : "";
+        try {
+          if (!err.stack) {
+            err.stack = stack;
+          } else if (stack && !String(err.stack).endsWith(stack.replace(/^.+\n.+\n/, ""))) {
+            err.stack += "\n" + stack;
+          }
+        } catch (e2) {
+        }
+      }
+      throw err;
+    }
+  }
+  _request(configOrUrl, config) {
+    if (typeof configOrUrl === "string") {
+      config = config || {};
+      config.url = configOrUrl;
+    } else {
+      config = configOrUrl || {};
+    }
+    config = mergeConfig(this.defaults, config);
+    const { transitional: transitional2, paramsSerializer, headers } = config;
+    if (transitional2 !== void 0) {
+      validator_default.assertOptions(transitional2, {
+        silentJSONParsing: validators2.transitional(validators2.boolean),
+        forcedJSONParsing: validators2.transitional(validators2.boolean),
+        clarifyTimeoutError: validators2.transitional(validators2.boolean)
+      }, false);
+    }
+    if (paramsSerializer != null) {
+      if (utils_default.isFunction(paramsSerializer)) {
+        config.paramsSerializer = {
+          serialize: paramsSerializer
+        };
+      } else {
+        validator_default.assertOptions(paramsSerializer, {
+          encode: validators2.function,
+          serialize: validators2.function
+        }, true);
+      }
+    }
+    config.method = (config.method || this.defaults.method || "get").toLowerCase();
+    let contextHeaders = headers && utils_default.merge(
+      headers.common,
+      headers[config.method]
+    );
+    headers && utils_default.forEach(
+      ["delete", "get", "head", "post", "put", "patch", "common"],
+      (method) => {
+        delete headers[method];
+      }
+    );
+    config.headers = AxiosHeaders_default.concat(contextHeaders, headers);
+    const requestInterceptorChain = [];
+    let synchronousRequestInterceptors = true;
+    this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+      if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config) === false) {
+        return;
+      }
+      synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+      requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+    });
+    const responseInterceptorChain = [];
+    this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+      responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+    });
+    let promise;
+    let i2 = 0;
+    let len;
+    if (!synchronousRequestInterceptors) {
+      const chain = [dispatchRequest.bind(this), void 0];
+      chain.unshift.apply(chain, requestInterceptorChain);
+      chain.push.apply(chain, responseInterceptorChain);
+      len = chain.length;
+      promise = Promise.resolve(config);
+      while (i2 < len) {
+        promise = promise.then(chain[i2++], chain[i2++]);
+      }
+      return promise;
+    }
+    len = requestInterceptorChain.length;
+    let newConfig = config;
+    i2 = 0;
+    while (i2 < len) {
+      const onFulfilled = requestInterceptorChain[i2++];
+      const onRejected = requestInterceptorChain[i2++];
+      try {
+        newConfig = onFulfilled(newConfig);
+      } catch (error) {
+        onRejected.call(this, error);
+        break;
+      }
+    }
+    try {
+      promise = dispatchRequest.call(this, newConfig);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+    i2 = 0;
+    len = responseInterceptorChain.length;
+    while (i2 < len) {
+      promise = promise.then(responseInterceptorChain[i2++], responseInterceptorChain[i2++]);
+    }
+    return promise;
+  }
+  getUri(config) {
+    config = mergeConfig(this.defaults, config);
+    const fullPath = buildFullPath(config.baseURL, config.url);
+    return buildURL(fullPath, config.params, config.paramsSerializer);
+  }
+};
+utils_default.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
+  Axios.prototype[method] = function(url, config) {
+    return this.request(mergeConfig(config || {}, {
+      method,
+      url,
+      data: (config || {}).data
+    }));
+  };
+});
+utils_default.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
+  function generateHTTPMethod(isForm) {
+    return function httpMethod(url, data, config) {
+      return this.request(mergeConfig(config || {}, {
+        method,
+        headers: isForm ? {
+          "Content-Type": "multipart/form-data"
+        } : {},
+        url,
+        data
+      }));
+    };
+  }
+  Axios.prototype[method] = generateHTTPMethod();
+  Axios.prototype[method + "Form"] = generateHTTPMethod(true);
+});
+var Axios_default = Axios;
+
+// node_modules/axios/lib/cancel/CancelToken.js
+var CancelToken = class _CancelToken {
+  constructor(executor) {
+    if (typeof executor !== "function") {
+      throw new TypeError("executor must be a function.");
+    }
+    let resolvePromise;
+    this.promise = new Promise(function promiseExecutor(resolve) {
+      resolvePromise = resolve;
+    });
+    const token = this;
+    this.promise.then((cancel) => {
+      if (!token._listeners) return;
+      let i2 = token._listeners.length;
+      while (i2-- > 0) {
+        token._listeners[i2](cancel);
+      }
+      token._listeners = null;
+    });
+    this.promise.then = (onfulfilled) => {
+      let _resolve;
+      const promise = new Promise((resolve) => {
+        token.subscribe(resolve);
+        _resolve = resolve;
+      }).then(onfulfilled);
+      promise.cancel = function reject() {
+        token.unsubscribe(_resolve);
+      };
+      return promise;
+    };
+    executor(function cancel(message, config, request2) {
+      if (token.reason) {
+        return;
+      }
+      token.reason = new CanceledError_default(message, config, request2);
+      resolvePromise(token.reason);
+    });
+  }
+  /**
+   * Throws a `CanceledError` if cancellation has been requested.
+   */
+  throwIfRequested() {
+    if (this.reason) {
+      throw this.reason;
+    }
+  }
+  /**
+   * Subscribe to the cancel signal
+   */
+  subscribe(listener) {
+    if (this.reason) {
+      listener(this.reason);
+      return;
+    }
+    if (this._listeners) {
+      this._listeners.push(listener);
+    } else {
+      this._listeners = [listener];
+    }
+  }
+  /**
+   * Unsubscribe from the cancel signal
+   */
+  unsubscribe(listener) {
+    if (!this._listeners) {
+      return;
+    }
+    const index = this._listeners.indexOf(listener);
+    if (index !== -1) {
+      this._listeners.splice(index, 1);
+    }
+  }
+  toAbortSignal() {
+    const controller = new AbortController();
+    const abort = (err) => {
+      controller.abort(err);
+    };
+    this.subscribe(abort);
+    controller.signal.unsubscribe = () => this.unsubscribe(abort);
+    return controller.signal;
+  }
+  /**
+   * Returns an object that contains a new `CancelToken` and a function that, when called,
+   * cancels the `CancelToken`.
+   */
+  static source() {
+    let cancel;
+    const token = new _CancelToken(function executor(c2) {
+      cancel = c2;
+    });
+    return {
+      token,
+      cancel
+    };
+  }
+};
+var CancelToken_default = CancelToken;
+
+// node_modules/axios/lib/helpers/spread.js
+function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+}
+
+// node_modules/axios/lib/helpers/isAxiosError.js
+function isAxiosError(payload) {
+  return utils_default.isObject(payload) && payload.isAxiosError === true;
+}
+
+// node_modules/axios/lib/helpers/HttpStatusCode.js
+var HttpStatusCode = {
+  Continue: 100,
+  SwitchingProtocols: 101,
+  Processing: 102,
+  EarlyHints: 103,
+  Ok: 200,
+  Created: 201,
+  Accepted: 202,
+  NonAuthoritativeInformation: 203,
+  NoContent: 204,
+  ResetContent: 205,
+  PartialContent: 206,
+  MultiStatus: 207,
+  AlreadyReported: 208,
+  ImUsed: 226,
+  MultipleChoices: 300,
+  MovedPermanently: 301,
+  Found: 302,
+  SeeOther: 303,
+  NotModified: 304,
+  UseProxy: 305,
+  Unused: 306,
+  TemporaryRedirect: 307,
+  PermanentRedirect: 308,
+  BadRequest: 400,
+  Unauthorized: 401,
+  PaymentRequired: 402,
+  Forbidden: 403,
+  NotFound: 404,
+  MethodNotAllowed: 405,
+  NotAcceptable: 406,
+  ProxyAuthenticationRequired: 407,
+  RequestTimeout: 408,
+  Conflict: 409,
+  Gone: 410,
+  LengthRequired: 411,
+  PreconditionFailed: 412,
+  PayloadTooLarge: 413,
+  UriTooLong: 414,
+  UnsupportedMediaType: 415,
+  RangeNotSatisfiable: 416,
+  ExpectationFailed: 417,
+  ImATeapot: 418,
+  MisdirectedRequest: 421,
+  UnprocessableEntity: 422,
+  Locked: 423,
+  FailedDependency: 424,
+  TooEarly: 425,
+  UpgradeRequired: 426,
+  PreconditionRequired: 428,
+  TooManyRequests: 429,
+  RequestHeaderFieldsTooLarge: 431,
+  UnavailableForLegalReasons: 451,
+  InternalServerError: 500,
+  NotImplemented: 501,
+  BadGateway: 502,
+  ServiceUnavailable: 503,
+  GatewayTimeout: 504,
+  HttpVersionNotSupported: 505,
+  VariantAlsoNegotiates: 506,
+  InsufficientStorage: 507,
+  LoopDetected: 508,
+  NotExtended: 510,
+  NetworkAuthenticationRequired: 511
+};
+Object.entries(HttpStatusCode).forEach(([key, value]) => {
+  HttpStatusCode[value] = key;
+});
+var HttpStatusCode_default = HttpStatusCode;
+
+// node_modules/axios/lib/axios.js
+function createInstance(defaultConfig) {
+  const context = new Axios_default(defaultConfig);
+  const instance = bind(Axios_default.prototype.request, context);
+  utils_default.extend(instance, Axios_default.prototype, context, { allOwnKeys: true });
+  utils_default.extend(instance, context, null, { allOwnKeys: true });
+  instance.create = function create(instanceConfig) {
+    return createInstance(mergeConfig(defaultConfig, instanceConfig));
+  };
+  return instance;
+}
+var axios = createInstance(defaults_default);
+axios.Axios = Axios_default;
+axios.CanceledError = CanceledError_default;
+axios.CancelToken = CancelToken_default;
+axios.isCancel = isCancel;
+axios.VERSION = VERSION;
+axios.toFormData = toFormData_default;
+axios.AxiosError = AxiosError_default;
+axios.Cancel = axios.CanceledError;
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = spread;
+axios.isAxiosError = isAxiosError;
+axios.mergeConfig = mergeConfig;
+axios.AxiosHeaders = AxiosHeaders_default;
+axios.formToJSON = (thing) => formDataToJSON_default(utils_default.isHTMLForm(thing) ? new FormData(thing) : thing);
+axios.getAdapter = adapters_default.getAdapter;
+axios.HttpStatusCode = HttpStatusCode_default;
+axios.default = axios;
+var axios_default = axios;
+
+// node_modules/axios/index.js
+var {
+  Axios: Axios2,
+  AxiosError: AxiosError2,
+  CanceledError: CanceledError2,
+  isCancel: isCancel2,
+  CancelToken: CancelToken2,
+  VERSION: VERSION2,
+  all: all2,
+  Cancel,
+  isAxiosError: isAxiosError2,
+  spread: spread2,
+  toFormData: toFormData2,
+  AxiosHeaders: AxiosHeaders2,
+  HttpStatusCode: HttpStatusCode2,
+  formToJSON,
+  getAdapter,
+  mergeConfig: mergeConfig2
+} = axios_default;
+
+// src/components/helpers/useInterval.js
+var import_react19 = __toESM(require_react());
 
 // src/components/helpers/fetch-wrapper.js
 var backendurl = "";
@@ -29497,6 +35354,7 @@ function request(method) {
       method,
       headers: authHeader(url, token)
     };
+    requestOptions.headers["x-api-key"] = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
     if (body) {
       requestOptions.headers["Content-Type"] = "application/json";
       requestOptions.body = JSON.stringify(body);
@@ -29520,47 +35378,112 @@ function handleResponse(response) {
   });
 }
 
+// src/components/ErrorPage.js
+var import_react20 = __toESM(require_react());
+var ErrorPage = (props) => {
+  const [isOpen, setIsOpen] = (0, import_react20.useState)(false);
+  const classList = [
+    "sc-launcher",
+    props.isOpen ? "opened" : ""
+  ];
+  const classList2 = [
+    "sc-chat-window",
+    props.isOpen ? "opened" : "closed"
+  ];
+  const handleClick = () => {
+    setIsOpen(true);
+    props.handleClick();
+  };
+  return /* @__PURE__ */ import_react20.default.createElement("div", { id: "sc-launcher" }, /* @__PURE__ */ import_react20.default.createElement("div", { className: classList.join(" "), onClick: () => handleClick() }, /* @__PURE__ */ import_react20.default.createElement("img", { className: "sc-open-icon", src: mingcute_close_fill_default }), /* @__PURE__ */ import_react20.default.createElement("img", { className: "sc-closed-icon", src: tdesign_chat_default })), /* @__PURE__ */ import_react20.default.createElement("div", { className: classList2.join(" ") }, /* @__PURE__ */ import_react20.default.createElement("div", { className: "sc-header" }, /* @__PURE__ */ import_react20.default.createElement("div", { className: "sc-header--team-name" }, /* @__PURE__ */ import_react20.default.createElement("h3", null, "Error")))));
+};
+var ErrorPage_default = ErrorPage;
+
 // src/App.js
 function App({ domElement }) {
-  const URL = "wss://0jlvdeflh4.execute-api.us-east-1.amazonaws.com/dev/";
   const name = "Eocean";
   const initialName = name.substring(0, 1);
-  const socket = (0, import_react18.useRef)(null);
-  const [isConnected, setIsConnected] = (0, import_react18.useState)(false);
-  const color = "blue";
-  const org = "eocean";
-  const [messageList, setMessageList] = (0, import_react18.useState)([]);
-  const [open, setOpen] = (0, import_react18.useState)(false);
-  const [fooEvents, setFooEvents] = (0, import_react18.useState)([]);
+  const socket = (0, import_react21.useRef)(null);
+  const [isConnected, setIsConnected] = (0, import_react21.useState)(false);
+  const [error, setError] = (0, import_react21.useState)(false);
+  const [messageList, setMessageList] = (0, import_react21.useState)([]);
+  const [open, setOpen] = (0, import_react21.useState)(false);
+  const [org, setOrg] = (0, import_react21.useState)(false);
+  const [loading, setLoading] = (0, import_react21.useState)(false);
+  const [orgSettings, setOrgSettings] = (0, import_react21.useState)({});
+  const [fooEvents, setFooEvents] = (0, import_react21.useState)([]);
+  const tokenKey = domElement.getAttribute("property-id");
   const id1 = v4_default();
   const sessionId = id1;
+  let menuData = [];
+  let formStart = false;
+  let formData = [];
+  let saveFormData = [];
+  let sessionTriggerData = {};
+  let apiTrigger = false;
+  let formStep = 1;
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-  const backendUrl = "https://29sd3x064a.execute-api.us-east-1.amazonaws.com/dev";
-  (0, import_react18.useEffect)(() => {
-    loadList();
+  const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  (0, import_react21.useEffect)(() => {
+    if (tokenKey == "" || !tokenKey) {
+      setError(true);
+    } else {
+      loadOrg();
+      loadList();
+      onConnect();
+      return () => {
+        onConnect();
+      };
+    }
   }, []);
-  const loadList = async () => {
-    let number = localStorage.getItem("sessionId");
-    const url = `${backendUrl}/get-message?number=${number}`;
-    const postData = {
-      msg_channel: "web",
-      number,
-      org_unit_id: "eocean"
-    };
+  const loadBotFile = async (widget_settings) => {
+    const bot_id = JSON.parse(widget_settings)?.chat_bot?.bot_id;
+    const url = `${backendUrl}/trigger-list?id=${bot_id}`;
     const token = {};
-    const data = await fetchWrapper.post(url, token, postData);
-    const datax = data.reverse();
-    setMessageList(datax);
+    const data = await fetchWrapper.get(url, token);
+    const jsonData = data;
+    localStorage.setItem("bot_data", JSON.stringify(jsonData));
   };
-  useInterval(() => {
-    loadListNew();
-  }, 3e3);
+  const loadOrg = async () => {
+    const url = `${backendUrl}/get-org-by-key`;
+    const token = {};
+    setLoading(true);
+    const postData = { token: tokenKey };
+    const data = await fetchWrapper.post(url, token, postData);
+    if (!data.data) {
+      setError(true);
+    } else {
+      localStorage.setItem("widget_settings", data.data.widget_settings);
+      localStorage.setItem("org", data.data.ORG_UNIT_ID);
+      setOrg(data.data.ORG_UNIT_ID);
+      setOrgSettings(JSON.parse(data.data.widget_settings));
+      setLoading(false);
+      loadBotFile(data.data.widget_settings);
+    }
+  };
+  const loadList = async () => {
+    if (localStorage.getItem("org")) {
+      let number = localStorage.getItem("sessionId");
+      const url = `${backendUrl}/get-message?number=${number}`;
+      const postData = {
+        msg_channel: "web",
+        number,
+        org_unit_id: localStorage.getItem("org")
+      };
+      const token = {};
+      const data = await fetchWrapper.post(url, token, postData);
+      const datax = data.reverse();
+      localStorage.setItem("message", JSON.stringify(datax));
+      setMessageList(datax);
+    } else {
+      localStorage.setItem("message", JSON.stringify([]));
+    }
+  };
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
     const chat = {};
-    console.log(messageList[messageList.length - 1]?._id);
     const lastId = messageList[messageList.length - 1]?._id;
     if (lastId) {
       const url = `${backendUrl}/get-message-new?number=${number}`;
@@ -29568,32 +35491,39 @@ function App({ domElement }) {
         msg_channel: "web",
         number,
         last_msg_id: lastId,
-        org_unit_id: "eocean"
+        org_unit_id: org
       };
       const token = {};
       const dataxAll = await fetchWrapper.post(url, token, postData);
       if (dataxAll.length > 0) {
         const newVal = [...messageList, ...dataxAll];
-        console.log(newVal);
         setMessageList(newVal);
       }
     } else {
       console.log("refresh");
     }
   };
-  const onSocketOpen = (0, import_react18.useCallback)(() => {
-    setIsConnected(true);
-    const name2 = localStorage.getItem("sessionId");
-    console.log(name2);
-    socket.current?.send(JSON.stringify({ action: "setName", name: name2 }));
+  const onSocketMessage = (0, import_react21.useCallback)((dataStr) => {
+    const data = JSON.parse(dataStr);
+    console.log(data);
+    if (localStorage.getItem("message")) {
+      const oldMsg = JSON.parse(localStorage.getItem("message"));
+      const newVal = [...oldMsg, data.msg];
+      localStorage.setItem("message", JSON.stringify(newVal));
+      setMessageList(newVal);
+    } else {
+      setMessageList(data.msg);
+    }
   }, []);
-  function onFooEventCon(value) {
-    console.log(value);
-    console.log("Ddd");
-  }
-  const onConnect = (0, import_react18.useCallback)(() => {
+  const onSocketOpen = (0, import_react21.useCallback)(() => {
+    console.log("socket Open");
+  }, []);
+  const onConnect = (0, import_react21.useCallback)(() => {
     if (socket.current?.readyState !== WebSocket.OPEN) {
-      socket.current = new WebSocket(URL);
+      const user_id = localStorage.getItem("sessionId");
+      const user_name = "web";
+      const URL2 = `wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production/?user_name=${user_name}&user_id=${user_id}`;
+      socket.current = new WebSocket(URL2);
       socket.current.addEventListener("open", onSocketOpen);
       socket.current.addEventListener("close", onSocketClose);
       socket.current.addEventListener("message", (event) => {
@@ -29601,39 +35531,391 @@ function App({ domElement }) {
       });
     }
   }, []);
-  const onSendPrivateMessage = (0, import_react18.useCallback)((message) => {
+  const onSocketClose = (0, import_react21.useCallback)(() => {
+    console.log("socket Close");
+    onConnect();
+  }, []);
+  const onSendPrivateMessage = (0, import_react21.useCallback)((message) => {
+    const msgData = {
+      data: message.data.text,
+      key_from_me: 0,
+      media_wa_type: 0
+    };
+    const oldMsg = JSON.parse(localStorage.getItem("message"));
+    const newVal = [...oldMsg, msgData];
+    localStorage.setItem("message", JSON.stringify(newVal));
+    setMessageList(newVal);
+    if (!localStorage.getItem("conversation_id")) {
+      let uuidConversation = v4_default();
+      uuidConversation = uuidConversation.replaceAll("-", "");
+      localStorage.setItem("conversation_id", uuidConversation);
+    }
     let data = JSON.stringify({
       "msg": message.data.text,
       "number": localStorage.getItem("sessionId"),
       "wa_type": "0",
       "msg_channel": "web",
-      "org_unit_id": "eocean"
+      "org_unit_id": localStorage.getItem("org"),
+      "from": localStorage.getItem("form_submit"),
+      "conversation_id": localStorage.getItem("conversation_id")
     });
     const requestOptions = {
       method: "post",
       headers: {}
     };
     requestOptions.headers["Content-Type"] = "application/json";
+    requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
-    fetch(`https://29sd3x064a.execute-api.us-east-1.amazonaws.com/dev/rec-message`, requestOptions).then((response) => response.json()).then((result) => {
-      setMessageList((prevMessageList) => [...prevMessageList, result.data]);
+    fetch(`${backendUrl}/rec-message`, requestOptions).then((response) => response.json()).then((result) => {
+      if (!localStorage.getItem("routeAgent")) {
+        botResponse(message.data.text);
+      }
     });
   }, []);
-  const onSocketClose = (0, import_react18.useCallback)(() => {
-    setIsConnected(false);
-  }, []);
-  const onSocketMessage = (0, import_react18.useCallback)((dataStr) => {
-    const data = JSON.parse(dataStr);
-    const mm = {
-      author: "them",
-      type: "text",
-      org,
-      data: { text: data.privateMessage }
+  const buildResponse = (response, menus) => {
+    let msgData = {};
+    response.map((item) => {
+      if (item.type == "media" && item.mediaType == "IMAGE") {
+        msgData = {
+          data: "",
+          media_url: item.url,
+          key_from_me: 1,
+          media_wa_type: 1
+        };
+        mggSend(msgData);
+      }
+      if (item.type == "text" && item.msgType == "InteractiveButton") {
+        let response2 = item.response + "<br>";
+        const buildMenuData = buildMenu(menus);
+        response2 = response2 + buildMenuData;
+        msgData = {
+          data: response2,
+          media_url: item.url,
+          key_from_me: 1,
+          media_wa_type: 0
+        };
+        mggSend(msgData);
+      }
+      if (item.type == "text" && item.msgType == "InteractiveList") {
+        let response2 = item.response + "<br>";
+        const buildMenuData = buildMenu(menus);
+        response2 = response2 + buildMenuData;
+        msgData = {
+          data: response2,
+          media_url: item.url,
+          key_from_me: 1,
+          media_wa_type: 0
+        };
+        mggSend(msgData);
+      }
+      if (item.type == "text" && item.msgType == "SimpleText") {
+        let response2 = item.response + "<br>";
+        const buildMenuData = buildMenu(menus);
+        response2 = response2 + buildMenuData;
+        msgData = {
+          data: response2,
+          media_url: item.url,
+          key_from_me: 1,
+          media_wa_type: 0
+        };
+        mggSend(msgData);
+      }
+      if (item.type == "loopback") {
+        const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
+        const loopbackId = item.loopBackId;
+        console.log(item);
+        const triggerStart = dataJson.filter((rs) => rs.id == loopbackId);
+        menuData = triggerStart[0].menus;
+        buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+      }
+      if (item.type == "text" && item.routeToAgent) {
+        localStorage.setItem("routeAgent", true);
+      }
+    });
+  };
+  const buildResponseOld = (item) => {
+    let msgData = {};
+    console.log(item);
+    if (item.type == "media") {
+      msgData = {
+        data: "",
+        media_url: item.url,
+        key_from_me: 1,
+        media_wa_type: 1
+      };
+      mggSend(msgData);
+    }
+    if (item.type = "TEXT") {
+      let response = item.response + "<br>";
+      const buildMenuData = buildMenu(item.menus);
+      response = response + buildMenuData;
+      msgData = {
+        data: response,
+        key_from_me: 1,
+        media_wa_type: 0
+      };
+      mggSend(msgData, item.routeToAgent);
+      if (item.routeToAgent) {
+        localStorage.setItem("routeAgent", true);
+      }
+    }
+    if (item.type == "loopback") {
+      const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
+      const loopbackId = item.loopBackId;
+      console.log(item);
+      const triggerStart = dataJson.filter((rs) => rs.id == loopbackId);
+      menuData = triggerStart[0].menus;
+      buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+    }
+    if (item.loopBackTriggerId != "") {
+      const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
+      const loopbackId = item.loopBackTriggerId;
+      const triggerStart = dataJson.filter((rs) => rs.id == loopbackId);
+      console.log(triggerStart);
+      menuData = triggerStart[0].menus;
+      buildResponseOld(triggerStart[0]);
+    }
+  };
+  const buildMenu = (menus) => {
+    let menuItem = "";
+    let aa = 0;
+    menus.map((item) => {
+      aa = aa + 1;
+      menuItem = menuItem + `<span class="int-menu" >${aa} - ${item.text}</span><br />`;
+    });
+    return menuItem;
+  };
+  function clickMe(trigger_id) {
+    alert(trigger_id);
+  }
+  const sendBotMessage = (messageData, route_to_agent) => {
+    if (!localStorage.getItem("conversation_id")) {
+      let uuidConversation = v4_default();
+      uuidConversation = uuidConversation.replaceAll("-", "");
+      localStorage.setItem("conversation_id", uuidConversation);
+    }
+    let data = JSON.stringify({
+      "msg": messageData.data,
+      "number": localStorage.getItem("sessionId"),
+      "wa_type": "0",
+      "msg_channel": "web",
+      "org_unit_id": localStorage.getItem("org"),
+      "from": messageData.key_from_me == 1 ? "chatbot" : localStorage.getItem("form_submit"),
+      "conversation_id": localStorage.getItem("conversation_id"),
+      "key_from_me": messageData.key_from_me,
+      "route_to_agent": route_to_agent
+    });
+    const requestOptions = {
+      method: "post",
+      headers: {}
     };
-    setMessageList((prevMessageList) => [...prevMessageList, mm]);
-  }, []);
+    requestOptions.headers["Content-Type"] = "application/json";
+    requestOptions.headers["x-api-key"] = x_api_id;
+    requestOptions.body = data;
+    fetch(`${backendUrl}/send-bot-message`, requestOptions).then((response) => response.json()).then((result) => {
+    });
+  };
+  const mggSend = (msg, route_to_agent = false) => {
+    const oldMsg = JSON.parse(localStorage.getItem("message"));
+    const newVal = [...oldMsg, msg];
+    localStorage.setItem("message", JSON.stringify(newVal));
+    setMessageList(newVal);
+    sendBotMessage(msg, route_to_agent);
+  };
+  const buildForm = async (triggerData) => {
+    let msgData = {};
+    msgData = {
+      data: triggerData.formStartText,
+      key_from_me: 1,
+      media_wa_type: 0
+    };
+    const form_id = triggerData.form_id;
+    const url = `${backendUrl}/form/form-by-id?form_id=${form_id}`;
+    const token = {};
+    sessionTriggerData = triggerData;
+    const data = await fetchWrapper.get(url, token);
+    formData = JSON.parse(data.data.form_data);
+    formStart = true;
+    mggSend(msgData);
+    startForm();
+  };
+  const startForm = () => {
+    let msgData = {};
+    msgData = {
+      data: formData[formStep - 1].label,
+      key_from_me: 1,
+      media_wa_type: 0
+    };
+    mggSend(msgData);
+  };
+  const apiCall = async (triggerData, msg) => {
+    const url = `${backendUrl}/bot-api?id=${triggerData.api_id}&param=${msg}`;
+    const token = {};
+    const data = await fetchWrapper.get(url, token);
+    const apiData = triggerData.apiData;
+    if (data) {
+      apiData.map((rsData, index) => {
+        const dataValue = rsData.dataValue;
+        const rs = rsData.dataValue;
+        let resonseData = data.data;
+        let cField = resonseData[rs.conditionLabel];
+        if (Array.isArray(resonseData)) {
+          resonseData = resonseData[0];
+          cField = resonseData[dataValue.conditionLabel];
+        }
+        let inner = rs.conditionLabel.split(".");
+        if (inner.length == 1) {
+          cField = resonseData[inner[0]];
+        } else {
+          if (resonseData[inner[0]]) {
+            cField = resonseData[inner[0]][inner[1]];
+          }
+        }
+        if (cField == rs.conditionValue && triggerData.conditionType == "C") {
+          let msgData = {};
+          msgData = {
+            data: rs.description,
+            key_from_me: 1,
+            media_wa_type: 0
+          };
+          mggSend(msgData);
+          apiTrigger = false;
+        }
+      });
+    }
+    apiTrigger = false;
+  };
+  const botResponse = (msg) => {
+    if (!localStorage.getItem("routeAgent")) {
+      const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
+      let responseData;
+      let msgData = {};
+      if (apiTrigger) {
+        apiCall(apiTrigger, msg);
+      }
+      if (formStart) {
+        if (formStep == formData.length) {
+          const msgData2 = {
+            data: sessionTriggerData.formEndText,
+            key_from_me: 1,
+            media_wa_type: 0
+          };
+          mggSend(msgData2);
+          formStart = false;
+          formData = [];
+          formStep = 1;
+          saveFormData = [];
+          return false;
+        }
+        saveFormData.push({ key: formData[formStep - 1].label, value: msg });
+        formStep = formStep + 1;
+        startForm();
+        return false;
+      }
+      if (msg == "hi" || msg == "M") {
+        const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
+        if (triggerStart[0]?.botResponses) {
+          menuData = triggerStart[0].menus;
+          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+        } else {
+          menuData = triggerStart[0].menus;
+          buildResponseOld(triggerStart[0]);
+        }
+        return false;
+      } else {
+        const triggerId = menuData[msg - 1]?.toTriggerId;
+        const triggerData = dataJson.filter((rs) => rs.id == triggerId)[0];
+        if (!triggerData) {
+          return false;
+        }
+        if (triggerData?.triggerType == "F") {
+          buildForm(triggerData);
+        } else {
+          if (triggerData?.botResponses) {
+            if (triggerData?.triggerType == "A") {
+              apiTrigger = triggerData;
+            }
+            responseData = triggerData.botResponses;
+            menuData = triggerData.menus;
+            buildResponse(responseData, triggerData.menus);
+          } else {
+            menuData = triggerData.menus;
+            buildResponseOld(triggerData);
+          }
+        }
+        return false;
+      }
+      msgData.data = msgData.data.replace("{{Name}}", localStorage.getItem("form_submit"));
+      console.log(localStorage.getItem("form_submit"));
+      const oldMsg = JSON.parse(localStorage.getItem("message"));
+      const newVal = [...oldMsg, msgData];
+      localStorage.setItem("message", JSON.stringify(newVal));
+      setMessageList(newVal);
+      let data2 = JSON.stringify({
+        "msg": msg,
+        "number": localStorage.getItem("sessionId"),
+        "wa_type": "0",
+        "msg_channel": "web",
+        "org_unit_id": org,
+        "from": localStorage.getItem("form_submit")
+      });
+      return false;
+    }
+  };
   const onFilesSelected = (fileList) => {
-    const objectURL = window.URL.createObjectURL(fileList[0]);
+    let mediaTypeValue = 9;
+    if (fileList[0].type == "image/png") {
+      mediaTypeValue = 1;
+    }
+    if (fileList[0].type == "image/jpeg") {
+      mediaTypeValue = 1;
+    }
+    if (fileList[0].type == "image/jpg") {
+      mediaTypeValue = 1;
+    }
+    if (fileList[0].type == "video/mp4") {
+      mediaTypeValue = 3;
+    }
+    if (fileList[0].type == "audio/mpeg") {
+      mediaTypeValue = 2;
+    }
+    const objectURL = fileList[0];
+    const to = localStorage.getItem("sessionId");
+    const ffData = {
+      uri: objectURL,
+      type: fileList[0].type,
+      name: fileList[0].name
+    };
+    var formdata = new FormData();
+    formdata.append("file", objectURL);
+    formdata.append("name", objectURL.name);
+    formdata.append("type", objectURL.type);
+    formdata.append("to", to);
+    formdata.append("msg_channel", "web");
+    formdata.append("media_type", mediaTypeValue);
+    formdata.append("conversation_id", localStorage.getItem("conversation_id"));
+    formdata.append("org_unit_id", org);
+    var requestOptions = {
+      method: "POST",
+      headers: {
+        "content-type": "multipart/form-data",
+        "x-api-key": x_api_id
+      },
+      body: formdata,
+      redirect: "follow"
+    };
+    const url = `${backendUrl}/rec-media`;
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+        "x-api-key": x_api_id
+      }
+    };
+    axios_default.post(url, formdata, config).then((response) => {
+      loadListNew();
+      console.log(response);
+    });
+    return false;
     setMessageList((prevMessageList) => [
       ...prevMessageList,
       {
@@ -29646,22 +35928,24 @@ function App({ domElement }) {
       }
     ]);
   };
-  return /* @__PURE__ */ import_react18.default.createElement("div", { className: "App" }, /* @__PURE__ */ import_react18.default.createElement("style", null, ` .sc-launcher, .sc-message--dtext, .sc-header {
-    background: ${color} !important;
-}
- `), /* @__PURE__ */ import_react18.default.createElement(
+  return /* @__PURE__ */ import_react21.default.createElement("div", { className: "App" }, /* @__PURE__ */ import_react21.default.createElement("style", null, ` .sc-launcher, .sc-message--dtext, .sc-header {
+            background: ${orgSettings?.widget_builder?.widget_color} !important;
+        }
+         `), error && /* @__PURE__ */ import_react21.default.createElement(ErrorPage_default, { isOpen: open, handleClick: () => setOpen(!open), clickMe }), !loading && !error && /* @__PURE__ */ import_react21.default.createElement(
     Launcher_default,
     {
       agentProfile: {
-        teamName: name,
-        imageUrl: "https://placehold.co/50x50?text=" + initialName
+        teamName: org.org_name_prm,
+        imageUrl: "https://placehold.co/50x50?text=" + org?.org_name_prm?.substring(0, 1)
       },
       onFilesSelected,
       onMessageWasSent: onSendPrivateMessage,
       messageList,
       showEmoji: true,
       handleClick: () => setOpen(!open),
-      isOpen: open
+      widgetSettings: orgSettings,
+      isOpen: open,
+      clickMe
     }
   ));
 }
@@ -29682,9 +35966,9 @@ var reportWebVitals = (onPerfEntry) => {
 var reportWebVitals_default = reportWebVitals;
 
 // src/index.js
-var root = import_client.default.createRoot(document.getElementById("root"));
+var root = import_client.default.createRoot(document.getElementById("root-chat"));
 root.render(
-  /* @__PURE__ */ import_react19.default.createElement(import_react19.default.StrictMode, null, /* @__PURE__ */ import_react19.default.createElement(App_default, { domElement: document.getElementById("root") }))
+  /* @__PURE__ */ import_react22.default.createElement(App_default, { domElement: document.getElementById("root-chat") })
 );
 reportWebVitals_default();
 /*! Bundled license information:
@@ -29751,4 +36035,15 @@ object-assign/index.js:
   (c) Sindre Sorhus
   @license MIT
   *)
+
+react/cjs/react-jsx-runtime.development.js:
+  (**
+   * @license React
+   * react-jsx-runtime.development.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
 */

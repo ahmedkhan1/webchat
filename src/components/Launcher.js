@@ -66,6 +66,7 @@ class Launcher extends Component {
           onClose={this.handleClick.bind(this)}
           showEmoji={this.props.showEmoji}
           widgetSettings={this.props.widgetSettings}
+          clickMe={this.props.clickMe}
         />
       </div>
     );

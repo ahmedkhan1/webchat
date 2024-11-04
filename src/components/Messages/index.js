@@ -3,7 +3,7 @@ import TextMessage from './TextMessage';
 import EmojiMessage from './EmojiMessage';
 import FileMessage from './FileMessage';
 import VideoMessage from './VideoMessage';
-import VoiceMessage from './VideoMessage';
+import VoiceMessage from './VoiceMessage';
 import DocumentMessage from './DocumentMessage';
 
 import chatIconUrl from './../../assets/chat-icon.svg';
@@ -11,11 +11,16 @@ import chatIconUrl from './../../assets/chat-icon.svg';
 
 class Message extends Component {
 
-  _renderMessageOfType(type) {
-   
+  _renderMessageOfType(typex) {
+
+    const type = typex.toString()
     switch(type) {
     case '0':
-      return <TextMessage {...this.props.message} />;
+      return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
+
+    case '19':
+      return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
+    
     case 'emoji':
       return <EmojiMessage {...this.props.message} />;
     case '1':
@@ -41,7 +46,7 @@ class Message extends Component {
     return (
       <div className="sc-message">
         <div className={contentClassList.join(' ')}>
-          
+        
           {this._renderMessageOfType(this.props.message.media_wa_type)}
          
         </div>

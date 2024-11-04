@@ -22,7 +22,11 @@
   visibility: hidden;
   bottom: 90px;
 }
+audio{width: 80%;border-radius:0;}
+audio::-webkit-media-controls-enclosure {
+    border-radius: 0;
 
+}
 .sc-message-list {
   height: 80%;
   overflow-y: auto;

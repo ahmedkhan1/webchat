@@ -12,7 +12,8 @@ const ChatWindow = ({
   onUserInputSubmit, 
   showEmoji, 
   messageList = [], 
-  widgetSettings 
+  widgetSettings,
+  clickMe 
 }) => {
   const [start, setStart] = useState(localStorage.getItem('start'));
   const [formSubmit, setFormSubmit] = useState(localStorage.getItem('form_submit'));
@@ -29,6 +30,20 @@ const ChatWindow = ({
     isOpen ? 'opened' : 'closed'
   ];
 
+
+   const handleSubmit = (event) => {
+    const formData = new FormData(event.currentTarget);
+    event.preventDefault();
+    const formVal = []
+    for (let [key, value] of formData.entries()) {
+      formVal[key] = value
+    }
+   
+    localStorage.setItem('form_submit', formVal['name']);
+    setFormSubmit(1)
+  };
+
+
   return (
     <div className={classList.join(' ')}>
       <Header
@@ -42,7 +57,7 @@ const ChatWindow = ({
           <div className="text_section">
             <h3>We are Online</h3>
             <p>{widgetSettings?.widget_builder?.reply_time}</p>
-            <button className="btn btn_conversation" type="button" onClick={() => {
+            <button className="btn btn_conversation" style={{backgroundColor:widgetSettings?.widget_builder?.widget_color}} type="button" onClick={() => {
                 localStorage.setItem('start', 1);
                 setStart(1)
             }}>
@@ -56,7 +71,8 @@ const ChatWindow = ({
 
               <>
               <div className="we_online_section">
-                
+                <form onSubmit={handleSubmit}>
+                <div style={{marginBottom:10}}><b>{widgetSettings?.pre_chat_form?.message}</b></div>
                 {widgetSettings?.pre_chat_form?.form?.map(item => {
 
 
@@ -70,12 +86,15 @@ const ChatWindow = ({
 
 
                 })}
-                <button className="btn_conversation" type="button" onClick={() => {
-                    localStorage.setItem('form_submit', 1);
-                    setFormSubmit(1)
+                <button className="btn_conversation" style={{backgroundColor:widgetSettings?.widget_builder?.widget_color}} type="submit" onCldick={() => {
+                    
+
+                    //localStorage.setItem('form_submit', 1);
+                    //setFormSubmit(1)
                 }}>
                   {widgetSettings?.widget_builder?.start_conversation_text}
                 </button>
+                </form>
               </div>
               </>
 
@@ -86,6 +105,7 @@ const ChatWindow = ({
           <MessageList
             messages={messageList}
             imageUrl={agentProfile.imageUrl}
+            clickMe={clickMe}
           />
           <UserInput
             onSubmit={handleUserInputSubmit}

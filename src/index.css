@@ -12,3 +12,10 @@ code {
     monospace;
 }
 
+.light-filled {
+                /*background-color: #5841CE1F;
+                color: #000;*/
+                background-color: #ffffff;
+                color: #000;
+                width: 100%;
+              }
