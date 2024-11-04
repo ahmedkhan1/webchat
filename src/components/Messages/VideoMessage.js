@@ -12,7 +12,7 @@ const VideoMessage = (props) => {
           <source src={props.data.media_url} type="video/ogg" />
             Your browser does not support the video tag.
         </video>
-        <p className="date">Mar 01 2024 - 12:26 PM </p>
+        <p className="date">{moment(props.send_timestamp).format('DD MMMM YYYY - hh:mm a')}</p>
       </div>
     </>
   );

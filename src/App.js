@@ -54,16 +54,17 @@ let formStep = 1;
   
 //Prod
 //const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
+// const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
 
 // Stg
 const backendUrl = 'https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev'
 const x_api_id = '43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd'
-
+const socketUrl = 'wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production';
 
 // Local
 //const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
 //const backendUrl = 'http://localhost:3000/dev'
-//const backendUrl = 'https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev'
+// const socketUrl = 'wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production';
 
 useEffect(() => {
    
@@ -273,7 +274,7 @@ const onSocketMessage = useCallback((dataStr) => {
     if (socket.current?.readyState !== WebSocket.OPEN) {
       const user_id = localStorage.getItem("sessionId");
       const user_name = "web"
-      const URL = `wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production/?user_name=${user_name}&user_id=${user_id}`;  
+      const URL = `${socketUrl}/?user_name=${user_name}&user_id=${user_id}`;  
       
       socket.current = new WebSocket(URL);
 

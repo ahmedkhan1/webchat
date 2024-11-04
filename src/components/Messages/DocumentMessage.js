@@ -1,7 +1,7 @@
 import React from 'react';
 import Linkify from 'react-linkify';
 import tabler_download from "../../assets/file/tabler_download.png";
-
+import moment from "moment";
 
 const DocumentMessage = (props) => {
   const PrintDocIcon = ({type}) => {
@@ -51,7 +51,7 @@ const DocumentMessage = (props) => {
 
       <div className="text_section">
         <h5>{props.data.media_name}</h5>
-        <p className="date">Mar 01 2024 - 12:26 PM </p>
+        <p className="date">{moment(props.send_timestamp).format('DD MMMM YYYY - hh:mm a')}</p>
       </div>
 
       <img src={tabler_download} />

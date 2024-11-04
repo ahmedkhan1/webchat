@@ -1,6 +1,6 @@
 import React from 'react';
 import Linkify from 'react-linkify';
-
+import moment from "moment";
 
 const TextMessage = (props) => {
    let msg = props.data
@@ -10,7 +10,7 @@ const TextMessage = (props) => {
       <h5>
       <span dangerouslySetInnerHTML={{__html: msg}}></span>
       </h5>
-      <p className="date">Mar 01 2024 - 12:26 PM </p>
+      <p className="date">{moment(props.send_timestamp).format('DD MMMM YYYY - hh:mm a')}</p>
     </Linkify>
   }</div>;
 };

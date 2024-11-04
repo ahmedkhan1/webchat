@@ -1,6 +1,6 @@
 import React from 'react';
 import FileIcon from './../icons/FileIcon';
-
+import moment from "moment";
 
 const FileMessage = (props) => {
 
@@ -14,7 +14,7 @@ const FileMessage = (props) => {
       
       
       <img src={props.data.media_url} />
-      <p className="date">Mar 01 2024 - 12:26 PM </p>
+      <p className="date">{moment(props.send_timestamp).format('DD MMMM YYYY - hh:mm a')}</p>
       {props.data.mi}
     </a>
     </>
