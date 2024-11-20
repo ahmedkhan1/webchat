@@ -17,10 +17,10 @@ class Message extends Component {
     switch(type) {
     case '0':
       return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
-
+    case 'ai-0':
+      return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
     case '19':
       return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
-    
     case 'emoji':
       return <EmojiMessage {...this.props.message} />;
     case '1':
@@ -33,6 +33,7 @@ class Message extends Component {
       return <DocumentMessage data={this.props.message} />;
     default:
       console.error(`Attempting to load message with unsupported file type '${type}'`);
+      console.log(this.props)
     }
   }
 

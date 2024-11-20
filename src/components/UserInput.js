@@ -54,7 +54,7 @@ class UserInput extends Component {
     this.setState({ emojiPickerIsOpen: false });
   }
 
-  _submitText(event) {
+  _submitText(event) { //this function will run on the on submit of the text message 
     event.preventDefault();
     const text = this.userInput.textContent;
     if (text && text.length > 0) {
@@ -81,7 +81,7 @@ class UserInput extends Component {
       this.props.onSubmit({
         author: 'me',
         type: 'emoji',
-        data: { emoji }
+        data: { text:emoji }
       });
     }
   }

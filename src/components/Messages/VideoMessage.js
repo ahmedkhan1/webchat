@@ -1,5 +1,6 @@
 import React from 'react';
 import FileIcon from './../icons/FileIcon';
+import moment from 'moment';
 
 
 const VideoMessage = (props) => {
