@@ -3,8 +3,8 @@ import Linkify from 'react-linkify';
 import moment from "moment";
 
 const TextMessage = (props) => {
-   let msg = props.data
-   msg = msg.replaceAll('\\\\n','<br />')
+   let msg = props?.data || props?.message?.data;
+   msg = msg?.replaceAll('\\\\n','<br />')
   return <div className="sc-message--text">{
     <Linkify properties={{ target: '_blank' }}>
       <h5>
