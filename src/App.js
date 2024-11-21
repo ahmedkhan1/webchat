@@ -28,6 +28,7 @@ function App({ domElement }) {
   const [fooEvents, setFooEvents] = useState([]);
 
   const tokenKey = domElement.getAttribute("property-id");
+  const [formSubmit, setFormSubmit] = useState(localStorage.getItem("form_submit"));
 
   // const onMessageWasSent = useCallback((message) => {
   //   message.org = org
@@ -55,8 +56,11 @@ function App({ domElement }) {
   //const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
 
 //   // Stg
-  const backendUrl =
-    "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  // const backendUrl =
+  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    const backendUrl =
+    "http://localhost:3000/dev";
+
   const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
   // const socketUrl =
   //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
@@ -83,17 +87,18 @@ function App({ domElement }) {
     }
   }, []);
 
+
   // Use useEffect to set an interval to call loadListNew every 5 seconds
   useEffect(() => {
-    if (localStorage.getItem("sessionId")) {
+    if (localStorage.getItem("sessionId") ) {
       // Initialize interval for every 5 seconds
       const intervalId = setInterval(() => {
         loadListNew();
-      }, 3000);
+      }, 3500);
       // Cleanup interval when the component unmounts
       return () => clearInterval(intervalId);
     }
-  }, [org, sessionId]); // Include dependencies if they are changing
+  }, [org, sessionId,formSubmit]); // Include dependencies if they are changing
 
   const loadBotFile = async (widget_settings) => { //load bot menu using bot id
     const bot_id = JSON.parse(widget_settings)?.chat_bot?.bot_id;
@@ -146,6 +151,7 @@ function App({ domElement }) {
       const token = {};
 
       const data = await fetchWrapper.post(url, token, postData);
+      
       //setLoading(false);
 
       const datax = data.reverse();
@@ -169,11 +175,10 @@ function App({ domElement }) {
     
     const chat = {};
     
-    const lastId = messageList[messageList.length - 1]?._id;
+    const lastId = messageList[messageList?.length - 1]?._id;
     //console.log("messageList :::" , messageList);
-    console.log("load new message running::::" , number , lastId);
     
-    if (lastId) {
+    if (lastId && org) {
       const url = `${backendUrl}/get-message-new?number=${number}`;
 
       const postData = {
@@ -190,19 +195,20 @@ function App({ domElement }) {
       //const datax = dataxAll.reverse()
       if (dataxAll.length > 0) {
         const newVal = [...messageList, ...dataxAll];
-
+        localStorage.setItem("message", JSON.stringify(newVal));
         setMessageList(newVal);
       }
     } else {
-      console.log("refresh");
-      // storage.clearAll()
-       loadList()
+      if (localStorage.getItem("form_submit") && localStorage.getItem("conversation_id")) {
+        // storage.clearAll()
+        loadList()
+      }
     }
   };
   const onSocketMessage = useCallback((dataStr) => {
     const data = JSON.parse(dataStr);
     console.log(data);
-    if (data.msg.feedback) {
+    if (data?.msg?.feedback) {
       botResponseTemplate("feedback");
     } else {
       if (localStorage.getItem("message")) {
@@ -241,19 +247,34 @@ function App({ domElement }) {
     onConnect();
   }, []);
 
-  const onSendPrivateMessage = useCallback((message) => { // THIS FUNCTIONS RUNS WHEN EVER THE TEXT MESSAGE HAS BEEN SENT 
+  const checkFeedbackTemplate = (data) => {
+    if(!data[data.length - 4]) return false;
+    let lastMsg = data[data.length - 4];
+    if(lastMsg?.data?.includes('Poor') && lastMsg?.data?.includes('Great') && lastMsg?.data?.includes('Average') ){
+      feedBackMenuData = true;
+      return true;
+    }
+    return false;
+  }
+
+  const onSendPrivateMessage = useCallback((message) => {
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
       media_wa_type: 0,
     };
 
+    let route_to_agent = false;
     const oldMsg = JSON.parse(localStorage.getItem("message"));
 
     const newVal = [...oldMsg, msgData];
 
-    localStorage.setItem("message", JSON.stringify(newVal));
-    setMessageList(newVal);
+    // localStorage.setItem("message", JSON.stringify(newVal));
+    // setMessageList(newVal);
+    if(localStorage.getItem("routeAgent")){
+      route_to_agent = localStorage.getItem("routeAgent");
+    }
+
 
     if (!localStorage.getItem("conversation_id")) {
       let uuidConversation = uuid();
@@ -261,14 +282,18 @@ function App({ domElement }) {
       localStorage.setItem("conversation_id", uuidConversation);
     }
 
+
+
     let data = JSON.stringify({
       msg: message.data.text,
-      number: localStorage.getItem("sessionId"), // CONSIDER IT AS KEY REMOTE ID
+      number: localStorage.getItem("sessionId"),
       wa_type: "0",
       msg_channel: "web",
       org_unit_id: localStorage.getItem("org"),
-      from: localStorage.getItem("form_submit"), //RIGHT NOW IN FORM ONLY YHE NAME HAS BEEN SAVED SO THIS KEY WILL RETURN THE NAME ONLY
+      from: localStorage.getItem("form_submit"),
       conversation_id: localStorage.getItem("conversation_id"),
+      isFeedback:checkFeedbackTemplate(newVal),
+      isRouteToAgent: route_to_agent
     });
 
     const requestOptions = {
@@ -279,11 +304,19 @@ function App({ domElement }) {
     requestOptions.headers["Content-Type"] = "application/json";
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
+    
 
     fetch(`${backendUrl}/rec-message`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (message.data.text == "exit" || message.data.text == "Exit") {
+        
+        try {
+          loadListNew()
+        } catch (error) {
+        
+        }
+        
+        if (message.data.text?.toLowerCase() == "exit" || message.data.text == "Exit") {
 
           // step 1 feedback template will be sent to the user and the entry for feedback logs need to be inserted in db 
           // and chat will be closed so that the user can re-initiate the chat as well 
@@ -292,7 +325,7 @@ function App({ domElement }) {
           // step 3 send thankyou template for feedback response
 
           const msgData = {
-            data: "Thank you for contacting. We would love to see you again. <br><br>Please Type Hi to re-initiate this chat.",
+            data: "Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
             media_url: "",
             key_from_me: 1,
             media_wa_type: 0,
@@ -304,25 +337,32 @@ function App({ domElement }) {
 
           return false;
         }
-
-        if (feedBackMenuData) {
-          const msgData = {
-            data: feedBackMenuData[message.data.text - 1]?.text
-              ? feedBackMenuData[message.data.text - 1]?.text
-              : "",
-            media_url: "",
-            key_from_me: 1,
-            media_wa_type: 0,
-          };
-          mggSend(msgData);
-          feedBackMenuData = false;
-
-          return false;
-        }
-
-        if (!localStorage.getItem("routeAgent")) { // THIS will run when the chat has not been routed to the agent yet (before chat routed messages handled here) 
+       
+        
+        if (!localStorage.getItem("routeAgent")) {
           botResponse(message.data.text);
         }
+
+      if (feedBackMenuData) {
+          feedBackMenuData = false;
+          localStorage.removeItem("routeAgent");
+          localStorage.removeItem("conversation_id");
+      }
+        // if (feedBackMenuData) {
+        //   const msgData = {
+        //     data:"Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+        //     media_url: "",
+        //     key_from_me: 1,
+        //     media_wa_type: 0,
+        //   };
+        //   mggSend(msgData);
+        //   feedBackMenuData = false;
+        //   localStorage.removeItem("routeAgent");
+        //   localStorage.removeItem("conversation_id");
+        //   return false;
+        // }
+
+        
 
         // setMessageList((prevMessageList) => [...prevMessageList, result.data]);
 
@@ -356,7 +396,6 @@ function App({ domElement }) {
   const buildResponse = (response, menus) => {
     let msgData = {};
     response.map((item) => {
-      
       if (item.type == "media" && item.mediaType == "IMAGE") {
         msgData = {
           data: "",
@@ -406,33 +445,39 @@ function App({ domElement }) {
         mggSend(msgData);
       }
 
-      if (item.type == "loopback") {
-        const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
+      if (item.type == 'loopback') {
+        const dataJson = JSON.parse(localStorage.getItem('bot_data')).data;
         const loopbackId = item.loopBackId;
-        console.log(item);
-        const triggerStart = dataJson.filter((rs) => rs.id == loopbackId);
+        console.log(item)
+        const triggerStart = dataJson.filter(rs => rs.id == loopbackId);
         menuData = triggerStart[0].menus;
-        localStorage.setItem("menuData",JSON.stringify(menuData));
-        buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
-      }
-      if (item.type == "text" && item.routeToAgent) {
-        localStorage.setItem("routeAgent", true);
-      }
-    });
-  };
-  const buildResponseOld = (item) => {
-    let msgData = {};
+        localStorage.setItem("menuData", JSON.stringify(menuData));
 
-    console.log(item);
-    if (item.type == "media") {
-      msgData = {
-        data: "",
-        media_url: item.url,
-        key_from_me: 1,
-        media_wa_type: 1,
-      };
-      mggSend(msgData);
-    }
+        buildResponse(triggerStart[0].botResponses, triggerStart[0].menus)
+      }
+
+      if (item.type == 'text' && item.routeToAgent) {
+        localStorage.setItem('routeAgent', true)
+      }
+                
+    })
+
+ }
+ const buildResponseOld = (item) => {
+
+   let msgData = {}
+
+   console.log(item)
+   if (item.type == 'media') {
+
+     msgData = {
+       data: '',
+       media_url: item.url,
+       key_from_me: 1,
+       media_wa_type: 1,
+     }
+     mggSend(msgData);
+   }
 
     if ((item.type = "TEXT")) {
       let response = item.response + "<br>";
@@ -528,12 +573,12 @@ function App({ domElement }) {
       })
   };
   const mggSend = (msg, route_to_agent = false) => {
-    const oldMsg = JSON.parse(localStorage.getItem("message"));
+    // const oldMsg = JSON.parse(localStorage.getItem("message"));
 
-    const newVal = [...oldMsg, msg];
+    // const newVal = [...oldMsg, msg];
 
-    localStorage.setItem("message", JSON.stringify(newVal));
-    setMessageList(newVal);
+    // localStorage.setItem("message", JSON.stringify(newVal));
+    // setMessageList(newVal);
     sendBotMessage(msg, route_to_agent);
   };
   const buildForm = async (triggerData) => {
@@ -551,7 +596,6 @@ function App({ domElement }) {
     sessionTriggerData = triggerData;
     const data = await fetchWrapper.get(url, token);
     formData = JSON.parse(data.data.form_data);
-    console.log("form data ::: " , data.data.form_data);
     
     formStart = true;
     mggSend(msgData);
@@ -792,7 +836,6 @@ function App({ domElement }) {
     };
     axios.post(url, formdata, config).then((response) => {
       loadListNew();
-      console.log(response);
       //loadListNew()
 
       // const oldMsg = JSON.parse(localStorage.getItem("message"))

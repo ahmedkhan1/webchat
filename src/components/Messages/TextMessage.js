@@ -4,8 +4,8 @@ import moment from "moment";
 import { commonMethods } from '../../helper';
 
 const TextMessage = (props) => {
-   let msg = props.data
-   msg = msg.replaceAll('\\\\n','<br />');
+  let msg = props?.data || props?.message?.data;
+  msg = msg.replaceAll('\\\\n','<br />');
    msg = commonMethods.stripResponseHtml(props?.data?.from_name,msg)
   return <div className="sc-message--text">{
     <Linkify properties={{ target: '_blank' }}>

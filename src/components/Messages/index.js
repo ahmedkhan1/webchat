@@ -33,7 +33,7 @@ class Message extends Component {
       return <DocumentMessage data={this.props.message} />;
     default:
       console.error(`Attempting to load message with unsupported file type '${type}'`);
-      console.log(this.props)
+      //console.log(this.props)
     }
   }
 
