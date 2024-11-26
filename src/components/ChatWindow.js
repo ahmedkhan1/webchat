@@ -38,7 +38,7 @@ const ChatWindow = ({
     // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
     try {
-      const response = await fetch(`http://localhost:3000/dev/saveUserInfo`, {
+      const response = await fetch("https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev/saveUserInfo", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -9,7 +9,6 @@ import { useInterval } from "./components/helpers/useInterval";
 import { fetchWrapper } from "./components/helpers";
 import ErrorPage from "./components/ErrorPage";
 import { commonMethods } from "./helper";
-import WebSocketComponent from "./components/websocket";
 function App({ domElement }) {
   const name = "Eocean";
   const initialName = name.substring(0, 1);
@@ -56,9 +55,9 @@ function App({ domElement }) {
   //const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
 
 //   // Stg
-  // const backendUrl =
-  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-    const backendUrl =
+  const backendUrl =
+    // "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    // const backendUrl =
     "http://localhost:3000/dev";
 
   const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
@@ -340,7 +339,12 @@ function App({ domElement }) {
        
         
         if (!localStorage.getItem("routeAgent")) {
-          botResponse(message.data.text);
+          if(localStorage.getItem("widget_settings") && JSON.parse(localStorage.getItem("widget_settings"))?.chat_bot?.enabled_chatbot === false){
+            sendBotMessage(message.data,true)
+            localStorage.setItem("routeAgent",true)
+          }else{
+            botResponse(message.data.text);
+          }
         }
 
       if (feedBackMenuData) {
@@ -658,6 +662,7 @@ function App({ domElement }) {
 
   const botResponse = (msg) => {
     if (!localStorage.getItem("routeAgent")) {
+
       const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc. 
       let responseData;
       let msgData = {};
@@ -689,7 +694,6 @@ function App({ domElement }) {
       }
       if (msg?.toLowerCase() == "hi" || msg == "M") {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
-
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
           buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
