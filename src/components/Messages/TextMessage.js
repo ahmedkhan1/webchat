@@ -6,7 +6,12 @@ import { commonMethods } from '../../helper';
 const TextMessage = (props) => {
   let msg = props?.data || props?.message?.data;
   msg = msg.replaceAll('\\\\n','<br />');
-   msg = commonMethods.stripResponseHtml(props?.data?.from_name,msg)
+  let translatedResponse = msg.split('/+-/Translation/+-/');
+  if(translatedResponse.length === 2){
+    msg = translatedResponse[1];
+  } 
+
+  msg = commonMethods.stripResponseHtml(props?.data?.from_name,msg)
   return <div className="sc-message--text">{
     <Linkify properties={{ target: '_blank' }}>
       <h5>
