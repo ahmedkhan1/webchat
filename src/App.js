@@ -369,7 +369,7 @@ function App({ domElement }) {
               ?.enabled_chatbot === false
           ) {
             const msgData = {
-              data: message?.data?.text,
+              data: "<p>Please wait, one of our agents will contact you shortly.</p><p><br></p><p>Type <strong>Exit</strong> to end the conversation at any time.</p>",
               key_from_me: 1,
               media_wa_type: 0,
             };
