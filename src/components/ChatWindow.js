@@ -152,16 +152,17 @@ const ChatWindow = ({
                     <b>{widgetSettings?.pre_chat_form?.message}</b>
                   </div>
                   {widgetSettings?.pre_chat_form?.form?.map((item) => {
-                    return (
-                      <div className="field_section">
+                    return item.display !== '0' ? ( // Check if the input should be displayed
+                      <div className="field_section" key={item.key}>
                         <input
                           type={item.type}
                           name={item.key}
-                          required={item?.required == '1' ? true : false }
+                          required={item?.required === '1'}
                           placeholder={item.place_holder}
+                          maxLength={30} // Default to 100 characters if maxLength is not specified
                         />
                       </div>
-                    );
+                    ) : null; 
                   })}
                   <button
                     className="btn_conversation"

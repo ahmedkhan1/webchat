@@ -349,7 +349,7 @@ function App({ domElement }) {
           // step 3 send thankyou template for feedback response
 
           const msgData = {
-            data: "Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+            data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
             media_url: "",
             key_from_me: 1,
             media_wa_type: 0,
