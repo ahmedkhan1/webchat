@@ -38,7 +38,7 @@ const ChatWindow = ({
     // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
     try {
-      const response = await fetch(`http://localhost:3000/dev/saveUserInfo`, {
+      const response = await fetch("https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev/saveUserInfo", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -126,8 +126,9 @@ const ChatWindow = ({
         <div className="we_online_section">
           <div className="text_section">
             <h3>We are Online</h3>
-            <p>{widgetSettings?.widget_builder?.reply_time}</p>
-            <button
+            {widgetSettings?.widget_builder?.reply_time && widgetSettings?.widget_builder?.reply_time.toString().length > 0 && (
+              <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
+            )}            <button
               className="btn btn_conversation"
               style={{
                 backgroundColor: widgetSettings?.widget_builder?.widget_color,
@@ -151,18 +152,23 @@ const ChatWindow = ({
                   <div style={{ marginBottom: 10 }}>
                     <b>{widgetSettings?.pre_chat_form?.message}</b>
                   </div>
-                  {widgetSettings?.pre_chat_form?.form?.map((item) => {
-                    return (
-                      <div className="field_section">
-                        <input
-                          type={item.type}
-                          name={item.key}
-                          required={item?.required == '1' ? true : false }
-                          placeholder={item.place_holder}
-                        />
-                      </div>
-                    );
-                  })}
+                    {widgetSettings?.pre_chat_form?.form?.map((item,index) => {
+                      if (item.display === '1') {
+                        return (
+                          <div className="field_section" key={index}>
+                            <input
+                              type={item.type}
+                              name={item.key}
+                              required={item?.required == '1' ? true : false}
+                              placeholder={item.place_holder}
+                            />
+                          </div>
+                        );
+                      }
+                      // Return null if isactive is not true
+                      return null;
+
+                    })}
                   <button
                     className="btn_conversation"
                     style={{
