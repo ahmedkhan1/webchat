@@ -14,7 +14,7 @@ const TextMessage = (props) => {
   msg = commonMethods.stripResponseHtml(props?.data?.from_name,msg)
   return <div className="sc-message--text">{
     <Linkify properties={{ target: '_blank' }}>
-      <h5>
+      <h5 style="max-width: 16rem;">
       <span dangerouslySetInnerHTML={{__html: msg}}></span>
       </h5>
       <p className="date">{moment(props.send_timestamp).format('DD MMMM YYYY - hh:mm a')}</p>
