@@ -58,9 +58,9 @@ function App({ domElement }) {
 
   //   // Stg
   const backendUrl =
-    // "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+     "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     // const backendUrl =
-    "http://localhost:3000/dev";
+    //"http://localhost:3000/dev";
 
   const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
   // const socketUrl =
