@@ -52,25 +52,25 @@ function App({ domElement }) {
   }
 
   //Prod
-  //const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
-  // const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
-  //const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
+  const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
+   const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
+  const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
 
   //   // Stg
-  const backendUrl =
-    // "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  // const backendUrl =
+  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     // const backendUrl =
-    "http://localhost:3000/dev";
+    // "http://localhost:3000/dev";
 
-  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  // const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
   // const socketUrl =
   //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   //   Local
   // const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
   // const backendUrl = 'http://localhost:3000/dev'
-  const socketUrl =
-    "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  // const socketUrl =
+  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
   // const socketUrl = 'wss://localhost:3000/dev'
   useEffect(() => {
     if (tokenKey == "" || !tokenKey) {
@@ -158,7 +158,7 @@ function App({ domElement }) {
 
       //setLoading(false);
 
-      const datax = data.reverse();
+      const datax = data?.reverse();
       localStorage.setItem("message", JSON.stringify(datax));
       setMessageList(datax);
 
@@ -428,7 +428,7 @@ function App({ domElement }) {
     };
     // mggSend(msgData);
   };
-  const buildResponse = (response, menus) => {
+  const buildResponse = (response, menus,routeToAgent = false) => {
     let msgData = {};
     response.map((item) => {
       if (item.type == "media" && item.mediaType == "IMAGE") {
@@ -477,7 +477,7 @@ function App({ domElement }) {
           key_from_me: 1,
           media_wa_type: 0,
         };
-        mggSend(msgData);
+        mggSend(msgData,routeToAgent);
       }
 
       if (item.type == "loopback") {
@@ -762,7 +762,8 @@ function App({ domElement }) {
             }
             responseData = triggerData.botResponses;
             menuData = triggerData.menus;
-            buildResponse(responseData, triggerData.menus);
+            console.log("waiz data",triggerData);
+            buildResponse(responseData, triggerData.menus,triggerData?.routeToAgent);
           } else {
             menuData = triggerData.menus;
             buildResponseOld(triggerData);

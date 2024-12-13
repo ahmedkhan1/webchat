@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react";
 import MessageList from "./MessageList";
 import UserInput from "./UserInput";
 import Header from "./Header";
+import { fetchWrapper } from "./helpers";
 
 const ChatWindow = ({
   agentProfile,
@@ -37,15 +38,17 @@ const ChatWindow = ({
 
     // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
+    const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
     try {
-      const response = await fetch("https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev/saveUserInfo", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
+      const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
+      // const response = await fetch(`${backendUrl}/saveUserInfo`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(data),
+      // });
+      // const result = await response.json();
       console.log('API response:', result);
     } catch (error) {
       console.error('Error saving user info:', error);
