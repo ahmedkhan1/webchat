@@ -151,7 +151,7 @@ const ChatWindow = ({
             </button>
            <div className="poweredBy_footer" style={{ marginTop: "10px"}}>
              <img src={EoceanIcon} alt="eocean logo" width={20} height={20}/>
-             <p style={{paddingLeft:5 , paddingTop:6 }}>Powered by eOcean</p>
+             <p style={{paddingLeft:5 , paddingTop:6 , fontSize:"12px"}}>Powered by eOcean</p>
            </div>
           </div>
         </div>
