@@ -4,6 +4,7 @@ import MessageList from "./MessageList";
 import UserInput from "./UserInput";
 import Header from "./Header";
 import { fetchWrapper } from "./helpers";
+import EoceanIcon from '../assets/eocean.png';
 
 const ChatWindow = ({
   agentProfile,
@@ -143,6 +144,10 @@ const ChatWindow = ({
             >
               {widgetSettings?.widget_builder?.start_conversation_text}
             </button>
+           <div className="poweredBy_footer" style={{ marginTop: "10px"}}>
+             <img src={EoceanIcon} alt="eocean logo" width={20} height={20}/>
+             <p style={{paddingLeft:5 , paddingTop:6 }}>Powered by eOcean</p>
+           </div>
           </div>
         </div>
       ) : (
@@ -182,6 +187,10 @@ const ChatWindow = ({
                     {widgetSettings?.widget_builder?.start_conversation_text}
                   </button>
                 </form>
+                  <div className="poweredBy_footer">
+                    <img src={EoceanIcon} alt="eocean logo" width={20} height={20} />
+                    <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
+                  </div>
               </div>
             </>
           ) : (
@@ -196,6 +205,10 @@ const ChatWindow = ({
                 onFilesSelected={handleFilesSelected}
                 showEmoji={showEmoji}
               />
+              <div className="poweredBy_footer">
+                    <img src={EoceanIcon} alt="eocean logo" width={20} height={20} />
+                    <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
+                  </div>
             </>
           )}
         </>
