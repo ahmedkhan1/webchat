@@ -38,7 +38,10 @@ const ChatWindow = ({
 
     // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
-    const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
+    // Prod 
+    // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
+    // QA 
+    const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     try {
       const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
       // const response = await fetch(`${backendUrl}/saveUserInfo`, {
@@ -129,7 +132,9 @@ const ChatWindow = ({
         <div className="we_online_section">
           <div className="text_section">
             <h3>We are Online</h3>
-            <p>{widgetSettings?.widget_builder?.reply_time}</p>
+            {widgetSettings?.widget_builder?.reply_time?.length && (
+            <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
+            )}
             <button
               className="btn btn_conversation"
               style={{

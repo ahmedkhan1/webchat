@@ -17,9 +17,10 @@ function request(method) {
             method,
             headers: authHeader(url,token)
         };
-        //  requestOptions.headers['x-api-key'] = '43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd';
-        //  requestOptions.headers['x-api-key'] = 'd41d8cd98f00b204e9800998ecf8427e';
-        requestOptions.headers['x-api-key'] = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91'
+        // QA
+         requestOptions.headers['x-api-key'] = '43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd';
+        // Prod
+        // requestOptions.headers['x-api-key'] = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91'
 
 
          
