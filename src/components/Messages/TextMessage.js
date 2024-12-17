@@ -10,7 +10,6 @@ const TextMessage = (props) => {
   if(translatedResponse.length === 2){
     msg = translatedResponse[1];
   } 
-
   msg = commonMethods.stripResponseHtml(props?.data?.from_name,msg)
   return <div className="sc-message--text">{
     <Linkify properties={{ target: '_blank' }}>

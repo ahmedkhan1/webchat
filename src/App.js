@@ -59,9 +59,6 @@ function App({ domElement }) {
   //   // Stg
   const backendUrl =
     "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-    // const backendUrl =
-    // "http://localhost:3000/dev";
-
   const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
   const socketUrl =
     "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
@@ -69,9 +66,8 @@ function App({ domElement }) {
   //   Local
   // const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
   // const backendUrl = 'http://localhost:3000/dev'
-  // const socketUrl =
-  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
-  // const socketUrl = 'wss://localhost:3000/dev'
+  // const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  
   useEffect(() => {
     if (tokenKey == "" || !tokenKey) {
       setError(true);
@@ -762,7 +758,6 @@ function App({ domElement }) {
             }
             responseData = triggerData.botResponses;
             menuData = triggerData.menus;
-            console.log("waiz data",triggerData);
             buildResponse(responseData, triggerData.menus,triggerData?.routeToAgent);
           } else {
             menuData = triggerData.menus;
