@@ -55,6 +55,7 @@ audio::-webkit-media-controls-enclosure {
 }
 .we_online_section{
   padding: 25px;
+  padding-bottom: 2px;
 }
 .we_online_section .text_section h3{
   font-size: 24px;
@@ -92,6 +93,16 @@ audio::-webkit-media-controls-enclosure {
   font-weight: 400;
   color: #fff;
   font-family: "Inter", sans-serif;
+}
+.poweredBy_footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.poweredBy_footer p {
+  color:#767676;
+  font-size: 12px;
+  
 }
 .sc-message--me {
   text-align: right;

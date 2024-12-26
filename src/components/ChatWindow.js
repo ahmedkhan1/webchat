@@ -4,6 +4,7 @@ import MessageList from "./MessageList";
 import UserInput from "./UserInput";
 import Header from "./Header";
 import { fetchWrapper } from "./helpers";
+import EoceanIcon from '../assets/eocean.png';
 
 const ChatWindow = ({
   agentProfile,
@@ -39,9 +40,9 @@ const ChatWindow = ({
     // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
     // Prod 
-    // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
+    const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
     // QA 
-    const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    // const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     try {
       const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
       // const response = await fetch(`${backendUrl}/saveUserInfo`, {
@@ -148,6 +149,10 @@ const ChatWindow = ({
             >
               {widgetSettings?.widget_builder?.start_conversation_text}
             </button>
+           <div className="poweredBy_footer" style={{ marginTop: "10px"}}>
+             <img src={EoceanIcon} alt="eocean logo" width={20} height={20}/>
+             <p style={{paddingLeft:5 , paddingTop:6 , fontSize:"12px"}}>Powered by eOcean</p>
+           </div>
           </div>
         </div>
       ) : (
@@ -187,6 +192,10 @@ const ChatWindow = ({
                     {widgetSettings?.widget_builder?.start_conversation_text}
                   </button>
                 </form>
+                  <div className="poweredBy_footer">
+                    <img src={EoceanIcon} alt="eocean logo" width={20} height={20} />
+                    <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
+                  </div>
               </div>
             </>
           ) : (
@@ -201,6 +210,10 @@ const ChatWindow = ({
                 onFilesSelected={handleFilesSelected}
                 showEmoji={showEmoji}
               />
+              <div className="poweredBy_footer">
+                    <img src={EoceanIcon} alt="eocean logo" width={20} height={20} />
+                    <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
+                  </div>
             </>
           )}
         </>
