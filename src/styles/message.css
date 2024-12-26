@@ -133,3 +133,6 @@
 }
 
 .sc-message--content .sc-message--text h5 p{line-height: 16px;font-size:12px}
+.plyr--audio .plyr__controls {
+  background-color: #EDF0F7 !important; /* Change this to your desired color */
+}

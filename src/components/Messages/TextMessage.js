@@ -5,6 +5,9 @@ import { commonMethods } from '../../helper';
 
 const TextMessage = (props) => {
   let msg = props?.data || props?.message?.data;
+  if(!msg){
+    return null;
+  }
   msg = msg.replaceAll('\\\\n','<br />');
   let translatedResponse = msg.split('/+-/Translation/+-/');
   if(translatedResponse.length === 2){

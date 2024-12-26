@@ -53,8 +53,11 @@ const DocumentMessage = (props) => {
         <h5>{props.data.media_name}</h5>
         <p className="date">{moment(props.send_timestamp).format('DD MMMM YYYY - hh:mm a')}</p>
       </div>
-
-      <img src={tabler_download} />
+      
+      <a href={props?.data?.media_url} target='_blank' >
+        <img src={tabler_download} />
+      </a>
+      
     </div>
 
     );
