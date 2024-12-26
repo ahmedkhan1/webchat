@@ -115,7 +115,7 @@ function App({ domElement }) {
 
     const token = {};
     setLoading(true);
-    const postData = { token: tokenKey };
+    const postData = { token: tokenKey,msg_channel: "web" };
     const data = await fetchWrapper.post(url, token, postData);
 
     if (!data.data) {
@@ -271,7 +271,7 @@ function App({ domElement }) {
   const checkSpamUnblock = (data) => {
     if (!data[data.length - 3]) return false;
     let lastMsg = data[data.length - 3];
-    if (lastMsg?.data?.includes("marked the conversaton unblocked")) {
+    if (lastMsg?.data?.includes("marked the conversation unblocked")) {
       return true;
     }
     return false;
