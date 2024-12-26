@@ -731,7 +731,7 @@ function App({ domElement }) {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
-          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus, triggerStart[0]?.routeToAgent);
         } else {
           menuData = triggerStart[0].menus;
           buildResponseOld(triggerStart[0]);
