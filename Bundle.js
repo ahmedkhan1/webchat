@@ -25095,6 +25095,7 @@ var require_tlds = __commonJS({
       "cymru",
       "cyou",
       "cz",
+      "dabur",
       "dad",
       "dance",
       "data",
@@ -36013,42 +36014,9 @@ var import_react9 = __toESM(require_react());
 var import_react = __toESM(require_react());
 var import_react_linkify = __toESM(require_Linkify());
 var import_moment = __toESM(require_moment());
-
-// src/helper.js
-var commonMethods = {
-  stripResponseHtml: (userName, messageBody) => {
-    String.prototype.replaceAllTxt = function replaceAll(search, replace) {
-      return this.split(search).join(replace);
-    };
-    let body = messageBody.replaceAllTxt("<p>", "");
-    body = body.replaceAllTxt("</p>", "\n");
-    body = body.replaceAllTxt("<br><br>", "\n");
-    body = body.replaceAllTxt("<br><br><br><br>", "\n\n");
-    body = body.replaceAllTxt("<br>", "\n");
-    body = body.replaceAllTxt("<strong>", "*");
-    body = body.replaceAllTxt("<strong> ", "*");
-    body = body.replaceAllTxt("</strong>", "*");
-    body = body.replaceAllTxt("</strong>", "*");
-    body = body.replaceAllTxt('<span style="color: rgb(0, 0, 0);">', "");
-    body = body.replaceAllTxt("</span>", "");
-    body = body.replaceAllTxt("<em>", "_");
-    body = body.replaceAllTxt("<em>", "_");
-    body = body.replaceAllTxt("</em>", "_");
-    body = body.replaceAllTxt("</em>", "_");
-    body = body.replaceAllTxt("&nbsp;", " ");
-    body = body.replaceAllTxt("&amp;", "&");
-    body = body.replaceAllTxt("{{Name}}", userName);
-    body = body.replace("*", "<strong>");
-    body = body.replace("*", "</strong>");
-    return body;
-  }
-};
-
-// src/components/Messages/TextMessage.js
 var TextMessage = (props) => {
-  let msg = props?.data || props?.message?.data;
+  let msg = props.data;
   msg = msg.replaceAll("\\\\n", "<br />");
-  msg = commonMethods.stripResponseHtml(props?.data?.from_name, msg);
   return /* @__PURE__ */ import_react.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react.default.createElement(import_react_linkify.default, { properties: { target: "_blank" } }, /* @__PURE__ */ import_react.default.createElement("h5", null, /* @__PURE__ */ import_react.default.createElement("span", { dangerouslySetInnerHTML: { __html: msg } })), /* @__PURE__ */ import_react.default.createElement("p", { className: "date" }, (0, import_moment.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))));
 };
 var TextMessage_default = TextMessage;
@@ -36092,7 +36060,7 @@ var FileIcon = class extends import_react3.Component {
           viewBox: "0 0 55 55",
           enableBackground: "new 0 0 60 60"
         },
-        /* @__PURE__ */ import_react3.default.createElement("g", null, /* @__PURE__ */ import_react3.default.createElement("path", { d: "M43.922,6.653c-2.643-2.644-6.201-4.107-9.959-4.069c-3.774,0.019-7.32,1.497-9.983,4.161l-12.3,12.3l-8.523,8.521\r\n            c-4.143,4.144-4.217,10.812-0.167,14.862c1.996,1.996,4.626,2.989,7.277,2.989c2.73,0,5.482-1.055,7.583-3.156l15.547-15.545\r\n            c0.002-0.002,0.002-0.004,0.004-0.005l5.358-5.358c1.394-1.393,2.176-3.24,2.201-5.2c0.026-1.975-0.716-3.818-2.09-5.192\r\n            c-2.834-2.835-7.496-2.787-10.394,0.108L9.689,29.857c-0.563,0.563-0.563,1.474,0,2.036c0.281,0.28,0.649,0.421,1.018,0.421\r\n            c0.369,0,0.737-0.141,1.018-0.421l18.787-18.788c1.773-1.774,4.609-1.824,6.322-0.11c0.82,0.82,1.263,1.928,1.247,3.119\r\n            c-0.017,1.205-0.497,2.342-1.357,3.201l-5.55,5.551c-0.002,0.002-0.002,0.004-0.004,0.005L15.814,40.225\r\n            c-3.02,3.02-7.86,3.094-10.789,0.167c-2.928-2.929-2.854-7.77,0.167-10.791l0.958-0.958c0.001-0.002,0.004-0.002,0.005-0.004\r\n            L26.016,8.78c2.123-2.124,4.951-3.303,7.961-3.317c2.998,0.02,5.814,1.13,7.91,3.226c4.35,4.351,4.309,11.472-0.093,15.873\r\n            L25.459,40.895c-0.563,0.562-0.563,1.473,0,2.035c0.281,0.281,0.65,0.422,1.018,0.422c0.369,0,0.737-0.141,1.018-0.422\r\n            L43.83,26.596C49.354,21.073,49.395,12.126,43.922,6.653z" }))
+        /* @__PURE__ */ import_react3.default.createElement("g", null, /* @__PURE__ */ import_react3.default.createElement("path", { d: "M43.922,6.653c-2.643-2.644-6.201-4.107-9.959-4.069c-3.774,0.019-7.32,1.497-9.983,4.161l-12.3,12.3l-8.523,8.521\n            c-4.143,4.144-4.217,10.812-0.167,14.862c1.996,1.996,4.626,2.989,7.277,2.989c2.73,0,5.482-1.055,7.583-3.156l15.547-15.545\n            c0.002-0.002,0.002-0.004,0.004-0.005l5.358-5.358c1.394-1.393,2.176-3.24,2.201-5.2c0.026-1.975-0.716-3.818-2.09-5.192\n            c-2.834-2.835-7.496-2.787-10.394,0.108L9.689,29.857c-0.563,0.563-0.563,1.474,0,2.036c0.281,0.28,0.649,0.421,1.018,0.421\n            c0.369,0,0.737-0.141,1.018-0.421l18.787-18.788c1.773-1.774,4.609-1.824,6.322-0.11c0.82,0.82,1.263,1.928,1.247,3.119\n            c-0.017,1.205-0.497,2.342-1.357,3.201l-5.55,5.551c-0.002,0.002-0.002,0.004-0.004,0.005L15.814,40.225\n            c-3.02,3.02-7.86,3.094-10.789,0.167c-2.928-2.929-2.854-7.77,0.167-10.791l0.958-0.958c0.001-0.002,0.004-0.002,0.005-0.004\n            L26.016,8.78c2.123-2.124,4.951-3.303,7.961-3.317c2.998,0.02,5.814,1.13,7.91,3.226c4.35,4.351,4.309,11.472-0.093,15.873\n            L25.459,40.895c-0.563,0.562-0.563,1.473,0,2.035c0.281,0.281,0.65,0.422,1.018,0.422c0.369,0,0.737-0.141,1.018-0.422\n            L43.83,26.596C49.354,21.073,49.395,12.126,43.922,6.653z" }))
       )
     );
   }
@@ -36108,9 +36076,8 @@ var FileMessage_default = FileMessage;
 
 // src/components/Messages/VideoMessage.js
 var import_react5 = __toESM(require_react());
-var import_moment3 = __toESM(require_moment());
 var VideoMessage = (props) => {
-  return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("div", { className: "sc-message--video" }, /* @__PURE__ */ import_react5.default.createElement("video", { controls: true }, /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/mp4" }), /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/ogg" }), "Your browser does not support the video tag."), /* @__PURE__ */ import_react5.default.createElement("p", { className: "date" }, (0, import_moment3.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))));
+  return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("div", { className: "sc-message--video" }, /* @__PURE__ */ import_react5.default.createElement("video", { controls: true }, /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/mp4" }), /* @__PURE__ */ import_react5.default.createElement("source", { src: props.data.media_url, type: "video/ogg" }), "Your browser does not support the video tag."), /* @__PURE__ */ import_react5.default.createElement("p", { className: "date" }, moment(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))));
 };
 var VideoMessage_default = VideoMessage;
 
@@ -36288,7 +36255,7 @@ var import_react_linkify2 = __toESM(require_Linkify());
 var tabler_download_default = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACySURBVHgB3ZRhDcIwEIUfBAGTUAcgAQk4QAISmAQcYAUUTMJwAA7KHeklZWuX12z7sX3Jy7Lm7kuaawushVPIZDSSlincgqMi62ghzXKFFwxP9SypUYBO1IdG+28jmQc5dcN1pCaMZQ6FuEiqeY+R5aRFMi28oX+ITZqT3SWHxPpvaj7TVCF9W1zoqW1hB44PWfcntKar5AmOffgmj5BuSV8VX5gmlmwS4iP4Sb4kD8zJF6F+NWGh3M3tAAAAAElFTkSuQmCC";
 
 // src/components/Messages/DocumentMessage.js
-var import_moment4 = __toESM(require_moment());
+var import_moment3 = __toESM(require_moment());
 var DocumentMessage = (props) => {
   const PrintDocIcon = ({ type }) => {
     if (type == "application/pdf") {
@@ -36314,7 +36281,7 @@ var DocumentMessage = (props) => {
     }
     return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_gala_file() });
   };
-  return /* @__PURE__ */ import_react8.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react8.default.createElement(PrintDocIcon, { type: props.data.media_mime_type }), /* @__PURE__ */ import_react8.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react8.default.createElement("h5", null, props.data.media_name), /* @__PURE__ */ import_react8.default.createElement("p", { className: "date" }, (0, import_moment4.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))), /* @__PURE__ */ import_react8.default.createElement("img", { src: tabler_download_default }));
+  return /* @__PURE__ */ import_react8.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react8.default.createElement(PrintDocIcon, { type: props.data.media_mime_type }), /* @__PURE__ */ import_react8.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react8.default.createElement("h5", null, props.data.media_name), /* @__PURE__ */ import_react8.default.createElement("p", { className: "date" }, (0, import_moment3.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))), /* @__PURE__ */ import_react8.default.createElement("img", { src: tabler_download_default }));
 };
 var DocumentMessage_default = DocumentMessage;
 
@@ -36324,8 +36291,6 @@ var Message = class extends import_react9.Component {
     const type = typex.toString();
     switch (type) {
       case "0":
-        return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
-      case "ai-0":
         return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
       case "19":
         return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
@@ -36398,7 +36363,7 @@ var SendIcon = class extends import_react11.Component {
           viewBox: "0 0 37.393 37.393",
           enableBackground: "new 0 0 37.393 37.393"
         },
-        /* @__PURE__ */ import_react11.default.createElement("g", { id: "Layer_2" }, /* @__PURE__ */ import_react11.default.createElement("path", { d: "M36.511,17.594L2.371,2.932c-0.374-0.161-0.81-0.079-1.1,0.21C0.982,3.43,0.896,3.865,1.055,4.241l5.613,13.263\r\n          L2.082,32.295c-0.115,0.372-0.004,0.777,0.285,1.038c0.188,0.169,0.427,0.258,0.67,0.258c0.132,0,0.266-0.026,0.392-0.08\r\n          l33.079-14.078c0.368-0.157,0.607-0.519,0.608-0.919S36.879,17.752,36.511,17.594z M4.632,30.825L8.469,18.45h8.061\r\n          c0.552,0,1-0.448,1-1s-0.448-1-1-1H8.395L3.866,5.751l29.706,12.757L4.632,30.825z" }))
+        /* @__PURE__ */ import_react11.default.createElement("g", { id: "Layer_2" }, /* @__PURE__ */ import_react11.default.createElement("path", { d: "M36.511,17.594L2.371,2.932c-0.374-0.161-0.81-0.079-1.1,0.21C0.982,3.43,0.896,3.865,1.055,4.241l5.613,13.263\n          L2.082,32.295c-0.115,0.372-0.004,0.777,0.285,1.038c0.188,0.169,0.427,0.258,0.67,0.258c0.132,0,0.266-0.026,0.392-0.08\n          l33.079-14.078c0.368-0.157,0.607-0.519,0.608-0.919S36.879,17.752,36.511,17.594z M4.632,30.825L8.469,18.45h8.061\n          c0.552,0,1-0.448,1-1s-0.448-1-1-1H8.395L3.866,5.751l29.706,12.757L4.632,30.825z" }))
       )
     );
   }
@@ -36556,7 +36521,7 @@ var UserInput = class extends import_react15.Component {
       this.props.onSubmit({
         author: "me",
         type: "emoji",
-        data: { text: emoji }
+        data: { emoji }
       });
     }
   };
@@ -36657,37 +36622,17 @@ var ChatWindow = ({
   clickMe
 }) => {
   const [start, setStart] = (0, import_react17.useState)(localStorage.getItem("start"));
-  const [formSubmit, setFormSubmit] = (0, import_react17.useState)(
-    localStorage.getItem("form_submit")
-  );
-  const handleUserInputSubmit = (0, import_react17.useCallback)(
-    (message) => {
-      onUserInputSubmit(message);
-    },
-    [onUserInputSubmit]
-  );
-  const handleFilesSelected = (0, import_react17.useCallback)(
-    (filesList) => {
-      onFilesSelected && onFilesSelected(filesList);
-    },
-    [onFilesSelected]
-  );
-  const classList = ["sc-chat-window", isOpen ? "opened" : "closed"];
-  const saveUserInfo = async (data) => {
-    try {
-      const response = await fetch("https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev/saveUserInfo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      console.log("API response:", result);
-    } catch (error) {
-      console.error("Error saving user info:", error);
-    }
-  };
+  const [formSubmit, setFormSubmit] = (0, import_react17.useState)(localStorage.getItem("form_submit"));
+  const handleUserInputSubmit = (0, import_react17.useCallback)((message) => {
+    onUserInputSubmit(message);
+  }, [onUserInputSubmit]);
+  const handleFilesSelected = (0, import_react17.useCallback)((filesList) => {
+    onFilesSelected && onFilesSelected(filesList);
+  }, [onFilesSelected]);
+  const classList = [
+    "sc-chat-window",
+    isOpen ? "opened" : "closed"
+  ];
   const handleSubmit = (event) => {
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
@@ -36695,45 +36640,8 @@ var ChatWindow = ({
     for (let [key, value] of formData.entries()) {
       formVal[key] = value;
     }
-    console.log(":::form values:::", formVal);
-    const requiredSubstrings = {
-      // 'name' maps to
-      name: "name",
-      username: "name",
-      profile_name: "name",
-      // 'email' maps to 
-      email: "email",
-      customer_email: "email",
-      user_email: "email",
-      // 'phone' maps to 'contact_number'
-      phone: "phone_number",
-      contact_number: "phone_number",
-      number: "phone_number",
-      phone_number: "phone_number",
-      // 'address' maps to 'customer_address'
-      address: "address",
-      customer_address: "address"
-    };
-    ;
-    const dataToSend = {
-      id: localStorage.getItem("sessionId"),
-      org_unit_id: localStorage.getItem("org")
-    };
-    for (let [key, value] of formData.entries()) {
-      for (let [substring, backendKey] of Object.entries(requiredSubstrings)) {
-        if (key.toLowerCase().includes(substring)) {
-          dataToSend[backendKey] = value;
-          break;
-        }
-      }
-    }
     localStorage.setItem("form_submit", formVal["name"]);
     setFormSubmit(1);
-    try {
-      saveUserInfo(dataToSend);
-    } catch (error) {
-      console.log("error saving user info");
-    }
   };
   return /* @__PURE__ */ import_react17.default.createElement("div", { className: classList.join(" ") }, /* @__PURE__ */ import_react17.default.createElement(
     Header_default,
@@ -36743,43 +36651,13 @@ var ChatWindow = ({
       onClose,
       widgetSettings
     }
-  ), !start ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react17.default.createElement("h3", null, "We are Online"), /* @__PURE__ */ import_react17.default.createElement("p", null, widgetSettings?.widget_builder?.reply_time), /* @__PURE__ */ import_react17.default.createElement(
-    "button",
-    {
-      className: "btn btn_conversation",
-      style: {
-        backgroundColor: widgetSettings?.widget_builder?.widget_color
-      },
-      type: "button",
-      onClick: () => {
-        localStorage.setItem("start", 1);
-        setStart(1);
-      }
-    },
-    widgetSettings?.widget_builder?.start_conversation_text
-  ))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, !formSubmit ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react17.default.createElement("div", { style: { marginBottom: 10 } }, /* @__PURE__ */ import_react17.default.createElement("b", null, widgetSettings?.pre_chat_form?.message)), widgetSettings?.pre_chat_form?.form?.map((item) => {
-    return /* @__PURE__ */ import_react17.default.createElement("div", { className: "field_section" }, /* @__PURE__ */ import_react17.default.createElement(
-      "input",
-      {
-        type: item.type,
-        name: item.key,
-        required: item?.required == "1" ? true : false,
-        placeholder: item.place_holder
-      }
-    ));
-  }), /* @__PURE__ */ import_react17.default.createElement(
-    "button",
-    {
-      className: "btn_conversation",
-      style: {
-        backgroundColor: widgetSettings?.widget_builder?.widget_color
-      },
-      type: "submit",
-      onCldick: () => {
-      }
-    },
-    widgetSettings?.widget_builder?.start_conversation_text
-  )))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement(
+  ), !start ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react17.default.createElement("h3", null, "We are Online"), /* @__PURE__ */ import_react17.default.createElement("p", null, widgetSettings?.widget_builder?.reply_time), /* @__PURE__ */ import_react17.default.createElement("button", { className: "btn btn_conversation", style: { backgroundColor: widgetSettings?.widget_builder?.widget_color }, type: "button", onClick: () => {
+    localStorage.setItem("start", 1);
+    setStart(1);
+  } }, widgetSettings?.widget_builder?.start_conversation_text))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, !formSubmit ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react17.default.createElement("div", { style: { marginBottom: 10 } }, /* @__PURE__ */ import_react17.default.createElement("b", null, widgetSettings?.pre_chat_form?.message)), widgetSettings?.pre_chat_form?.form?.map((item) => {
+    return /* @__PURE__ */ import_react17.default.createElement("div", { className: "field_section" }, /* @__PURE__ */ import_react17.default.createElement("input", { type: item.type, name: item.key, placeholder: item.place_holder }));
+  }), /* @__PURE__ */ import_react17.default.createElement("button", { className: "btn_conversation", style: { backgroundColor: widgetSettings?.widget_builder?.widget_color }, type: "submit", onCldick: () => {
+  } }, widgetSettings?.widget_builder?.start_conversation_text)))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement(
     MessageList_default,
     {
       messages: messageList,
@@ -39537,7 +39415,6 @@ function App({ domElement }) {
   const [orgSettings, setOrgSettings] = (0, import_react21.useState)({});
   const [fooEvents, setFooEvents] = (0, import_react21.useState)([]);
   const tokenKey = domElement.getAttribute("property-id");
-  const [formSubmit, setFormSubmit] = (0, import_react21.useState)(localStorage.getItem("form_submit"));
   const id1 = v4_default();
   const sessionId = id1;
   let menuData = [];
@@ -39562,18 +39439,10 @@ function App({ domElement }) {
       loadList();
       onConnect();
       return () => {
-        socket.current?.close();
+        onConnect();
       };
     }
   }, []);
-  (0, import_react21.useEffect)(() => {
-    if (localStorage.getItem("sessionId")) {
-      const intervalId = setInterval(() => {
-        loadListNew();
-      }, 3500);
-      return () => clearInterval(intervalId);
-    }
-  }, [org, sessionId, formSubmit]);
   const loadBotFile = async (widget_settings) => {
     const bot_id = JSON.parse(widget_settings)?.chat_bot?.bot_id;
     const url = `${backendUrl}/trigger-list?id=${bot_id}`;
@@ -39620,8 +39489,8 @@ function App({ domElement }) {
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
     const chat = {};
-    const lastId = messageList[messageList?.length - 1]?._id;
-    if (lastId && org) {
+    const lastId = messageList[messageList.length - 1]?._id;
+    if (lastId) {
       const url = `${backendUrl}/get-message-new?number=${number}`;
       const postData = {
         msg_channel: "web",
@@ -39633,19 +39502,16 @@ function App({ domElement }) {
       const dataxAll = await fetchWrapper.post(url, token, postData);
       if (dataxAll.length > 0) {
         const newVal = [...messageList, ...dataxAll];
-        localStorage.setItem("message", JSON.stringify(newVal));
         setMessageList(newVal);
       }
     } else {
-      if (localStorage.getItem("form_submit") && localStorage.getItem("conversation_id")) {
-        loadList();
-      }
+      console.log("refresh");
     }
   };
   const onSocketMessage = (0, import_react21.useCallback)((dataStr) => {
     const data = JSON.parse(dataStr);
     console.log(data);
-    if (data?.msg?.feedback) {
+    if (data.msg.feedback) {
       botResponseTemplate("feedback");
     } else {
       if (localStorage.getItem("message")) {
@@ -39663,7 +39529,7 @@ function App({ domElement }) {
   }, []);
   const onConnect = (0, import_react21.useCallback)(() => {
     if (socket.current?.readyState !== WebSocket.OPEN) {
-      const user_id = localStorage.getItem("sessionId") + "-agent";
+      const user_id = localStorage.getItem("sessionId");
       const user_name = "web";
       const URL2 = `${socketUrl}/?user_name=${user_name}&user_id=${user_id}`;
       socket.current = new WebSocket(URL2);
@@ -39678,42 +39544,29 @@ function App({ domElement }) {
     console.log("socket Close");
     onConnect();
   }, []);
-  const checkFeedbackTemplate = (data) => {
-    if (!data[data.length - 4]) return false;
-    let lastMsg = data[data.length - 4];
-    if (lastMsg?.data?.includes("Poor") && lastMsg?.data?.includes("Great") && lastMsg?.data?.includes("Average")) {
-      feedBackMenuData = true;
-      return true;
-    }
-    return false;
-  };
   const onSendPrivateMessage = (0, import_react21.useCallback)((message) => {
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
       media_wa_type: 0
     };
-    let route_to_agent = false;
     const oldMsg = JSON.parse(localStorage.getItem("message"));
     const newVal = [...oldMsg, msgData];
-    if (localStorage.getItem("routeAgent")) {
-      route_to_agent = localStorage.getItem("routeAgent");
-    }
+    localStorage.setItem("message", JSON.stringify(newVal));
+    setMessageList(newVal);
     if (!localStorage.getItem("conversation_id")) {
       let uuidConversation = v4_default();
       uuidConversation = uuidConversation.replaceAll("-", "");
       localStorage.setItem("conversation_id", uuidConversation);
     }
     let data = JSON.stringify({
-      msg: message.data.text,
-      number: localStorage.getItem("sessionId"),
-      wa_type: "0",
-      msg_channel: "web",
-      org_unit_id: localStorage.getItem("org"),
-      from: localStorage.getItem("form_submit"),
-      conversation_id: localStorage.getItem("conversation_id"),
-      isFeedback: checkFeedbackTemplate(newVal),
-      isRouteToAgent: route_to_agent
+      "msg": message.data.text,
+      "number": localStorage.getItem("sessionId"),
+      "wa_type": "0",
+      "msg_channel": "web",
+      "org_unit_id": localStorage.getItem("org"),
+      "from": localStorage.getItem("form_submit"),
+      "conversation_id": localStorage.getItem("conversation_id")
     });
     const requestOptions = {
       method: "post",
@@ -39723,13 +39576,9 @@ function App({ domElement }) {
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
     fetch(`${backendUrl}/rec-message`, requestOptions).then((response) => response.json()).then((result) => {
-      try {
-        loadListNew();
-      } catch (error2) {
-      }
-      if (message.data.text?.toLowerCase() == "exit" || message.data.text == "Exit") {
+      if (message.data.text == "exit" || message.data.text == "Exit") {
         const msgData2 = {
-          data: "Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+          data: "Thank you for contacting. We would love to see you again. <br><br>Please Type Hi to re-initiate this chat.",
           media_url: "",
           key_from_me: 1,
           media_wa_type: 0
@@ -39739,13 +39588,19 @@ function App({ domElement }) {
         localStorage.removeItem("conversation_id");
         return false;
       }
+      if (feedBackMenuData) {
+        const msgData2 = {
+          data: feedBackMenuData[message.data.text - 1]?.text ? feedBackMenuData[message.data.text - 1]?.text : "",
+          media_url: "",
+          key_from_me: 1,
+          media_wa_type: 0
+        };
+        mggSend(msgData2);
+        feedBackMenuData = false;
+        return false;
+      }
       if (!localStorage.getItem("routeAgent")) {
         botResponse(message.data.text);
-      }
-      if (feedBackMenuData) {
-        feedBackMenuData = false;
-        localStorage.removeItem("routeAgent");
-        localStorage.removeItem("conversation_id");
       }
     });
   }, []);
@@ -39819,7 +39674,6 @@ function App({ domElement }) {
         console.log(item);
         const triggerStart = dataJson.filter((rs) => rs.id == loopbackId);
         menuData = triggerStart[0].menus;
-        localStorage.setItem("menuData", JSON.stringify(menuData));
         buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
       }
       if (item.type == "text" && item.routeToAgent) {
@@ -39841,7 +39695,8 @@ function App({ domElement }) {
     }
     if (item.type = "TEXT") {
       let response = item.response + "<br>";
-      response = commonMethods.stripResponseHtml(localStorage.getItem("form_submit") || "Customer", response);
+      const buildMenuData = buildMenu(item.menus);
+      response = response + buildMenuData;
       msgData = {
         data: response,
         key_from_me: 1,
@@ -39858,7 +39713,6 @@ function App({ domElement }) {
       console.log(item);
       const triggerStart = dataJson.filter((rs) => rs.id == loopbackId);
       menuData = triggerStart[0].menus;
-      localStorage.setItem("menuData", JSON.stringify(menuData));
       buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
     }
     if (item.loopBackTriggerId != "") {
@@ -39867,7 +39721,6 @@ function App({ domElement }) {
       const triggerStart = dataJson.filter((rs) => rs.id == loopbackId);
       console.log(triggerStart);
       menuData = triggerStart[0].menus;
-      localStorage.setItem("menuData", JSON.stringify(menuData));
       buildResponseOld(triggerStart[0]);
     }
   };
@@ -39890,29 +39743,31 @@ function App({ domElement }) {
       localStorage.setItem("conversation_id", uuidConversation);
     }
     let data = JSON.stringify({
-      msg: messageData.data,
-      number: localStorage.getItem("sessionId"),
-      wa_type: "0",
-      msg_channel: "web",
-      org_unit_id: localStorage.getItem("org"),
-      from: localStorage.getItem("form_submit"),
-      conversation_id: localStorage.getItem("conversation_id"),
-      key_from_me: messageData.key_from_me,
-      route_to_agent
+      "msg": messageData.data,
+      "number": localStorage.getItem("sessionId"),
+      "wa_type": "0",
+      "msg_channel": "web",
+      "org_unit_id": localStorage.getItem("org"),
+      "from": localStorage.getItem("form_submit"),
+      "conversation_id": localStorage.getItem("conversation_id"),
+      "key_from_me": messageData.key_from_me,
+      "route_to_agent": route_to_agent
     });
     const requestOptions = {
-      method: "POST",
+      method: "post",
       headers: {}
     };
     requestOptions.headers["Content-Type"] = "application/json";
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
     fetch(`${backendUrl}/send-bot-message`, requestOptions).then((response) => response.json()).then((result) => {
-    }).catch((err) => {
-      console.log(err);
     });
   };
   const mggSend = (msg, route_to_agent = false) => {
+    const oldMsg = JSON.parse(localStorage.getItem("message"));
+    const newVal = [...oldMsg, msg];
+    localStorage.setItem("message", JSON.stringify(newVal));
+    setMessageList(newVal);
     sendBotMessage(msg, route_to_agent);
   };
   const buildForm = async (triggerData) => {
@@ -40005,7 +39860,7 @@ function App({ domElement }) {
         startForm();
         return false;
       }
-      if (msg?.toLowerCase() == "hi" || msg == "M") {
+      if (msg == "hi" || msg == "M") {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
@@ -40014,12 +39869,8 @@ function App({ domElement }) {
           menuData = triggerStart[0].menus;
           buildResponseOld(triggerStart[0]);
         }
-        localStorage.setItem("menuData", JSON.stringify(menuData));
         return false;
       } else {
-        if (!menuData.length && localStorage.getItem("menuData").length) {
-          menuData = JSON.parse(localStorage.getItem("menuData"));
-        }
         const triggerId = menuData[msg - 1]?.toTriggerId;
         const triggerData = dataJson.filter((rs) => rs.id == triggerId)[0];
         if (!triggerData) {
@@ -40039,26 +39890,22 @@ function App({ domElement }) {
             menuData = triggerData.menus;
             buildResponseOld(triggerData);
           }
-          localStorage.setItem("menuData", JSON.stringify(menuData));
         }
         return false;
       }
-      msgData.data = msgData.data.replace(
-        "{{Name}}",
-        localStorage.getItem("form_submit")
-      );
+      msgData.data = msgData.data.replace("{{Name}}", localStorage.getItem("form_submit"));
       console.log(localStorage.getItem("form_submit"));
       const oldMsg = JSON.parse(localStorage.getItem("message"));
       const newVal = [...oldMsg, msgData];
       localStorage.setItem("message", JSON.stringify(newVal));
       setMessageList(newVal);
       let data2 = JSON.stringify({
-        msg,
-        number: localStorage.getItem("sessionId"),
-        wa_type: "0",
-        msg_channel: "web",
-        org_unit_id: org,
-        from: localStorage.getItem("form_submit")
+        "msg": msg,
+        "number": localStorage.getItem("sessionId"),
+        "wa_type": "0",
+        "msg_channel": "web",
+        "org_unit_id": org,
+        "from": localStorage.getItem("form_submit")
       });
       return false;
     }
@@ -40114,6 +39961,7 @@ function App({ domElement }) {
     };
     axios_default.post(url, formdata, config).then((response) => {
       loadListNew();
+      console.log(response);
     });
     return false;
     setMessageList((prevMessageList) => [
@@ -40131,14 +39979,7 @@ function App({ domElement }) {
   return /* @__PURE__ */ import_react21.default.createElement("div", { className: "App" }, /* @__PURE__ */ import_react21.default.createElement("style", null, ` .sc-launcher, .sc-message--dtext, .sc-header {
             background: ${orgSettings?.widget_builder?.widget_color} !important;
         }
-         `), error && /* @__PURE__ */ import_react21.default.createElement(
-    ErrorPage_default,
-    {
-      isOpen: open,
-      handleClick: () => setOpen(!open),
-      clickMe
-    }
-  ), !loading && !error && /* @__PURE__ */ import_react21.default.createElement(
+         `), error && /* @__PURE__ */ import_react21.default.createElement(ErrorPage_default, { isOpen: open, handleClick: () => setOpen(!open), clickMe }), !loading && !error && /* @__PURE__ */ import_react21.default.createElement(
     Launcher_default,
     {
       agentProfile: {

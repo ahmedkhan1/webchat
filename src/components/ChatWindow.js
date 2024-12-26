@@ -133,10 +133,9 @@ const ChatWindow = ({
         <div className="we_online_section">
           <div className="text_section">
             <h3>We are Online</h3>
-            {widgetSettings?.widget_builder?.reply_time?.length && (
-            <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
-            )}
-            <button
+            {widgetSettings?.widget_builder?.reply_time && widgetSettings?.widget_builder?.reply_time.toString().length > 0 && (
+              <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
+            )}            <button
               className="btn btn_conversation"
               style={{
                 backgroundColor: widgetSettings?.widget_builder?.widget_color,
