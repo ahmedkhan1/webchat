@@ -18,7 +18,10 @@ class Message extends Component {
     case '0':
       return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
     case 'ai-0':
-      return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
+      if (this.props.message?.responded_by?.toLowerCase() !== "ai assistant") {
+        return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
+      }
+      break; 
     case '19':
       return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
     case 'emoji':
@@ -45,7 +48,7 @@ class Message extends Component {
       (this.props.message.key_from_me === 0 ? 'sent' : 'received')
     ];
     return (
-      <div className="sc-message">
+      <div className="sc-message" key={this.props.message._id}>
         <div className={contentClassList.join(' ')}>
         
           {this._renderMessageOfType(this.props.message.media_wa_type)}
