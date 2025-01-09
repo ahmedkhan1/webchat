@@ -36333,7 +36333,10 @@ var Message = class extends import_react9.Component {
       case "0":
         return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
       case "ai-0":
-        return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
+        if (this.props.message?.responded_by?.toLowerCase() !== "ai assistant") {
+          return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
+        }
+        break;
       case "19":
         return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
       case "emoji":
@@ -36355,7 +36358,7 @@ var Message = class extends import_react9.Component {
       "sc-message--content",
       this.props.message.key_from_me === 0 ? "sent" : "received"
     ];
-    return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
+    return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
   }
 };
 var Messages_default = Message;

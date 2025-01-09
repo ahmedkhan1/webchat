@@ -91,7 +91,7 @@
 
 .sc-user-input--file-icon path,
 .sc-user-input--send-icon path {
-  fill: rgba(86, 88, 103, 0.3);
+  fill: rgba(86, 88, 103, 1);
 }
 
 .sc-user-input--file-icon:hover path,
