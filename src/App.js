@@ -9,6 +9,270 @@ import { useInterval } from "./components/helpers/useInterval";
 import { fetchWrapper } from "./components/helpers";
 import ErrorPage from "./components/ErrorPage";
 import { commonMethods } from "./helper";
+import reachBSHelper from "./components/helpers/britishReach";
+
+// Navbar Component
+const Navbar = () => {
+  return (
+    <nav style={styles.navbar}>
+      <h1 style={styles.navTitle}>🌟 Reach British School</h1>
+      <ul style={styles.navLinks}>
+        <li><a href="#about">About</a></li>
+        <li><a href="#academics">Academics</a></li>
+        <li><a href="#student-life">Student Life</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  );
+};
+
+// Hero Section with a Slider
+const Hero = () => {
+  return (
+    <div style={styles.hero}>
+      <img
+        src="https://as2.ftcdn.net/v2/jpg/08/80/59/93/1000_F_880599349_WUyN8Pqevgdm3PeNZ2vKwSinJfp8mVLW.jpg"
+        alt="School Banner"
+        style={styles.heroImage}
+      />
+      <div style={styles.heroText}>
+        <h2>Welcome to Our School</h2>
+        <p>Empowering Minds, Shaping Futures</p>
+        <button style={styles.heroButton}>Learn More</button>
+      </div>
+    </div>
+  );
+};
+
+
+// About Section
+const About = () => {
+  return (
+    <div id="about" style={styles.section}>
+      <h2>About Our School</h2>
+      <p>
+        Our school combines tradition with innovation, providing students a
+        nurturing environment to excel in academics, arts, and athletics. We
+        believe in fostering critical thinking and creativity for a brighter
+        tomorrow.
+      </p>
+      <img
+        src="https://via.placeholder.com/800x300"
+        alt="About Our School"
+        style={styles.image}
+      />
+    </div>
+  );
+};
+
+// Academics Section
+const Academics = () => {
+  return (
+    <div id="academics" style={styles.sectionAlt}>
+      <h2>Academics</h2>
+      <p>
+        We offer world-class education tailored to individual student needs,
+        focusing on STEM, arts, and humanities. Explore programs that nurture
+        every student's unique talents.
+      </p>
+    </div>
+  );
+};
+
+// Student Life Section
+const StudentLife = () => {
+  return (
+    <div id="student-life" style={styles.section}>
+      <h2>Student Life</h2>
+      <p>
+        From sports teams and music clubs to coding workshops, student life is
+        vibrant and exciting. We create opportunities to help students grow
+        holistically.
+      </p>
+      <div style={styles.gallery}>
+        <img src="https://via.placeholder.com/150" alt="Gallery Image 1" />
+        <img src="https://via.placeholder.com/150" alt="Gallery Image 2" />
+        <img src="https://via.placeholder.com/150" alt="Gallery Image 3" />
+      </div>
+    </div>
+  );
+};
+
+// Events Section
+const Events = () => {
+  return (
+    <div id="events" style={styles.sectionAlt}>
+      <h2>Upcoming Events</h2>
+      <ul style={styles.eventList}>
+        <li>Science Fair - Jan 20, 2025</li>
+        <li>Sports Day - Feb 15, 2025</li>
+        <li>Graduation Ceremony - May 25, 2025</li>
+      </ul>
+    </div>
+  );
+};
+
+// Contact Section
+const Contact = () => {
+  return (
+    <div id="contact" style={styles.section}>
+      <h2>Contact Us</h2>
+      <p>Address: 123 School Lane, Education City</p>
+      <p>Phone: (123) 456-7890</p>
+      <p>Email: contact@schoolname.com</p>
+      <form style={styles.contactForm}>
+        <input type="text" placeholder="Your Name" style={styles.input} />
+        <input type="email" placeholder="Your Email" style={styles.input} />
+        <textarea placeholder="Your Message" style={styles.textarea}></textarea>
+        <button type="submit" style={styles.button}>Send</button>
+      </form>
+    </div>
+  );
+};
+
+// Footer Component
+const Footer = () => {
+  return (
+    <footer style={styles.footer}>
+      <p>&copy; 2025 School Name. All rights reserved.</p>
+      <p>Follow us on: <span style={styles.socialLinks}>🌐 Twitter | 🌐 Facebook</span></p>
+    </footer>
+  );
+};
+
+// Main School Website Component
+const SchoolWebsite = () => {
+  return (
+    <div>
+      <Navbar />
+      <Hero />
+      <About />
+      <Academics />
+      <StudentLife />
+      <Events />
+      <Contact />
+      <Footer />
+    </div>
+  );
+};
+
+// Styles
+const styles = {
+  navbar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "15px 30px",
+    backgroundColor: "#2a3d66",
+    color: "white",
+    position: "sticky",
+    top: 0,
+    zIndex: 1000,
+  },
+  navTitle: {
+    fontSize: "1.8rem",
+  },
+  navLinks: {
+    listStyle: "none",
+    display: "flex",
+    gap: "20px",
+  },
+  hero: {
+    position: "relative",
+    height: "400px",
+    overflow: "hidden",
+  },
+  heroImage: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+  heroText: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    textAlign: "center",
+    color: "white",
+    textShadow: "2px 2px 10px rgba(0, 0, 0, 0.7)",
+  },
+  heroButton: {
+    padding: "10px 20px",
+    marginTop: "15px",
+    fontSize: "1rem",
+    backgroundColor: "#ffcc00",
+    color: "#003366",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+
+  section: {
+    padding: "50px 20px",
+    textAlign: "center",
+  },
+  sectionAlt: {
+    padding: "50px 20px",
+    backgroundColor: "#f4f4f4",
+    textAlign: "center",
+  },
+  image: {
+    width: "100%",
+    marginTop: "20px",
+    borderRadius: "10px",
+  },
+  gallery: {
+    display: "flex",
+    gap: "10px",
+    justifyContent: "center",
+    marginTop: "20px",
+  },
+  eventList: {
+    listStyle: "none",
+    padding: 0,
+  },
+  contactForm: {
+    marginTop: "20px",
+  },
+  input: {
+    width: "80%",
+    padding: "10px",
+    marginBottom: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  },
+  textarea: {
+    width: "80%",
+    height: "100px",
+    padding: "10px",
+    marginBottom: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  },
+  button: {
+    padding: "10px 20px",
+    fontSize: "1rem",
+    backgroundColor: "#003366",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  footer: {
+    backgroundColor: "#2a3d66",
+    color: "white",
+    textAlign: "center",
+    padding: "15px 10px",
+  },
+  socialLinks: {
+    fontWeight: "bold",
+    color: "#ffcc00",
+  },
+};
+
+
+
 function App({ domElement }) {
   const name = "Eocean";
   const initialName = name.substring(0, 1);
@@ -52,6 +316,7 @@ function App({ domElement }) {
   }
 
   //Prod
+  // const backendUrl = 'http://localhost:3000/dev'
   const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
    const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
   const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
@@ -155,8 +420,10 @@ function App({ domElement }) {
       //setLoading(false);
 
       const datax = data?.reverse();
-      localStorage.setItem("message", JSON.stringify(datax));
-      setMessageList(datax);
+      if(datax && datax.length > 0){
+        localStorage.setItem("message", JSON.stringify(datax));
+        setMessageList(datax);
+      }
 
       //loadPrivateUser();
     } else {
@@ -193,7 +460,7 @@ function App({ domElement }) {
       const token = {};
       const dataxAll = await fetchWrapper.post(url, token, postData);
       //const datax = dataxAll.reverse()
-      if (dataxAll.length > 0) {
+      if (dataxAll && dataxAll.length > 0) {
         const newVal = [...messageList, ...dataxAll];
         localStorage.setItem("message", JSON.stringify(newVal));
         setMessageList(newVal);
@@ -329,7 +596,7 @@ function App({ domElement }) {
 
     fetch(`${backendUrl}/rec-message`, requestOptions)
       .then((response) => response.json())
-      .then((result) => {
+      .then(async(result) => {
         try {
           loadListNew();
         } catch (error) {}
@@ -343,6 +610,18 @@ function App({ domElement }) {
 
           // step 2 detect the feedback response and call sp
           // step 3 send thankyou template for feedback response
+
+
+          // const requestObject = {
+          //   org: localStorage.getItem("org"),
+          //   userMessage: message.data.text,
+          // }
+  
+          // if(requestObject.org === "eoceanchatbot"){
+          //   const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
+          //   await gptResponse(requestObject, dataJson, "", "");
+          // }
+
 
           const msgData = {
             data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
@@ -424,10 +703,14 @@ function App({ domElement }) {
     };
     // mggSend(msgData);
   };
-  const buildResponse = (response, menus,routeToAgent = false) => {
+  const buildResponse = async(response, menus,routeToAgent = false) => {
     let msgData = {};
-    response.map((item) => {
+
+    for(const item of response){
+      debugger;
+
       if (item.type == "media" && item.mediaType == "IMAGE") {
+        await delay(2 * 1000);
         msgData = {
           data: "",
           media_url: item.url,
@@ -438,6 +721,7 @@ function App({ domElement }) {
       }
 
       if (item.type == "text" && item.msgType == "InteractiveButton") {
+        await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
@@ -451,6 +735,7 @@ function App({ domElement }) {
       }
 
       if (item.type == "text" && item.msgType == "InteractiveList") {
+        await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
@@ -464,6 +749,7 @@ function App({ domElement }) {
       }
 
       if (item.type == "text" && item.msgType == "SimpleText") {
+        await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
@@ -477,6 +763,7 @@ function App({ domElement }) {
       }
 
       if (item.type == "loopback") {
+        await delay(2 * 1000);
         const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
         const loopbackId = item.loopBackId;
         console.log(item);
@@ -486,11 +773,12 @@ function App({ domElement }) {
 
         buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
       }
+    }
+
 
       // if (item.type == "text" && item.routeToAgent) {
       //   localStorage.setItem("routeAgent", true);
       // }
-    });
   };
   const buildResponseOld = (item) => {
     let msgData = {};
@@ -551,13 +839,20 @@ function App({ domElement }) {
     let menuItem = "";
     let aa = 0;
     menus.map((item) => {
-      aa = aa + 1;
-      menuItem =
-        menuItem + `<span class="int-menu" >${aa} - ${item.text}</span><br />`;
+      if(!item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation")){
+        aa = aa + 1;
+        menuItem =
+          menuItem + `<span class="int-menu" >${aa} - ${item.text}</span><br />`;
+      }
     });
 
     return menuItem;
   };
+
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   function clickMe(trigger_id) {
     alert(trigger_id);
   }
@@ -696,7 +991,8 @@ function App({ domElement }) {
     apiTrigger = false;
   };
 
-  const botResponse = (msg) => {
+  const botResponse = async(msg) => {
+    debugger;
     if (!localStorage.getItem("routeAgent")) {
       const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
       let responseData;
@@ -727,7 +1023,7 @@ function App({ domElement }) {
 
         return false;
       }
-      if (msg?.toLowerCase() == "hi" || msg == "M") {
+      if (msg?.toLowerCase() == "hi" || msg?.toLowerCase() == "m") {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
@@ -742,16 +1038,35 @@ function App({ domElement }) {
         if (!menuData.length && localStorage.getItem("menuData").length) {
           menuData = JSON.parse(localStorage.getItem("menuData"));
         }
-        const triggerId = menuData[msg - 1]?.toTriggerId;
-        const triggerData = dataJson.filter((rs) => rs.id == triggerId)[0];
 
-        if (!triggerData) {
+        menuData = menuData.filter(item => !item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation"));
+        const triggerId = (menuData && menuData.length > 1)? menuData[msg - 1]?.toTriggerId
+        : menuData[0]?.toTriggerId;
+        let triggerData = dataJson.filter((rs) => rs.id == triggerId)[0];
+
+        const requestObject = {
+          org: localStorage.getItem("org"),
+          userMessage: msg,
+        }
+
+        if (!triggerData || triggerData.response === "" && !triggerData.botResponses) {
+          if(requestObject.org === "eoceanchatbot" || requestObject.org === "eoceantest"){
+            await gptResponse(requestObject, dataJson, "", "");
+          }
           return false;
         }
 
         if (triggerData?.triggerType == "F") {
           buildForm(triggerData);
         } else {
+
+          // ...Client helpers will appear here
+          if(requestObject.org === "eoceanchatbot"){
+            const { stopFlow, updatedTrigger } = await reachBSHelper.handleCustomTrigger(requestObject, triggerData, backendUrl);
+            if(stopFlow) return;
+            updatedTrigger && (triggerData = updatedTrigger);
+          }
+
           if (triggerData?.botResponses) {
             if (triggerData?.triggerType == "A") {
               apiTrigger = triggerData;
@@ -798,6 +1113,90 @@ function App({ domElement }) {
     }
   };
 
+  const gptResponse = async (requestObject, jsonBody, currentTrigger, matchedTrigger) => {
+    try {
+        console.log('Entering conversationalGPT()');
+        console.log(`https://eoceanwaba.com:3050/chat-gpt/final-reply?org=${requestObject.org}`);
+
+        //CallGPTAPI Request Config
+        let config = {
+            method: 'post',
+            url: "https://eoceanwaba.com:3050/chat-gpt/final-reply?org="+requestObject.org,
+            // url: "https://eoceanwaba.com:3050/chat-gpt/final-reply?org=eoceanchatbot",
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data: { question: requestObject.userMessage }
+        };
+
+        const response = await axios.request(config);
+        debugger;
+        let isSuccess = response.data;
+
+        if(isSuccess.status == 200) {
+          if(requestObject.org.includes("eoceanchatbot") || requestObject.org.includes("eoceantest")) {
+            const userMessage = requestObject.userMessage.toLowerCase();
+            if( userMessage === 'i want to speak to sales experts?' ||
+              userMessage === 'how can I talk to your sales agents' ||
+              userMessage.includes('chat with an agent')  ||
+              userMessage.includes('speak with an agent')  ||
+              userMessage.includes('speak to an agent')
+            ) {
+              let msgData = {
+                data: userMessage,
+                key_from_me: 1,
+                media_wa_type: 0,
+              };
+              mggSend(msgData, true);
+            } else {
+              let triggerId = "";
+              const gptResponse = isSuccess.message;
+              console.log(gptResponse);
+              
+              if(gptResponse.includes("ADMISSION_QUERY")){
+                  triggerId = "b9601_t42ef744c1-5c1d-4a39-bbe3-8bcc82a37646";
+              } else if(gptResponse.includes("ENROLLMENT_PROCESS")){
+                  triggerId = "b9601_t5b5a2fe37-456f-4c9f-7f51-1be03a0c8a75";
+              } else if(gptResponse.includes("FEE_DISCOUNTS")){
+                  triggerId = "b9601_t6d14739d0-244e-47b4-4910-1797c04eef62";
+              } else if(gptResponse.includes("BOOK_A_SCHOOL_TOUR")){
+                  triggerId = "b9601_t77d08ed94-d942-41dc-26f6-e24c9fa92871";
+              } else if(gptResponse.includes("SCHOOL_LOCATION")){
+                  triggerId = "b9601_t80c5961d4-de62-4f07-3367-b63b99831fb9";
+              } else if(gptResponse.includes("APPLY_FOR_A_JOB")){
+                  triggerId = "b9601_t9bb5510d7-8794-419c-55c0-0a5f308795aa";
+              } else if(gptResponse.includes("PARENT_PORTAL")){
+                  triggerId = "b9601_t105f901e91-96e9-4c11-b008-1aa825a4b333";
+              }
+
+              if(triggerId) {
+                debugger;
+                const trigger = jsonBody.find(res=> res.id === triggerId);
+                if (trigger?.botResponses) {
+                  menuData = trigger.menus;
+                  buildResponse(trigger.botResponses, trigger.menus);
+                } else {
+                  menuData = trigger.menus;
+                  buildResponseOld(trigger);
+                }
+
+              } else {
+                buildResponseOld({
+                  response: gptResponse,
+                  type: "text",
+                  routeToAgent: false,
+                });
+              }
+            }
+          }
+        } else {
+            console.log('CallGPTAPI Failed: ');
+        }
+    } catch (err) {
+       console.error('CallGPTAPI Error: ' + err.message.toString());
+    }   
+  };
+
   // const sendMessage = useCallback((text) => {
   //   if (text.length > 0) {
 
@@ -814,6 +1213,24 @@ function App({ domElement }) {
   // }, []);
 
   const onFilesSelected = (fileList) => {
+    const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
+    let responseData;
+    let msgData = {};
+    
+    if (!menuData.length && localStorage.getItem("menuData").length) {
+      menuData = JSON.parse(localStorage.getItem("menuData"));
+    }
+
+    menuData = menuData.filter(item => !item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation"));
+    const triggerId = menuData && menuData[0]?.toTriggerId || "";
+    let triggerData = dataJson.filter((rs) => rs.id == triggerId)[0];
+
+    const requestObject = {
+      org: localStorage.getItem("org"),
+      userMessage: dataJson,
+    }
+
+
     let mediaTypeValue = 9;
 
     if (fileList[0].type == "image/png") {
@@ -873,53 +1290,43 @@ function App({ domElement }) {
         "x-api-key": x_api_id,
       },
     };
-    axios.post(url, formdata, config).then((response) => {
+    axios.post(url, formdata, config).then(async(response) => {
       loadListNew();
-      //loadListNew()
 
-      // const oldMsg = JSON.parse(localStorage.getItem("message"))
+      // ...Client helpers will appear here
+      // if(requestObject.org === "eoceanchatbot"){
+      //   const { stopFlow, updatedTrigger } = await reachBSHelper.handleCustomTrigger(requestObject, triggerData, backendUrl);
+      //   if(stopFlow) return;
+      //   updatedTrigger && (triggerData = updatedTrigger);
+      // }
 
-      //                const newVal = [...oldMsg,response.data]
+      if(triggerId){
+        if (triggerData?.botResponses) {
+          if (triggerData?.triggerType == "A") {
+            apiTrigger = triggerData;
+          }
+          responseData = triggerData.botResponses;
+          menuData = triggerData.menus;
+          buildResponse(responseData, triggerData.menus,triggerData?.routeToAgent);
+        } else {
+          menuData = triggerData.menus;
+          buildResponseOld(triggerData);
+        }
+        localStorage.setItem("menuData", JSON.stringify(menuData));
+      }
 
-      //                localStorage.setItem("message",JSON.stringify(newVal))
-      //                setMessageList(newVal);
     });
-
-    // fetch(`${url}`, requestOptions)
-    // .then(response => response.json())
-    // .then(result => {
-    //     //console.log(result.data.key_from_me)
-
-    //     // setListMsg([result.data,...listMsg])
-
-    //     // const newVal = [result.data].concat(listMsg)
-
-    //     // storage.set('chat', JSON.stringify(newVal))
-
-    // })
-    // .catch(error => console.log('error', error));
-
     return false;
-
-    setMessageList((prevMessageList) => [
-      ...prevMessageList,
-      {
-        author: "me",
-        type: "file",
-        data: {
-          url: objectURL,
-          fileName: fileList[0].name,
-        },
-      },
-    ]);
   };
 
   return (
     <div className="App">
+      <SchoolWebsite />
       <style>{` .sc-launcher, .sc-message--dtext, .sc-header {
             background: ${orgSettings?.widget_builder?.widget_color} !important;
         }
-         `}</style>
+         `}
+      </style>
 
       {error && (
         <ErrorPage

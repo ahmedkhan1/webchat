@@ -60,6 +60,7 @@ const ChatWindow = ({
   };
 
   const handleSubmit = (event) => {
+    debugger;
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
     const formVal = [];
@@ -107,8 +108,9 @@ const ChatWindow = ({
       }
     }
 
-
+    
     localStorage.setItem("form_submit", formVal["name"]);
+    localStorage.setItem("phone_number", formVal["phone"]);
     // form submit for basic details
     // info will be saved here for name,email,etc 
     setFormSubmit(1);
