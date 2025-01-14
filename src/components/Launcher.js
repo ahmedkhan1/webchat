@@ -67,6 +67,7 @@ class Launcher extends Component {
           showEmoji={this.props.showEmoji}
           widgetSettings={this.props.widgetSettings}
           clickMe={this.props.clickMe}
+          onSendPrivateMessage={this.props.onMessageWasSent}
         />
       </div>
     );
