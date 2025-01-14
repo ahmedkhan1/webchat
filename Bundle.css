@@ -72,6 +72,7 @@ code {
 
 /* src/styles/chat-window.css */
 .sc-chat-window {
+  z-index: 99999 !important;
   width: 370px;
   height: calc(100% - 120px);
   max-height: 590px;
@@ -91,6 +92,12 @@ code {
     Helvetica,
     Arial,
     sans-serif;
+}
+ul li a {
+  color: #fff;
+}
+#about p {
+  padding: 2rem 15rem;
 }
 .sc-chat-window.closed {
   opacity: 0;
