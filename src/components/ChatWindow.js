@@ -41,9 +41,9 @@ const ChatWindow = ({
     // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
     // Prod 
-    const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
+    // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
     // QA 
-    // const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     try {
       const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
       // const response = await fetch(`${backendUrl}/saveUserInfo`, {
@@ -68,7 +68,6 @@ const ChatWindow = ({
     for (let [key, value] of formData.entries()) {
       formVal[key] = value;
     }
-    console.log(":::form values:::",formVal);
     
     const requiredSubstrings = {
       // 'name' maps to
@@ -143,10 +142,9 @@ const ChatWindow = ({
         <div className="we_online_section">
           <div className="text_section">
             <h3>We are Online</h3>
-            {widgetSettings?.widget_builder?.reply_time?.length && (
-            <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
-            )}
-            <button
+            {widgetSettings?.widget_builder?.reply_time && widgetSettings?.widget_builder?.reply_time.toString().length > 0 && (
+              <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
+            )}            <button
               className="btn btn_conversation"
               style={{
                 backgroundColor: widgetSettings?.widget_builder?.widget_color,

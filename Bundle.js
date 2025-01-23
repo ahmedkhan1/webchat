@@ -35858,7 +35858,7 @@ function request(method) {
       method,
       headers: authHeader(url, token)
     };
-    requestOptions.headers["x-api-key"] = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
+    requestOptions.headers["x-api-key"] = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
     if (body) {
       requestOptions.headers["Content-Type"] = "application/json";
       requestOptions.body = JSON.stringify(body);
@@ -36267,13 +36267,16 @@ var import_moment = __toESM(require_moment());
 init_helper();
 var TextMessage = (props) => {
   let msg = props?.data || props?.message?.data;
+  if (!msg) {
+    return null;
+  }
   msg = msg.replaceAll("\\\\n", "<br />");
   let translatedResponse = msg.split("/+-/Translation/+-/");
   if (translatedResponse.length === 2) {
     msg = translatedResponse[1];
   }
   msg = commonMethods.stripResponseHtml(props?.data?.from_name, msg);
-  return /* @__PURE__ */ import_react.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react.default.createElement(import_react_linkify.default, { properties: { target: "_blank" } }, /* @__PURE__ */ import_react.default.createElement("h5", null, /* @__PURE__ */ import_react.default.createElement("span", { dangerouslySetInnerHTML: { __html: msg } })), /* @__PURE__ */ import_react.default.createElement("p", { className: "date" }, (0, import_moment.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))));
+  return /* @__PURE__ */ import_react.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react.default.createElement(import_react_linkify.default, { properties: { target: "_blank" } }, /* @__PURE__ */ import_react.default.createElement("h5", { style: { maxWidth: "16rem" } }, /* @__PURE__ */ import_react.default.createElement("span", { dangerouslySetInnerHTML: { __html: msg } })), /* @__PURE__ */ import_react.default.createElement("p", { className: "date" }, (0, import_moment.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))));
 };
 var TextMessage_default = TextMessage;
 
@@ -36538,7 +36541,7 @@ var DocumentMessage = (props) => {
     }
     return /* @__PURE__ */ import_react8.default.createElement("img", { src: require_gala_file() });
   };
-  return /* @__PURE__ */ import_react8.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react8.default.createElement(PrintDocIcon, { type: props.data.media_mime_type }), /* @__PURE__ */ import_react8.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react8.default.createElement("h5", null, props.data.media_name), /* @__PURE__ */ import_react8.default.createElement("p", { className: "date" }, (0, import_moment4.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))), /* @__PURE__ */ import_react8.default.createElement("img", { src: tabler_download_default }));
+  return /* @__PURE__ */ import_react8.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react8.default.createElement(PrintDocIcon, { type: props.data.media_mime_type }), /* @__PURE__ */ import_react8.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react8.default.createElement("h5", null, props.data.media_name), /* @__PURE__ */ import_react8.default.createElement("p", { className: "date" }, (0, import_moment4.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))), /* @__PURE__ */ import_react8.default.createElement("a", { href: props?.data?.media_url, target: "_blank" }, /* @__PURE__ */ import_react8.default.createElement("img", { src: tabler_download_default })));
 };
 var DocumentMessage_default = DocumentMessage;
 
@@ -36550,7 +36553,10 @@ var Message = class extends import_react9.Component {
       case "0":
         return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
       case "ai-0":
-        return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
+        if (this.props.message?.responded_by?.toLowerCase() !== "ai assistant") {
+          return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
+        }
+        break;
       case "19":
         return /* @__PURE__ */ import_react9.default.createElement(TextMessage_default, { clickMe: this.props.clickMe, ...this.props.message });
       case "emoji":
@@ -36572,7 +36578,7 @@ var Message = class extends import_react9.Component {
       "sc-message--content",
       this.props.message.key_from_me === 0 ? "sent" : "received"
     ];
-    return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
+    return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
   }
 };
 var Messages_default = Message;
@@ -36634,7 +36640,7 @@ var import_react12 = __toESM(require_react());
 var EmojiIcon = ({ tooltip, onClick, isActive }) => /* @__PURE__ */ import_react12.default.createElement("div", { className: "sc-user-input--picker-wrapper" }, tooltip, /* @__PURE__ */ import_react12.default.createElement("button", { id: "sc-emoji-picker-button", className: "sc-user-input--emoji-icon-wrapper", onClick }, /* @__PURE__ */ import_react12.default.createElement(
   "svg",
   {
-    className: `sc-user-input--emoji-icon ${isActive ? "active" : ""}`,
+    className: `sc-user-input--emoji-icon ${"active"}`,
     version: "1.1",
     xmlns: "http://www.w3.org/2000/svg",
     x: "0px",
@@ -36884,7 +36890,8 @@ var ChatWindow = ({
   showEmoji,
   messageList = [],
   widgetSettings,
-  clickMe
+  clickMe,
+  onSendPrivateMessage
 }) => {
   const [start, setStart] = (0, import_react17.useState)(localStorage.getItem("start"));
   const [formSubmit, setFormSubmit] = (0, import_react17.useState)(
@@ -36904,7 +36911,7 @@ var ChatWindow = ({
   );
   const classList = ["sc-chat-window", isOpen ? "opened" : "closed"];
   const saveUserInfo = async (data) => {
-    const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
+    const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     try {
       const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
       console.log("API response:", result);
@@ -36920,7 +36927,6 @@ var ChatWindow = ({
     for (let [key, value] of formData.entries()) {
       formVal[key] = value;
     }
-    console.log(":::form values:::", formVal);
     const requiredSubstrings = {
       // 'name' maps to
       name: "name",
@@ -36955,6 +36961,12 @@ var ChatWindow = ({
     localStorage.setItem("form_submit", formVal["name"]);
     localStorage.setItem("phone_number", formVal["phone"]);
     setFormSubmit(1);
+    const hiMsg = {
+      author: "me",
+      type: "text",
+      data: { text: "hi" }
+    };
+    onSendPrivateMessage(hiMsg);
     try {
       saveUserInfo(dataToSend);
     } catch (error) {
@@ -36969,7 +36981,7 @@ var ChatWindow = ({
       onClose,
       widgetSettings
     }
-  ), !start ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react17.default.createElement("h3", null, "We are Online"), widgetSettings?.widget_builder?.reply_time?.length && /* @__PURE__ */ import_react17.default.createElement("p", null, "We typically reply in ", widgetSettings?.widget_builder?.reply_time), /* @__PURE__ */ import_react17.default.createElement(
+  ), !start ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react17.default.createElement("h3", null, "We are Online"), widgetSettings?.widget_builder?.reply_time && widgetSettings?.widget_builder?.reply_time.toString().length > 0 && /* @__PURE__ */ import_react17.default.createElement("p", null, "We typically reply in ", widgetSettings?.widget_builder?.reply_time), "            ", /* @__PURE__ */ import_react17.default.createElement(
     "button",
     {
       className: "btn btn_conversation",
@@ -37096,7 +37108,8 @@ var Launcher = class extends import_react18.Component {
         onClose: this.handleClick.bind(this),
         showEmoji: this.props.showEmoji,
         widgetSettings: this.props.widgetSettings,
-        clickMe: this.props.clickMe
+        clickMe: this.props.clickMe,
+        onSendPrivateMessage: this.props.onMessageWasSent
       }
     ));
   }
@@ -39881,9 +39894,9 @@ function App({ domElement }) {
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-  const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
-  const socketUrl = "wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production";
-  const x_api_id = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
+  const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
   (0, import_react21.useEffect)(() => {
     if (tokenKey == "" || !tokenKey) {
       setError(true);
@@ -39916,7 +39929,7 @@ function App({ domElement }) {
     const url = `${backendUrl}/get-org-by-key`;
     const token = {};
     setLoading(true);
-    const postData = { token: tokenKey };
+    const postData = { token: tokenKey, msg_channel: "web" };
     const data = await fetchWrapper.post(url, token, postData);
     if (!data.data) {
       setError(true);
@@ -40023,7 +40036,7 @@ function App({ domElement }) {
   const checkSpamUnblock = (data) => {
     if (!data[data.length - 3]) return false;
     let lastMsg = data[data.length - 3];
-    if (lastMsg?.data?.includes("marked the conversaton unblocked")) {
+    if (lastMsg?.data?.includes("marked the conversation unblocked")) {
       return true;
     }
     return false;
@@ -40234,7 +40247,7 @@ function App({ domElement }) {
     menus.map((item) => {
       if (!item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation")) {
         aa = aa + 1;
-        menuItem = menuItem + `<span class="int-menu" >${item.text}</span><br />`;
+        menuItem = menuItem + `<span class="int-menu" >${aa} - ${item.text}</span><br />`;
       }
     });
     return menuItem;
@@ -40379,7 +40392,7 @@ function App({ domElement }) {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
-          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus, triggerStart[0]?.routeToAgent);
         } else {
           menuData = triggerStart[0].menus;
           buildResponseOld(triggerStart[0]);

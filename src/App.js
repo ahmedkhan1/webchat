@@ -316,17 +316,16 @@ function App({ domElement }) {
   }
 
   //Prod
-  // const backendUrl = 'http://localhost:3000/dev'
-  const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
-   const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
-  const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
+  // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
+  //  const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
+  // const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
 
   //   // Stg
-  // const backendUrl =
-  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  // const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  // const socketUrl =
-  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  const backendUrl =
+    "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  const socketUrl =
+    "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   //   Local
   // const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
@@ -380,7 +379,7 @@ function App({ domElement }) {
 
     const token = {};
     setLoading(true);
-    const postData = { token: tokenKey };
+    const postData = { token: tokenKey,msg_channel: "web" };
     const data = await fetchWrapper.post(url, token, postData);
 
     if (!data.data) {
@@ -538,7 +537,7 @@ function App({ domElement }) {
   const checkSpamUnblock = (data) => {
     if (!data[data.length - 3]) return false;
     let lastMsg = data[data.length - 3];
-    if (lastMsg?.data?.includes("marked the conversaton unblocked")) {
+    if (lastMsg?.data?.includes("marked the conversation unblocked")) {
       return true;
     }
     return false;
@@ -1027,7 +1026,7 @@ function App({ domElement }) {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
-          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus, triggerStart[0]?.routeToAgent);
         } else {
           menuData = triggerStart[0].menus;
           buildResponseOld(triggerStart[0]);
