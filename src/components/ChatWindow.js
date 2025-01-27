@@ -16,6 +16,7 @@ const ChatWindow = ({
   messageList = [],
   widgetSettings,
   clickMe,
+  onSendPrivateMessage
 }) => {
   const [start, setStart] = useState(localStorage.getItem("start"));
   const [formSubmit, setFormSubmit] = useState(
@@ -60,6 +61,7 @@ const ChatWindow = ({
   };
 
   const handleSubmit = (event) => {
+    debugger;
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
     const formVal = [];
@@ -106,11 +108,19 @@ const ChatWindow = ({
       }
     }
 
-
+    
     localStorage.setItem("form_submit", formVal["name"]);
+    localStorage.setItem("phone_number", formVal["phone"]);
     // form submit for basic details
     // info will be saved here for name,email,etc 
     setFormSubmit(1);
+    const hiMsg  =  {
+      author: "me",
+      type: "text",
+      data: {text:"hi"},
+    };
+      onSendPrivateMessage(hiMsg);
+
     try {
       saveUserInfo(dataToSend)
     } catch (error) {
