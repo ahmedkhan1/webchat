@@ -36420,7 +36420,7 @@ var import_react12 = __toESM(require_react());
 var EmojiIcon = ({ tooltip, onClick, isActive }) => /* @__PURE__ */ import_react12.default.createElement("div", { className: "sc-user-input--picker-wrapper" }, tooltip, /* @__PURE__ */ import_react12.default.createElement("button", { id: "sc-emoji-picker-button", className: "sc-user-input--emoji-icon-wrapper", onClick }, /* @__PURE__ */ import_react12.default.createElement(
   "svg",
   {
-    className: `sc-user-input--emoji-icon ${isActive ? "active" : ""}`,
+    className: `sc-user-input--emoji-icon ${"active"}`,
     version: "1.1",
     xmlns: "http://www.w3.org/2000/svg",
     x: "0px",

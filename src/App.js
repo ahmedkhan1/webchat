@@ -27,6 +27,7 @@ function App({ domElement }) {
   const [fooEvents, setFooEvents] = useState([]);
 
   const tokenKey = domElement.getAttribute("property-id");
+  console.log(JSON.parse(domElement.getAttribute("additionalparams")));
   const [formSubmit, setFormSubmit] = useState(
     localStorage.getItem("form_submit")
   );
@@ -437,7 +438,7 @@ function App({ domElement }) {
         mggSend(msgData);
       }
 
-      if (item.type == "text" && item.msgType == "InteractiveButton") {
+      else if(item.type == "text" && item.msgType == "InteractiveButton") {
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
@@ -450,7 +451,7 @@ function App({ domElement }) {
         mggSend(msgData);
       }
 
-      if (item.type == "text" && item.msgType == "InteractiveList") {
+      else if(item.type == "text" && item.msgType == "InteractiveList") {
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
@@ -463,7 +464,7 @@ function App({ domElement }) {
         mggSend(msgData);
       }
 
-      if (item.type == "text" && item.msgType == "SimpleText") {
+      else if(item.type == "text" && item.msgType == "SimpleText") {
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
@@ -476,7 +477,7 @@ function App({ domElement }) {
         mggSend(msgData,routeToAgent);
       }
 
-      if (item.type == "loopback") {
+      else if(item.type == "loopback") {
         const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
         const loopbackId = item.loopBackId;
         console.log(item);
