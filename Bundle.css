@@ -496,8 +496,7 @@ audio::-webkit-media-controls-enclosure {
   overflow: scroll;
   bottom: 0;
   overflow-x: hidden;
-  overflow-y: scroll;
-  scrollbar-width: thin;
+  overflow-y: auto;
 }
 .sc-user-input--text:empty:before {
   content: attr(placeholder);

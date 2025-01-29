@@ -21,8 +21,8 @@ export const commonMethods = {
         body = body.replaceAllTxt("&nbsp;", " ");
         body = body.replaceAllTxt("&amp;", "&");
         body = body.replaceAllTxt("{{Name}}", userName);
-        body = body.replace("*","<strong>");
-        body = body.replace( "*","</strong>");
+
+        body = body.replace(/\*(.*?)\*/g, "<strong>$1</strong>");
 
         return body;
     }

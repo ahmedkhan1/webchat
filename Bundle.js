@@ -4510,15 +4510,15 @@ var require_react_dom_development = __commonJS({
           };
         }
         var warnValidStyle$1 = warnValidStyle;
-        function createDangerousStringForStyles(styles2) {
+        function createDangerousStringForStyles(styles) {
           {
             var serialized = "";
             var delimiter = "";
-            for (var styleName in styles2) {
-              if (!styles2.hasOwnProperty(styleName)) {
+            for (var styleName in styles) {
+              if (!styles.hasOwnProperty(styleName)) {
                 continue;
               }
-              var styleValue = styles2[styleName];
+              var styleValue = styles[styleName];
               if (styleValue != null) {
                 var isCustomProperty = styleName.indexOf("--") === 0;
                 serialized += delimiter + (isCustomProperty ? styleName : hyphenateStyleName(styleName)) + ":";
@@ -4529,19 +4529,19 @@ var require_react_dom_development = __commonJS({
             return serialized || null;
           }
         }
-        function setValueForStyles(node, styles2) {
+        function setValueForStyles(node, styles) {
           var style2 = node.style;
-          for (var styleName in styles2) {
-            if (!styles2.hasOwnProperty(styleName)) {
+          for (var styleName in styles) {
+            if (!styles.hasOwnProperty(styleName)) {
               continue;
             }
             var isCustomProperty = styleName.indexOf("--") === 0;
             {
               if (!isCustomProperty) {
-                warnValidStyle$1(styleName, styles2[styleName]);
+                warnValidStyle$1(styleName, styles[styleName]);
               }
             }
-            var styleValue = dangerousStyleValue(styleName, styles2[styleName], isCustomProperty);
+            var styleValue = dangerousStyleValue(styleName, styles[styleName], isCustomProperty);
             if (styleName === "float") {
               styleName = "cssFloat";
             }
@@ -4555,9 +4555,9 @@ var require_react_dom_development = __commonJS({
         function isValueEmpty(value) {
           return value == null || typeof value === "boolean" || value === "";
         }
-        function expandShorthandMap(styles2) {
+        function expandShorthandMap(styles) {
           var expanded = {};
-          for (var key in styles2) {
+          for (var key in styles) {
             var longhands = shorthandToLonghand[key] || [key];
             for (var i2 = 0; i2 < longhands.length; i2++) {
               expanded[longhands[i2]] = key;
@@ -35858,7 +35858,7 @@ function request(method) {
       method,
       headers: authHeader(url, token)
     };
-    requestOptions.headers["x-api-key"] = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+    requestOptions.headers["x-api-key"] = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
     if (body) {
       requestOptions.headers["Content-Type"] = "application/json";
       requestOptions.body = JSON.stringify(body);
@@ -36911,7 +36911,7 @@ var ChatWindow = ({
   );
   const classList = ["sc-chat-window", isOpen ? "opened" : "closed"];
   const saveUserInfo = async (data) => {
-    const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
     try {
       const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
       console.log("API response:", result);
@@ -39713,158 +39713,6 @@ var ErrorPage_default = ErrorPage;
 // src/App.js
 init_helper();
 var import_britishReach = __toESM(require_britishReach());
-var Navbar = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("nav", { style: styles.navbar }, /* @__PURE__ */ import_react21.default.createElement("h1", { style: styles.navTitle }, "\u{1F31F} Reach British School"), /* @__PURE__ */ import_react21.default.createElement("ul", { style: styles.navLinks }, /* @__PURE__ */ import_react21.default.createElement("li", null, /* @__PURE__ */ import_react21.default.createElement("a", { href: "#about" }, "About")), /* @__PURE__ */ import_react21.default.createElement("li", null, /* @__PURE__ */ import_react21.default.createElement("a", { href: "#academics" }, "Academics")), /* @__PURE__ */ import_react21.default.createElement("li", null, /* @__PURE__ */ import_react21.default.createElement("a", { href: "#student-life" }, "Student Life")), /* @__PURE__ */ import_react21.default.createElement("li", null, /* @__PURE__ */ import_react21.default.createElement("a", { href: "#events" }, "Events")), /* @__PURE__ */ import_react21.default.createElement("li", null, /* @__PURE__ */ import_react21.default.createElement("a", { href: "#contact" }, "Contact"))));
-};
-var Hero = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("div", { style: styles.hero }, /* @__PURE__ */ import_react21.default.createElement(
-    "img",
-    {
-      src: "https://as2.ftcdn.net/v2/jpg/08/80/59/93/1000_F_880599349_WUyN8Pqevgdm3PeNZ2vKwSinJfp8mVLW.jpg",
-      alt: "School Banner",
-      style: styles.heroImage
-    }
-  ), /* @__PURE__ */ import_react21.default.createElement("div", { style: styles.heroText }, /* @__PURE__ */ import_react21.default.createElement("h2", null, "Welcome to Our School"), /* @__PURE__ */ import_react21.default.createElement("p", null, "Empowering Minds, Shaping Futures"), /* @__PURE__ */ import_react21.default.createElement("button", { style: styles.heroButton }, "Learn More")));
-};
-var About = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("div", { id: "about", style: styles.section }, /* @__PURE__ */ import_react21.default.createElement("h2", null, "About Our School"), /* @__PURE__ */ import_react21.default.createElement("p", null, "Our school combines tradition with innovation, providing students a nurturing environment to excel in academics, arts, and athletics. We believe in fostering critical thinking and creativity for a brighter tomorrow."), /* @__PURE__ */ import_react21.default.createElement(
-    "img",
-    {
-      src: "https://via.placeholder.com/800x300",
-      alt: "About Our School",
-      style: styles.image
-    }
-  ));
-};
-var Academics = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("div", { id: "academics", style: styles.sectionAlt }, /* @__PURE__ */ import_react21.default.createElement("h2", null, "Academics"), /* @__PURE__ */ import_react21.default.createElement("p", null, "We offer world-class education tailored to individual student needs, focusing on STEM, arts, and humanities. Explore programs that nurture every student's unique talents."));
-};
-var StudentLife = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("div", { id: "student-life", style: styles.section }, /* @__PURE__ */ import_react21.default.createElement("h2", null, "Student Life"), /* @__PURE__ */ import_react21.default.createElement("p", null, "From sports teams and music clubs to coding workshops, student life is vibrant and exciting. We create opportunities to help students grow holistically."), /* @__PURE__ */ import_react21.default.createElement("div", { style: styles.gallery }, /* @__PURE__ */ import_react21.default.createElement("img", { src: "https://via.placeholder.com/150", alt: "Gallery Image 1" }), /* @__PURE__ */ import_react21.default.createElement("img", { src: "https://via.placeholder.com/150", alt: "Gallery Image 2" }), /* @__PURE__ */ import_react21.default.createElement("img", { src: "https://via.placeholder.com/150", alt: "Gallery Image 3" })));
-};
-var Events = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("div", { id: "events", style: styles.sectionAlt }, /* @__PURE__ */ import_react21.default.createElement("h2", null, "Upcoming Events"), /* @__PURE__ */ import_react21.default.createElement("ul", { style: styles.eventList }, /* @__PURE__ */ import_react21.default.createElement("li", null, "Science Fair - Jan 20, 2025"), /* @__PURE__ */ import_react21.default.createElement("li", null, "Sports Day - Feb 15, 2025"), /* @__PURE__ */ import_react21.default.createElement("li", null, "Graduation Ceremony - May 25, 2025")));
-};
-var Contact = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("div", { id: "contact", style: styles.section }, /* @__PURE__ */ import_react21.default.createElement("h2", null, "Contact Us"), /* @__PURE__ */ import_react21.default.createElement("p", null, "Address: 123 School Lane, Education City"), /* @__PURE__ */ import_react21.default.createElement("p", null, "Phone: (123) 456-7890"), /* @__PURE__ */ import_react21.default.createElement("p", null, "Email: contact@schoolname.com"), /* @__PURE__ */ import_react21.default.createElement("form", { style: styles.contactForm }, /* @__PURE__ */ import_react21.default.createElement("input", { type: "text", placeholder: "Your Name", style: styles.input }), /* @__PURE__ */ import_react21.default.createElement("input", { type: "email", placeholder: "Your Email", style: styles.input }), /* @__PURE__ */ import_react21.default.createElement("textarea", { placeholder: "Your Message", style: styles.textarea }), /* @__PURE__ */ import_react21.default.createElement("button", { type: "submit", style: styles.button }, "Send")));
-};
-var Footer = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("footer", { style: styles.footer }, /* @__PURE__ */ import_react21.default.createElement("p", null, "\xA9 2025 School Name. All rights reserved."), /* @__PURE__ */ import_react21.default.createElement("p", null, "Follow us on: ", /* @__PURE__ */ import_react21.default.createElement("span", { style: styles.socialLinks }, "\u{1F310} Twitter | \u{1F310} Facebook")));
-};
-var SchoolWebsite = () => {
-  return /* @__PURE__ */ import_react21.default.createElement("div", null, /* @__PURE__ */ import_react21.default.createElement(Navbar, null), /* @__PURE__ */ import_react21.default.createElement(Hero, null), /* @__PURE__ */ import_react21.default.createElement(About, null), /* @__PURE__ */ import_react21.default.createElement(Academics, null), /* @__PURE__ */ import_react21.default.createElement(StudentLife, null), /* @__PURE__ */ import_react21.default.createElement(Events, null), /* @__PURE__ */ import_react21.default.createElement(Contact, null), /* @__PURE__ */ import_react21.default.createElement(Footer, null));
-};
-var styles = {
-  navbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "15px 30px",
-    backgroundColor: "#2a3d66",
-    color: "white",
-    position: "sticky",
-    top: 0,
-    zIndex: 1e3
-  },
-  navTitle: {
-    fontSize: "1.8rem"
-  },
-  navLinks: {
-    listStyle: "none",
-    display: "flex",
-    gap: "20px"
-  },
-  hero: {
-    position: "relative",
-    height: "400px",
-    overflow: "hidden"
-  },
-  heroImage: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover"
-  },
-  heroText: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    textAlign: "center",
-    color: "white",
-    textShadow: "2px 2px 10px rgba(0, 0, 0, 0.7)"
-  },
-  heroButton: {
-    padding: "10px 20px",
-    marginTop: "15px",
-    fontSize: "1rem",
-    backgroundColor: "#ffcc00",
-    color: "#003366",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer"
-  },
-  section: {
-    padding: "50px 20px",
-    textAlign: "center"
-  },
-  sectionAlt: {
-    padding: "50px 20px",
-    backgroundColor: "#f4f4f4",
-    textAlign: "center"
-  },
-  image: {
-    width: "100%",
-    marginTop: "20px",
-    borderRadius: "10px"
-  },
-  gallery: {
-    display: "flex",
-    gap: "10px",
-    justifyContent: "center",
-    marginTop: "20px"
-  },
-  eventList: {
-    listStyle: "none",
-    padding: 0
-  },
-  contactForm: {
-    marginTop: "20px"
-  },
-  input: {
-    width: "80%",
-    padding: "10px",
-    marginBottom: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ccc"
-  },
-  textarea: {
-    width: "80%",
-    height: "100px",
-    padding: "10px",
-    marginBottom: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ccc"
-  },
-  button: {
-    padding: "10px 20px",
-    fontSize: "1rem",
-    backgroundColor: "#003366",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer"
-  },
-  footer: {
-    backgroundColor: "#2a3d66",
-    color: "white",
-    textAlign: "center",
-    padding: "15px 10px"
-  },
-  socialLinks: {
-    fontWeight: "bold",
-    color: "#ffcc00"
-  }
-};
 function App({ domElement }) {
   const name = "Eocean";
   const initialName = name.substring(0, 1);
@@ -39878,6 +39726,7 @@ function App({ domElement }) {
   const [orgSettings, setOrgSettings] = (0, import_react21.useState)({});
   const [fooEvents, setFooEvents] = (0, import_react21.useState)([]);
   const tokenKey = domElement.getAttribute("property-id");
+  console.log(JSON.parse(domElement.getAttribute("additionalparams")));
   const [formSubmit, setFormSubmit] = (0, import_react21.useState)(
     localStorage.getItem("form_submit")
   );
@@ -39894,9 +39743,9 @@ function App({ domElement }) {
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-  const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
+  const socketUrl = "wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production";
+  const x_api_id = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
   (0, import_react21.useEffect)(() => {
     if (tokenKey == "" || !tokenKey) {
       setError(true);
@@ -40611,7 +40460,7 @@ function App({ domElement }) {
     });
     return false;
   };
-  return /* @__PURE__ */ import_react21.default.createElement("div", { className: "App" }, /* @__PURE__ */ import_react21.default.createElement(SchoolWebsite, null), /* @__PURE__ */ import_react21.default.createElement("style", null, ` .sc-launcher, .sc-message--dtext, .sc-header {
+  return /* @__PURE__ */ import_react21.default.createElement("div", { className: "App" }, /* @__PURE__ */ import_react21.default.createElement("style", null, ` .sc-launcher, .sc-message--dtext, .sc-header {
             background: ${orgSettings?.widget_builder?.widget_color} !important;
         }
          `), error && /* @__PURE__ */ import_react21.default.createElement(
