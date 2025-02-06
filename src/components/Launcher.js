@@ -50,7 +50,8 @@ class Launcher extends Component {
         <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
           <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
           <img className={'sc-open-icon'} src={launcherIconActive} />
-          <img className={'sc-closed-icon'} src={launcherIcon} /> 
+          <img className={'sc-closed-icon'} src={ (this.props.widgetSettings?.widget_builder?.messageicon) ? 
+          this.props.widgetSettings?.widget_builder?.messageicon : launcherIcon } /> 
           <p>{this.props.widgetSettings?.widget_builder?.bubble_type == 1 &&
 
               this.props.widgetSettings.widget_builder.bubble_text
@@ -58,15 +59,19 @@ class Launcher extends Component {
         </div>
 
         <ChatWindow
+          workingHours={this.props.workingHours}
           messageList={this.props.messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           onFilesSelected={this.props.onFilesSelected}
           agentProfile={this.props.agentProfile}
           isOpen={isOpen}
-          onClose={this.handleClick.bind(this)}
+          onClose={this.props.onClose}
           showEmoji={this.props.showEmoji}
           widgetSettings={this.props.widgetSettings}
           clickMe={this.props.clickMe}
+          onSendPrivateMessage={this.props.onMessageWasSent}
+          startConnection={()=>this.props.startConnection}
+          openWhatsAppRedirect={this.props.openWhatsAppRedirect}
         />
       </div>
     );
@@ -91,6 +96,7 @@ Launcher.propTypes = {
   messageList: PropTypes.arrayOf(PropTypes.object),
   mute: PropTypes.bool,
   showEmoji: PropTypes.bool,
+  startConnection: PropTypes.func,
 };
 
 Launcher.defaultProps = {

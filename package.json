@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=3002 && react-scripts start",
+    "start": "set PORT=3004 && react-scripts start",
     "build": "react-scripts build",
     "buildweb": "esbuild src/index.js --bundle --outfile=bundle.js --loader:.js=jsx --loader:.png=dataurl --loader:.svg=dataurl --loader:.mp3=binary --format=cjs",
     "test": "react-scripts test",

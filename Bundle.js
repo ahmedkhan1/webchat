@@ -36048,6 +36048,10 @@ var commonMethods = {
 var TextMessage = (props) => {
   let msg = props?.data || props?.message?.data;
   msg = msg.replaceAll("\\\\n", "<br />");
+  let translatedResponse = msg.split("/+-/Translation/+-/");
+  if (translatedResponse.length === 2) {
+    msg = translatedResponse[1];
+  }
   msg = commonMethods.stripResponseHtml(props?.data?.from_name, msg);
   return /* @__PURE__ */ import_react.default.createElement("div", { className: "sc-message--text" }, /* @__PURE__ */ import_react.default.createElement(import_react_linkify.default, { properties: { target: "_blank" } }, /* @__PURE__ */ import_react.default.createElement("h5", null, /* @__PURE__ */ import_react.default.createElement("span", { dangerouslySetInnerHTML: { __html: msg } })), /* @__PURE__ */ import_react.default.createElement("p", { className: "date" }, (0, import_moment.default)(props.send_timestamp).format("DD MMMM YYYY - hh:mm a"))));
 };
@@ -36644,6 +36648,48 @@ var Header = class extends import_react16.Component {
 };
 var Header_default = Header;
 
+// src/components/helpers/fetch-wrapper.js
+var backendurl = "";
+var fetchWrapper = {
+  get: request("GET"),
+  post: request("POST"),
+  put: request("PUT"),
+  patch: request("PATCH"),
+  delete: request("DELETE")
+};
+function request(method) {
+  return (url, token, body) => {
+    const requestOptions = {
+      method,
+      headers: authHeader(url, token)
+    };
+    requestOptions.headers["x-api-key"] = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
+    if (body) {
+      requestOptions.headers["Content-Type"] = "application/json";
+      requestOptions.body = JSON.stringify(body);
+    }
+    return fetch(url, requestOptions).then(handleResponse);
+  };
+}
+function authHeader(url, token) {
+  const isLoggedIn = !!token;
+  const isApiUrl = url.startsWith(backendurl);
+  if (isLoggedIn && isApiUrl) {
+    return { Authorization: `Bearer ${token}` };
+  } else {
+    return {};
+  }
+}
+function handleResponse(response) {
+  return response.text().then((text) => {
+    const data = text && JSON.parse(text);
+    return data;
+  });
+}
+
+// src/assets/eocean.png
+var eocean_default = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnYAAAJ2CAYAAADSVM/5AAAACXBIWXMAAC4jAAAuIwF4pT92AAAF8WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTA5LTIwVDEwOjI3OjQ4KzA1OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMS0wOS0yM1QxMDoxNDo0MyswNTowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMS0wOS0yM1QxMDoxNDo0MyswNTowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5Yjk2NDgyYS1hNTc5LWMwNGItODRlZC1kOGMxZTdkN2NhYjgiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo3YmQ0Y2RjZC0wYzc1LTg5NGMtOTA5Ni0yYWFmZWU1ZTBjYjgiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3YmU3ZjQwMy04NDYxLTBmNDMtOGI0Yy0wM2QzNjY2NWZhMjgiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjdiZTdmNDAzLTg0NjEtMGY0My04YjRjLTAzZDM2NjY1ZmEyOCIgc3RFdnQ6d2hlbj0iMjAyMS0wOS0yMFQxMDoyNzo0OCswNTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo5Yjk2NDgyYS1hNTc5LWMwNGItODRlZC1kOGMxZTdkN2NhYjgiIHN0RXZ0OndoZW49IjIwMjEtMDktMjNUMTA6MTQ6NDMrMDU6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6yO7AiAAA82UlEQVR4nO3dX2xcZ3rf8Z8oriiJa5KiZMmmdy3K2l3vxko0SZxMVMxGs0iLJm0qzyJd9CJANQYaoGhaLAn0ZtAWphG0c9EL0e1Fb9qaRC+CJkV3JOQPkhbYYXYKYVInO0x2kSa7smfWu7It2xKHXlqiTVm9OO/RHFEkNRyec95z3vP9AAOSksx5sllrf3ye93nPvnv37gkAAADpN2S7AAAAAISDYAcAAOAIgh0AAIAjCHYAAACOINgBAAA4gmAHAADgCIIdAACAIwh2AAAAjiDY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";
+
 // src/components/ChatWindow.js
 var ChatWindow = ({
   agentProfile,
@@ -36674,15 +36720,9 @@ var ChatWindow = ({
   );
   const classList = ["sc-chat-window", isOpen ? "opened" : "closed"];
   const saveUserInfo = async (data) => {
+    const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
     try {
-      const response = await fetch("https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev/saveUserInfo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
+      const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
       console.log("API response:", result);
     } catch (error) {
       console.error("Error saving user info:", error);
@@ -36743,7 +36783,7 @@ var ChatWindow = ({
       onClose,
       widgetSettings
     }
-  ), !start ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react17.default.createElement("h3", null, "We are Online"), /* @__PURE__ */ import_react17.default.createElement("p", null, widgetSettings?.widget_builder?.reply_time), /* @__PURE__ */ import_react17.default.createElement(
+  ), !start ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "text_section" }, /* @__PURE__ */ import_react17.default.createElement("h3", null, "We are Online"), widgetSettings?.widget_builder?.reply_time?.length && /* @__PURE__ */ import_react17.default.createElement("p", null, "We typically reply in ", widgetSettings?.widget_builder?.reply_time), /* @__PURE__ */ import_react17.default.createElement(
     "button",
     {
       className: "btn btn_conversation",
@@ -36757,16 +36797,20 @@ var ChatWindow = ({
       }
     },
     widgetSettings?.widget_builder?.start_conversation_text
-  ))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, !formSubmit ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react17.default.createElement("div", { style: { marginBottom: 10 } }, /* @__PURE__ */ import_react17.default.createElement("b", null, widgetSettings?.pre_chat_form?.message)), widgetSettings?.pre_chat_form?.form?.map((item) => {
-    return /* @__PURE__ */ import_react17.default.createElement("div", { className: "field_section" }, /* @__PURE__ */ import_react17.default.createElement(
-      "input",
-      {
-        type: item.type,
-        name: item.key,
-        required: item?.required == "1" ? true : false,
-        placeholder: item.place_holder
-      }
-    ));
+  ), /* @__PURE__ */ import_react17.default.createElement("div", { className: "poweredBy_footer", style: { marginTop: "10px" } }, /* @__PURE__ */ import_react17.default.createElement("img", { src: eocean_default, alt: "eocean logo", width: 20, height: 20 }), /* @__PURE__ */ import_react17.default.createElement("p", { style: { paddingLeft: 5, paddingTop: 6, fontSize: "12px" } }, "Powered by eOcean")))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, !formSubmit ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("div", { className: "we_online_section" }, /* @__PURE__ */ import_react17.default.createElement("form", { onSubmit: handleSubmit }, /* @__PURE__ */ import_react17.default.createElement("div", { style: { marginBottom: 10 } }, /* @__PURE__ */ import_react17.default.createElement("b", null, widgetSettings?.pre_chat_form?.message)), widgetSettings?.pre_chat_form?.form?.map((item) => {
+    return item.display !== "0" ? (
+      // Check if the input should be displayed
+      /* @__PURE__ */ import_react17.default.createElement("div", { className: "field_section", key: item.key }, /* @__PURE__ */ import_react17.default.createElement(
+        "input",
+        {
+          type: item.type,
+          name: item.key,
+          required: item?.required === "1",
+          placeholder: item.place_holder,
+          maxLength: 30
+        }
+      ))
+    ) : null;
   }), /* @__PURE__ */ import_react17.default.createElement(
     "button",
     {
@@ -36779,7 +36823,7 @@ var ChatWindow = ({
       }
     },
     widgetSettings?.widget_builder?.start_conversation_text
-  )))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement(
+  )), /* @__PURE__ */ import_react17.default.createElement("div", { className: "poweredBy_footer" }, /* @__PURE__ */ import_react17.default.createElement("img", { src: eocean_default, alt: "eocean logo", width: 20, height: 20 }), /* @__PURE__ */ import_react17.default.createElement("p", { style: { paddingLeft: 5 } }, "Powered by eOcean")))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement(
     MessageList_default,
     {
       messages: messageList,
@@ -36793,7 +36837,7 @@ var ChatWindow = ({
       onFilesSelected: handleFilesSelected,
       showEmoji
     }
-  ))));
+  ), /* @__PURE__ */ import_react17.default.createElement("div", { className: "poweredBy_footer" }, /* @__PURE__ */ import_react17.default.createElement("img", { src: eocean_default, alt: "eocean logo", width: 20, height: 20 }), /* @__PURE__ */ import_react17.default.createElement("p", { style: { paddingLeft: 5 } }, "Powered by eOcean")))));
 };
 ChatWindow.propTypes = {
   agentProfile: import_prop_types3.default.object.isRequired,
@@ -37566,6 +37610,11 @@ function buildURL(url, params, options) {
     return url;
   }
   const _encode = options && options.encode || encode2;
+  if (utils_default.isFunction(options)) {
+    options = {
+      serialize: options
+    };
+  }
   const serializeFn = options && options.serialize;
   let serializedParams;
   if (serializeFn) {
@@ -38296,45 +38345,13 @@ var progressEventDecorator = (total, throttled) => {
 var asyncDecorator = (fn) => (...args) => utils_default.asap(() => fn(...args));
 
 // node_modules/axios/lib/helpers/isURLSameOrigin.js
-var isURLSameOrigin_default = platform_default.hasStandardBrowserEnv ? (
-  // Standard browser envs have full support of the APIs needed to test
-  // whether the request URL is of the same origin as current location.
-  function standardBrowserEnv() {
-    const msie = platform_default.navigator && /(msie|trident)/i.test(platform_default.navigator.userAgent);
-    const urlParsingNode = document.createElement("a");
-    let originURL;
-    function resolveURL(url) {
-      let href = url;
-      if (msie) {
-        urlParsingNode.setAttribute("href", href);
-        href = urlParsingNode.href;
-      }
-      urlParsingNode.setAttribute("href", href);
-      return {
-        href: urlParsingNode.href,
-        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, "") : "",
-        host: urlParsingNode.host,
-        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, "") : "",
-        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, "") : "",
-        hostname: urlParsingNode.hostname,
-        port: urlParsingNode.port,
-        pathname: urlParsingNode.pathname.charAt(0) === "/" ? urlParsingNode.pathname : "/" + urlParsingNode.pathname
-      };
-    }
-    originURL = resolveURL(window.location.href);
-    return function isURLSameOrigin(requestURL) {
-      const parsed = utils_default.isString(requestURL) ? resolveURL(requestURL) : requestURL;
-      return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
-    };
-  }()
-) : (
-  // Non standard browser envs (web workers, react-native) lack needed support.
-  /* @__PURE__ */ function nonStandardBrowserEnv() {
-    return function isURLSameOrigin() {
-      return true;
-    };
-  }()
-);
+var isURLSameOrigin_default = platform_default.hasStandardBrowserEnv ? /* @__PURE__ */ ((origin2, isMSIE) => (url) => {
+  url = new URL(url, platform_default.origin);
+  return origin2.protocol === url.protocol && origin2.host === url.host && (isMSIE || origin2.port === url.port);
+})(
+  new URL(platform_default.origin),
+  platform_default.navigator && /(msie|trident)/i.test(platform_default.navigator.userAgent)
+) : () => true;
 
 // node_modules/axios/lib/helpers/cookies.js
 var cookies_default = platform_default.hasStandardBrowserEnv ? (
@@ -38392,7 +38409,7 @@ var headersToObject = (thing) => thing instanceof AxiosHeaders_default ? { ...th
 function mergeConfig(config1, config2) {
   config2 = config2 || {};
   const config = {};
-  function getMergedValue(target, source, caseless) {
+  function getMergedValue(target, source, prop, caseless) {
     if (utils_default.isPlainObject(target) && utils_default.isPlainObject(source)) {
       return utils_default.merge.call({ caseless }, target, source);
     } else if (utils_default.isPlainObject(source)) {
@@ -38402,11 +38419,11 @@ function mergeConfig(config1, config2) {
     }
     return source;
   }
-  function mergeDeepProperties(a2, b2, caseless) {
+  function mergeDeepProperties(a2, b2, prop, caseless) {
     if (!utils_default.isUndefined(b2)) {
-      return getMergedValue(a2, b2, caseless);
+      return getMergedValue(a2, b2, prop, caseless);
     } else if (!utils_default.isUndefined(a2)) {
-      return getMergedValue(void 0, a2, caseless);
+      return getMergedValue(void 0, a2, prop, caseless);
     }
   }
   function valueFromConfig2(a2, b2) {
@@ -38457,7 +38474,7 @@ function mergeConfig(config1, config2) {
     socketPath: defaultToConfig2,
     responseEncoding: defaultToConfig2,
     validateStatus: mergeDirectKeys,
-    headers: (a2, b2) => mergeDeepProperties(headersToObject(a2), headersToObject(b2), true)
+    headers: (a2, b2, prop) => mergeDeepProperties(headersToObject(a2), headersToObject(b2), prop, true)
   };
   utils_default.forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
     const merge2 = mergeMap[prop] || mergeDeepProperties;
@@ -39004,7 +39021,7 @@ function dispatchRequest(config) {
 }
 
 // node_modules/axios/lib/env/data.js
-var VERSION = "1.7.7";
+var VERSION = "1.7.9";
 
 // node_modules/axios/lib/helpers/validator.js
 var validators = {};
@@ -39035,6 +39052,12 @@ validators.transitional = function transitional(validator, version, message) {
       );
     }
     return validator ? validator(value, opt, opts) : true;
+  };
+};
+validators.spelling = function spelling(correctSpelling) {
+  return (value, opt) => {
+    console.warn(`${opt} is likely a misspelling of ${correctSpelling}`);
+    return true;
   };
 };
 function assertOptions(options, schema, allowUnknown) {
@@ -39087,8 +39110,8 @@ var Axios = class {
       return await this._request(configOrUrl, config);
     } catch (err) {
       if (err instanceof Error) {
-        let dummy;
-        Error.captureStackTrace ? Error.captureStackTrace(dummy = {}) : dummy = new Error();
+        let dummy = {};
+        Error.captureStackTrace ? Error.captureStackTrace(dummy) : dummy = new Error();
         const stack = dummy.stack ? dummy.stack.replace(/^.+\n/, "") : "";
         try {
           if (!err.stack) {
@@ -39130,6 +39153,10 @@ var Axios = class {
         }, true);
       }
     }
+    validator_default.assertOptions(config, {
+      baseUrl: validators2.spelling("baseURL"),
+      withXsrfToken: validators2.spelling("withXSRFToken")
+    }, true);
     config.method = (config.method || this.defaults.method || "get").toLowerCase();
     let contextHeaders = headers && utils_default.merge(
       headers.common,
@@ -39464,45 +39491,6 @@ var {
 // src/components/helpers/useInterval.js
 var import_react19 = __toESM(require_react());
 
-// src/components/helpers/fetch-wrapper.js
-var backendurl = "";
-var fetchWrapper = {
-  get: request("GET"),
-  post: request("POST"),
-  put: request("PUT"),
-  patch: request("PATCH"),
-  delete: request("DELETE")
-};
-function request(method) {
-  return (url, token, body) => {
-    const requestOptions = {
-      method,
-      headers: authHeader(url, token)
-    };
-    requestOptions.headers["x-api-key"] = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-    if (body) {
-      requestOptions.headers["Content-Type"] = "application/json";
-      requestOptions.body = JSON.stringify(body);
-    }
-    return fetch(url, requestOptions).then(handleResponse);
-  };
-}
-function authHeader(url, token) {
-  const isLoggedIn = !!token;
-  const isApiUrl = url.startsWith(backendurl);
-  if (isLoggedIn && isApiUrl) {
-    return { Authorization: `Bearer ${token}` };
-  } else {
-    return {};
-  }
-}
-function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    return data;
-  });
-}
-
 // src/components/ErrorPage.js
 var import_react20 = __toESM(require_react());
 var ErrorPage = (props) => {
@@ -39537,7 +39525,9 @@ function App({ domElement }) {
   const [orgSettings, setOrgSettings] = (0, import_react21.useState)({});
   const [fooEvents, setFooEvents] = (0, import_react21.useState)([]);
   const tokenKey = domElement.getAttribute("property-id");
-  const [formSubmit, setFormSubmit] = (0, import_react21.useState)(localStorage.getItem("form_submit"));
+  const [formSubmit, setFormSubmit] = (0, import_react21.useState)(
+    localStorage.getItem("form_submit")
+  );
   const id1 = v4_default();
   const sessionId = id1;
   let menuData = [];
@@ -39551,9 +39541,9 @@ function App({ domElement }) {
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-  const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
+  const socketUrl = "wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production";
+  const x_api_id = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
   (0, import_react21.useEffect)(() => {
     if (tokenKey == "" || !tokenKey) {
       setError(true);
@@ -39610,7 +39600,7 @@ function App({ domElement }) {
       };
       const token = {};
       const data = await fetchWrapper.post(url, token, postData);
-      const datax = data.reverse();
+      const datax = data?.reverse();
       localStorage.setItem("message", JSON.stringify(datax));
       setMessageList(datax);
     } else {
@@ -39681,8 +39671,17 @@ function App({ domElement }) {
   const checkFeedbackTemplate = (data) => {
     if (!data[data.length - 4]) return false;
     let lastMsg = data[data.length - 4];
-    if (lastMsg?.data?.includes("Poor") && lastMsg?.data?.includes("Great") && lastMsg?.data?.includes("Average")) {
+    let lastMsg2 = data[data.length - 2];
+    if (lastMsg?.data?.includes("Poor") && lastMsg?.data?.includes("Great") && lastMsg?.data?.includes("Average") || lastMsg2?.data?.includes("Poor") && lastMsg2?.data?.includes("Great") && lastMsg2?.data?.includes("Average")) {
       feedBackMenuData = true;
+      return true;
+    }
+    return false;
+  };
+  const checkSpamUnblock = (data) => {
+    if (!data[data.length - 3]) return false;
+    let lastMsg = data[data.length - 3];
+    if (lastMsg?.data?.includes("marked the conversaton unblocked")) {
       return true;
     }
     return false;
@@ -39696,6 +39695,10 @@ function App({ domElement }) {
     let route_to_agent = false;
     const oldMsg = JSON.parse(localStorage.getItem("message"));
     const newVal = [...oldMsg, msgData];
+    if (!checkFeedbackTemplate(newVal) && checkSpamUnblock(newVal)) {
+      localStorage.removeItem("routeAgent");
+      localStorage.removeItem("conversation_id");
+    }
     if (localStorage.getItem("routeAgent")) {
       route_to_agent = localStorage.getItem("routeAgent");
     }
@@ -39729,7 +39732,7 @@ function App({ domElement }) {
       }
       if (message.data.text?.toLowerCase() == "exit" || message.data.text == "Exit") {
         const msgData2 = {
-          data: "Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+          data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
           media_url: "",
           key_from_me: 1,
           media_wa_type: 0
@@ -39740,7 +39743,16 @@ function App({ domElement }) {
         return false;
       }
       if (!localStorage.getItem("routeAgent")) {
-        botResponse(message.data.text);
+        if (localStorage.getItem("widget_settings") && JSON.parse(localStorage.getItem("widget_settings"))?.chat_bot?.enabled_chatbot === false) {
+          const msgData2 = {
+            data: "<p>Please wait, one of our agents will contact you shortly.</p><p><br></p><p>Type <strong>Exit</strong> to end the conversation at any time.</p>",
+            key_from_me: 1,
+            media_wa_type: 0
+          };
+          sendBotMessage(msgData2, true);
+        } else {
+          botResponse(message.data.text);
+        }
       }
       if (feedBackMenuData) {
         feedBackMenuData = false;
@@ -39765,7 +39777,7 @@ function App({ domElement }) {
       media_wa_type: 0
     };
   };
-  const buildResponse = (response, menus) => {
+  const buildResponse = (response, menus, routeToAgent = false) => {
     let msgData = {};
     response.map((item) => {
       if (item.type == "media" && item.mediaType == "IMAGE") {
@@ -39811,7 +39823,7 @@ function App({ domElement }) {
           key_from_me: 1,
           media_wa_type: 0
         };
-        mggSend(msgData);
+        mggSend(msgData, routeToAgent);
       }
       if (item.type == "loopback") {
         const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
@@ -39821,9 +39833,6 @@ function App({ domElement }) {
         menuData = triggerStart[0].menus;
         localStorage.setItem("menuData", JSON.stringify(menuData));
         buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
-      }
-      if (item.type == "text" && item.routeToAgent) {
-        localStorage.setItem("routeAgent", true);
       }
     });
   };
@@ -39841,16 +39850,16 @@ function App({ domElement }) {
     }
     if (item.type = "TEXT") {
       let response = item.response + "<br>";
-      response = commonMethods.stripResponseHtml(localStorage.getItem("form_submit") || "Customer", response);
+      response = commonMethods.stripResponseHtml(
+        localStorage.getItem("form_submit") || "Customer",
+        response
+      );
       msgData = {
         data: response,
         key_from_me: 1,
         media_wa_type: 0
       };
       mggSend(msgData, item.routeToAgent);
-      if (item.routeToAgent) {
-        localStorage.setItem("routeAgent", true);
-      }
     }
     if (item.type == "loopback") {
       const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
@@ -39908,6 +39917,13 @@ function App({ domElement }) {
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
     fetch(`${backendUrl}/send-bot-message`, requestOptions).then((response) => response.json()).then((result) => {
+      try {
+        loadListNew();
+      } catch (error2) {
+      }
+      if (result?.route_to_agent) {
+        localStorage.setItem("routeAgent", true);
+      }
     }).catch((err) => {
       console.log(err);
     });
@@ -40034,7 +40050,7 @@ function App({ domElement }) {
             }
             responseData = triggerData.botResponses;
             menuData = triggerData.menus;
-            buildResponse(responseData, triggerData.menus);
+            buildResponse(responseData, triggerData.menus, triggerData?.routeToAgent);
           } else {
             menuData = triggerData.menus;
             buildResponseOld(triggerData);

@@ -54,14 +54,23 @@ class UserInput extends Component {
     this.setState({ emojiPickerIsOpen: false });
   }
 
+
   _submitText(event) { //this function will run on the on submit of the text message 
     event.preventDefault();
+    function messageSound(){
+      console.log("here")
+      let oAudio = document.getElementById('audio');
+      oAudio.play();
+    }
+
     const text = this.userInput.textContent;
     if (text && text.length > 0) {
+
       this.props.onSubmit({
         author: 'me',
         type: 'text',
-        data: { text }
+        data: { text },
+        messageSound: messageSound
       });
       this.userInput.innerHTML = '';
     }

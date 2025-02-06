@@ -15,7 +15,11 @@ const ChatWindow = ({
   showEmoji,
   messageList = [],
   widgetSettings,
+  workingHours,
   clickMe,
+  onSendPrivateMessage,
+  startConnection,
+  openWhatsAppRedirect
 }) => {
   const [start, setStart] = useState(localStorage.getItem("start"));
   const [formSubmit, setFormSubmit] = useState(
@@ -60,6 +64,9 @@ const ChatWindow = ({
   };
 
   const handleSubmit = (event) => {
+    debugger;
+
+    startConnection();
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
     const formVal = [];
@@ -107,11 +114,22 @@ const ChatWindow = ({
       }
     }
 
-
+    
     localStorage.setItem("form_submit", formVal["name"]);
+    localStorage.setItem("phone_number", formVal["phone"]);
+    localStorage.setItem("sound", "false");
+
     // form submit for basic details
     // info will be saved here for name,email,etc 
     setFormSubmit(1);
+    const hiMsg  =  {
+      author: "me",
+      type: "text",
+      data: {text:"hi"},
+    };
+    onSendPrivateMessage(hiMsg);
+
+
     try {
       saveUserInfo(dataToSend)
     } catch (error) {
@@ -119,7 +137,50 @@ const ChatWindow = ({
     }
   };
 
-  
+  const isAvailableForChat = () => {
+    debugger;
+    if(workingHours && workingHours?.length){
+      const today = new Date();
+
+      const { startTime, endTime } = workingHours[today.getDay()];
+
+      // Parse start and end times
+      const parseTime = (timeStr) => {
+        const [time, modifier] = timeStr.split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
+    
+        if (modifier.toLowerCase() === "pm" && hours !== 12) {
+          hours += 12;
+        }
+        if (modifier.toLowerCase() === "am" && hours === 12) {
+          hours = 0;
+        }
+        return { hours, minutes };
+      };
+    
+      const start = parseTime(startTime);
+      const end = parseTime(endTime);
+    
+      // Get current time in hours and minutes
+      const now = new Date();
+      const currentHours = now.getHours();
+      const currentMinutes = now.getMinutes();
+    
+      // Compare current time with start and end times
+      const isAfterStart =
+        currentHours > start.hours ||
+        (currentHours === start.hours && currentMinutes >= start.minutes);
+    
+      const isBeforeEnd =
+        currentHours < end.hours ||
+        (currentHours === end.hours && currentMinutes <= end.minutes);
+    
+      // Check if current time is within business hours
+      return isAfterStart && isBeforeEnd;
+    }
+    return false;
+  };
+
 
   return (
     <div className={classList.join(" ")}>
@@ -128,11 +189,13 @@ const ChatWindow = ({
         imageUrl={agentProfile.imageUrl}
         onClose={onClose}
         widgetSettings={widgetSettings}
+        workingHours={workingHours}
+        openWhatsAppRedirect={()=> openWhatsAppRedirect()}
       />
       {!start ? (
         <div className="we_online_section">
           <div className="text_section">
-            <h3>We are Online</h3>
+            <h3>{ (isAvailableForChat())? "We are Online" : "We are Offline" }</h3>
             {widgetSettings?.widget_builder?.reply_time?.length && (
             <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
             )}
@@ -184,7 +247,7 @@ const ChatWindow = ({
                         widgetSettings?.widget_builder?.widget_color,
                     }}
                     type="submit"
-                    onCldick={() => {
+                    onClick={() => {
                       //localStorage.setItem('form_submit', 1);
                       //setFormSubmit(1)
                     }}
@@ -231,6 +294,8 @@ ChatWindow.propTypes = {
   showEmoji: PropTypes.bool,
   messageList: PropTypes.array,
   widgetSettings: PropTypes.object,
+  startConnection: PropTypes.func,
+  openWhatsAppRedirect: PropTypes.func,
 };
 
 export default ChatWindow;

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 .sc-chat-window {
+  z-index: 9999 !important;
+
   width: 370px;
   height: calc(100% - 120px);
   max-height: 590px;
@@ -15,6 +17,14 @@
   transition: 0.3s ease-in-out;
   border-radius: 30px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+ul li a {
+  color: #fff;
+}
+
+#about p {
+  padding: 2rem 15rem;
 }
 
 .sc-chat-window.closed {
@@ -38,7 +48,7 @@ audio::-webkit-media-controls-enclosure {
   width: 76%;
 }
 .sc-header .sc-header--team-name h3{
-  font-size: 24px;
+  font-size: 21px;
   line-height: 30px;
   font-weight: 700;
   margin: 0px 0px 3px;

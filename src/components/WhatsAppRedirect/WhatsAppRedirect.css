@@ -1,0 +1,80 @@
+.whatsapp-redirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border: 1px solid;
+  width: 100%;
+  z-index: 99999;
+  background: #fff;
+  }
+  
+  .back-button {
+    margin: 5px 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .back-button img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .whatsapp-logo {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .content h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+    width: 300px;
+  }
+  
+  .qr-code {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+  }
+  
+  .open-link {
+    color: #25D366;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .open-link:hover {
+    text-decoration: underline;
+  }
+  
+  .loader {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
