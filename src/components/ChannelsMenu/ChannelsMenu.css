@@ -1,0 +1,100 @@
+.floating-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .float-menu-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .float-menu-items.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+  
+  .float-menu-item {
+    width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 13px 9px 15px !important;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .float-menu-items img {
+    width: 50px !important;
+    margin-right  : 0 !important;
+  }
+  
+  .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .messenger { background: #0084ff; }
+  .whatsapp { background: #25d366; }
+  
+  .menu-button {
+    width: 60px;
+    height: 60px;
+    background: #007bff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .menu-button .icon {
+    color: white;
+    font-size: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .menu-button .rotate {
+    transform: rotate(45deg);
+  }
+  
+  .whatsapp img, .messenger img {
+    width: 40px !important;
+  }
+
+  .social-float.sc-launcher {
+    position: static;
+  }
+
+  .whatsapp:hover, .messenger:hover, .instagram:hover {
+    opacity: .5;
+    transition: 480ms;
+  }
+
+  .social-float {
+    margin-top: 10px;
+    padding: 0;
+    height: 60px;
+    width: 60px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: none;
+    transition: box-shadow 0.2s ease-in-out;
+  }

@@ -4,6 +4,8 @@ import ChatWindow from './ChatWindow';
 import launcherIcon from './../assets/tdesign_chat.png';
 import incomingMessageSound from './../assets/sounds/notification.mp3';
 import launcherIconActive from './../assets/mingcute_close-fill.png';
+import ChatIcon from './chatIcon';
+import ChannelsMenu from './ChannelsMenu/ChannelsMenu';
 
 class Launcher extends Component {
 
@@ -47,16 +49,25 @@ class Launcher extends Component {
     ];
     return (
       <div id="sc-launcher">
-        <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
-          <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
-          <img className={'sc-open-icon'} src={launcherIconActive} />
-          <img className={'sc-closed-icon'} src={ (this.props.widgetSettings?.widget_builder?.messageicon) ? 
-          this.props.widgetSettings?.widget_builder?.messageicon : launcherIcon } /> 
-          <p>{this.props.widgetSettings?.widget_builder?.bubble_type == 1 &&
+        {/* Load Floading Channel menu if other channels exist */}
+        {
+          this.props.widgetSettings && this.props.widgetSettings?.other_channel ? 
+          <ChannelsMenu 
+            widgetSettings={this.props.widgetSettings}
+          />
+          :
+          <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
+            <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
+            <img className={'sc-open-icon'} src={launcherIconActive} />
 
-              this.props.widgetSettings.widget_builder.bubble_text
-          }</p>
-        </div>
+            <ChatIcon iconNo={this.props.widgetSettings?.widget_builder?.messageIcon} />
+
+            <p>{this.props.widgetSettings?.widget_builder?.bubble_type == 1 &&
+
+                this.props.widgetSettings.widget_builder.bubble_text
+            }</p>
+          </div>
+        }
 
         <ChatWindow
           workingHours={this.props.workingHours}
