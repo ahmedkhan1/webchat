@@ -34,7 +34,11 @@ class Launcher extends Component {
 
   handleClick() {
     if (this.props.handleClick !== undefined) {
-      this.props.handleClick();
+      if(this.props.isOpen) {
+        this.props.onClose();
+      } else{
+        this.props.handleClick();
+      }
     } else {
       this.setState({
         isOpen: !this.state.isOpen,

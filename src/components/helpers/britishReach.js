@@ -51,7 +51,6 @@ async function getUserInfo(baseurl){
     const url = `${baseurl}?orgUnit=${localStorage.getItem('org')}&userNumber=${localStorage.getItem('phone_number')}`;
     let token = {};
     const data = await fetchWrapper.get(url, token);
-    debugger;
     if(data) {
         return data;
     }
@@ -59,7 +58,6 @@ async function getUserInfo(baseurl){
 
 
 reachBSHelper.handleCustomTrigger = async function(requestObject, trigger, baseurl){
-    debugger;
     let botResponse = (trigger.botResponses[0] && trigger.botResponses[0].response)? trigger.botResponses[0].response : "";
     let response = commonMethods.stripResponseHtml(requestObject.userName, botResponse);
 

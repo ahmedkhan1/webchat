@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 .sc-chat-window {
-  z-index: 9999 !important;
+  z-index: 99999 !important;
 
   width: 370px;
   height: calc(100% - 120px);
@@ -45,10 +45,10 @@ audio::-webkit-media-controls-enclosure {
   padding: 40px 0px;
 }
 .sc-header .sc-header--team-name{
-  width: 76%;
+  width: 100%;
 }
 .sc-header .sc-header--team-name h3{
-  font-size: 21px;
+  font-size: 18px;
   line-height: 30px;
   font-weight: 700;
   margin: 0px 0px 3px;

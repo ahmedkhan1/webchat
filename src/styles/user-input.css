@@ -18,7 +18,7 @@
   outline: none;
   border-bottom-left-radius: 10px;
   box-sizing: border-box;
-  padding: 18px;
+  padding: 10px 18px;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.33;
@@ -91,7 +91,7 @@
 
 .sc-user-input--file-icon path,
 .sc-user-input--send-icon path {
-  fill: rgba(86, 88, 103, 0.3);
+  fill: rgba(86, 88, 103, 1);
 }
 
 .sc-user-input--file-icon:hover path,

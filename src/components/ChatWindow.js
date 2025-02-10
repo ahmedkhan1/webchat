@@ -73,7 +73,6 @@ const ChatWindow = ({
     for (let [key, value] of formData.entries()) {
       formVal[key] = value;
     }
-    console.log(":::form values:::",formVal);
     
     const requiredSubstrings = {
       // 'name' maps to
@@ -127,8 +126,8 @@ const ChatWindow = ({
       type: "text",
       data: {text:"hi"},
     };
-    onSendPrivateMessage(hiMsg);
 
+    onSendPrivateMessage(hiMsg);
 
     try {
       saveUserInfo(dataToSend)

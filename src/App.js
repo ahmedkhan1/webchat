@@ -21,6 +21,123 @@ let messageSound = null;
 
 let inactiveTimer = 180;
 let extensionTimer = 120;
+import bgImage from "./assets/bgImage.png";
+
+// Styles
+const styles = {
+  navbar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "15px 30px",
+    backgroundColor: "#2a3d66",
+    color: "white",
+    position: "sticky",
+    top: 0,
+    zIndex: 1000,
+  },
+  navTitle: {
+    fontSize: "1.8rem",
+  },
+  navLinks: {
+    listStyle: "none",
+    display: "flex",
+    gap: "20px",
+  },
+  hero: {
+    position: "relative",
+    height: "400px",
+    overflow: "hidden",
+  },
+  heroImage: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+  heroText: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    textAlign: "center",
+    color: "white",
+    textShadow: "2px 2px 10px rgba(0, 0, 0, 0.7)",
+  },
+  heroButton: {
+    padding: "10px 20px",
+    marginTop: "15px",
+    fontSize: "1rem",
+    backgroundColor: "#ffcc00",
+    color: "#003366",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+
+  section: {
+    padding: "50px 20px",
+    textAlign: "center",
+  },
+  sectionAlt: {
+    padding: "50px 20px",
+    backgroundColor: "#f4f4f4",
+    textAlign: "center",
+  },
+  image: {
+    width: "100%",
+    marginTop: "20px",
+    borderRadius: "10px",
+  },
+  gallery: {
+    display: "flex",
+    gap: "10px",
+    justifyContent: "center",
+    marginTop: "20px",
+  },
+  eventList: {
+    listStyle: "none",
+    padding: 0,
+  },
+  contactForm: {
+    marginTop: "20px",
+  },
+  input: {
+    width: "80%",
+    padding: "10px",
+    marginBottom: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  },
+  textarea: {
+    width: "80%",
+    height: "100px",
+    padding: "10px",
+    marginBottom: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  },
+  button: {
+    padding: "10px 20px",
+    fontSize: "1rem",
+    backgroundColor: "#003366",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  footer: {
+    backgroundColor: "#2a3d66",
+    color: "white",
+    textAlign: "center",
+    padding: "15px 10px",
+  },
+  socialLinks: {
+    fontWeight: "bold",
+    color: "#ffcc00",
+  },
+};
+
+
 
 function App({ domElement }) {
   const name = "Eocean";
@@ -41,6 +158,7 @@ function App({ domElement }) {
   const [officeHours, setOfficeHours] = useState({});
   const [fooEvents, setFooEvents] = useState([]);
   const [openWhatsAppRedirect, setOpenWhatsAppRedirect] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const tokenKey = domElement.getAttribute("property-id");
   const [formSubmit, setFormSubmit] = useState(
@@ -178,8 +296,13 @@ function App({ domElement }) {
   useEffect(() => {
     if (localStorage.getItem("sessionId")) {
       // Initialize interval for every 5 seconds
+
+
       const intervalId = setInterval(() => {
-        loadListNew();
+        if(localStorage.getItem('routeAgent')){
+            loadListNew();
+        }
+        
       }, 3500);
       // Cleanup interval when the component unmounts
       return () => clearInterval(intervalId);
@@ -204,18 +327,20 @@ function App({ domElement }) {
     setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
     setIsSessionEnded(true); // Mark session as ended
     localStorage.clear();
+
     setTimeout(()=>{
       setLoading(false);
       setOpen(!open);
+      setMessageList([]);
+      if (tokenKey == "" || !tokenKey) {
+        setError(true);
+      } else {
+        loadOrg(); //get org_unit using propety-id // get bot_trigger, menu, msgs using the bot id n settigs widget
+        loadList(); // get old messages of user using session id
+        socket.current?.close();
+      }
     }, 5)
 
-    if (tokenKey == "" || !tokenKey) {
-      setError(true);
-    } else {
-      loadOrg(); //get org_unit using propety-id // get bot_trigger, menu, msgs using the bot id n settigs widget
-      loadList(); // get old messages of user using session id
-      socket.current?.close();
-    }
   };
 
   const loadBotFile = async (widget_settings) => {
@@ -237,7 +362,7 @@ function App({ domElement }) {
     const token = {};
     setLoading(true);
     
-    const postData = { token:tokenKey, msg_channel:'web' };
+    const postData = { token: tokenKey, msg_channel: 'web' };
     const data = await fetchWrapper.post(url, token, postData);
 
     if (!data.data) {
@@ -280,13 +405,13 @@ function App({ domElement }) {
       const datax = data?.reverse();
       if(datax && datax.length > 0){
         debugger;
-          if(data[datax.length-1].key_from_me === 1 && localStorage.getItem("sound") === "true"){
-            try{
-              await audioRef.current.play();
-            } catch(err){
-              console.log(err);
-            }
+        if(data[datax.length-1].key_from_me === 1 && localStorage.getItem("sound") === "true"){
+          try{
+            await audioRef.current.play();
+          } catch(err){
+            console.log(err);
           }
+        }
 
         localStorage.setItem("message", JSON.stringify(datax));
         setMessageList(datax);
@@ -420,19 +545,19 @@ function App({ domElement }) {
   const checkSpamUnblock = (data) => {
     if (!data[data.length - 3]) return false;
     let lastMsg = data[data.length - 3];
-    if (lastMsg?.data?.includes("marked the conversaton unblocked")) {
+    if (lastMsg?.data?.includes("marked the conversation unblocked")) {
       return true;
     }
     return false;
   };
 
-  const onSendPrivateMessage = useCallback((message) => {
+  const onSendPrivateMessage = useCallback((message, wa_type=0) => {
     handleExtendSession();
     
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
-      media_wa_type: 0,
+      media_wa_type: (wa_type)? 0 : wa_type,
     };
 
     messageSound = message.messageSound;
@@ -441,9 +566,11 @@ function App({ domElement }) {
     const oldMsg = JSON.parse(localStorage.getItem("message"));
 
     const newVal = [...oldMsg, msgData];
-
-    // localStorage.setItem("message", JSON.stringify(newVal));
-    // setMessageList(newVal);
+    if(!localStorage.getItem('routeAgent')){
+       localStorage.setItem("message", JSON.stringify(newVal));
+       setMessageList(newVal);
+    }
+    
     if (!checkFeedbackTemplate(newVal) && checkSpamUnblock(newVal)) {
       localStorage.removeItem("routeAgent");
       localStorage.removeItem("conversation_id");
@@ -480,95 +607,103 @@ function App({ domElement }) {
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
 
-    fetch(`${backendUrl}/rec-message`, requestOptions)
-      .then((response) => response.json())
-      .then(async(result) => {
-        try {
-          loadListNew();
-        } catch (error) {}
 
-        if (
-          message.data.text?.toLowerCase() == "exit" ||
-          message.data.text == "Exit"
-        ) {
-          // step 1 feedback template will be sent to the user and the entry for feedback logs need to be inserted in db
-          // and chat will be closed so that the user can re-initiate the chat as well
+    if (!localStorage.getItem("routeAgent")) {
+      if (
+        localStorage.getItem("widget_settings") &&
+        JSON.parse(localStorage.getItem("widget_settings"))?.chat_bot
+          ?.enabled_chatbot === false
+      ) {
+        const msgData = {
+          data: "<p>Please wait, one of our agents will contact you shortly.</p><p><br></p><p>Type <strong>Exit</strong> to end the conversation at any time.</p>",
+          key_from_me: 1,
+          media_wa_type: 0,
+        };
+        sendBotMessage(msgData, true);
+        // localStorage.setItem("routeAgent", true);
+      } else {
+        
+        botResponse(message.data.text);
+        sendBotMessage(msgData, false);
+      }
+    }
+    
+    if (localStorage.getItem("routeAgent")) {
+      fetch(`${backendUrl}/rec-message`, requestOptions)
+        .then((response) => response.json())
+        .then(async(result) => {
+          
+          try {
+            loadListNew();
+          } catch (error) {}
 
-          // step 2 detect the feedback response and call sp
-          // step 3 send thankyou template for feedback response
-
-
-          // const requestObject = {
-          //   org: localStorage.getItem("org"),
-          //   userMessage: message.data.text,
-          // }
-  
-          // if(requestObject.org === "eoceanchatbot"){
-          //   const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
-          //   await gptResponse(requestObject, dataJson, "", "");
-          // }
-
-
-          const msgData = {
-            data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
-            media_url: "",
-            key_from_me: 1,
-            media_wa_type: 0,
-          };
-          mggSend(msgData);
-
-          localStorage.removeItem("routeAgent");
-          localStorage.removeItem("conversation_id");
-
-          return false;
-        }
-
-        if (!localStorage.getItem("routeAgent")) {
           if (
-            localStorage.getItem("widget_settings") &&
-            JSON.parse(localStorage.getItem("widget_settings"))?.chat_bot
-              ?.enabled_chatbot === false
+            message.data.text?.toLowerCase() == "exit" ||
+            message.data.text == "Exit"
           ) {
+            // step 1 feedback template will be sent to the user and the entry for feedback logs need to be inserted in db
+            // and chat will be closed so that the user can re-initiate the chat as well
+
+            // step 2 detect the feedback response and call sp
+            // step 3 send thankyou template for feedback response
+
+
+            // const requestObject = {
+            //   org: localStorage.getItem("org"),
+            //   userMessage: message.data.text,
+            // }
+    
+            // if(requestObject.org === "eoceanchatbot"){
+            //   const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
+            //   await gptResponse(requestObject, dataJson, "", "");
+            // }
+
+
             const msgData = {
-              data: "<p>Please wait, one of our agents will contact you shortly.</p><p><br></p><p>Type <strong>Exit</strong> to end the conversation at any time.</p>",
+              data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+              media_url: "",
               key_from_me: 1,
               media_wa_type: 0,
             };
-            sendBotMessage(msgData, true);
-            // localStorage.setItem("routeAgent", true);
-          } else {
-            botResponse(message.data.text);
+            mggSend(msgData);
+
+            localStorage.removeItem("routeAgent");
+            localStorage.removeItem("conversation_id");
+
+            return false;
           }
-        }
 
-        if (feedBackMenuData) {
-          feedBackMenuData = false;
-          localStorage.removeItem("routeAgent");
-          localStorage.removeItem("conversation_id");
-        }
-        // if (feedBackMenuData) {
-        //   const msgData = {
-        //     data:"Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
-        //     media_url: "",
-        //     key_from_me: 1,
-        //     media_wa_type: 0,
-        //   };
-        //   mggSend(msgData);
-        //   feedBackMenuData = false;
-        //   localStorage.removeItem("routeAgent");
-        //   localStorage.removeItem("conversation_id");
-        //   return false;
-        // }
+          
 
-        // setMessageList((prevMessageList) => [...prevMessageList, result.data]);
+          if (feedBackMenuData) {
+            feedBackMenuData = false;
+            localStorage.removeItem("routeAgent");
+            localStorage.removeItem("conversation_id");
+          }
+          // if (feedBackMenuData) {
+          //   const msgData = {
+          //     data:"Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+          //     media_url: "",
+          //     key_from_me: 1,
+          //     media_wa_type: 0,
+          //   };
+          //   mggSend(msgData);
+          //   feedBackMenuData = false;
+          //   localStorage.removeItem("routeAgent");
+          //   localStorage.removeItem("conversation_id");
+          //   return false;
+          // }
 
-        // const oldMsg = JSON.parse(localStorage.getItem("message"))
+          // setMessageList((prevMessageList) => [...prevMessageList, result.data]);
 
-        //  const newVal = [...oldMsg,result.data]
+          // const oldMsg = JSON.parse(localStorage.getItem("message"))
 
-        //  localStorage.setItem("message",JSON.stringify(newVal))
-        //  setMessageList(newVal);
-      });
+          //  const newVal = [...oldMsg,result.data]
+
+          //  localStorage.setItem("message",JSON.stringify(newVal))
+          //  setMessageList(newVal);
+        });
+    }
   }, []);
 
   const botResponseTemplate = (text) => {
@@ -591,11 +726,23 @@ function App({ domElement }) {
   };
   const buildResponse = async(response, menus,routeToAgent = false) => {
     let msgData = {};
-
+    debugger;
     for(const item of response){
-      debugger;
 
-      if (item.type == "media" && item.mediaType == "IMAGE") {
+      if (item.type == "media" && item.mediaType == "DOCUMENT") {
+        const url = (item.urls)? item.urls[0] : item.url; 
+        msgData = {
+          data: "",
+          media_url: url,
+          key_from_me: 1,
+          media_wa_type: 9,
+          media_mime_type: "application/pdf",
+          media_name: item.type,
+          caption: item.caption,
+        };
+        debugger;
+        mggSend(msgData);
+      } else if (item.type == "media" && item.mediaType == "IMAGE") {
         await delay(2 * 1000);
         msgData = {
           data: "",
@@ -604,9 +751,7 @@ function App({ domElement }) {
           media_wa_type: 1,
         };
         mggSend(msgData);
-      }
-
-      if (item.type == "text" && item.msgType == "InteractiveButton") {
+      } else if (item.type.toLowerCase() == "text" && item.msgType == "InteractiveButton") {
         await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
@@ -618,9 +763,7 @@ function App({ domElement }) {
           media_wa_type: 0,
         };
         mggSend(msgData);
-      }
-
-      if (item.type == "text" && item.msgType == "InteractiveList") {
+      } else if (item.type.toLowerCase() == "text" && item.msgType == "InteractiveList") {
         await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
@@ -632,9 +775,7 @@ function App({ domElement }) {
           media_wa_type: 0,
         };
         mggSend(msgData);
-      }
-
-      if (item.type == "text" && item.msgType == "SimpleText") {
+      } else if ((item.type.toLowerCase() == "text" && item.msgType == "SimpleText") || item.type.toLowerCase() == "text") {
         await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
@@ -646,9 +787,7 @@ function App({ domElement }) {
           media_wa_type: 0,
         };
         mggSend(msgData,routeToAgent);
-      }
-
-      if (item.type == "loopback") {
+      } else if (item.type == "loopback") {
         await delay(2 * 1000);
         const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
         const loopbackId = item.loopBackId;
@@ -657,7 +796,7 @@ function App({ domElement }) {
         menuData = triggerStart[0].menus;
         localStorage.setItem("menuData", JSON.stringify(menuData));
 
-        buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+        buildResponse((triggerStart && triggerStart[0].botResponses || triggerStart), triggerStart[0].menus);
       }
     }
 
@@ -671,16 +810,33 @@ function App({ domElement }) {
 
     console.log(item);
     if (item.type == "media") {
+      const url = (item.urls)? item.urls[0] : item.url; 
       msgData = {
         data: "",
-        media_url: item.url,
+        media_url: url,
         key_from_me: 1,
         media_wa_type: 1,
       };
       mggSend(msgData);
     }
+    
+    console.log(item);
+    if (item.type.toLowerCase() == "document") {
+      const url = (item.urls)? item.urls[0] : item.url; 
+      msgData = {
+        data: "",
+        media_url: url,
+        key_from_me: 1,
+        media_wa_type: 9,
+        media_mime_type: "application/pdf",
+        media_name: item.type,
+        caption: item.caption,
+      };
+      debugger;
+      mggSend(msgData);
+    }
 
-    if ((item.type = "TEXT")) {
+    if ((item.type == "TEXT")) {
       let response = item.response + "<br>";
       response = commonMethods.stripResponseHtml(
         localStorage.getItem("form_submit") || "Customer",
@@ -724,14 +880,19 @@ function App({ domElement }) {
   const buildMenu = (menus) => {
     let menuItem = "";
     let aa = 0;
+    if(menus && !menus.length) return "";
+    
     menus.map((item) => {
-      if(!item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation")){
+      if(!item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation") && item.text !== "."){
         aa = aa + 1;
         menuItem =
           menuItem + `<span class="int-menu" >${aa} - ${item.text}</span><br />`;
       }
     });
 
+    if(menuItem){
+      menuItem = `<div class='menu-list'>${menuItem}</div>`;
+    }
     return menuItem;
   };
 
@@ -750,17 +911,27 @@ function App({ domElement }) {
       localStorage.setItem("conversation_id", uuidConversation);
     }
 
-    let data = JSON.stringify({
+    let data = {
       msg: messageData.data,
       number: localStorage.getItem("sessionId"),
-      wa_type: "0",
+      wa_type: (messageData.media_wa_type === 9)?  messageData.media_wa_type : "0",
       msg_channel: "web",
       org_unit_id: localStorage.getItem("org"),
       from: localStorage.getItem("form_submit"),
       conversation_id: localStorage.getItem("conversation_id"),
       key_from_me: messageData.key_from_me,
       route_to_agent: route_to_agent,
-    });
+      media_mime_type: messageData.media_mime_type,
+      caption: messageData.caption,
+
+    };
+
+    if(messageData.media_wa_type === 9){
+      data['media_name'] = messageData.media_name;
+      data['media_url'] = messageData.media_url;
+    }
+    data = JSON.stringify(data);
+    debugger;
 
     const requestOptions = {
       method: "POST",
@@ -795,12 +966,19 @@ function App({ domElement }) {
       });
   };
   const mggSend = (msg, route_to_agent = false) => {
-    // const oldMsg = JSON.parse(localStorage.getItem("message"));
+   
+    // For bot conversation
 
-    // const newVal = [...oldMsg, msg];
+    if(!localStorage.getItem('routeAgent')){
+        
+        const oldMsg = JSON.parse(localStorage.getItem("message"));
+        const newVal = [...oldMsg, msg];
 
-    // localStorage.setItem("message", JSON.stringify(newVal));
-    // setMessageList(newVal);
+        localStorage.setItem("message", JSON.stringify(newVal));
+        setMessageList(newVal);
+
+    }
+   
     sendBotMessage(msg, route_to_agent);
   };
   const buildForm = async (triggerData) => {
@@ -879,10 +1057,8 @@ function App({ domElement }) {
   };
 
   const botResponse = async(msg) => {
-    debugger;
-
     if (!localStorage.getItem("routeAgent")) {
-      const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
+      const dataJson = (localStorage.getItem("bot_data"))?JSON.parse(localStorage.getItem("bot_data")).data : []; // all the data related to bot triggers, menu, etc.
       let responseData;
       let msgData = {};
 
@@ -915,7 +1091,7 @@ function App({ domElement }) {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
-          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus);
+          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus, triggerStart[0]?.routeToAgent);
         } else {
           menuData = triggerStart[0].menus;
           buildResponseOld(triggerStart[0]);
@@ -937,7 +1113,7 @@ function App({ domElement }) {
           userMessage: msg,
         }
 
-        if (!triggerData || triggerData.response === "" && !triggerData.botResponses) {
+        if(!triggerData || !triggerData.loopBackTriggerId && !triggerData.caption && triggerData.response === "" && !triggerData.botResponses){
           if(requestObject.org === "eoceanchatbot" || requestObject.org === "eoceantest"){
             await gptResponse(requestObject, dataJson, "", "");
           }
@@ -960,10 +1136,10 @@ function App({ domElement }) {
               apiTrigger = triggerData;
             }
             responseData = triggerData.botResponses;
-            menuData = triggerData.menus;
+            menuData = (triggerData && triggerData.menus)? triggerData.menus: [];
             buildResponse(responseData, triggerData.menus,triggerData?.routeToAgent);
           } else {
-            menuData = triggerData.menus;
+            menuData = (triggerData && triggerData.menus)? triggerData.menus: [];
             buildResponseOld(triggerData);
           }
           localStorage.setItem("menuData", JSON.stringify(menuData));
@@ -1208,7 +1384,14 @@ function App({ domElement }) {
   };
 
   return (
-    <div className="App">
+    <div className="App"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top center',
+        height: '1180vh',
+      }}
+    >
       <style>{` .sc-launcher, .sc-message--dtext, .sc-header {
             background: ${orgSettings?.widget_builder?.widget_color} !important;
         }
@@ -1225,6 +1408,11 @@ function App({ domElement }) {
 
 
       <audio id="audio" src={audioSrc} ref={audioRef}></audio>
+      <CloseModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmCloseChat}
+      />
 
       {/* <WebSocketComponent socketUrl={socketUrl}/> */}
       {isTimerModalOpen && (
@@ -1235,12 +1423,6 @@ function App({ domElement }) {
           modalTimer={modalTimer} // Pass modal timer to the modal
         />
       )}
-
-      <CloseModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirmCloseChat}
-      />
 
       {
         openWhatsAppRedirect &&
