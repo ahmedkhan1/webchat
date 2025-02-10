@@ -22,16 +22,23 @@ class Launcher extends Component {
     const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
     const isIncoming = (nextMessage || {}).author === 'them';
     const isNew = nextProps.messageList.length > this.props.messageList.length;
-    if (isIncoming && isNew) {
+    console.log("Isnew", isNew, isIncoming, nextMessage );
+    if (isIncoming && isNew || isNew && nextMessage.key_from_me === 1 && localStorage.getItem("sound") === "true") {
       this.playIncomingMessageSound();
     }
   }
 
-  playIncomingMessageSound() {
-    var audio = new Audio(incomingMessageSound);
-    audio.play();
+  async playIncomingMessageSound() {
+    try{
+      var audio = new Audio(incomingMessageSound);
+      await audio.play();
+    } catch(err){
+      console.log(err);
+    }
   }
-
+  handleWebchatMenu() {
+    this.handleClick();
+  }
   handleClick() {
     if (this.props.handleClick !== undefined) {
       if(this.props.isOpen) {
@@ -57,7 +64,9 @@ class Launcher extends Component {
         {
           this.props.widgetSettings && this.props.widgetSettings?.other_channel ? 
           <ChannelsMenu 
+            isWebChannelOpen={isOpen}
             widgetSettings={this.props.widgetSettings}
+            handleWebchatMenu={this.handleWebchatMenu.bind(this)}
           />
           :
           <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>

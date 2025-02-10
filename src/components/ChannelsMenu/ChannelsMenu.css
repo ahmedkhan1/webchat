@@ -80,7 +80,7 @@
     position: static;
   }
 
-  .whatsapp:hover, .messenger:hover, .instagram:hover {
+  .whatsapp:hover, .messenger:hover, .instagram:hover, .webchat-widget:hover {
     opacity: .5;
     transition: 480ms;
   }

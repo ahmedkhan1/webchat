@@ -14,6 +14,7 @@ import notification from "./assets/sounds/notification.mp3";
 import SessionModal from "./components/modals/SessionModal";
 import CloseModal from "./components/modals/CloseModal";
 import WhatsAppRedirect from "./components/WhatsAppRedirect/WhatsAppRedirect";
+import bgImage from "./assets/bgImage.png";
 
 let messageSound = null;
 // let inactiveTimer = 5;
@@ -21,7 +22,6 @@ let messageSound = null;
 
 let inactiveTimer = 180;
 let extensionTimer = 120;
-import bgImage from "./assets/bgImage.png";
 
 // Styles
 const styles = {
@@ -210,7 +210,6 @@ function App({ domElement }) {
   const [modalTimer, setModalTimer] = useState(extensionTimer); // 2 minutes for modal countdown
   const [isSessionEnded, setIsSessionEnded] = useState((localStorage.getItem("phone_number") !== null)? false : true); // Tracks whether the session has ended
 
-  console.log(isSessionEnded, localStorage.getItem("phone_number"));
 
   // Inactivity Timer Countdown
   useEffect(() => {
@@ -372,8 +371,13 @@ function App({ domElement }) {
       localStorage.setItem("org", data.data.ORG_UNIT_ID);
 
       setOrg(data.data.ORG_UNIT_ID);
-      console.log(JSON.parse(data.data.widget_settings));
-      setOrgSettings(JSON.parse(data.data.widget_settings));
+      const widgetSettings = JSON.parse(data.data.widget_settings);
+      console.log(widgetSettings);
+      setOrgSettings(widgetSettings);
+      debugger;
+      const timeInMinutes = widgetSettings.chat_bot.chatTimeout;
+      const timeInSeconds = (timeInMinutes)? (Number(timeInMinutes) * 60) : 180;
+      setInactivityTimer(timeInSeconds)
       setOfficeHours(data.data.office_hour);
       setLoading(false);
       loadBotFile(data.data.widget_settings);
@@ -383,6 +387,8 @@ function App({ domElement }) {
   };
 
   const loadList = async () => {
+    debugger;
+
     // load messages for the current session
     if (localStorage.getItem("org")) {
       let number = localStorage.getItem("sessionId");
@@ -403,8 +409,8 @@ function App({ domElement }) {
       //setLoading(false);
 
       const datax = data?.reverse();
+      debugger;
       if(datax && datax.length > 0){
-        debugger;
         if(data[datax.length-1].key_from_me === 1 && localStorage.getItem("sound") === "true"){
           try{
             await audioRef.current.play();
@@ -947,7 +953,8 @@ function App({ domElement }) {
     .then((response) => response.json())
     .then(async(result) => {
       try {
-          await loadListNew();
+        
+          // await loadListNew();
         } catch (error) {}
         // setMessageList((prevMessageList) => [...prevMessageList, result.data]);
         // const oldMsg = JSON.parse(localStorage.getItem("message"))
@@ -1385,14 +1392,8 @@ function App({ domElement }) {
 
   return (
     <div className="App"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'top center',
-        height: '1180vh',
-      }}
     >
-      <style>{` .sc-launcher, .sc-message--dtext, .sc-header {
+      <style>{` .sc-launcher, .sc-message--dtext, .sc-header, .webchat-widget {
             background: ${orgSettings?.widget_builder?.widget_color} !important;
         }
          `}
@@ -1428,6 +1429,7 @@ function App({ domElement }) {
         openWhatsAppRedirect &&
         <WhatsAppRedirect
           onBack={()=> setOpenWhatsAppRedirect((prev)=> !prev)}
+          widgetSettings={orgSettings}
         />
       }
 

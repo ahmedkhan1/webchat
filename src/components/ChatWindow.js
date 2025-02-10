@@ -137,7 +137,6 @@ const ChatWindow = ({
   };
 
   const isAvailableForChat = () => {
-    debugger;
     if(workingHours && workingHours?.length){
       const today = new Date();
 

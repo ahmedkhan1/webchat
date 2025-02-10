@@ -26,7 +26,6 @@ class Header extends Component {
   };
 
   isAvailableForChat = () => {
-    debugger;
     if(this.props.workingHours && this.props.workingHours?.length){
       const today = new Date();
 
@@ -108,15 +107,25 @@ class Header extends Component {
                 </div>
               )
             }
-            <a href={"#"} className="menu-item" onClick={this.props.openWhatsAppRedirect}>
-              <img src={whatsapp} alt="WhatsApp" /> Continue on WhatsApp
-            </a>
-            <a href={`https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[1].messenger}`} className="menu-item" target={"_blank"}>
-              <img src={messenger} alt="Messenger" /> Continue on Messenger
-            </a>
-            <a href={`https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[2].instagram}`} className="menu-item" target={"_blank"}>
-              <img src={instagram} alt="Instagram" /> Continue on Instagram
-            </a>
+
+            {
+              this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[0].whatsapp &&
+              <a href={"#"} className="menu-item" onClick={()=>{this.toggleMenu();this.props.openWhatsAppRedirect()}}>
+                <img src={whatsapp} alt="WhatsApp" /> Continue on WhatsApp
+              </a>
+            }
+            {
+              this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[1].messenger &&
+              <a href={`https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[1].messenger}`} className="menu-item" target={"_blank"}>
+                <img src={messenger} alt="Messenger" /> Continue on Messenger
+              </a>
+            }
+            {
+              this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[2].instagram &&
+              <a href={`https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[2].instagram}`} className="menu-item" target={"_blank"}>
+                <img src={instagram} alt="Instagram" /> Continue on Instagram
+              </a>
+            }
           </div>
 
           {

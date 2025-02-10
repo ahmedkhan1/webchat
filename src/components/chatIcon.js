@@ -1,5 +1,4 @@
 const ChatIcon  = ({iconNo}) => {
-    console.log(iconNo);
     if(iconNo === "1.svg"){
         return (
             <>

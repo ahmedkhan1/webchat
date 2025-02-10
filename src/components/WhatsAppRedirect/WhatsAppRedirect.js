@@ -7,7 +7,7 @@ import axios from "axios";
 const API_URL = process.env.REACT_APP_BACKEND_URl;
 // const API_URL = "https://backend.digiconn.co";
 
-const WhatsAppRedirect = ({ onBack }) => {
+const WhatsAppRedirect = ({ onBack, widgetSettings }) => {
   const [qrCodeUrl, setQrCodeUrl] = useState(null); // State to store the QR code URL
   const [loading, setLoading] = useState(true); // State to manage loading state
 
@@ -18,6 +18,7 @@ const WhatsAppRedirect = ({ onBack }) => {
         
         const orgUnitId = localStorage.getItem('org');
         let qrCode = "";
+        debugger;
         try{
           const url =  API_URL + "/api/qrcode?orgunit=" + orgUnitId;
           qrCode = await axios.get(url, {});
@@ -67,7 +68,7 @@ const WhatsAppRedirect = ({ onBack }) => {
           <img src={qrCodeUrl} alt="QR Code" className="qr-code" />
         )}
 
-        <a target={"_blank"} href={`https://web.whatsapp.com/send/?phone=${localStorage.getItem("phone_number")}&text=Hi`}  className="open-link">
+        <a target={"_blank"} href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=Hi`}  className="open-link">
           Open WhatsApp on this device.
         </a>
       </div>

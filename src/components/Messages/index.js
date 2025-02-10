@@ -61,7 +61,7 @@ class Message extends Component {
       'sc-message--content',
       (this.props.message.key_from_me === 0 ? 'sent' : 'received')
     ];
-    console.log("this.props:", this.props);
+
     if(this.props.message.key_from_me === 0){
       return (
         <div className="sc-message" key={this.props.message._id}>

@@ -4,7 +4,7 @@ import Message from './Messages';
 class MessageList extends Component {
 
   componentDidUpdate(_prevProps, _prevState) {
-    this.scrollList.scrollTop = this.scrollList.scrollHeight;
+    // this.scrollList.scrollTop = this.scrollList.scrollHeight;
   }
 
   render () {
