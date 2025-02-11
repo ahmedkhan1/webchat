@@ -22,7 +22,7 @@ class Launcher extends Component {
     const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
     const isIncoming = (nextMessage || {}).author === 'them';
     const isNew = nextProps.messageList.length > this.props.messageList.length;
-    console.log("Isnew", isNew, isIncoming, nextMessage );
+    console.log("Isnew", isNew, nextMessage && nextMessage.key_from_me, localStorage.getItem("sound") );
     if (isIncoming && isNew || isNew && nextMessage.key_from_me === 1 && localStorage.getItem("sound") === "true") {
       this.playIncomingMessageSound();
     }

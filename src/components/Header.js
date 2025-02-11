@@ -111,7 +111,7 @@ class Header extends Component {
             {
               this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[0].whatsapp &&
               <a href={"#"} className="menu-item" onClick={()=>{this.toggleMenu();this.props.openWhatsAppRedirect()}}>
-                <img src={whatsapp} alt="WhatsApp" /> Continue on WhatsApp
+                <img src={whatsapp} className="insta-menu" alt="WhatsApp" /> Continue on WhatsApp
               </a>
             }
             {
