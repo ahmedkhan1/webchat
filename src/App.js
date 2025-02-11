@@ -161,6 +161,7 @@ function App({ domElement }) {
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const tokenKey = domElement.getAttribute("property-id");
+  console.log(JSON.parse(domElement.getAttribute("additionalparams")));
   const [formSubmit, setFormSubmit] = useState(
     localStorage.getItem("form_submit")
   );
@@ -762,6 +763,10 @@ function App({ domElement }) {
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
+        response = commonMethods.stripResponseHtml(
+          localStorage.getItem("form_submit") || "Customer",
+          response
+        );
         msgData = {
           data: response,
           media_url: item.url,
@@ -774,6 +779,10 @@ function App({ domElement }) {
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
+        response = commonMethods.stripResponseHtml(
+          localStorage.getItem("form_submit") || "Customer",
+          response
+        );
         msgData = {
           data: response,
           media_url: item.url,
@@ -786,6 +795,10 @@ function App({ domElement }) {
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
         response = response + buildMenuData;
+        response = commonMethods.stripResponseHtml(
+          localStorage.getItem("form_submit") || "Customer",
+          response
+        );
         msgData = {
           data: response,
           media_url: item.url,
@@ -903,7 +916,7 @@ function App({ domElement }) {
   };
 
   function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   function clickMe(trigger_id) {
@@ -1098,7 +1111,11 @@ function App({ domElement }) {
         const triggerStart = dataJson.filter((rs) => rs.startTrigger == true);
         if (triggerStart[0]?.botResponses) {
           menuData = triggerStart[0].menus;
-          buildResponse(triggerStart[0].botResponses, triggerStart[0].menus, triggerStart[0]?.routeToAgent);
+          buildResponse(
+            triggerStart[0].botResponses,
+            triggerStart[0].menus,
+            triggerStart[0]?.routeToAgent
+          );
         } else {
           menuData = triggerStart[0].menus;
           buildResponseOld(triggerStart[0]);
@@ -1130,11 +1147,15 @@ function App({ domElement }) {
         if (triggerData?.triggerType == "F") {
           buildForm(triggerData);
         } else {
-
           // ...Client helpers will appear here
-          if(requestObject.org === "eoceanchatbot"){
-            const { stopFlow, updatedTrigger } = await reachBSHelper.handleCustomTrigger(requestObject, triggerData, backendUrl);
-            if(stopFlow) return;
+          if (requestObject.org === "eoceanchatbot") {
+            const { stopFlow, updatedTrigger } =
+              await reachBSHelper.handleCustomTrigger(
+                requestObject,
+                triggerData,
+                backendUrl
+              );
+            if (stopFlow) return;
             updatedTrigger && (triggerData = updatedTrigger);
           }
 
@@ -1184,88 +1205,100 @@ function App({ domElement }) {
     }
   };
 
-  const gptResponse = async (requestObject, jsonBody, currentTrigger, matchedTrigger) => {
+  const gptResponse = async (
+    requestObject,
+    jsonBody,
+    currentTrigger,
+    matchedTrigger
+  ) => {
     try {
-        console.log('Entering conversationalGPT()');
-        console.log(`https://eoceanwaba.com:3050/chat-gpt/final-reply?org=${requestObject.org}`);
+      console.log("Entering conversationalGPT()");
+      console.log(
+        `https://eoceanwaba.com:3050/chat-gpt/final-reply?org=${requestObject.org}`
+      );
 
-        //CallGPTAPI Request Config
-        let config = {
-            method: 'post',
-            url: "https://eoceanwaba.com:3050/chat-gpt/final-reply?org="+requestObject.org,
-            // url: "https://eoceanwaba.com:3050/chat-gpt/final-reply?org=eoceanchatbot",
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            data: { question: requestObject.userMessage }
-        };
+      //CallGPTAPI Request Config
+      let config = {
+        method: "post",
+        url:
+          "https://eoceanwaba.com:3050/chat-gpt/final-reply?org=" +
+          requestObject.org,
+        // url: "https://eoceanwaba.com:3050/chat-gpt/final-reply?org=eoceanchatbot",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: { question: requestObject.userMessage },
+      };
 
-        const response = await axios.request(config);
-        debugger;
-        let isSuccess = response.data;
+      const response = await axios.request(config);
+      debugger;
+      let isSuccess = response.data;
 
-        if(isSuccess.status == 200) {
-          if(requestObject.org.includes("eoceanchatbot") || requestObject.org.includes("eoceantest")) {
-            const userMessage = requestObject.userMessage.toLowerCase();
-            if( userMessage === 'i want to speak to sales experts?' ||
-              userMessage === 'how can I talk to your sales agents' ||
-              userMessage.includes('chat with an agent')  ||
-              userMessage.includes('speak with an agent')  ||
-              userMessage.includes('speak to an agent')
-            ) {
-              let msgData = {
-                data: userMessage,
-                key_from_me: 1,
-                media_wa_type: 0,
-              };
-              mggSend(msgData, true);
-            } else {
-              let triggerId = "";
-              const gptResponse = isSuccess.message;
-              console.log(gptResponse);
-              
-              if(gptResponse.includes("ADMISSION_QUERY")){
-                  triggerId = "b9601_t42ef744c1-5c1d-4a39-bbe3-8bcc82a37646";
-              } else if(gptResponse.includes("ENROLLMENT_PROCESS")){
-                  triggerId = "b9601_t5b5a2fe37-456f-4c9f-7f51-1be03a0c8a75";
-              } else if(gptResponse.includes("FEE_DISCOUNTS")){
-                  triggerId = "b9601_t6d14739d0-244e-47b4-4910-1797c04eef62";
-              } else if(gptResponse.includes("BOOK_A_SCHOOL_TOUR")){
-                  triggerId = "b9601_t77d08ed94-d942-41dc-26f6-e24c9fa92871";
-              } else if(gptResponse.includes("SCHOOL_LOCATION")){
-                  triggerId = "b9601_t80c5961d4-de62-4f07-3367-b63b99831fb9";
-              } else if(gptResponse.includes("APPLY_FOR_A_JOB")){
-                  triggerId = "b9601_t9bb5510d7-8794-419c-55c0-0a5f308795aa";
-              } else if(gptResponse.includes("PARENT_PORTAL")){
-                  triggerId = "b9601_t105f901e91-96e9-4c11-b008-1aa825a4b333";
-              }
+      if (isSuccess.status == 200) {
+        if (
+          requestObject.org.includes("eoceanchatbot") ||
+          requestObject.org.includes("eoceantest")
+        ) {
+          const userMessage = requestObject.userMessage.toLowerCase();
+          if (
+            userMessage === "i want to speak to sales experts?" ||
+            userMessage === "how can I talk to your sales agents" ||
+            userMessage.includes("chat with an agent") ||
+            userMessage.includes("speak with an agent") ||
+            userMessage.includes("speak to an agent")
+          ) {
+            let msgData = {
+              data: userMessage,
+              key_from_me: 1,
+              media_wa_type: 0,
+            };
+            mggSend(msgData, true);
+          } else {
+            let triggerId = "";
+            const gptResponse = isSuccess.message;
+            console.log(gptResponse);
 
-              if(triggerId) {
-                debugger;
-                const trigger = jsonBody.find(res=> res.id === triggerId);
-                if (trigger?.botResponses) {
-                  menuData = trigger.menus;
-                  buildResponse(trigger.botResponses, trigger.menus);
-                } else {
-                  menuData = trigger.menus;
-                  buildResponseOld(trigger);
-                }
+            if (gptResponse.includes("ADMISSION_QUERY")) {
+              triggerId = "b9601_t42ef744c1-5c1d-4a39-bbe3-8bcc82a37646";
+            } else if (gptResponse.includes("ENROLLMENT_PROCESS")) {
+              triggerId = "b9601_t5b5a2fe37-456f-4c9f-7f51-1be03a0c8a75";
+            } else if (gptResponse.includes("FEE_DISCOUNTS")) {
+              triggerId = "b9601_t6d14739d0-244e-47b4-4910-1797c04eef62";
+            } else if (gptResponse.includes("BOOK_A_SCHOOL_TOUR")) {
+              triggerId = "b9601_t77d08ed94-d942-41dc-26f6-e24c9fa92871";
+            } else if (gptResponse.includes("SCHOOL_LOCATION")) {
+              triggerId = "b9601_t80c5961d4-de62-4f07-3367-b63b99831fb9";
+            } else if (gptResponse.includes("APPLY_FOR_A_JOB")) {
+              triggerId = "b9601_t9bb5510d7-8794-419c-55c0-0a5f308795aa";
+            } else if (gptResponse.includes("PARENT_PORTAL")) {
+              triggerId = "b9601_t105f901e91-96e9-4c11-b008-1aa825a4b333";
+            }
 
+            if (triggerId) {
+              debugger;
+              const trigger = jsonBody.find((res) => res.id === triggerId);
+              if (trigger?.botResponses) {
+                menuData = trigger.menus;
+                buildResponse(trigger.botResponses, trigger.menus);
               } else {
-                buildResponseOld({
-                  response: gptResponse,
-                  type: "text",
-                  routeToAgent: false,
-                });
+                menuData = trigger.menus;
+                buildResponseOld(trigger);
               }
+            } else {
+              buildResponseOld({
+                response: gptResponse,
+                type: "text",
+                routeToAgent: false,
+              });
             }
           }
-        } else {
-            console.log('CallGPTAPI Failed: ');
         }
+      } else {
+        console.log("CallGPTAPI Failed: ");
+      }
     } catch (err) {
-       console.error('CallGPTAPI Error: ' + err.message.toString());
-    }   
+      console.error("CallGPTAPI Error: " + err.message.toString());
+    }
   };
 
   // const sendMessage = useCallback((text) => {
@@ -1292,15 +1325,19 @@ function App({ domElement }) {
       menuData = JSON.parse(localStorage.getItem("menuData"));
     }
 
-    menuData = menuData.filter(item => !item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation"));
-    const triggerId = menuData && menuData[0]?.toTriggerId || "";
+    menuData = menuData.filter(
+      (item) =>
+        !item.text.includes("_") &&
+        !item.text.includes("Finish") &&
+        !item.text.includes("End conversation")
+    );
+    const triggerId = (menuData && menuData[0]?.toTriggerId) || "";
     let triggerData = dataJson.filter((rs) => rs.id == triggerId)[0];
 
     const requestObject = {
       org: localStorage.getItem("org"),
       userMessage: dataJson,
-    }
-
+    };
 
     let mediaTypeValue = 9;
 
@@ -1361,7 +1398,7 @@ function App({ domElement }) {
         "x-api-key": x_api_id,
       },
     };
-    axios.post(url, formdata, config).then(async(response) => {
+    axios.post(url, formdata, config).then(async (response) => {
       loadListNew();
 
       // ...Client helpers will appear here
@@ -1371,21 +1408,24 @@ function App({ domElement }) {
       //   updatedTrigger && (triggerData = updatedTrigger);
       // }
 
-      if(triggerId){
+      if (triggerId) {
         if (triggerData?.botResponses) {
           if (triggerData?.triggerType == "A") {
             apiTrigger = triggerData;
           }
           responseData = triggerData.botResponses;
           menuData = triggerData.menus;
-          buildResponse(responseData, triggerData.menus,triggerData?.routeToAgent);
+          buildResponse(
+            responseData,
+            triggerData.menus,
+            triggerData?.routeToAgent
+          );
         } else {
           menuData = triggerData.menus;
           buildResponseOld(triggerData);
         }
         localStorage.setItem("menuData", JSON.stringify(menuData));
       }
-
     });
     return false;
   };
