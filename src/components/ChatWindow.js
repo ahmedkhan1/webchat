@@ -116,7 +116,6 @@ const ChatWindow = ({
     
     localStorage.setItem("form_submit", formVal["name"]);
     localStorage.setItem("phone_number", formVal["phone"]);
-    localStorage.setItem("sound", "false");
 
     // form submit for basic details
     // info will be saved here for name,email,etc 

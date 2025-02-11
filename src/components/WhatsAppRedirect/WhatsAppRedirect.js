@@ -68,7 +68,7 @@ const WhatsAppRedirect = ({ onBack, widgetSettings }) => {
           <img src={qrCodeUrl} alt="QR Code" className="qr-code" />
         )}
 
-        <a target={"_blank"} href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=Hi`}  className="open-link">
+        <a target={"_blank"} rel="noreferrer" href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=Hi`}  className="open-link">
           Open WhatsApp on this device.
         </a>
       </div>
