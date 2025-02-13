@@ -195,16 +195,16 @@ function App({ domElement }) {
   // const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
 
   //   // Stg
-  // const backendUrl =
-  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  // const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  // const socketUrl =
-  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  const backendUrl =
+    "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  const socketUrl =
+    "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   //   Local
-  const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
-  const backendUrl = 'http://localhost:3000/dev'
-  const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  // const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
+  // const backendUrl = 'http://localhost:3000/dev'
+  // const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
   
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
   const [inactivityTimer, setInactivityTimer] = useState(inactiveTimer); // 3 minutes for inactivity
@@ -239,8 +239,11 @@ function App({ domElement }) {
       setLoading(true);
       setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
       setIsSessionEnded(true); // Mark session as ended
-      localStorage.clear();
-
+      localStorage.removeItem("conversation_id");
+      localStorage.removeItem("menuData");
+      localStorage.removeItem("message");
+      localStorage.removeItem("start");
+      localStorage.removeItem("form_submit");
 
       setTimeout(()=>{
         setLoading(false);
@@ -326,7 +329,11 @@ function App({ domElement }) {
     setLoading(true);
     setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
     setIsSessionEnded(true); // Mark session as ended
-    localStorage.clear();
+    localStorage.removeItem("conversation_id");
+    localStorage.removeItem("menuData");
+    localStorage.removeItem("message");
+    localStorage.removeItem("start");
+    localStorage.removeItem("form_submit");
 
     setTimeout(()=>{
       setLoading(false);
@@ -376,7 +383,7 @@ function App({ domElement }) {
       console.log(widgetSettings);
       setOrgSettings(widgetSettings);
       debugger;
-      const timeInMinutes = widgetSettings.chat_bot.chatTimeout;
+      const timeInMinutes = widgetSettings?.chat_bot?.chatTimeout;
       const timeInSeconds = (timeInMinutes)? (Number(timeInMinutes) * 60) : 180;
       setInactivityTimer(timeInSeconds)
       setOfficeHours(data.data.office_hour);
