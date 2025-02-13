@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Message from './Messages';
 
 class MessageList extends Component {
-
+  constructor(props) {
+    super(props);
+  }
+  
   componentDidUpdate(_prevProps, _prevState) {
     this.scrollList.scrollTop = this.scrollList.scrollHeight;
   }

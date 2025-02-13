@@ -137,7 +137,7 @@ const styles = {
   },
 };
 
-
+let inactivityTimerRef = 180;
 
 function App({ domElement }) {
   const name = "Eocean";
@@ -225,7 +225,12 @@ function App({ domElement }) {
     }
 
     const inactivityCountdown = setInterval(() => {
-      setInactivityTimer((prevTimer) => prevTimer - 1);
+      inactivityTimerRef -= 1;
+
+      // Only update state when reaching zero to trigger re-render
+      if (inactivityTimerRef === 0) {
+        setInactivityTimer(0);
+      }
     }, 1000);
 
     return () => clearInterval(inactivityCountdown);
@@ -239,11 +244,7 @@ function App({ domElement }) {
       setLoading(true);
       setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
       setIsSessionEnded(true); // Mark session as ended
-      localStorage.removeItem("conversation_id");
-      localStorage.removeItem("menuData");
-      localStorage.removeItem("message");
-      localStorage.removeItem("start");
-      localStorage.removeItem("form_submit");
+      localStorage.clear();
 
       setTimeout(()=>{
         setLoading(false);
@@ -329,11 +330,8 @@ function App({ domElement }) {
     setLoading(true);
     setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
     setIsSessionEnded(true); // Mark session as ended
-    localStorage.removeItem("conversation_id");
-    localStorage.removeItem("menuData");
-    localStorage.removeItem("message");
-    localStorage.removeItem("start");
-    localStorage.removeItem("form_submit");
+    localStorage.clear();
+
 
     setTimeout(()=>{
       setLoading(false);
@@ -385,7 +383,8 @@ function App({ domElement }) {
       debugger;
       const timeInMinutes = widgetSettings?.chat_bot?.chatTimeout;
       const timeInSeconds = (timeInMinutes)? (Number(timeInMinutes) * 60) : 180;
-      setInactivityTimer(timeInSeconds)
+      setInactivityTimer(timeInSeconds);
+      inactivityTimerRef = timeInSeconds;
       setOfficeHours(data.data.office_hour);
       setLoading(false);
       loadBotFile(data.data.widget_settings);

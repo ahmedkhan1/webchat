@@ -7,10 +7,10 @@ import launcherIconActive from './../assets/mingcute_close-fill.png';
 import ChatIcon from './chatIcon';
 import ChannelsMenu from './ChannelsMenu/ChannelsMenu';
 
-class Launcher extends Component {
+class Launcher extends React.PureComponent {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       launcherIcon,
       isOpen: false
@@ -22,7 +22,7 @@ class Launcher extends Component {
     const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
     const isIncoming = (nextMessage || {}).author === 'them';
     const isNew = nextProps.messageList.length > this.props.messageList.length;
-    console.log("Isnew", isNew, nextMessage && nextMessage.key_from_me, localStorage.getItem("sound") );
+    console.log("Isnew", this.props);
     if (isIncoming && isNew || isNew && nextMessage.key_from_me === 1 && localStorage.getItem("sound") === "true") {
       this.playIncomingMessageSound();
     }

@@ -14,7 +14,6 @@ export default function ChannelsMenu({widgetSettings, isWebChannelOpen, handleWe
   ];
 
   const toggleChannel = () => {
-    console.log(isWebChannelOpen);
     if(isWebChannelOpen){
       handleWebchatMenu();
     } else {
