@@ -47,8 +47,8 @@ class Message extends Component {
         <TextMessage clickMe={this.props.clickMe} {...this.props.message} />      
       </ div>
       );
-    case '300':
-      return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
+    // case '300':
+      // return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
 
     default:
       console.error(`Attempting to load message with unsupported file type '${type}'`);

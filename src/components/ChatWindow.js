@@ -44,10 +44,13 @@ const ChatWindow = ({
     // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
     // Prod 
-    const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
+    // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
     // QA 
     // const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    // local
+    const backendUrl =  "http://localhost:3000/dev";
     try {
+      console.log('API request:', data);
       const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
       // const response = await fetch(`${backendUrl}/saveUserInfo`, {
       //   method: 'POST',
@@ -99,7 +102,9 @@ const ChatWindow = ({
    // Initialize an object to hold the data to send
     const dataToSend = {
         id: localStorage.getItem("sessionId"),
-        org_unit_id:localStorage.getItem("org")     
+        org_unit_id:localStorage.getItem("org"),
+        // additionalParams: localStorage.getItem("additionalParams"),  
+        additionalParams: document.getElementById("root-chat").getAttribute("additionalParams"),  
     };
 
     // Iterate over the form data and check if the key includes any of the required substrings

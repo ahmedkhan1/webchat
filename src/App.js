@@ -161,7 +161,7 @@ function App({ domElement }) {
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const tokenKey = domElement.getAttribute("property-id");
-  console.log(JSON.parse(domElement.getAttribute("additionalparams")));
+  localStorage.setItem("additionalParams",domElement.getAttribute("additionalParams"));
   const [formSubmit, setFormSubmit] = useState(
     localStorage.getItem("form_submit")
   );
@@ -174,7 +174,7 @@ function App({ domElement }) {
   //   socket.emit("send-msg",message);
   //   setMessageList((prevMessageList) => [...prevMessageList, message]);
   // }, []);
-  const id1 = uuid();
+  const id1 = JSON.parse(domElement.getAttribute("additionalParams")).uuid || uuid();
   const sessionId = id1;
   let menuData = [];
   let formStart = false;
@@ -195,16 +195,16 @@ function App({ domElement }) {
   // const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
 
   //   // Stg
-  const backendUrl =
-    "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  const socketUrl =
-    "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  // const backendUrl =
+  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  // const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  // const socketUrl =
+  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   //   Local
-  // const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
-  // const backendUrl = 'http://localhost:3000/dev'
-  // const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
+  const backendUrl = 'http://localhost:3000/dev'
+  const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
   
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
   const [inactivityTimer, setInactivityTimer] = useState(inactiveTimer); // 3 minutes for inactivity
@@ -861,8 +861,8 @@ function App({ domElement }) {
         localStorage.getItem("form_submit") || "Customer",
         response
       );
-      const buildMenuData = buildMenu(item.menus);
-      response = response + buildMenuData;  // all text messages related to bot will be treated here
+      // const buildMenuData = buildMenu(item.menus);
+      // response = response + buildMenuData;  // all text messages related to bot will be treated here
       msgData = {
         data: response,
 
