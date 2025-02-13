@@ -68,6 +68,10 @@ class Header extends Component {
     return false;
   };
 
+  showMenu = () => {
+    return (this.props.widgetSettings?.widget_builder?.incoming_msg_sound ||
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel.length > 0)
+  }
 
   render() {
     const { menuOpen, soundOn } = this.state;
@@ -83,10 +87,16 @@ class Header extends Component {
         </div>
 
         <div className="sc-header--options">
-          <div className={(this.isAvailableForChat())? "sc-header--agent-status active" : "sc-header--agent-status inactive"}></div>
-          <div className="sc-header--settings-button" onClick={this.toggleMenu}>
-            <img src={dots} alt="options" />
-          </div>
+          <div className={(this.isAvailableForChat())? `sc-header--agent-status active ${this.showMenu()? 'menu-active' : 'menu-inactive'}` : `sc-header--agent-status inactive`}></div>
+          
+          {
+            this.showMenu() &&
+            <div className="sc-header--settings-button" onClick={this.toggleMenu}>
+              <img src={dots} alt="options" />
+            </div>
+          }
+
+
           <div
             className={`menu-dropdown ${menuOpen ? "open" : ""}`}
           >

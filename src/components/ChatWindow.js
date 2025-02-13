@@ -5,6 +5,7 @@ import UserInput from "./UserInput";
 import Header from "./Header";
 import { fetchWrapper } from "./helpers";
 import EoceanIcon from '../assets/eocean.png';
+import userProfile from '../assets/user.png';
 
 const ChatWindow = ({
   agentProfile,
@@ -184,7 +185,7 @@ const ChatWindow = ({
     <div className={classList.join(" ")}>
       <Header
         teamName={agentProfile.teamName}
-        imageUrl={agentProfile.imageUrl}
+        imageUrl={agentProfile.imageUrl || userProfile }
         onClose={onClose}
         widgetSettings={widgetSettings}
         workingHours={workingHours}
