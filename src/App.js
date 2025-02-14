@@ -137,8 +137,6 @@ const styles = {
   },
 };
 
-
-
 function App({ domElement }) {
   const name = "Eocean";
   const initialName = name.substring(0, 1);
@@ -161,7 +159,10 @@ function App({ domElement }) {
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const tokenKey = domElement.getAttribute("property-id");
-  localStorage.setItem("additionalParams",domElement.getAttribute("additionalParams"));
+  localStorage.setItem(
+    "additionalParams",
+    domElement.getAttribute("additionalParams")
+  );
   const [formSubmit, setFormSubmit] = useState(
     localStorage.getItem("form_submit")
   );
@@ -174,7 +175,8 @@ function App({ domElement }) {
   //   socket.emit("send-msg",message);
   //   setMessageList((prevMessageList) => [...prevMessageList, message]);
   // }, []);
-  const id1 = JSON.parse(domElement.getAttribute("additionalParams")).uuid || uuid();
+  const id1 =
+    JSON.parse(domElement.getAttribute("additionalParams")).uuid || uuid();
   const sessionId = id1;
   let menuData = [];
   let formStart = false;
@@ -194,28 +196,28 @@ function App({ domElement }) {
   //  const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
   // const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
 
-  //   // Stg
-  // const backendUrl =
-  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  // const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  // const socketUrl =
-  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  // Stg
+  const backendUrl =
+    "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  const socketUrl =
+    "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   //   Local
-  const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
-  const backendUrl = 'http://localhost:3000/dev'
-  const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
-  
+  // const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
+  // const backendUrl = 'http://localhost:3000/dev'
+  // const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
   const [inactivityTimer, setInactivityTimer] = useState(inactiveTimer); // 3 minutes for inactivity
   const [modalTimer, setModalTimer] = useState(extensionTimer); // 2 minutes for modal countdown
-  const [isSessionEnded, setIsSessionEnded] = useState((localStorage.getItem("phone_number") !== null)? false : true); // Tracks whether the session has ended
-
+  const [isSessionEnded, setIsSessionEnded] = useState(
+    localStorage.getItem("phone_number") !== null ? false : true
+  ); // Tracks whether the session has ended
 
   // Inactivity Timer Countdown
   useEffect(() => {
     if (isSessionEnded) return; // Stop timer if the session has ended
-
 
     if (inactivityTimer <= 0) {
       if (!isTimerModalOpen) {
@@ -241,17 +243,16 @@ function App({ domElement }) {
       setIsSessionEnded(true); // Mark session as ended
       localStorage.clear();
 
-
-      setTimeout(()=>{
+      setTimeout(() => {
         setLoading(false);
         setOpen(!open);
-      }, 5)
+      }, 5);
 
       if (tokenKey == "" || !tokenKey) {
         setError(true);
       } else {
         loadOrg(); //get org_unit using propety-id // get bot_trigger, menu, msgs using the bot id n settigs widget
-  
+
         loadList(); // get old messages of user using session id
         socket.current?.close();
       }
@@ -274,7 +275,6 @@ function App({ domElement }) {
     setIsSessionEnded(false); // Reset session ended state
   };
 
-
   useEffect(() => {
     if (tokenKey == "" || !tokenKey) {
       setError(true);
@@ -283,7 +283,7 @@ function App({ domElement }) {
 
       loadList(); // get old messages of user using session id
       onConnect();
-      
+
       return () => {
         // onConnect();
         // Close socket properly if needed
@@ -297,18 +297,15 @@ function App({ domElement }) {
     if (localStorage.getItem("sessionId")) {
       // Initialize interval for every 5 seconds
 
-
       const intervalId = setInterval(() => {
-        if(localStorage.getItem('routeAgent')){
-            loadListNew();
+        if (localStorage.getItem("routeAgent")) {
+          loadListNew();
         }
-        
       }, 3500);
       // Cleanup interval when the component unmounts
       return () => clearInterval(intervalId);
     }
   }, [org, sessionId, formSubmit]); // Include dependencies if they are changing
-
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -328,7 +325,7 @@ function App({ domElement }) {
     setIsSessionEnded(true); // Mark session as ended
     localStorage.clear();
 
-    setTimeout(()=>{
+    setTimeout(() => {
       setLoading(false);
       setOpen(!open);
       setMessageList([]);
@@ -339,8 +336,7 @@ function App({ domElement }) {
         loadList(); // get old messages of user using session id
         socket.current?.close();
       }
-    }, 5)
-
+    }, 5);
   };
 
   const loadBotFile = async (widget_settings) => {
@@ -361,8 +357,8 @@ function App({ domElement }) {
 
     const token = {};
     setLoading(true);
-    
-    const postData = { token: tokenKey, msg_channel: 'web' };
+
+    const postData = { token: tokenKey, msg_channel: "web" };
     const data = await fetchWrapper.post(url, token, postData);
 
     if (!data.data) {
@@ -377,8 +373,8 @@ function App({ domElement }) {
       setOrgSettings(widgetSettings);
       debugger;
       const timeInMinutes = widgetSettings.chat_bot.chatTimeout;
-      const timeInSeconds = (timeInMinutes)? (Number(timeInMinutes) * 60) : 180;
-      setInactivityTimer(timeInSeconds)
+      const timeInSeconds = timeInMinutes ? Number(timeInMinutes) * 60 : 180;
+      setInactivityTimer(timeInSeconds);
       setOfficeHours(data.data.office_hour);
       setLoading(false);
       loadBotFile(data.data.widget_settings);
@@ -411,11 +407,14 @@ function App({ domElement }) {
 
       const datax = data?.reverse();
       debugger;
-      if(datax && datax.length > 0){
-        if(data[datax.length-1].key_from_me === 1 && localStorage.getItem("sound") === "true"){
-          try{
+      if (datax && datax.length > 0) {
+        if (
+          data[datax.length - 1].key_from_me === 1 &&
+          localStorage.getItem("sound") === "true"
+        ) {
+          try {
             await audioRef.current.play();
-          } catch(err){
+          } catch (err) {
             console.log(err);
           }
         }
@@ -439,42 +438,44 @@ function App({ domElement }) {
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
     const chat = {};
-    
+
     const lastId = messageList[messageList?.length - 1]?._id;
     //console.log("messageList :::" , messageList);
 
     if (lastId && org) {
       const url = `${backendUrl}/get-message-new?number=${number}`;
-      
+
       const postData = {
         msg_channel: "web",
-        
+
         number: number,
         last_msg_id: lastId,
         org_unit_id: org,
       };
       //console.log(postData)
-      
+
       const token = {};
       const dataxAll = await fetchWrapper.post(url, token, postData);
       //const datax = dataxAll.reverse()
-      
+
       console.log(dataxAll);
       if (dataxAll && dataxAll.length > 0) {
-        
         // Try to play a silent sound to trigger browser permissions
         debugger;
-        for(const data of dataxAll){
+        for (const data of dataxAll) {
           console.log(data.key_from_me === 1, localStorage.getItem("sound"));
-          if(data.key_from_me === 1 && localStorage.getItem("sound") === "true"){
-            try{
+          if (
+            data.key_from_me === 1 &&
+            localStorage.getItem("sound") === "true"
+          ) {
+            try {
               await audioRef.current.play();
-            } catch(err){
+            } catch (err) {
               console.log(err);
             }
           }
         }
-        
+
         const newVal = [...messageList, ...dataxAll];
         localStorage.setItem("message", JSON.stringify(newVal));
         setMessageList(newVal);
@@ -515,9 +516,7 @@ function App({ domElement }) {
     //   const user_id = localStorage.getItem("sessionId") + "-agent";
     //   const user_name = "web";
     //   const URL = `${socketUrl}/?user_name=${user_name}&user_id=${user_id}`;
-
     //   socket.current = new WebSocket(URL);
-
     //   socket.current.addEventListener("open", onSocketOpen);
     //   socket.current.addEventListener("close", onSocketClose);
     //   socket.current.addEventListener("message", (event) => {
@@ -558,13 +557,13 @@ function App({ domElement }) {
     return false;
   };
 
-  const onSendPrivateMessage = useCallback((message, wa_type=0) => {
+  const onSendPrivateMessage = useCallback((message, wa_type = 0) => {
     handleExtendSession();
-    
+
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
-      media_wa_type: (wa_type)? 0 : wa_type,
+      media_wa_type: wa_type ? 0 : wa_type,
     };
 
     messageSound = message.messageSound;
@@ -573,11 +572,11 @@ function App({ domElement }) {
     const oldMsg = JSON.parse(localStorage.getItem("message"));
 
     const newVal = [...oldMsg, msgData];
-    if(!localStorage.getItem('routeAgent')){
-       localStorage.setItem("message", JSON.stringify(newVal));
-       setMessageList(newVal);
+    if (!localStorage.getItem("routeAgent")) {
+      localStorage.setItem("message", JSON.stringify(newVal));
+      setMessageList(newVal);
     }
-    
+
     if (!checkFeedbackTemplate(newVal) && checkSpamUnblock(newVal)) {
       localStorage.removeItem("routeAgent");
       localStorage.removeItem("conversation_id");
@@ -614,7 +613,6 @@ function App({ domElement }) {
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
 
-
     if (!localStorage.getItem("routeAgent")) {
       if (
         localStorage.getItem("widget_settings") &&
@@ -629,17 +627,15 @@ function App({ domElement }) {
         sendBotMessage(msgData, true);
         // localStorage.setItem("routeAgent", true);
       } else {
-        
         botResponse(message.data.text);
         sendBotMessage(msgData, false);
       }
     }
-    
+
     if (localStorage.getItem("routeAgent")) {
       fetch(`${backendUrl}/rec-message`, requestOptions)
         .then((response) => response.json())
-        .then(async(result) => {
-          
+        .then(async (result) => {
           try {
             loadListNew();
           } catch (error) {}
@@ -654,17 +650,15 @@ function App({ domElement }) {
             // step 2 detect the feedback response and call sp
             // step 3 send thankyou template for feedback response
 
-
             // const requestObject = {
             //   org: localStorage.getItem("org"),
             //   userMessage: message.data.text,
             // }
-    
+
             // if(requestObject.org === "eoceanchatbot"){
             //   const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
             //   await gptResponse(requestObject, dataJson, "", "");
             // }
-
 
             const msgData = {
               data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
@@ -679,8 +673,6 @@ function App({ domElement }) {
 
             return false;
           }
-
-          
 
           if (feedBackMenuData) {
             feedBackMenuData = false;
@@ -731,13 +723,12 @@ function App({ domElement }) {
     };
     // mggSend(msgData);
   };
-  const buildResponse = async(response, menus,routeToAgent = false) => {
+  const buildResponse = async (response, menus, routeToAgent = false) => {
     let msgData = {};
     debugger;
-    for(const item of response){
-
+    for (const item of response) {
       if (item.type == "media" && item.mediaType == "DOCUMENT") {
-        const url = (item.urls)? item.urls[0] : item.url; 
+        const url = item.urls ? item.urls[0] : item.url;
         msgData = {
           data: "",
           media_url: url,
@@ -758,7 +749,10 @@ function App({ domElement }) {
           media_wa_type: 1,
         };
         mggSend(msgData);
-      } else if (item.type.toLowerCase() == "text" && item.msgType == "InteractiveButton") {
+      } else if (
+        item.type.toLowerCase() == "text" &&
+        item.msgType == "InteractiveButton"
+      ) {
         await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
@@ -774,7 +768,10 @@ function App({ domElement }) {
           media_wa_type: 0,
         };
         mggSend(msgData);
-      } else if (item.type.toLowerCase() == "text" && item.msgType == "InteractiveList") {
+      } else if (
+        item.type.toLowerCase() == "text" &&
+        item.msgType == "InteractiveList"
+      ) {
         await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
@@ -790,7 +787,10 @@ function App({ domElement }) {
           media_wa_type: 0,
         };
         mggSend(msgData);
-      } else if ((item.type.toLowerCase() == "text" && item.msgType == "SimpleText") || item.type.toLowerCase() == "text") {
+      } else if (
+        (item.type.toLowerCase() == "text" && item.msgType == "SimpleText") ||
+        item.type.toLowerCase() == "text"
+      ) {
         await delay(2 * 1000);
         let response = item.response + "<br>";
         const buildMenuData = buildMenu(menus);
@@ -805,7 +805,7 @@ function App({ domElement }) {
           key_from_me: 1,
           media_wa_type: 0,
         };
-        mggSend(msgData,routeToAgent);
+        mggSend(msgData, routeToAgent);
       } else if (item.type == "loopback") {
         await delay(2 * 1000);
         const dataJson = JSON.parse(localStorage.getItem("bot_data")).data;
@@ -815,21 +815,23 @@ function App({ domElement }) {
         menuData = triggerStart[0].menus;
         localStorage.setItem("menuData", JSON.stringify(menuData));
 
-        buildResponse((triggerStart && triggerStart[0].botResponses || triggerStart), triggerStart[0].menus);
+        buildResponse(
+          (triggerStart && triggerStart[0].botResponses) || triggerStart,
+          triggerStart[0].menus
+        );
       }
     }
 
-
-      // if (item.type == "text" && item.routeToAgent) {
-      //   localStorage.setItem("routeAgent", true);
-      // }
+    // if (item.type == "text" && item.routeToAgent) {
+    //   localStorage.setItem("routeAgent", true);
+    // }
   };
   const buildResponseOld = (item) => {
     let msgData = {};
 
     console.log(item);
     if (item.type == "media") {
-      const url = (item.urls)? item.urls[0] : item.url; 
+      const url = item.urls ? item.urls[0] : item.url;
       msgData = {
         data: "",
         media_url: url,
@@ -838,10 +840,10 @@ function App({ domElement }) {
       };
       mggSend(msgData);
     }
-    
+
     console.log(item);
     if (item.type.toLowerCase() == "document") {
-      const url = (item.urls)? item.urls[0] : item.url; 
+      const url = item.urls ? item.urls[0] : item.url;
       msgData = {
         data: "",
         media_url: url,
@@ -855,7 +857,7 @@ function App({ domElement }) {
       mggSend(msgData);
     }
 
-    if ((item.type == "TEXT")) {
+    if (item.type == "TEXT") {
       let response = item.response + "<br>";
       response = commonMethods.stripResponseHtml(
         localStorage.getItem("form_submit") || "Customer",
@@ -899,17 +901,23 @@ function App({ domElement }) {
   const buildMenu = (menus) => {
     let menuItem = "";
     let aa = 0;
-    if(menus && !menus.length) return "";
-    
+    if (menus && !menus.length) return "";
+
     menus.map((item) => {
-      if(!item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation") && item.text !== "."){
+      if (
+        !item.text.includes("_") &&
+        !item.text.includes("Finish") &&
+        !item.text.includes("End conversation") &&
+        item.text !== "."
+      ) {
         aa = aa + 1;
         menuItem =
-          menuItem + `<span class="int-menu" >${aa} - ${item.text}</span><br />`;
+          menuItem +
+          `<span class="int-menu" >${aa} - ${item.text}</span><br />`;
       }
     });
 
-    if(menuItem){
+    if (menuItem) {
       menuItem = `<div class='menu-list'>${menuItem}</div>`;
     }
     return menuItem;
@@ -933,7 +941,8 @@ function App({ domElement }) {
     let data = {
       msg: messageData.data,
       number: localStorage.getItem("sessionId"),
-      wa_type: (messageData.media_wa_type === 9)?  messageData.media_wa_type : "0",
+      wa_type:
+        messageData.media_wa_type === 9 ? messageData.media_wa_type : "0",
       msg_channel: "web",
       org_unit_id: localStorage.getItem("org"),
       from: localStorage.getItem("form_submit"),
@@ -942,12 +951,11 @@ function App({ domElement }) {
       route_to_agent: route_to_agent,
       media_mime_type: messageData.media_mime_type,
       caption: messageData.caption,
-
     };
 
-    if(messageData.media_wa_type === 9){
-      data['media_name'] = messageData.media_name;
-      data['media_url'] = messageData.media_url;
+    if (messageData.media_wa_type === 9) {
+      data["media_name"] = messageData.media_name;
+      data["media_url"] = messageData.media_url;
     }
     data = JSON.stringify(data);
     debugger;
@@ -961,12 +969,10 @@ function App({ domElement }) {
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
 
-    
     fetch(`${backendUrl}/send-bot-message`, requestOptions)
-    .then((response) => response.json())
-    .then(async(result) => {
-      try {
-        
+      .then((response) => response.json())
+      .then(async (result) => {
+        try {
           // await loadListNew();
         } catch (error) {}
         // setMessageList((prevMessageList) => [...prevMessageList, result.data]);
@@ -986,19 +992,16 @@ function App({ domElement }) {
       });
   };
   const mggSend = (msg, route_to_agent = false) => {
-   
     // For bot conversation
 
-    if(!localStorage.getItem('routeAgent')){
-        
-        const oldMsg = JSON.parse(localStorage.getItem("message"));
-        const newVal = [...oldMsg, msg];
+    if (!localStorage.getItem("routeAgent")) {
+      const oldMsg = JSON.parse(localStorage.getItem("message"));
+      const newVal = [...oldMsg, msg];
 
-        localStorage.setItem("message", JSON.stringify(newVal));
-        setMessageList(newVal);
-
+      localStorage.setItem("message", JSON.stringify(newVal));
+      setMessageList(newVal);
     }
-   
+
     sendBotMessage(msg, route_to_agent);
   };
   const buildForm = async (triggerData) => {
@@ -1076,9 +1079,11 @@ function App({ domElement }) {
     apiTrigger = false;
   };
 
-  const botResponse = async(msg) => {
+  const botResponse = async (msg) => {
     if (!localStorage.getItem("routeAgent")) {
-      const dataJson = (localStorage.getItem("bot_data"))?JSON.parse(localStorage.getItem("bot_data")).data : []; // all the data related to bot triggers, menu, etc.
+      const dataJson = localStorage.getItem("bot_data")
+        ? JSON.parse(localStorage.getItem("bot_data")).data
+        : []; // all the data related to bot triggers, menu, etc.
       let responseData;
       let msgData = {};
 
@@ -1127,18 +1132,34 @@ function App({ domElement }) {
           menuData = JSON.parse(localStorage.getItem("menuData"));
         }
 
-        menuData = menuData.filter(item => !item.text.includes("_") && !item.text.includes("Finish") && !item.text.includes("End conversation"));
-        const triggerId = (menuData && menuData.length > 1)? menuData[msg - 1]?.toTriggerId
-        : menuData[0]?.toTriggerId;
+        menuData = menuData.filter(
+          (item) =>
+            !item.text.includes("_") &&
+            !item.text.includes("Finish") &&
+            !item.text.includes("End conversation")
+        );
+        const triggerId =
+          menuData && menuData.length > 1
+            ? menuData[msg - 1]?.toTriggerId
+            : menuData[0]?.toTriggerId;
         let triggerData = dataJson.filter((rs) => rs.id == triggerId)[0];
 
         const requestObject = {
           org: localStorage.getItem("org"),
           userMessage: msg,
-        }
+        };
 
-        if(!triggerData || !triggerData.loopBackTriggerId && !triggerData.caption && triggerData.response === "" && !triggerData.botResponses){
-          if(requestObject.org === "eoceanchatbot" || requestObject.org === "eoceantest"){
+        if (
+          !triggerData ||
+          (!triggerData.loopBackTriggerId &&
+            !triggerData.caption &&
+            triggerData.response === "" &&
+            !triggerData.botResponses)
+        ) {
+          if (
+            requestObject.org === "eoceanchatbot" ||
+            requestObject.org === "eoceantest"
+          ) {
             await gptResponse(requestObject, dataJson, "", "");
           }
           return false;
@@ -1164,10 +1185,16 @@ function App({ domElement }) {
               apiTrigger = triggerData;
             }
             responseData = triggerData.botResponses;
-            menuData = (triggerData && triggerData.menus)? triggerData.menus: [];
-            buildResponse(responseData, triggerData.menus,triggerData?.routeToAgent);
+            menuData =
+              triggerData && triggerData.menus ? triggerData.menus : [];
+            buildResponse(
+              responseData,
+              triggerData.menus,
+              triggerData?.routeToAgent
+            );
           } else {
-            menuData = (triggerData && triggerData.menus)? triggerData.menus: [];
+            menuData =
+              triggerData && triggerData.menus ? triggerData.menus : [];
             buildResponseOld(triggerData);
           }
           localStorage.setItem("menuData", JSON.stringify(menuData));
@@ -1320,7 +1347,7 @@ function App({ domElement }) {
     const dataJson = JSON.parse(localStorage.getItem("bot_data")).data; // all the data related to bot triggers, menu, etc.
     let responseData;
     let msgData = {};
-    
+
     if (!menuData.length && localStorage.getItem("menuData").length) {
       menuData = JSON.parse(localStorage.getItem("menuData"));
     }
@@ -1431,9 +1458,9 @@ function App({ domElement }) {
   };
 
   return (
-    <div className="App"
-    >
-      <style>{` .sc-launcher, .sc-message--dtext, .sc-header, .webchat-widget {
+    <div className="App">
+      <style>
+        {` .sc-launcher, .sc-message--dtext, .sc-header, .webchat-widget {
             background: ${orgSettings?.widget_builder?.widget_color} !important;
         }
          `}
@@ -1446,7 +1473,6 @@ function App({ domElement }) {
           clickMe={clickMe}
         />
       )}
-
 
       <audio id="audio" src={audioSrc} ref={audioRef}></audio>
       <CloseModal
@@ -1465,13 +1491,12 @@ function App({ domElement }) {
         />
       )}
 
-      {
-        openWhatsAppRedirect &&
+      {openWhatsAppRedirect && (
         <WhatsAppRedirect
-          onBack={()=> setOpenWhatsAppRedirect((prev)=> !prev)}
+          onBack={() => setOpenWhatsAppRedirect((prev) => !prev)}
           widgetSettings={orgSettings}
         />
-      }
+      )}
 
       {!loading && !error && (
         <Launcher
@@ -1488,9 +1513,9 @@ function App({ domElement }) {
           widgetSettings={orgSettings}
           isOpen={open}
           clickMe={clickMe}
-          onClose={()=>setIsModalOpen(true)}
+          onClose={() => setIsModalOpen(true)}
           startConnection={onConnect()}
-          openWhatsAppRedirect={()=> setOpenWhatsAppRedirect(true)}
+          openWhatsAppRedirect={() => setOpenWhatsAppRedirect(true)}
         />
       )}
     </div>
