@@ -4,7 +4,6 @@ import tabler_download from "../../assets/file/tabler_download.png";
 import moment from "moment";
 
 const DocumentMessage = (props) => {
-console.log("props.data:",props.data);
   const PrintDocIcon = ({type}) => {
 
         if(type == 'application/pdf'){ 

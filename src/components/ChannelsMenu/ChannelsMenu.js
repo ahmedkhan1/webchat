@@ -14,7 +14,6 @@ export default function ChannelsMenu({widgetSettings, isWebChannelOpen, handleWe
   ];
 
   const toggleChannel = () => {
-    console.log(isWebChannelOpen);
     if(isWebChannelOpen){
       handleWebchatMenu();
     } else {
@@ -27,7 +26,7 @@ export default function ChannelsMenu({widgetSettings, isWebChannelOpen, handleWe
 
         {
           widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp &&
-          <a href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=hi`} target="_blank" rel="noopener noreferrer" className="float-menu-item whatsapp">
+          <a href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=${encodeURIComponent("I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"))}`} target="_blank" rel="noopener noreferrer" className="float-menu-item whatsapp">
             <img src={whatsapp} alt="WhatsApp" />
           </a>
         }

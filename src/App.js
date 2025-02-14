@@ -137,6 +137,8 @@ const styles = {
   },
 };
 
+let inactivityTimerRef = 180;
+
 function App({ domElement }) {
   const name = "Eocean";
   const initialName = name.substring(0, 1);
@@ -227,7 +229,12 @@ function App({ domElement }) {
     }
 
     const inactivityCountdown = setInterval(() => {
-      setInactivityTimer((prevTimer) => prevTimer - 1);
+      inactivityTimerRef -= 1;
+
+      // Only update state when reaching zero to trigger re-render
+      if (inactivityTimerRef === 0) {
+        setInactivityTimer(0);
+      }
     }, 1000);
 
     return () => clearInterval(inactivityCountdown);
@@ -241,7 +248,9 @@ function App({ domElement }) {
       setLoading(true);
       setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
       setIsSessionEnded(true); // Mark session as ended
+      const sessionId = localStorage.getItem("sessionId");
       localStorage.clear();
+      localStorage.setItem("sessionId", sessionId);
 
       setTimeout(() => {
         setLoading(false);
@@ -323,7 +332,10 @@ function App({ domElement }) {
     setLoading(true);
     setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
     setIsSessionEnded(true); // Mark session as ended
+
+    const sessionId = localStorage.getItem("sessionId");
     localStorage.clear();
+    localStorage.setItem("sessionId", sessionId);
 
     setTimeout(() => {
       setLoading(false);
@@ -372,9 +384,10 @@ function App({ domElement }) {
       console.log(widgetSettings);
       setOrgSettings(widgetSettings);
       debugger;
-      const timeInMinutes = widgetSettings.chat_bot.chatTimeout;
+      const timeInMinutes = widgetSettings?.chat_bot?.chatTimeout;
       const timeInSeconds = timeInMinutes ? Number(timeInMinutes) * 60 : 180;
       setInactivityTimer(timeInSeconds);
+      inactivityTimerRef = timeInSeconds;
       setOfficeHours(data.data.office_hour);
       setLoading(false);
       loadBotFile(data.data.widget_settings);

@@ -11,8 +11,8 @@ import bot from './../../assets/bot-icon.png';
 
 
 class Message extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
         name : (localStorage.getItem("form_submit"))? localStorage.getItem("form_submit").charAt(0) : ""
     }
@@ -51,7 +51,7 @@ class Message extends Component {
       // return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
 
     default:
-      console.error(`Attempting to load message with unsupported file type '${type}'`);
+      // console.error(`Attempting to load message with unsupported file type '${type}'`);
       //console.log(this.props)
     }
   }

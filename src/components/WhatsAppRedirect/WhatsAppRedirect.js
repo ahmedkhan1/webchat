@@ -32,7 +32,7 @@ const WhatsAppRedirect = ({ onBack, widgetSettings }) => {
           const orgUnitId = localStorage.getItem('org');
           let url =  API_URL + "/api/qrcode";
           const qrCode =  await axios.post(url, {
-            "prefilled_message": "hi",
+            "prefilled_message": "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"),
             "generate_qr_image": "PNG",
             "org_unit_id": orgUnitId
           });
@@ -68,7 +68,7 @@ const WhatsAppRedirect = ({ onBack, widgetSettings }) => {
           <img src={qrCodeUrl} alt="QR Code" className="qr-code" />
         )}
 
-        <a target={"_blank"} rel="noreferrer" href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=Hi`}  className="open-link">
+        <a target={"_blank"} rel="noreferrer" href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=${encodeURIComponent("I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"))}`}  className="open-link">
           Open WhatsApp on this device.
         </a>
       </div>
