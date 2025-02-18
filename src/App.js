@@ -178,7 +178,7 @@ function App({ domElement }) {
   //   setMessageList((prevMessageList) => [...prevMessageList, message]);
   // }, []);
   const id1 =
-    JSON.parse(domElement.getAttribute("additionalParams")).uuid || uuid();
+    JSON.parse(domElement.getAttribute("additionalParams"))?.uuid || uuid();
   const sessionId = id1;
   let menuData = [];
   let formStart = false;
@@ -719,6 +719,7 @@ function App({ domElement }) {
   }, []);
 
   const botResponseTemplate = (text) => {
+    debugger;
     feedBackMenuData = [
       { text: "Poor" },
       { text: "Average" },
