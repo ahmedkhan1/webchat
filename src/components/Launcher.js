@@ -69,7 +69,7 @@ class Launcher extends React.PureComponent {
           <ChannelsMenu 
             isWebChannelOpen={isOpen}
             widgetSettings={this.props.widgetSettings}
-            handleWebchatMenu={this.handleWebchatMenu.bind(this)}
+            handleWebchatMenu={this.handleWidgetBtn.bind(this)}
           />
           :
           <div className={classList.join(' ')} onClick={this.handleWidgetBtn.bind(this)}>
