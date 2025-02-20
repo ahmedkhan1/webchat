@@ -192,10 +192,11 @@ function App({ domElement }) {
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-  if (!localStorage.getItem("uMsgId")) {
-    localStorage.setItem("uMsgId", uuid());
+  if (!localStorage.getItem("conversation_id")) {
+    let uuidConversation = uuid();
+    uuidConversation = uuidConversation.replaceAll("-", "");
+    localStorage.setItem("conversation_id", uuidConversation);
   }
-  
   //Prod
   // const backendUrl = 'http://localhost:3000/dev'
   // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
@@ -265,8 +266,10 @@ function App({ domElement }) {
       const sessionId = localStorage.getItem("sessionId");
       localStorage.clear();
       localStorage.setItem("sessionId",sessionId);
-      const uMsgId = uuid();
-      localStorage.setItem("uMsgId",uMsgId);
+
+      let uuidConversation = uuid();
+      uuidConversation = uuidConversation.replaceAll("-", "");
+      localStorage.setItem("conversation_id", uuidConversation);
 
       setTimeout(() => {
         setLoading(false);
@@ -368,8 +371,10 @@ function App({ domElement }) {
     const sessionId = localStorage.getItem("sessionId");
     localStorage.clear();
     localStorage.setItem("sessionId",sessionId);
-    const uMsgId = uuid();
-    localStorage.setItem("uMsgId",uMsgId);
+    
+    let uuidConversation = uuid();
+    uuidConversation = uuidConversation.replaceAll("-", "");
+    localStorage.setItem("conversation_id", uuidConversation);
 
     setTimeout(()=>{
       setLoading(false);
@@ -437,12 +442,12 @@ function App({ domElement }) {
     // load messages for the current session
     if (localStorage.getItem("org")) {
       let number = localStorage.getItem("sessionId");
-      let msgId = localStorage.getItem("uMsgId");
-      const url = `${backendUrl}/get-message?number=${number}&msgId=${msgId}`;
+      let conversation_id = localStorage.getItem("conversation_id");
+      const url = `${backendUrl}/get-message?number=${number}`;
 
       const postData = {
         msg_channel: "web",
-
+        conversation_id: conversation_id,
         number: number,
         org_unit_id: localStorage.getItem("org"),
       };
@@ -486,7 +491,7 @@ function App({ domElement }) {
 
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
-    let msgId = localStorage.getItem("uMsgId");
+    let conversation_id = localStorage.getItem("conversation_id");
 
     const chat = {};
 
@@ -494,11 +499,11 @@ function App({ domElement }) {
     //console.log("messageList :::" , messageList);
 
     if (lastId && org) {
-      const url = `${backendUrl}/get-message-new?number=${number}&msgId=${msgId}`;
+      const url = `${backendUrl}/get-message-new?number=${number}`;
       
       const postData = {
         msg_channel: "web",
-
+        conversation_id: conversation_id,
         number: number,
         last_msg_id: lastId,
         org_unit_id: org,
@@ -992,7 +997,6 @@ function App({ domElement }) {
 
     let data = {
       msg: messageData.data,
-      uMsgId: localStorage.getItem("uMsgId"),
       number: localStorage.getItem("sessionId"),
       wa_type:
         messageData.media_wa_type === 9 ? messageData.media_wa_type : "0",

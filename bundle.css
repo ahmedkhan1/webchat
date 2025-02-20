@@ -455,7 +455,7 @@ audio::-webkit-media-controls-enclosure {
   border-radius: 50%;
 }
 input:checked + .slider {
-  background-color: #3a82f7;
+  background-color: #00c800;
 }
 input:checked + .slider:before {
   transform: translateX(14px);
