@@ -371,7 +371,7 @@ function App({ domElement }) {
     const sessionId = localStorage.getItem("sessionId");
     localStorage.clear();
     localStorage.setItem("sessionId",sessionId);
-    
+
     let uuidConversation = uuid();
     uuidConversation = uuidConversation.replaceAll("-", "");
     localStorage.setItem("conversation_id", uuidConversation);
