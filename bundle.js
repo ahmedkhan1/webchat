@@ -36960,7 +36960,7 @@ var Header = class extends import_react16.Component {
     return false;
   };
   showMenu = () => {
-    return this.props.widgetSettings?.widget_builder?.incoming_msg_sound !== "0" || this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel.length > 0;
+    return this.props.widgetSettings?.widget_builder?.incoming_msg_sound !== "0" || this.props.widgetSettings?.other_channel;
   };
   render() {
     const { menuOpen, soundOn } = this.state;
@@ -36978,12 +36978,12 @@ var Header = class extends import_react16.Component {
           onChange: this.toggleSound
         }
       ), /* @__PURE__ */ import_react16.default.createElement("span", { className: "slider" }))),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[0].whatsapp && /* @__PURE__ */ import_react16.default.createElement("a", { href: "#", className: "menu-item", onClick: () => {
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.whatsapp && /* @__PURE__ */ import_react16.default.createElement("a", { href: "#", className: "menu-item", onClick: () => {
         this.toggleMenu();
         this.props.openWhatsAppRedirect();
       } }, /* @__PURE__ */ import_react16.default.createElement("img", { src: whatsapp_default, className: "insta-menu", alt: "WhatsApp" }), " Continue on WhatsApp"),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[1].messenger && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[1].messenger}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: messenger_default, alt: "Messenger" }), " Continue on Messenger"),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[2].instagram && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[2].instagram}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: instagram_default, alt: "Instagram" }), " Continue on Instagram")
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: messenger_default, alt: "Messenger" }), " Continue on Messenger"),
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: instagram_default, alt: "Instagram" }), " Continue on Instagram")
     ), menuOpen && /* @__PURE__ */ import_react16.default.createElement("div", { className: "settings-overlay", onClick: this.toggleMenu }), /* @__PURE__ */ import_react16.default.createElement(
       "div",
       {
@@ -37379,10 +37379,10 @@ function ChannelsMenu({
       setIsOpen(!isOpen);
     }
   };
-  return /* @__PURE__ */ import_react19.default.createElement("div", { className: "floating-menu" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: `float-menu-items ${isOpen ? "open" : ""}` }, widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp && /* @__PURE__ */ import_react19.default.createElement(
+  return /* @__PURE__ */ import_react19.default.createElement("div", { className: "floating-menu" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: `float-menu-items ${isOpen ? "open" : ""}` }, widgetSettings?.other_channel && widgetSettings?.other_channel?.whatsapp && /* @__PURE__ */ import_react19.default.createElement(
     "a",
     {
-      href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=${encodeURIComponent(
+      href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel?.whatsapp}&text=${encodeURIComponent(
         "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId")
       )}`,
       target: "_blank",
@@ -37390,19 +37390,19 @@ function ChannelsMenu({
       className: "float-menu-item whatsapp"
     },
     /* @__PURE__ */ import_react19.default.createElement("img", { src: whatsapp_default, alt: "WhatsApp" })
-  ), widgetSettings?.other_channel && widgetSettings?.other_channel[1].messenger && /* @__PURE__ */ import_react19.default.createElement(
+  ), widgetSettings?.other_channel && widgetSettings?.other_channel?.messenger && /* @__PURE__ */ import_react19.default.createElement(
     "a",
     {
-      href: `https://www.facebook.com/${widgetSettings?.other_channel && widgetSettings?.other_channel[1].messenger}`,
+      href: `https://www.facebook.com/${widgetSettings?.other_channel && widgetSettings?.other_channel?.messenger}`,
       target: "_blank",
       rel: "noopener noreferrer",
       className: "float-menu-item messenger"
     },
     /* @__PURE__ */ import_react19.default.createElement("img", { src: messenger_default, alt: "Messenger" })
-  ), widgetSettings?.other_channel && widgetSettings?.other_channel[2].instagram && /* @__PURE__ */ import_react19.default.createElement(
+  ), widgetSettings?.other_channel && widgetSettings?.other_channel?.instagram && /* @__PURE__ */ import_react19.default.createElement(
     "a",
     {
-      href: `https://www.instagram.com/${widgetSettings?.other_channel && widgetSettings?.other_channel[2].instagram}`,
+      href: `https://www.instagram.com/${widgetSettings?.other_channel && widgetSettings?.other_channel?.instagram}`,
       target: "_blank",
       rel: "noopener noreferrer",
       className: "float-menu-item instagram"
@@ -40155,9 +40155,9 @@ var WhatsAppRedirect = ({ onBack, widgetSettings }) => {
         const orgUnitId2 = localStorage.getItem("org");
         let url = API_URL + "/api/qrcode";
         const qrCode2 = await axios_default.post(url, {
-          "prefilled_message": "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"),
-          "generate_qr_image": "PNG",
-          "org_unit_id": orgUnitId2
+          prefilled_message: "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"),
+          generate_qr_image: "PNG",
+          org_unit_id: orgUnitId2
         });
         if (qrCode2?.data?.data?.QR_IMAGE_URL) {
           setQrCodeUrl(qrCode2?.data?.data?.QR_IMAGE_URL);
@@ -40167,7 +40167,18 @@ var WhatsAppRedirect = ({ onBack, widgetSettings }) => {
     };
     fetchQrCode();
   }, []);
-  return /* @__PURE__ */ import_react26.default.createElement("div", { className: "whatsapp-redirect" }, /* @__PURE__ */ import_react26.default.createElement("button", { className: "back-button", onClick: () => onBack() }, /* @__PURE__ */ import_react26.default.createElement("img", { src: previous_default, alt: "Back" })), /* @__PURE__ */ import_react26.default.createElement("div", { className: "content" }, /* @__PURE__ */ import_react26.default.createElement("img", { src: whatsapp_default, alt: "WhatsApp", className: "whatsapp-logo" }), /* @__PURE__ */ import_react26.default.createElement("h2", null, "Continue on WhatsApp"), /* @__PURE__ */ import_react26.default.createElement("p", null, "Take the conversation to your WhatsApp account. You can return anytime."), /* @__PURE__ */ import_react26.default.createElement("p", null, "Scan the QR code and then send the message that appears in your WhatsApp."), loading ? /* @__PURE__ */ import_react26.default.createElement("div", { className: "loader" }, "Loading QR Code...") : /* @__PURE__ */ import_react26.default.createElement("img", { src: qrCodeUrl, alt: "QR Code", className: "qr-code" }), /* @__PURE__ */ import_react26.default.createElement("a", { target: "_blank", rel: "noreferrer", href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=${encodeURIComponent("I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"))}`, className: "open-link" }, "Open WhatsApp on this device.")));
+  return /* @__PURE__ */ import_react26.default.createElement("div", { className: "whatsapp-redirect" }, /* @__PURE__ */ import_react26.default.createElement("button", { className: "back-button", onClick: () => onBack() }, /* @__PURE__ */ import_react26.default.createElement("img", { src: previous_default, alt: "Back" })), /* @__PURE__ */ import_react26.default.createElement("div", { className: "content" }, /* @__PURE__ */ import_react26.default.createElement("img", { src: whatsapp_default, alt: "WhatsApp", className: "whatsapp-logo" }), /* @__PURE__ */ import_react26.default.createElement("h2", null, "Continue on WhatsApp"), /* @__PURE__ */ import_react26.default.createElement("p", null, "Take the conversation to your WhatsApp account. You can return anytime."), /* @__PURE__ */ import_react26.default.createElement("p", null, "Scan the QR code and then send the message that appears in your WhatsApp."), loading ? /* @__PURE__ */ import_react26.default.createElement("div", { className: "loader" }, "Loading QR Code...") : /* @__PURE__ */ import_react26.default.createElement("img", { src: qrCodeUrl, alt: "QR Code", className: "qr-code" }), /* @__PURE__ */ import_react26.default.createElement(
+    "a",
+    {
+      target: "_blank",
+      rel: "noreferrer",
+      href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel?.whatsapp}&text=${encodeURIComponent(
+        "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId")
+      )}`,
+      className: "open-link"
+    },
+    "Open WhatsApp on this device."
+  )));
 };
 var WhatsAppRedirect_default = WhatsAppRedirect;
 
@@ -40334,6 +40345,8 @@ function App({ domElement }) {
     setLoading(true);
     setIsTimerModalOpen(false);
     setIsSessionEnded(true);
+    localStorage.removeItem("routeAgent");
+    localStorage.removeItem("conversation_id");
     const sessionId2 = localStorage.getItem("sessionId");
     localStorage.clear();
     localStorage.setItem("sessionId", sessionId2);
@@ -40551,7 +40564,7 @@ function App({ domElement }) {
         };
         sendBotMessage(msgData2, true);
       } else {
-        botResponse(message.data.text);
+        botResponse(message?.data?.text);
         sendBotMessage(msgData, false);
       }
     }
@@ -40812,7 +40825,8 @@ function App({ domElement }) {
     });
   };
   const mggSend = (msg, route_to_agent = false) => {
-    if (!localStorage.getItem("routeAgent")) {
+    debugger;
+    if (!localStorage.getItem("routeAgent") && !route_to_agent) {
       const oldMsg = JSON.parse(localStorage.getItem("message"));
       const newVal = [...oldMsg, msg];
       localStorage.setItem("message", JSON.stringify(newVal));
