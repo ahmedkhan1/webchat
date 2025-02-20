@@ -184,7 +184,9 @@ const ChatWindow = ({
         (currentHours === end.hours && currentMinutes <= end.minutes);
 
       // Check if current time is within business hours
-      return isAfterStart && isBeforeEnd;
+      return (isAfterStart && isBeforeEnd) || widgetSettings?.chat_bot?.bot_id;
+    } else if(workingHours && !workingHours?.length && widgetSettings?.chat_bot?.bot_id){
+      return true;
     }
     return false;
   };

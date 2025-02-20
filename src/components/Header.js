@@ -63,7 +63,9 @@ class Header extends Component {
         (currentHours === end.hours && currentMinutes <= end.minutes);
     
       // Check if current time is within business hours
-      return isAfterStart && isBeforeEnd;
+      return (isAfterStart && isBeforeEnd) || this.props.widgetSettings?.chat_bot?.bot_id;
+    } else if(this.props.workingHours && !this.props.workingHours?.length && this.props.widgetSettings?.chat_bot?.bot_id){
+      return true;
     }
     return false;
   };
