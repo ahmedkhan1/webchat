@@ -572,7 +572,6 @@ function App({ domElement }) {
 
   const onSendPrivateMessage = useCallback((message, wa_type = 0) => {
     handleExtendSession();
-
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
@@ -640,8 +639,8 @@ function App({ domElement }) {
         sendBotMessage(msgData, true);
         // localStorage.setItem("routeAgent", true);
       } else {
-        botResponse(message.data.text);
         sendBotMessage(msgData, false);
+        botResponse(message.data.text);
       }
     }
 
@@ -956,18 +955,18 @@ function App({ domElement }) {
       msg: messageData.data,
       number: localStorage.getItem("sessionId"),
       wa_type:
-        messageData.media_wa_type === 9 ? messageData.media_wa_type : "0",
+        messageData?.media_wa_type === 9 ? messageData.media_wa_type : "0",
       msg_channel: "web",
       org_unit_id: localStorage.getItem("org"),
       from: localStorage.getItem("form_submit"),
       conversation_id: localStorage.getItem("conversation_id"),
       key_from_me: messageData.key_from_me,
       route_to_agent: route_to_agent,
-      media_mime_type: messageData.media_mime_type,
-      caption: messageData.caption,
+      media_mime_type: messageData?.media_mime_type,
+      caption: messageData?.caption,
     };
 
-    if (messageData.media_wa_type === 9) {
+    if (messageData?.media_wa_type === 9) {
       data["media_name"] = messageData.media_name;
       data["media_url"] = messageData.media_url;
     }
@@ -1007,7 +1006,6 @@ function App({ domElement }) {
   };
   const mggSend = (msg, route_to_agent = false) => {
     // For bot conversation
-
     if (!localStorage.getItem("routeAgent")) {
       const oldMsg = JSON.parse(localStorage.getItem("message"));
       const newVal = [...oldMsg, msg];
@@ -1141,7 +1139,24 @@ function App({ domElement }) {
         }
         localStorage.setItem("menuData", JSON.stringify(menuData));
         return false;
-      } else {
+      } else if (
+        msg?.toLowerCase() == "exit"
+      ) {
+        const msgData = {
+          data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+          media_url: "",
+          key_from_me: 0,
+          media_wa_type: 0,
+        };
+        sendBotMessage(msg, false);
+
+        localStorage.removeItem("routeAgent");
+        localStorage.removeItem("conversation_id");
+
+        return false;
+      }
+      
+      else {
         if (!menuData.length && localStorage.getItem("menuData").length) {
           menuData = JSON.parse(localStorage.getItem("menuData"));
         }
