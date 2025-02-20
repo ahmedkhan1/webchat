@@ -4,7 +4,7 @@ import ChatWindow from './ChatWindow';
 import launcherIcon from './../assets/tdesign_chat.png';
 import incomingMessageSound from './../assets/sounds/notification.mp3';
 import launcherIconActive from './../assets/mingcute_close-fill.png';
-import ChatIcon from './chatIcon';
+import ChatIcon from './ChatIcon';
 import ChannelsMenu from './ChannelsMenu/ChannelsMenu';
 
 class Launcher extends React.PureComponent {

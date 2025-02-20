@@ -4,7 +4,7 @@ import backIcon from "../../assets/previous.png"; // Replace with actual path
 import "./WhatsAppRedirect.css"; // Add custom styling here
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_BACKEND_URl;
+const API_URL = "https://eoceanwaba.com:3060";
 // const API_URL = "https://backend.digiconn.co";
 
 const WhatsAppRedirect = ({ onBack, widgetSettings }) => {

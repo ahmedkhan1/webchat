@@ -4,8 +4,8 @@ import MessageList from "./MessageList";
 import UserInput from "./UserInput";
 import Header from "./Header";
 import { fetchWrapper } from "./helpers";
-import EoceanIcon from '../assets/eocean.png';
-import userProfile from '../assets/user.png';
+import EoceanIcon from "../assets/eocean.png";
+import userProfile from "../assets/user.png";
 
 const ChatWindow = ({
   agentProfile,
@@ -20,7 +20,7 @@ const ChatWindow = ({
   clickMe,
   onSendPrivateMessage,
   startConnection,
-  openWhatsAppRedirect
+  openWhatsAppRedirect,
 }) => {
   const [start, setStart] = useState(localStorage.getItem("start"));
   const [formSubmit, setFormSubmit] = useState(
@@ -42,17 +42,21 @@ const ChatWindow = ({
 
   const classList = ["sc-chat-window", isOpen ? "opened" : "closed"];
 
-    // Example: Send the filtered data to your API
+  // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
-    // Prod 
+    // Prod
     // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
     // QA 
     const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     // local
     // const backendUrl =  "http://localhost:3000/dev";
     try {
-      console.log('API request:', data);
-      const result = await fetchWrapper.post(`${backendUrl}/saveUserInfo`, {}, data);
+      console.log("API request:", data);
+      const result = await fetchWrapper.post(
+        `${backendUrl}/saveUserInfo`,
+        {},
+        data
+      );
       // const response = await fetch(`${backendUrl}/saveUserInfo`, {
       //   method: 'POST',
       //   headers: {
@@ -61,9 +65,9 @@ const ChatWindow = ({
       //   body: JSON.stringify(data),
       // });
       // const result = await response.json();
-      console.log('API response:', result);
+      console.log("API response:", result);
     } catch (error) {
-      console.error('Error saving user info:', error);
+      console.error("Error saving user info:", error);
     }
   };
 
@@ -77,35 +81,37 @@ const ChatWindow = ({
     for (let [key, value] of formData.entries()) {
       formVal[key] = value;
     }
-    
+
     const requiredSubstrings = {
       // 'name' maps to
-      name: "name",  
-      username: "name",  
-      profile_name : "name",
+      name: "name",
+      username: "name",
+      profile_name: "name",
 
-      // 'email' maps to 
-      email: "email",  
+      // 'email' maps to
+      email: "email",
       customer_email: "email",
       user_email: "email",
 
       // 'phone' maps to 'contact_number'
       phone: "phone_number",
       contact_number: "phone_number",
-      number: "phone_number",  
-      phone_number : "phone_number",
+      number: "phone_number",
+      phone_number: "phone_number",
 
       // 'address' maps to 'customer_address'
       address: "address",
-      customer_address: "address"
-    };;
+      customer_address: "address",
+    };
 
-   // Initialize an object to hold the data to send
+    // Initialize an object to hold the data to send
     const dataToSend = {
-        id: localStorage.getItem("sessionId"),
-        org_unit_id:localStorage.getItem("org"),
-        // additionalParams: localStorage.getItem("additionalParams"),  
-        additionalParams: document.getElementById("root-chat").getAttribute("additionalParams"),  
+      id: localStorage.getItem("sessionId"),
+      org_unit_id: localStorage.getItem("org"),
+      // additionalParams: localStorage.getItem("additionalParams"),
+      additionalParams: document
+        .getElementById("root-chat")
+        .getAttribute("additionalParams"),
     };
 
     // Iterate over the form data and check if the key includes any of the required substrings
@@ -114,30 +120,29 @@ const ChatWindow = ({
       for (let [substring, backendKey] of Object.entries(requiredSubstrings)) {
         if (key.toLowerCase().includes(substring)) {
           dataToSend[backendKey] = value;
-          break;  // Once we match the substring, no need to check further substrings
+          break; // Once we match the substring, no need to check further substrings
         }
       }
     }
 
-    
     localStorage.setItem("form_submit", formVal["name"]);
     localStorage.setItem("phone_number", formVal["phone"]);
 
     // form submit for basic details
-    // info will be saved here for name,email,etc 
+    // info will be saved here for name,email,etc
     setFormSubmit(1);
-    const hiMsg  =  {
+    const hiMsg = {
       author: "me",
       type: "text",
-      data: {text:"hi"},
+      data: { text: "hi" },
     };
 
     onSendPrivateMessage(hiMsg);
 
     try {
-      saveUserInfo(dataToSend)
+      saveUserInfo(dataToSend);
     } catch (error) {
-        console.log("error saving user info");
+      console.log("error saving user info");
     }
   };
 
@@ -151,7 +156,7 @@ const ChatWindow = ({
       const parseTime = (timeStr) => {
         const [time, modifier] = timeStr.split(" ");
         let [hours, minutes] = time.split(":").map(Number);
-    
+
         if (modifier.toLowerCase() === "pm" && hours !== 12) {
           hours += 12;
         }
@@ -160,47 +165,49 @@ const ChatWindow = ({
         }
         return { hours, minutes };
       };
-    
+
       const start = parseTime(startTime);
       const end = parseTime(endTime);
-    
+
       // Get current time in hours and minutes
       const now = new Date();
       const currentHours = now.getHours();
       const currentMinutes = now.getMinutes();
-    
+
       // Compare current time with start and end times
       const isAfterStart =
         currentHours > start.hours ||
         (currentHours === start.hours && currentMinutes >= start.minutes);
-    
+
       const isBeforeEnd =
         currentHours < end.hours ||
         (currentHours === end.hours && currentMinutes <= end.minutes);
-    
+
       // Check if current time is within business hours
       return isAfterStart && isBeforeEnd;
     }
     return false;
   };
 
-
   return (
     <div className={classList.join(" ")}>
       <Header
         teamName={agentProfile.teamName}
-        imageUrl={agentProfile.imageUrl || userProfile }
+        imageUrl={agentProfile.imageUrl || userProfile}
         onClose={onClose}
         widgetSettings={widgetSettings}
         workingHours={workingHours}
-        openWhatsAppRedirect={()=> openWhatsAppRedirect()}
+        openWhatsAppRedirect={() => openWhatsAppRedirect()}
       />
       {!start ? (
         <div className="we_online_section">
           <div className="text_section">
-            <h3>{ (isAvailableForChat())? "We are Online" : "We are Offline" }</h3>
+            <h3>{isAvailableForChat() ? "We are Online" : "We are Offline"}</h3>
             {widgetSettings?.widget_builder?.reply_time?.length && (
-            <p>We typically reply in {widgetSettings?.widget_builder?.reply_time}</p>
+              <p>
+                We typically reply in{" "}
+                {widgetSettings?.widget_builder?.reply_time}
+              </p>
             )}
             <button
               className="btn btn_conversation"
@@ -215,10 +222,12 @@ const ChatWindow = ({
             >
               {widgetSettings?.widget_builder?.start_conversation_text}
             </button>
-           <div className="poweredBy_footer" style={{ marginTop: "10px"}}>
-             <img src={EoceanIcon} alt="eocean logo" width={20} height={20}/>
-             <p style={{paddingLeft:5 , paddingTop:6 , fontSize:"12px"}}>Powered by eOcean</p>
-           </div>
+            <div className="poweredBy_footer" style={{ marginTop: "10px" }}>
+              <img src={EoceanIcon} alt="eocean logo" width={20} height={20} />
+              <p style={{ paddingLeft: 5, paddingTop: 6, fontSize: "12px" }}>
+                Powered by eOcean
+              </p>
+            </div>
           </div>
         </div>
       ) : (
@@ -231,17 +240,17 @@ const ChatWindow = ({
                     <b>{widgetSettings?.pre_chat_form?.message}</b>
                   </div>
                   {widgetSettings?.pre_chat_form?.form?.map((item) => {
-                    return item.display !== '0' ? ( // Check if the input should be displayed
+                    return item.display !== "0" ? ( // Check if the input should be displayed
                       <div className="field_section" key={item.key}>
                         <input
                           type={item.type}
                           name={item.key}
-                          required={item?.required === '1'}
+                          required={item?.required === "1"}
                           placeholder={item.place_holder}
                           maxLength={30} // Default to 100 characters if maxLength is not specified
                         />
                       </div>
-                    ) : null; 
+                    ) : null;
                   })}
                   <button
                     className="btn_conversation"
@@ -258,10 +267,15 @@ const ChatWindow = ({
                     {widgetSettings?.widget_builder?.start_conversation_text}
                   </button>
                 </form>
-                  <div className="poweredBy_footer">
-                    <img src={EoceanIcon} alt="eocean logo" width={20} height={20} />
-                    <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
-                  </div>
+                <div className="poweredBy_footer">
+                  <img
+                    src={EoceanIcon}
+                    alt="eocean logo"
+                    width={20}
+                    height={20}
+                  />
+                  <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
+                </div>
               </div>
             </>
           ) : (
@@ -277,9 +291,14 @@ const ChatWindow = ({
                 showEmoji={showEmoji}
               />
               <div className="poweredBy_footer">
-                    <img src={EoceanIcon} alt="eocean logo" width={20} height={20} />
-                    <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
-                  </div>
+                <img
+                  src={EoceanIcon}
+                  alt="eocean logo"
+                  width={20}
+                  height={20}
+                />
+                <p style={{ paddingLeft: 5 }}>Powered by eOcean</p>
+              </div>
             </>
           )}
         </>
