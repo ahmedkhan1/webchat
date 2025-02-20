@@ -19,6 +19,7 @@
   margin-right: 10px;
   width: 50px;
   height: 50px;
+  /* object-fit: contain; */
 }
 
 .sc-header--team-name {
@@ -209,7 +210,7 @@
 }
 
 input:checked + .slider {
-  background-color: #3a82f7; /* Active color (blue in this case) */
+  background-color: #00c800; /* Active color (blue in this case) */
 }
 
 input:checked + .slider:before {

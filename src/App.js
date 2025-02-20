@@ -20,7 +20,7 @@ let messageSound = null;
 // let inactiveTimer = 5;
 // let extensionTimer = 5;
 
-let inactiveTimer = 180;
+let inactiveTimer = null;
 let extensionTimer = 120;
 
 // Styles
@@ -137,7 +137,8 @@ const styles = {
   },
 };
 
-let inactivityTimerRef = 180;
+let inactivityTimerRef = null;
+let inactivityCountdown = null;
 
 function App({ domElement }) {
   const name = "Eocean";
@@ -191,7 +192,10 @@ function App({ domElement }) {
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-
+  if (!localStorage.getItem("uMsgId")) {
+    localStorage.setItem("uMsgId", uuid());
+  }
+  
   //Prod
   // const backendUrl = 'http://localhost:3000/dev'
   // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
@@ -221,16 +225,19 @@ function App({ domElement }) {
   useEffect(() => {
     if (isSessionEnded) return; // Stop timer if the session has ended
 
-    if (inactivityTimer <= 0) {
+    debugger;
+    if (inactivityTimer !== null && inactivityTimer <= 0) {
       if (!isTimerModalOpen) {
         setIsTimerModalOpen(true); // Open modal when inactivity reaches 0
       }
       return;
+    } else if(inactivityTimer === null){
+      return;
     }
 
-    const inactivityCountdown = setInterval(() => {
+    inactivityCountdown = setInterval(() => {
       inactivityTimerRef -= 1;
-
+      console.log(inactivityTimerRef)
       // Only update state when reaching zero to trigger re-render
       if (inactivityTimerRef === 0) {
         setInactivityTimer(0);
@@ -246,11 +253,20 @@ function App({ domElement }) {
 
     if (modalTimer <= 0) {
       setLoading(true);
+      const msg  =  {
+        author: "me",
+        type: "text",
+        data: {text:"exit"},
+      };
+      onSendPrivateMessage(msg);
+
       setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
       setIsSessionEnded(true); // Mark session as ended
       const sessionId = localStorage.getItem("sessionId");
       localStorage.clear();
-      localStorage.setItem("sessionId", sessionId);
+      localStorage.setItem("sessionId",sessionId);
+      const uMsgId = uuid();
+      localStorage.setItem("uMsgId",uMsgId);
 
       setTimeout(() => {
         setLoading(false);
@@ -278,10 +294,17 @@ function App({ domElement }) {
 
   // Reset both timers when user extends the session
   const handleExtendSession = () => {
-    setInactivityTimer(inactiveTimer); // Reset inactivity timer to 3 minutes
+    debugger;
+    clearInterval(inactivityCountdown);
+    
+    const time = Number(localStorage.getItem("timeInSeconds"));
+    console.log(inactivityTimer);
+    setInactivityTimer(time); // Reset inactivity timer to 3 minutes
+    inactivityTimerRef = time;
+    console.log(inactivityTimer);
     setModalTimer(extensionTimer); // Reset modal timer to 2 minutes
     setIsTimerModalOpen(false); // Close the modal
-    setIsSessionEnded(false); // Reset session ended state
+    setIsSessionEnded((prev)=> (prev === null)? false : null); // Reset session ended state
   };
 
   useEffect(() => {
@@ -327,7 +350,16 @@ function App({ domElement }) {
   };
 
   const handleConfirmCloseChat = () => {
+    debugger;
     setIsModalOpen(false);
+    
+
+    const msg  =  {
+      author: "me",
+      type: "text",
+      data: {text:"exit"},
+    };
+    onSendPrivateMessage(msg);
 
     setLoading(true);
     setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
@@ -335,9 +367,11 @@ function App({ domElement }) {
 
     const sessionId = localStorage.getItem("sessionId");
     localStorage.clear();
-    localStorage.setItem("sessionId", sessionId);
+    localStorage.setItem("sessionId",sessionId);
+    const uMsgId = uuid();
+    localStorage.setItem("uMsgId",uMsgId);
 
-    setTimeout(() => {
+    setTimeout(()=>{
       setLoading(false);
       setOpen(!open);
       setMessageList([]);
@@ -385,7 +419,9 @@ function App({ domElement }) {
       setOrgSettings(widgetSettings);
       debugger;
       const timeInMinutes = widgetSettings?.chat_bot?.chatTimeout;
-      const timeInSeconds = timeInMinutes ? Number(timeInMinutes) * 60 : 180;
+      const timeInSeconds = (timeInMinutes)? (Number(timeInMinutes) * 60) : null;
+      localStorage.setItem("timeInSeconds", timeInSeconds);
+
       setInactivityTimer(timeInSeconds);
       inactivityTimerRef = timeInSeconds;
       setOfficeHours(data.data.office_hour);
@@ -397,13 +433,12 @@ function App({ domElement }) {
   };
 
   const loadList = async () => {
-    debugger;
 
     // load messages for the current session
     if (localStorage.getItem("org")) {
       let number = localStorage.getItem("sessionId");
-
-      const url = `${backendUrl}/get-message?number=${number}`;
+      let msgId = localStorage.getItem("uMsgId");
+      const url = `${backendUrl}/get-message?number=${number}&msgId=${msgId}`;
 
       const postData = {
         msg_channel: "web",
@@ -418,7 +453,8 @@ function App({ domElement }) {
 
       //setLoading(false);
 
-      const datax = data?.reverse();
+      // const datax = data?.reverse();
+      const datax = data;
       debugger;
       if (datax && datax.length > 0) {
         if (
@@ -450,14 +486,16 @@ function App({ domElement }) {
 
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
+    let msgId = localStorage.getItem("uMsgId");
+
     const chat = {};
 
     const lastId = messageList[messageList?.length - 1]?._id;
     //console.log("messageList :::" , messageList);
 
     if (lastId && org) {
-      const url = `${backendUrl}/get-message-new?number=${number}`;
-
+      const url = `${backendUrl}/get-message-new?number=${number}&msgId=${msgId}`;
+      
       const postData = {
         msg_channel: "web",
 
@@ -953,6 +991,7 @@ function App({ domElement }) {
 
     let data = {
       msg: messageData.data,
+      uMsgId: localStorage.getItem("uMsgId"),
       number: localStorage.getItem("sessionId"),
       wa_type:
         messageData?.media_wa_type === 9 ? messageData.media_wa_type : "0",
@@ -971,7 +1010,6 @@ function App({ domElement }) {
       data["media_url"] = messageData.media_url;
     }
     data = JSON.stringify(data);
-    debugger;
 
     const requestOptions = {
       method: "POST",
@@ -1287,7 +1325,7 @@ function App({ domElement }) {
       };
 
       const response = await axios.request(config);
-      debugger;
+
       let isSuccess = response.data;
 
       if (isSuccess.status == 200) {
@@ -1486,6 +1524,14 @@ function App({ domElement }) {
     return false;
   };
 
+  const handleCloseModalOption = () => {
+    if(!localStorage.getItem("conversation_id")){
+      setOpen(false);
+    } else {
+      setIsModalOpen(true)
+    }
+  }
+
   return (
     <div className="App">
       <style>
@@ -1542,7 +1588,7 @@ function App({ domElement }) {
           widgetSettings={orgSettings}
           isOpen={open}
           clickMe={clickMe}
-          onClose={() => setIsModalOpen(true)}
+          onClose={handleCloseModalOption}
           startConnection={onConnect()}
           openWhatsAppRedirect={() => setOpenWhatsAppRedirect(true)}
         />
