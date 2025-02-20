@@ -677,7 +677,7 @@ function App({ domElement }) {
         sendBotMessage(msgData, true);
         // localStorage.setItem("routeAgent", true);
       } else {
-        botResponse(message.data.text);
+        botResponse(message?.data?.text);
         sendBotMessage(msgData, false);
       }
     }
@@ -1044,7 +1044,8 @@ function App({ domElement }) {
   };
   const mggSend = (msg, route_to_agent = false) => {
     // For bot conversation
-    if (!localStorage.getItem("routeAgent")) {
+    debugger;
+    if (!localStorage.getItem("routeAgent") && !route_to_agent) {
       const oldMsg = JSON.parse(localStorage.getItem("message"));
       const newVal = [...oldMsg, msg];
 
