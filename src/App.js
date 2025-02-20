@@ -195,7 +195,7 @@ function App({ domElement }) {
   if (!localStorage.getItem("uMsgId")) {
     localStorage.setItem("uMsgId", uuid());
   }
-  
+
   //Prod
   // const backendUrl = 'http://localhost:3000/dev'
   // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
@@ -231,13 +231,13 @@ function App({ domElement }) {
         setIsTimerModalOpen(true); // Open modal when inactivity reaches 0
       }
       return;
-    } else if(inactivityTimer === null){
+    } else if (inactivityTimer === null) {
       return;
     }
 
     inactivityCountdown = setInterval(() => {
       inactivityTimerRef -= 1;
-      console.log(inactivityTimerRef)
+      console.log(inactivityTimerRef);
       // Only update state when reaching zero to trigger re-render
       if (inactivityTimerRef === 0) {
         setInactivityTimer(0);
@@ -253,10 +253,10 @@ function App({ domElement }) {
 
     if (modalTimer <= 0) {
       setLoading(true);
-      const msg  =  {
+      const msg = {
         author: "me",
         type: "text",
-        data: {text:"exit"},
+        data: { text: "exit" },
       };
       onSendPrivateMessage(msg);
 
@@ -264,9 +264,9 @@ function App({ domElement }) {
       setIsSessionEnded(true); // Mark session as ended
       const sessionId = localStorage.getItem("sessionId");
       localStorage.clear();
-      localStorage.setItem("sessionId",sessionId);
+      localStorage.setItem("sessionId", sessionId);
       const uMsgId = uuid();
-      localStorage.setItem("uMsgId",uMsgId);
+      localStorage.setItem("uMsgId", uMsgId);
 
       setTimeout(() => {
         setLoading(false);
@@ -296,7 +296,7 @@ function App({ domElement }) {
   const handleExtendSession = () => {
     debugger;
     clearInterval(inactivityCountdown);
-    
+
     const time = Number(localStorage.getItem("timeInSeconds"));
     console.log(inactivityTimer);
     setInactivityTimer(time); // Reset inactivity timer to 3 minutes
@@ -304,7 +304,7 @@ function App({ domElement }) {
     console.log(inactivityTimer);
     setModalTimer(extensionTimer); // Reset modal timer to 2 minutes
     setIsTimerModalOpen(false); // Close the modal
-    setIsSessionEnded((prev)=> (prev === null)? false : null); // Reset session ended state
+    setIsSessionEnded((prev) => (prev === null ? false : null)); // Reset session ended state
   };
 
   useEffect(() => {
@@ -352,12 +352,11 @@ function App({ domElement }) {
   const handleConfirmCloseChat = () => {
     debugger;
     setIsModalOpen(false);
-    
 
-    const msg  =  {
+    const msg = {
       author: "me",
       type: "text",
-      data: {text:"exit"},
+      data: { text: "exit" },
     };
     onSendPrivateMessage(msg);
 
@@ -367,11 +366,11 @@ function App({ domElement }) {
 
     const sessionId = localStorage.getItem("sessionId");
     localStorage.clear();
-    localStorage.setItem("sessionId",sessionId);
+    localStorage.setItem("sessionId", sessionId);
     const uMsgId = uuid();
-    localStorage.setItem("uMsgId",uMsgId);
+    localStorage.setItem("uMsgId", uMsgId);
 
-    setTimeout(()=>{
+    setTimeout(() => {
       setLoading(false);
       setOpen(!open);
       setMessageList([]);
@@ -419,7 +418,7 @@ function App({ domElement }) {
       setOrgSettings(widgetSettings);
       debugger;
       const timeInMinutes = widgetSettings?.chat_bot?.chatTimeout;
-      const timeInSeconds = (timeInMinutes)? (Number(timeInMinutes) * 60) : null;
+      const timeInSeconds = timeInMinutes ? Number(timeInMinutes) * 60 : null;
       localStorage.setItem("timeInSeconds", timeInSeconds);
 
       setInactivityTimer(timeInSeconds);
@@ -433,7 +432,6 @@ function App({ domElement }) {
   };
 
   const loadList = async () => {
-
     // load messages for the current session
     if (localStorage.getItem("org")) {
       let number = localStorage.getItem("sessionId");
@@ -453,8 +451,8 @@ function App({ domElement }) {
 
       //setLoading(false);
 
-      // const datax = data?.reverse();
-      const datax = data;
+      const datax = data?.reverse();
+      // const datax = data;
       debugger;
       if (datax && datax.length > 0) {
         if (
@@ -495,7 +493,7 @@ function App({ domElement }) {
 
     if (lastId && org) {
       const url = `${backendUrl}/get-message-new?number=${number}&msgId=${msgId}`;
-      
+
       const postData = {
         msg_channel: "web",
 
@@ -610,6 +608,7 @@ function App({ domElement }) {
 
   const onSendPrivateMessage = useCallback((message, wa_type = 0) => {
     handleExtendSession();
+    debugger;
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
@@ -677,8 +676,8 @@ function App({ domElement }) {
         sendBotMessage(msgData, true);
         // localStorage.setItem("routeAgent", true);
       } else {
-        sendBotMessage(msgData, false);
         botResponse(message.data.text);
+        sendBotMessage(msgData, false);
       }
     }
 
@@ -1177,9 +1176,7 @@ function App({ domElement }) {
         }
         localStorage.setItem("menuData", JSON.stringify(menuData));
         return false;
-      } else if (
-        msg?.toLowerCase() == "exit"
-      ) {
+      } else if (msg?.toLowerCase() == "exit") {
         const msgData = {
           data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
           media_url: "",
@@ -1192,9 +1189,7 @@ function App({ domElement }) {
         localStorage.removeItem("conversation_id");
 
         return false;
-      }
-      
-      else {
+      } else {
         if (!menuData.length && localStorage.getItem("menuData").length) {
           menuData = JSON.parse(localStorage.getItem("menuData"));
         }
@@ -1525,12 +1520,12 @@ function App({ domElement }) {
   };
 
   const handleCloseModalOption = () => {
-    if(!localStorage.getItem("conversation_id")){
+    if (!localStorage.getItem("conversation_id")) {
       setOpen(false);
     } else {
-      setIsModalOpen(true)
+      setIsModalOpen(true);
     }
-  }
+  };
 
   return (
     <div className="App">
