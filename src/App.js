@@ -363,7 +363,8 @@ function App({ domElement }) {
     setLoading(true);
     setIsTimerModalOpen(false); // Close modal when modal timer reaches 0
     setIsSessionEnded(true); // Mark session as ended
-
+    localStorage.removeItem("routeAgent");
+    localStorage.removeItem("conversation_id");
     const sessionId = localStorage.getItem("sessionId");
     localStorage.clear();
     localStorage.setItem("sessionId", sessionId);
