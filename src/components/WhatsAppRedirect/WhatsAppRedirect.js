@@ -14,33 +14,35 @@ const WhatsAppRedirect = ({ onBack, widgetSettings }) => {
   useEffect(() => {
     // Simulate an API call to fetch the QR code URL
     const fetchQrCode = async () => {
-        setLoading(true); // Set loading to true before fetching
-        
-        const orgUnitId = localStorage.getItem('org');
-        let qrCode = "";
-        debugger;
-        try{
-          const url =  API_URL + "/api/qrcode?orgunit=" + orgUnitId;
-          qrCode = await axios.get(url, {});
-        } catch(err) {}
+      setLoading(true); // Set loading to true before fetching
 
-        debugger;
-        if(qrCode && qrCode?.data?.data?.QR_IMAGE_URL){
+      const orgUnitId = localStorage.getItem("org");
+      let qrCode = "";
+      debugger;
+      try {
+        const url = API_URL + "/api/qrcode?orgunit=" + orgUnitId;
+        qrCode = await axios.get(url, {});
+      } catch (err) {}
+
+      debugger;
+      if (qrCode && qrCode?.data?.data?.QR_IMAGE_URL) {
+        setQrCodeUrl(qrCode?.data?.data?.QR_IMAGE_URL); // Update the QR code URL
+        setLoading(false); // Set loading to false after fetching
+      } else {
+        const orgUnitId = localStorage.getItem("org");
+        let url = API_URL + "/api/qrcode";
+        const qrCode = await axios.post(url, {
+          prefilled_message:
+            "I'm continuing my conversation on WhatsApp. Here's my code:\n" +
+            localStorage.getItem("sessionId"),
+          generate_qr_image: "PNG",
+          org_unit_id: orgUnitId,
+        });
+        if (qrCode?.data?.data?.QR_IMAGE_URL) {
           setQrCodeUrl(qrCode?.data?.data?.QR_IMAGE_URL); // Update the QR code URL
           setLoading(false); // Set loading to false after fetching
-        } else {
-          const orgUnitId = localStorage.getItem('org');
-          let url =  API_URL + "/api/qrcode";
-          const qrCode =  await axios.post(url, {
-            "prefilled_message": "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"),
-            "generate_qr_image": "PNG",
-            "org_unit_id": orgUnitId
-          });
-          if(qrCode?.data?.data?.QR_IMAGE_URL){
-            setQrCodeUrl(qrCode?.data?.data?.QR_IMAGE_URL); // Update the QR code URL
-            setLoading(false); // Set loading to false after fetching
-          } 
         }
+      }
     };
 
     fetchQrCode();
@@ -55,10 +57,12 @@ const WhatsAppRedirect = ({ onBack, widgetSettings }) => {
         <img src={whatsappLogo} alt="WhatsApp" className="whatsapp-logo" />
         <h2>Continue on WhatsApp</h2>
         <p>
-          Take the conversation to your WhatsApp account. You can return anytime.
+          Take the conversation to your WhatsApp account. You can return
+          anytime.
         </p>
         <p>
-          Scan the QR code and then send the message that appears in your WhatsApp.
+          Scan the QR code and then send the message that appears in your
+          WhatsApp.
         </p>
 
         {/* Show loader or QR code */}
@@ -68,7 +72,18 @@ const WhatsAppRedirect = ({ onBack, widgetSettings }) => {
           <img src={qrCodeUrl} alt="QR Code" className="qr-code" />
         )}
 
-        <a target={"_blank"} rel="noreferrer" href={`https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=${encodeURIComponent("I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"))}`}  className="open-link">
+        <a
+          target={"_blank"}
+          rel="noreferrer"
+          href={`https://web.whatsapp.com/send/?phone=${
+            widgetSettings?.other_channel &&
+            widgetSettings?.other_channel?.whatsapp
+          }&text=${encodeURIComponent(
+            "I'm continuing my conversation on WhatsApp. Here's my code:\n" +
+              localStorage.getItem("sessionId")
+          )}`}
+          className="open-link"
+        >
           Open WhatsApp on this device.
         </a>
       </div>

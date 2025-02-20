@@ -40398,7 +40398,11 @@ function App({ domElement }) {
       };
       const token = {};
       const data = await fetchWrapper.post(url, token, postData);
+<<<<<<< HEAD
       const datax = data;
+=======
+      const datax = data?.reverse();
+>>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       debugger;
       if (datax && datax.length > 0) {
         if (data[datax.length - 1].key_from_me === 1 && localStorage.getItem("sound") === "true") {
@@ -40498,6 +40502,10 @@ function App({ domElement }) {
   };
   const onSendPrivateMessage = (0, import_react27.useCallback)((message, wa_type = 0) => {
     handleExtendSession();
+<<<<<<< HEAD
+=======
+    debugger;
+>>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
@@ -40777,17 +40785,28 @@ function App({ domElement }) {
       msg: messageData.data,
       uMsgId: localStorage.getItem("uMsgId"),
       number: localStorage.getItem("sessionId"),
+<<<<<<< HEAD
       wa_type: messageData.media_wa_type === 9 ? messageData.media_wa_type : "0",
+=======
+      wa_type: messageData?.media_wa_type === 9 ? messageData.media_wa_type : "0",
+>>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       msg_channel: "web",
       org_unit_id: localStorage.getItem("org"),
       from: localStorage.getItem("form_submit"),
       conversation_id: localStorage.getItem("conversation_id"),
       key_from_me: messageData.key_from_me,
       route_to_agent,
+<<<<<<< HEAD
       media_mime_type: messageData.media_mime_type,
       caption: messageData.caption
     };
     if (messageData.media_wa_type === 9) {
+=======
+      media_mime_type: messageData?.media_mime_type,
+      caption: messageData?.caption
+    };
+    if (messageData?.media_wa_type === 9) {
+>>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       data["media_name"] = messageData.media_name;
       data["media_url"] = messageData.media_url;
     }
@@ -40924,6 +40943,20 @@ function App({ domElement }) {
         }
         localStorage.setItem("menuData", JSON.stringify(menuData));
         return false;
+<<<<<<< HEAD
+=======
+      } else if (msg?.toLowerCase() == "exit") {
+        const msgData2 = {
+          data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
+          media_url: "",
+          key_from_me: 0,
+          media_wa_type: 0
+        };
+        sendBotMessage(msg, false);
+        localStorage.removeItem("routeAgent");
+        localStorage.removeItem("conversation_id");
+        return false;
+>>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       } else {
         if (!menuData.length && localStorage.getItem("menuData").length) {
           menuData = JSON.parse(localStorage.getItem("menuData"));

@@ -26,11 +26,11 @@ export default function ChannelsMenu({
     <div className="floating-menu">
       <div className={`float-menu-items ${isOpen ? "open" : ""}`}>
         {widgetSettings?.other_channel &&
-          widgetSettings?.other_channel[0].whatsapp && (
+          widgetSettings?.other_channel?.whatsapp && (
             <a
               href={`https://web.whatsapp.com/send/?phone=${
                 widgetSettings?.other_channel &&
-                widgetSettings?.other_channel[0].whatsapp
+                widgetSettings?.other_channel?.whatsapp
               }&text=${encodeURIComponent(
                 "I'm continuing my conversation on WhatsApp. Here's my code:\n" +
                   localStorage.getItem("sessionId")
@@ -44,11 +44,11 @@ export default function ChannelsMenu({
           )}
 
         {widgetSettings?.other_channel &&
-          widgetSettings?.other_channel[1].messenger && (
+          widgetSettings?.other_channel?.messenger && (
             <a
               href={`https://www.facebook.com/${
                 widgetSettings?.other_channel &&
-                widgetSettings?.other_channel[1].messenger
+                widgetSettings?.other_channel?.messenger
               }`}
               target="_blank"
               rel="noopener noreferrer"
@@ -58,11 +58,11 @@ export default function ChannelsMenu({
             </a>
           )}
         {widgetSettings?.other_channel &&
-          widgetSettings?.other_channel[2].instagram && (
+          widgetSettings?.other_channel?.instagram && (
             <a
               href={`https://www.instagram.com/${
                 widgetSettings?.other_channel &&
-                widgetSettings?.other_channel[2].instagram
+                widgetSettings?.other_channel?.instagram
               }`}
               target="_blank"
               rel="noopener noreferrer"
