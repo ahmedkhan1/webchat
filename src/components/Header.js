@@ -26,7 +26,7 @@ class Header extends Component {
   };
 
   isAvailableForChat = () => {
-    if(this.props.workingHours && this.props.workingHours?.length){
+    if(this.props.workingHours && this.props.workingHours?.length && this.props.widgetSettings?.chat_bot?.bot_id){
       const today = new Date();
 
       const { startTime, endTime } = this.props.workingHours[today.getDay()];
@@ -69,7 +69,7 @@ class Header extends Component {
   };
 
   showMenu = () => {
-    return (this.props.widgetSettings?.widget_builder?.incoming_msg_sound ||
+    return (this.props.widgetSettings?.widget_builder?.incoming_msg_sound !== "0" ||
       this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel.length > 0)
   }
 
@@ -87,7 +87,7 @@ class Header extends Component {
         </div>
 
         <div className="sc-header--options">
-          <div className={(this.isAvailableForChat())? `sc-header--agent-status active ${this.showMenu()? 'menu-active' : 'menu-inactive'}` : `sc-header--agent-status inactive`}></div>
+          <div className={(this.isAvailableForChat())? `sc-header--agent-status active ${this.showMenu()? 'menu-active' : 'menu-inactive'}` : `sc-header--agent-status inactive ${this.showMenu()? 'menu-active' : 'menu-inactive'}`}></div>
           
           {
             this.showMenu() &&
@@ -102,7 +102,7 @@ class Header extends Component {
           >
             {
               // revert
-              this.props.widgetSettings?.widget_builder?.incoming_msg_sound && (
+              this.props.widgetSettings?.widget_builder?.incoming_msg_sound !== "0" && (
                 <div className="menu-item">
                   <img src={sound} alt="sound" />
                   <span className="sound-txt">Sound {soundOn ? "on" : "off"}</span>

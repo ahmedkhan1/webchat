@@ -52,6 +52,9 @@ class Launcher extends React.PureComponent {
       });
     }
   }
+  handleWidgetBtn() {
+    this.props.handleClick();
+  }
   render() {
     const isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
     const classList = [
@@ -69,7 +72,7 @@ class Launcher extends React.PureComponent {
             handleWebchatMenu={this.handleWebchatMenu.bind(this)}
           />
           :
-          <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
+          <div className={classList.join(' ')} onClick={this.handleWidgetBtn.bind(this)}>
             <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
             <img className={'sc-open-icon'} src={launcherIconActive} />
 
