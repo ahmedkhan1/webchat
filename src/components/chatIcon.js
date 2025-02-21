@@ -83,7 +83,7 @@ const ChatIcon = ({ iconNo }) => {
         </svg>
       </>
     );
-  } else if (iconNo === "4.svg") {
+  } else if (iconNo === "5.svg") {
     return (
       <>
         <svg
