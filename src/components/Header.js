@@ -26,7 +26,8 @@ class Header extends Component {
   };
 
   isAvailableForChat = () => {
-    if(this.props.workingHours && this.props.workingHours?.length && this.props.widgetSettings?.chat_bot?.bot_id){
+    if((this.props.workingHours && this.props.workingHours?.length && this.props.widgetSettings?.chat_bot?.bot_id)
+    || this.props.workingHours && this.props.workingHours?.length){
       const today = new Date();
 
       const { startTime, endTime } = this.props.workingHours[today.getDay()];

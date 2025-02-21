@@ -147,7 +147,8 @@ const ChatWindow = ({
   };
 
   const isAvailableForChat = () => {
-    if(workingHours && workingHours?.length && widgetSettings?.chat_bot?.bot_id){
+    console.log(workingHours);
+    if((workingHours && workingHours?.length && widgetSettings?.chat_bot?.bot_id) || workingHours && workingHours?.length){
       const today = new Date();
 
       const { startTime, endTime } = workingHours[today.getDay()];
