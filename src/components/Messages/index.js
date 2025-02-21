@@ -51,6 +51,7 @@ class Message extends Component {
       // return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
 
     default:
+      return false;
       // console.error(`Attempting to load message with unsupported file type '${type}'`);
       //console.log(this.props)
     }
@@ -61,13 +62,13 @@ class Message extends Component {
       'sc-message--content',
       (this.props.message.key_from_me === 0 ? 'sent' : 'received')
     ];
-
+    const renderMessageOfType = this._renderMessageOfType(this.props.message.media_wa_type)
     if(this.props.message.key_from_me === 0){
       return (
         <div className="sc-message" key={this.props.message._id}>
           <div className={contentClassList.join(' ')}>
           
-            {this._renderMessageOfType(this.props.message.media_wa_type)}
+            {renderMessageOfType}
           
           </div>
           <div className='user-profile'>
@@ -79,13 +80,13 @@ class Message extends Component {
         <div className="sc-message" key={this.props.message._id}>
           <div className={contentClassList.join(' ')}>
           
-            {this._renderMessageOfType(this.props.message.media_wa_type)}
+            {renderMessageOfType}
           
           </div>
         </div>);
     } {
       return (
-        <div className="sc-message" key={this.props.message._id}>
+        renderMessageOfType && ( <div className="sc-message" key={this.props.message._id}>
           {
             (this.props.message?.responded_by?.toLowerCase() === "chatbot" || this.props.message.key_from_me === 1)?
             <div className='bot-profile'>
@@ -98,10 +99,10 @@ class Message extends Component {
           }
           <div className={contentClassList.join(' ')}>
           
-            {this._renderMessageOfType(this.props.message.media_wa_type)}
+            {renderMessageOfType}
           
           </div>
-        </div>);
+        </div>));
     }
 
   }
