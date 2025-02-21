@@ -36960,7 +36960,7 @@ var Header = class extends import_react16.Component {
     return false;
   };
   showMenu = () => {
-    return this.props.widgetSettings?.widget_builder?.incoming_msg_sound !== "0" || this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel.length > 0;
+    return this.props.widgetSettings?.widget_builder?.incoming_msg_sound !== "0" || this.props.widgetSettings?.other_channel;
   };
   render() {
     const { menuOpen, soundOn } = this.state;
@@ -36978,12 +36978,12 @@ var Header = class extends import_react16.Component {
           onChange: this.toggleSound
         }
       ), /* @__PURE__ */ import_react16.default.createElement("span", { className: "slider" }))),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[0].whatsapp && /* @__PURE__ */ import_react16.default.createElement("a", { href: "#", className: "menu-item", onClick: () => {
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.whatsapp && /* @__PURE__ */ import_react16.default.createElement("a", { href: "#", className: "menu-item", onClick: () => {
         this.toggleMenu();
         this.props.openWhatsAppRedirect();
       } }, /* @__PURE__ */ import_react16.default.createElement("img", { src: whatsapp_default, className: "insta-menu", alt: "WhatsApp" }), " Continue on WhatsApp"),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[1].messenger && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[1].messenger}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: messenger_default, alt: "Messenger" }), " Continue on Messenger"),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[2].instagram && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel[2].instagram}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: instagram_default, alt: "Instagram" }), " Continue on Instagram")
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: messenger_default, alt: "Messenger" }), " Continue on Messenger"),
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: instagram_default, alt: "Instagram" }), " Continue on Instagram")
     ), menuOpen && /* @__PURE__ */ import_react16.default.createElement("div", { className: "settings-overlay", onClick: this.toggleMenu }), /* @__PURE__ */ import_react16.default.createElement(
       "div",
       {
@@ -37379,10 +37379,10 @@ function ChannelsMenu({
       setIsOpen(!isOpen);
     }
   };
-  return /* @__PURE__ */ import_react19.default.createElement("div", { className: "floating-menu" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: `float-menu-items ${isOpen ? "open" : ""}` }, widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp && /* @__PURE__ */ import_react19.default.createElement(
+  return /* @__PURE__ */ import_react19.default.createElement("div", { className: "floating-menu" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: `float-menu-items ${isOpen ? "open" : ""}` }, widgetSettings?.other_channel && widgetSettings?.other_channel?.whatsapp && /* @__PURE__ */ import_react19.default.createElement(
     "a",
     {
-      href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=${encodeURIComponent(
+      href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel?.whatsapp}&text=${encodeURIComponent(
         "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId")
       )}`,
       target: "_blank",
@@ -37390,19 +37390,19 @@ function ChannelsMenu({
       className: "float-menu-item whatsapp"
     },
     /* @__PURE__ */ import_react19.default.createElement("img", { src: whatsapp_default, alt: "WhatsApp" })
-  ), widgetSettings?.other_channel && widgetSettings?.other_channel[1].messenger && /* @__PURE__ */ import_react19.default.createElement(
+  ), widgetSettings?.other_channel && widgetSettings?.other_channel?.messenger && /* @__PURE__ */ import_react19.default.createElement(
     "a",
     {
-      href: `https://www.facebook.com/${widgetSettings?.other_channel && widgetSettings?.other_channel[1].messenger}`,
+      href: `https://www.facebook.com/${widgetSettings?.other_channel && widgetSettings?.other_channel?.messenger}`,
       target: "_blank",
       rel: "noopener noreferrer",
       className: "float-menu-item messenger"
     },
     /* @__PURE__ */ import_react19.default.createElement("img", { src: messenger_default, alt: "Messenger" })
-  ), widgetSettings?.other_channel && widgetSettings?.other_channel[2].instagram && /* @__PURE__ */ import_react19.default.createElement(
+  ), widgetSettings?.other_channel && widgetSettings?.other_channel?.instagram && /* @__PURE__ */ import_react19.default.createElement(
     "a",
     {
-      href: `https://www.instagram.com/${widgetSettings?.other_channel && widgetSettings?.other_channel[2].instagram}`,
+      href: `https://www.instagram.com/${widgetSettings?.other_channel && widgetSettings?.other_channel?.instagram}`,
       target: "_blank",
       rel: "noopener noreferrer",
       className: "float-menu-item instagram"
@@ -37481,7 +37481,7 @@ var Launcher = class extends import_react21.default.PureComponent {
       {
         isWebChannelOpen: isOpen,
         widgetSettings: this.props.widgetSettings,
-        handleWebchatMenu: this.handleWebchatMenu.bind(this)
+        handleWebchatMenu: this.handleWidgetBtn.bind(this)
       }
     ) : /* @__PURE__ */ import_react21.default.createElement("div", { className: classList.join(" "), onClick: this.handleWidgetBtn.bind(this) }, /* @__PURE__ */ import_react21.default.createElement(MessageCount, { count: this.props.newMessagesCount, isOpen }), /* @__PURE__ */ import_react21.default.createElement("img", { className: "sc-open-icon", src: mingcute_close_fill_default }), /* @__PURE__ */ import_react21.default.createElement(ChatIcon_default, { iconNo: this.props.widgetSettings?.widget_builder?.messageIcon }), /* @__PURE__ */ import_react21.default.createElement("p", null, this.props.widgetSettings?.widget_builder?.bubble_type == 1 && this.props.widgetSettings.widget_builder.bubble_text)), /* @__PURE__ */ import_react21.default.createElement(
       ChatWindow_default,
@@ -40155,9 +40155,9 @@ var WhatsAppRedirect = ({ onBack, widgetSettings }) => {
         const orgUnitId2 = localStorage.getItem("org");
         let url = API_URL + "/api/qrcode";
         const qrCode2 = await axios_default.post(url, {
-          "prefilled_message": "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"),
-          "generate_qr_image": "PNG",
-          "org_unit_id": orgUnitId2
+          prefilled_message: "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"),
+          generate_qr_image: "PNG",
+          org_unit_id: orgUnitId2
         });
         if (qrCode2?.data?.data?.QR_IMAGE_URL) {
           setQrCodeUrl(qrCode2?.data?.data?.QR_IMAGE_URL);
@@ -40167,7 +40167,18 @@ var WhatsAppRedirect = ({ onBack, widgetSettings }) => {
     };
     fetchQrCode();
   }, []);
-  return /* @__PURE__ */ import_react26.default.createElement("div", { className: "whatsapp-redirect" }, /* @__PURE__ */ import_react26.default.createElement("button", { className: "back-button", onClick: () => onBack() }, /* @__PURE__ */ import_react26.default.createElement("img", { src: previous_default, alt: "Back" })), /* @__PURE__ */ import_react26.default.createElement("div", { className: "content" }, /* @__PURE__ */ import_react26.default.createElement("img", { src: whatsapp_default, alt: "WhatsApp", className: "whatsapp-logo" }), /* @__PURE__ */ import_react26.default.createElement("h2", null, "Continue on WhatsApp"), /* @__PURE__ */ import_react26.default.createElement("p", null, "Take the conversation to your WhatsApp account. You can return anytime."), /* @__PURE__ */ import_react26.default.createElement("p", null, "Scan the QR code and then send the message that appears in your WhatsApp."), loading ? /* @__PURE__ */ import_react26.default.createElement("div", { className: "loader" }, "Loading QR Code...") : /* @__PURE__ */ import_react26.default.createElement("img", { src: qrCodeUrl, alt: "QR Code", className: "qr-code" }), /* @__PURE__ */ import_react26.default.createElement("a", { target: "_blank", rel: "noreferrer", href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel[0].whatsapp}&text=${encodeURIComponent("I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId"))}`, className: "open-link" }, "Open WhatsApp on this device.")));
+  return /* @__PURE__ */ import_react26.default.createElement("div", { className: "whatsapp-redirect" }, /* @__PURE__ */ import_react26.default.createElement("button", { className: "back-button", onClick: () => onBack() }, /* @__PURE__ */ import_react26.default.createElement("img", { src: previous_default, alt: "Back" })), /* @__PURE__ */ import_react26.default.createElement("div", { className: "content" }, /* @__PURE__ */ import_react26.default.createElement("img", { src: whatsapp_default, alt: "WhatsApp", className: "whatsapp-logo" }), /* @__PURE__ */ import_react26.default.createElement("h2", null, "Continue on WhatsApp"), /* @__PURE__ */ import_react26.default.createElement("p", null, "Take the conversation to your WhatsApp account. You can return anytime."), /* @__PURE__ */ import_react26.default.createElement("p", null, "Scan the QR code and then send the message that appears in your WhatsApp."), loading ? /* @__PURE__ */ import_react26.default.createElement("div", { className: "loader" }, "Loading QR Code...") : /* @__PURE__ */ import_react26.default.createElement("img", { src: qrCodeUrl, alt: "QR Code", className: "qr-code" }), /* @__PURE__ */ import_react26.default.createElement(
+    "a",
+    {
+      target: "_blank",
+      rel: "noreferrer",
+      href: `https://web.whatsapp.com/send/?phone=${widgetSettings?.other_channel && widgetSettings?.other_channel?.whatsapp}&text=${encodeURIComponent(
+        "I'm continuing my conversation on WhatsApp. Here's my code:\n" + localStorage.getItem("sessionId")
+      )}`,
+      className: "open-link"
+    },
+    "Open WhatsApp on this device."
+  )));
 };
 var WhatsAppRedirect_default = WhatsAppRedirect;
 
@@ -40214,8 +40225,10 @@ function App({ domElement }) {
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-  if (!localStorage.getItem("uMsgId")) {
-    localStorage.setItem("uMsgId", v4_default());
+  if (!localStorage.getItem("conversation_id")) {
+    let uuidConversation = v4_default();
+    uuidConversation = uuidConversation.replaceAll("-", "");
+    localStorage.setItem("conversation_id", uuidConversation);
   }
   const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
   const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
@@ -40261,8 +40274,9 @@ function App({ domElement }) {
       const sessionId2 = localStorage.getItem("sessionId");
       localStorage.clear();
       localStorage.setItem("sessionId", sessionId2);
-      const uMsgId = v4_default();
-      localStorage.setItem("uMsgId", uMsgId);
+      let uuidConversation = v4_default();
+      uuidConversation = uuidConversation.replaceAll("-", "");
+      localStorage.setItem("conversation_id", uuidConversation);
       setTimeout(() => {
         setLoading(false);
         setOpen(!open);
@@ -40334,11 +40348,14 @@ function App({ domElement }) {
     setLoading(true);
     setIsTimerModalOpen(false);
     setIsSessionEnded(true);
+    localStorage.removeItem("routeAgent");
+    localStorage.removeItem("conversation_id");
     const sessionId2 = localStorage.getItem("sessionId");
     localStorage.clear();
     localStorage.setItem("sessionId", sessionId2);
-    const uMsgId = v4_default();
-    localStorage.setItem("uMsgId", uMsgId);
+    let uuidConversation = v4_default();
+    uuidConversation = uuidConversation.replaceAll("-", "");
+    localStorage.setItem("conversation_id", uuidConversation);
     setTimeout(() => {
       setLoading(false);
       setOpen(!open);
@@ -40389,20 +40406,17 @@ function App({ domElement }) {
   const loadList = async () => {
     if (localStorage.getItem("org")) {
       let number = localStorage.getItem("sessionId");
-      let msgId = localStorage.getItem("uMsgId");
-      const url = `${backendUrl}/get-message?number=${number}&msgId=${msgId}`;
+      let conversation_id = localStorage.getItem("conversation_id");
+      const url = `${backendUrl}/get-message?number=${number}`;
       const postData = {
         msg_channel: "web",
+        conversation_id,
         number,
         org_unit_id: localStorage.getItem("org")
       };
       const token = {};
       const data = await fetchWrapper.post(url, token, postData);
-<<<<<<< HEAD
-      const datax = data;
-=======
       const datax = data?.reverse();
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       debugger;
       if (datax && datax.length > 0) {
         if (data[datax.length - 1].key_from_me === 1 && localStorage.getItem("sound") === "true") {
@@ -40421,13 +40435,14 @@ function App({ domElement }) {
   };
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
-    let msgId = localStorage.getItem("uMsgId");
+    let conversation_id = localStorage.getItem("conversation_id");
     const chat = {};
     const lastId = messageList[messageList?.length - 1]?._id;
     if (lastId && org) {
-      const url = `${backendUrl}/get-message-new?number=${number}&msgId=${msgId}`;
+      const url = `${backendUrl}/get-message-new?number=${number}`;
       const postData = {
         msg_channel: "web",
+        conversation_id,
         number,
         last_msg_id: lastId,
         org_unit_id: org
@@ -40502,10 +40517,7 @@ function App({ domElement }) {
   };
   const onSendPrivateMessage = (0, import_react27.useCallback)((message, wa_type = 0) => {
     handleExtendSession();
-<<<<<<< HEAD
-=======
     debugger;
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
@@ -40558,7 +40570,7 @@ function App({ domElement }) {
         };
         sendBotMessage(msgData2, true);
       } else {
-        botResponse(message.data.text);
+        botResponse(message?.data?.text);
         sendBotMessage(msgData, false);
       }
     }
@@ -40783,30 +40795,18 @@ function App({ domElement }) {
     }
     let data = {
       msg: messageData.data,
-      uMsgId: localStorage.getItem("uMsgId"),
       number: localStorage.getItem("sessionId"),
-<<<<<<< HEAD
-      wa_type: messageData.media_wa_type === 9 ? messageData.media_wa_type : "0",
-=======
       wa_type: messageData?.media_wa_type === 9 ? messageData.media_wa_type : "0",
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       msg_channel: "web",
       org_unit_id: localStorage.getItem("org"),
       from: localStorage.getItem("form_submit"),
       conversation_id: localStorage.getItem("conversation_id"),
       key_from_me: messageData.key_from_me,
       route_to_agent,
-<<<<<<< HEAD
-      media_mime_type: messageData.media_mime_type,
-      caption: messageData.caption
-    };
-    if (messageData.media_wa_type === 9) {
-=======
       media_mime_type: messageData?.media_mime_type,
       caption: messageData?.caption
     };
     if (messageData?.media_wa_type === 9) {
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       data["media_name"] = messageData.media_name;
       data["media_url"] = messageData.media_url;
     }
@@ -40830,7 +40830,8 @@ function App({ domElement }) {
     });
   };
   const mggSend = (msg, route_to_agent = false) => {
-    if (!localStorage.getItem("routeAgent")) {
+    debugger;
+    if (!localStorage.getItem("routeAgent") && !route_to_agent) {
       const oldMsg = JSON.parse(localStorage.getItem("message"));
       const newVal = [...oldMsg, msg];
       localStorage.setItem("message", JSON.stringify(newVal));
@@ -40943,8 +40944,6 @@ function App({ domElement }) {
         }
         localStorage.setItem("menuData", JSON.stringify(menuData));
         return false;
-<<<<<<< HEAD
-=======
       } else if (msg?.toLowerCase() == "exit") {
         const msgData2 = {
           data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
@@ -40956,7 +40955,6 @@ function App({ domElement }) {
         localStorage.removeItem("routeAgent");
         localStorage.removeItem("conversation_id");
         return false;
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       } else {
         if (!menuData.length && localStorage.getItem("menuData").length) {
           menuData = JSON.parse(localStorage.getItem("menuData"));
@@ -41187,7 +41185,7 @@ function App({ domElement }) {
     return false;
   };
   const handleCloseModalOption = () => {
-    if (!localStorage.getItem("conversation_id")) {
+    if (!localStorage.getItem("form_submit")) {
       setOpen(false);
     } else {
       setIsModalOpen(true);
