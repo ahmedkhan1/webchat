@@ -37481,7 +37481,7 @@ var Launcher = class extends import_react21.default.PureComponent {
       {
         isWebChannelOpen: isOpen,
         widgetSettings: this.props.widgetSettings,
-        handleWebchatMenu: this.handleWebchatMenu.bind(this)
+        handleWebchatMenu: this.handleWidgetBtn.bind(this)
       }
     ) : /* @__PURE__ */ import_react21.default.createElement("div", { className: classList.join(" "), onClick: this.handleWidgetBtn.bind(this) }, /* @__PURE__ */ import_react21.default.createElement(MessageCount, { count: this.props.newMessagesCount, isOpen }), /* @__PURE__ */ import_react21.default.createElement("img", { className: "sc-open-icon", src: mingcute_close_fill_default }), /* @__PURE__ */ import_react21.default.createElement(ChatIcon_default, { iconNo: this.props.widgetSettings?.widget_builder?.messageIcon }), /* @__PURE__ */ import_react21.default.createElement("p", null, this.props.widgetSettings?.widget_builder?.bubble_type == 1 && this.props.widgetSettings.widget_builder.bubble_text)), /* @__PURE__ */ import_react21.default.createElement(
       ChatWindow_default,
@@ -40225,8 +40225,10 @@ function App({ domElement }) {
   if (!localStorage.getItem("sessionId")) {
     localStorage.setItem("sessionId", sessionId);
   }
-  if (!localStorage.getItem("uMsgId")) {
-    localStorage.setItem("uMsgId", v4_default());
+  if (!localStorage.getItem("conversation_id")) {
+    let uuidConversation = v4_default();
+    uuidConversation = uuidConversation.replaceAll("-", "");
+    localStorage.setItem("conversation_id", uuidConversation);
   }
   const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
   const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
@@ -40272,8 +40274,9 @@ function App({ domElement }) {
       const sessionId2 = localStorage.getItem("sessionId");
       localStorage.clear();
       localStorage.setItem("sessionId", sessionId2);
-      const uMsgId = v4_default();
-      localStorage.setItem("uMsgId", uMsgId);
+      let uuidConversation = v4_default();
+      uuidConversation = uuidConversation.replaceAll("-", "");
+      localStorage.setItem("conversation_id", uuidConversation);
       setTimeout(() => {
         setLoading(false);
         setOpen(!open);
@@ -40350,8 +40353,9 @@ function App({ domElement }) {
     const sessionId2 = localStorage.getItem("sessionId");
     localStorage.clear();
     localStorage.setItem("sessionId", sessionId2);
-    const uMsgId = v4_default();
-    localStorage.setItem("uMsgId", uMsgId);
+    let uuidConversation = v4_default();
+    uuidConversation = uuidConversation.replaceAll("-", "");
+    localStorage.setItem("conversation_id", uuidConversation);
     setTimeout(() => {
       setLoading(false);
       setOpen(!open);
@@ -40402,20 +40406,17 @@ function App({ domElement }) {
   const loadList = async () => {
     if (localStorage.getItem("org")) {
       let number = localStorage.getItem("sessionId");
-      let msgId = localStorage.getItem("uMsgId");
-      const url = `${backendUrl}/get-message?number=${number}&msgId=${msgId}`;
+      let conversation_id = localStorage.getItem("conversation_id");
+      const url = `${backendUrl}/get-message?number=${number}`;
       const postData = {
         msg_channel: "web",
+        conversation_id,
         number,
         org_unit_id: localStorage.getItem("org")
       };
       const token = {};
       const data = await fetchWrapper.post(url, token, postData);
-<<<<<<< HEAD
-      const datax = data;
-=======
       const datax = data?.reverse();
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       debugger;
       if (datax && datax.length > 0) {
         if (data[datax.length - 1].key_from_me === 1 && localStorage.getItem("sound") === "true") {
@@ -40434,13 +40435,14 @@ function App({ domElement }) {
   };
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
-    let msgId = localStorage.getItem("uMsgId");
+    let conversation_id = localStorage.getItem("conversation_id");
     const chat = {};
     const lastId = messageList[messageList?.length - 1]?._id;
     if (lastId && org) {
-      const url = `${backendUrl}/get-message-new?number=${number}&msgId=${msgId}`;
+      const url = `${backendUrl}/get-message-new?number=${number}`;
       const postData = {
         msg_channel: "web",
+        conversation_id,
         number,
         last_msg_id: lastId,
         org_unit_id: org
@@ -40515,10 +40517,7 @@ function App({ domElement }) {
   };
   const onSendPrivateMessage = (0, import_react27.useCallback)((message, wa_type = 0) => {
     handleExtendSession();
-<<<<<<< HEAD
-=======
     debugger;
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
     const msgData = {
       data: message.data.text,
       key_from_me: 0,
@@ -40796,30 +40795,18 @@ function App({ domElement }) {
     }
     let data = {
       msg: messageData.data,
-      uMsgId: localStorage.getItem("uMsgId"),
       number: localStorage.getItem("sessionId"),
-<<<<<<< HEAD
-      wa_type: messageData.media_wa_type === 9 ? messageData.media_wa_type : "0",
-=======
       wa_type: messageData?.media_wa_type === 9 ? messageData.media_wa_type : "0",
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       msg_channel: "web",
       org_unit_id: localStorage.getItem("org"),
       from: localStorage.getItem("form_submit"),
       conversation_id: localStorage.getItem("conversation_id"),
       key_from_me: messageData.key_from_me,
       route_to_agent,
-<<<<<<< HEAD
-      media_mime_type: messageData.media_mime_type,
-      caption: messageData.caption
-    };
-    if (messageData.media_wa_type === 9) {
-=======
       media_mime_type: messageData?.media_mime_type,
       caption: messageData?.caption
     };
     if (messageData?.media_wa_type === 9) {
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       data["media_name"] = messageData.media_name;
       data["media_url"] = messageData.media_url;
     }
@@ -40957,8 +40944,6 @@ function App({ domElement }) {
         }
         localStorage.setItem("menuData", JSON.stringify(menuData));
         return false;
-<<<<<<< HEAD
-=======
       } else if (msg?.toLowerCase() == "exit") {
         const msgData2 = {
           data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
@@ -40970,7 +40955,6 @@ function App({ domElement }) {
         localStorage.removeItem("routeAgent");
         localStorage.removeItem("conversation_id");
         return false;
->>>>>>> afa4c998cb5e64f875ec4f39d7e54c4cd9a436ad
       } else {
         if (!menuData.length && localStorage.getItem("menuData").length) {
           menuData = JSON.parse(localStorage.getItem("menuData"));
@@ -41201,7 +41185,7 @@ function App({ domElement }) {
     return false;
   };
   const handleCloseModalOption = () => {
-    if (!localStorage.getItem("conversation_id")) {
+    if (!localStorage.getItem("form_submit")) {
       setOpen(false);
     } else {
       setIsModalOpen(true);
