@@ -36584,6 +36584,7 @@ var Message = class extends import_react9.Component {
       // case '300':
       // return <TextMessage clickMe={this.props.clickMe} {...this.props.message} />;
       default:
+        return false;
     }
   }
   render() {
@@ -36591,13 +36592,14 @@ var Message = class extends import_react9.Component {
       "sc-message--content",
       this.props.message.key_from_me === 0 ? "sent" : "received"
     ];
+    const renderMessageOfType = this._renderMessageOfType(this.props.message.media_wa_type);
     if (this.props.message.key_from_me === 0) {
-      return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)), /* @__PURE__ */ import_react9.default.createElement("div", { className: "user-profile" }, /* @__PURE__ */ import_react9.default.createElement("p", null, this.state && this.state.name ? this.state.name : "")));
+      return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, renderMessageOfType), /* @__PURE__ */ import_react9.default.createElement("div", { className: "user-profile" }, /* @__PURE__ */ import_react9.default.createElement("p", null, this.state && this.state.name ? this.state.name : "")));
     } else if (this.props.message.media_wa_type === "300") {
-      return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
+      return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, renderMessageOfType));
     }
     {
-      return /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, this.props.message?.responded_by?.toLowerCase() === "chatbot" || this.props.message.key_from_me === 1 ? /* @__PURE__ */ import_react9.default.createElement("div", { className: "bot-profile" }, /* @__PURE__ */ import_react9.default.createElement("img", { src: bot_icon_default })) : /* @__PURE__ */ import_react9.default.createElement("div", { className: "agent-profile" }, /* @__PURE__ */ import_react9.default.createElement("p", null, this.props.message?.responded_by ? this.props.message?.responded_by?.charAt(0) : "")), /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, this._renderMessageOfType(this.props.message.media_wa_type)));
+      return renderMessageOfType && /* @__PURE__ */ import_react9.default.createElement("div", { className: "sc-message", key: this.props.message._id }, this.props.message?.responded_by?.toLowerCase() === "chatbot" || this.props.message.key_from_me === 1 ? /* @__PURE__ */ import_react9.default.createElement("div", { className: "bot-profile" }, /* @__PURE__ */ import_react9.default.createElement("img", { src: bot_icon_default })) : /* @__PURE__ */ import_react9.default.createElement("div", { className: "agent-profile" }, /* @__PURE__ */ import_react9.default.createElement("p", null, this.props.message?.responded_by ? this.props.message?.responded_by?.charAt(0) : "")), /* @__PURE__ */ import_react9.default.createElement("div", { className: contentClassList.join(" ") }, renderMessageOfType));
     }
   }
 };
@@ -37319,7 +37321,7 @@ var ChatIcon = ({ iconNo }) => {
         }
       )
     ));
-  } else if (iconNo === "4.svg") {
+  } else if (iconNo === "5.svg") {
     return /* @__PURE__ */ import_react18.default.createElement(import_react18.default.Fragment, null, /* @__PURE__ */ import_react18.default.createElement(
       "svg",
       {
@@ -40298,7 +40300,7 @@ function App({ domElement }) {
   const handleExtendSession = () => {
     debugger;
     clearInterval(inactivityCountdown);
-    const time = Number(localStorage.getItem("timeInSeconds"));
+    const time = localStorage.getItem("timeInSeconds") !== "0" && localStorage.getItem("timeInSeconds") !== "null" ? Number(localStorage.getItem("timeInSeconds")) : null;
     console.log(inactivityTimer);
     setInactivityTimer(time);
     inactivityTimerRef = time;
@@ -40394,7 +40396,7 @@ function App({ domElement }) {
       setOrgSettings(widgetSettings);
       debugger;
       const timeInMinutes = widgetSettings?.chat_bot?.chatTimeout;
-      const timeInSeconds = timeInMinutes ? Number(timeInMinutes) * 60 : null;
+      const timeInSeconds = timeInMinutes && timeInMinutes !== "0" ? Number(timeInMinutes) * 60 : null;
       localStorage.setItem("timeInSeconds", timeInSeconds);
       setInactivityTimer(timeInSeconds);
       inactivityTimerRef = timeInSeconds;
