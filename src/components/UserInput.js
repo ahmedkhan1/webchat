@@ -1,26 +1,24 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import SendIcon from './icons/SendIcon';
-import FileIcon from './icons/FileIcon';
-import EmojiIcon from './icons/EmojiIcon';
-import PopupWindow from './popups/PopupWindow';
-import EmojiPicker from './emoji-picker/EmojiPicker';
-
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import SendIcon from "./icons/SendIcon";
+import FileIcon from "./icons/FileIcon";
+import EmojiIcon from "./icons/EmojiIcon";
+import PopupWindow from "./popups/PopupWindow";
+import EmojiPicker from "./emoji-picker/EmojiPicker";
 
 class UserInput extends Component {
-
   constructor() {
     super();
     this.state = {
       inputActive: false,
       inputHasText: false,
       emojiPickerIsOpen: false,
-      emojiFilter: ''
+      emojiFilter: "",
     };
   }
 
   componentDidMount() {
-    this.emojiPickerButton = document.querySelector('#sc-emoji-picker-button'); 
+    this.emojiPickerButton = document.querySelector("#sc-emoji-picker-button");
   }
 
   handleKeyDown(event) {
@@ -30,8 +28,8 @@ class UserInput extends Component {
   }
 
   handleKeyUp(event) {
-    const inputHasText = event.target.innerHTML.length !== 0 &&
-      event.target.innerText !== '\n';
+    const inputHasText =
+      event.target.innerHTML.length !== 0 && event.target.innerText !== "\n";
     this.setState({ inputHasText });
   }
 
@@ -44,7 +42,7 @@ class UserInput extends Component {
     if (!this.state.emojiPickerIsOpen) {
       this.setState({ emojiPickerIsOpen: true });
     }
-  }
+  };
 
   closeEmojiPicker = (e) => {
     if (this.emojiPickerButton.contains(e.target)) {
@@ -52,27 +50,27 @@ class UserInput extends Component {
       e.preventDefault();
     }
     this.setState({ emojiPickerIsOpen: false });
-  }
+  };
 
-
-  _submitText(event) { //this function will run on the on submit of the text message 
+  _submitText(event) {
+    //this function will run on the on submit of the text message
     event.preventDefault();
-    function messageSound(){
-      console.log("here")
-      let oAudio = document.getElementById('audio');
+    function messageSound() {
+      console.log("here");
+      let oAudio = document.getElementById("audio");
       oAudio.play();
     }
 
     const text = this.userInput.textContent;
     if (text && text.length > 0) {
-
       this.props.onSubmit({
-        author: 'me',
-        type: 'text',
+        author: "me",
+        type: "text",
         data: { text },
-        messageSound: messageSound
+        messageSound: messageSound,
       });
-      this.userInput.innerHTML = '';
+      this.userInput.innerHTML = "";
+      this.setState({ inputHasText: !this.state.inputHasText });
     }
   }
 
@@ -84,21 +82,21 @@ class UserInput extends Component {
 
   _handleEmojiPicked = (emoji) => {
     this.setState({ emojiPickerIsOpen: false });
-    if(this.state.inputHasText) {
+    if (this.state.inputHasText) {
       this.userInput.innerHTML += emoji;
     } else {
       this.props.onSubmit({
-        author: 'me',
-        type: 'emoji',
-        data: { text:emoji }
+        author: "me",
+        type: "emoji",
+        data: { text: emoji },
       });
     }
-  }
+  };
 
   handleEmojiFilterChange = (event) => {
     const emojiFilter = event.target.value;
     this.setState({ emojiFilter });
-  }
+  };
 
   _renderEmojiPopup = () => (
     <PopupWindow
@@ -111,7 +109,7 @@ class UserInput extends Component {
         filter={this.state.emojiFilter}
       />
     </PopupWindow>
-  )
+  );
 
   _renderSendOrFileIcon() {
     if (this.state.inputHasText) {
@@ -128,7 +126,9 @@ class UserInput extends Component {
           type="file"
           name="files[]"
           multiple
-          ref={(e) => { this._fileUploadButton = e; }}
+          ref={(e) => {
+            this._fileUploadButton = e;
+          }}
           onChange={this._onFilesSelected.bind(this)}
         />
       </div>
@@ -138,28 +138,35 @@ class UserInput extends Component {
   render() {
     const { emojiPickerIsOpen, inputActive } = this.state;
     return (
-      <form className={`sc-user-input ${(inputActive ? 'active' : '')}`}>
+      <form className={`sc-user-input ${inputActive ? "active" : ""}`}>
         <div
           role="button"
           tabIndex="0"
-          onFocus={() => { this.setState({ inputActive: true }); }}
-          onBlur={() => { this.setState({ inputActive: false }); }}
-          ref={(e) => { this.userInput = e; }}
+          onFocus={() => {
+            this.setState({ inputActive: true });
+          }}
+          onBlur={() => {
+            this.setState({ inputActive: false });
+          }}
+          ref={(e) => {
+            this.userInput = e;
+          }}
           onKeyDown={this.handleKeyDown.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
           contentEditable="true"
           placeholder="Write a reply..."
           className="sc-user-input--text"
-        >
-        </div>
+        ></div>
         <div className="sc-user-input--buttons">
           <div className="sc-user-input--button"></div>
           <div className="sc-user-input--button">
-            {this.props.showEmoji && <EmojiIcon
-              onClick={this.toggleEmojiPicker}
-              isActive={emojiPickerIsOpen}
-              tooltip={this._renderEmojiPopup()}
-            />}
+            {this.props.showEmoji && (
+              <EmojiIcon
+                onClick={this.toggleEmojiPicker}
+                isActive={emojiPickerIsOpen}
+                tooltip={this._renderEmojiPopup()}
+              />
+            )}
           </div>
           {this._renderSendOrFileIcon()}
         </div>
@@ -171,7 +178,7 @@ class UserInput extends Component {
 UserInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onFilesSelected: PropTypes.func.isRequired,
-  showEmoji: PropTypes.bool
+  showEmoji: PropTypes.bool,
 };
 
 export default UserInput;

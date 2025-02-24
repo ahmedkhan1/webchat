@@ -210,9 +210,10 @@ function App({ domElement }) {
     "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   //   Local
-  // const x_api_id = 'd41d8cd98f00b204e9800998ecf8427e'
-  // const backendUrl = 'http://localhost:3000/dev'
-  // const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  // const x_api_id = "d41d8cd98f00b204e9800998ecf8427e";
+  // const backendUrl = "http://localhost:3000/dev";
+  // const socketUrl =
+  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
   const [inactivityTimer, setInactivityTimer] = useState(inactiveTimer); // 3 minutes for inactivity
@@ -264,7 +265,7 @@ function App({ domElement }) {
       setIsSessionEnded(true); // Mark session as ended
       const sessionId = localStorage.getItem("sessionId");
       localStorage.clear();
-      localStorage.setItem("sessionId",sessionId);
+      localStorage.setItem("sessionId", sessionId);
 
       let uuidConversation = uuid();
       uuidConversation = uuidConversation.replaceAll("-", "");
@@ -299,7 +300,11 @@ function App({ domElement }) {
     debugger;
     clearInterval(inactivityCountdown);
 
-    const time = (localStorage.getItem("timeInSeconds") !== "0" && localStorage.getItem("timeInSeconds") !== "null")? Number(localStorage.getItem("timeInSeconds")) : null;
+    const time =
+      localStorage.getItem("timeInSeconds") !== "0" &&
+      localStorage.getItem("timeInSeconds") !== "null"
+        ? Number(localStorage.getItem("timeInSeconds"))
+        : null;
     console.log(inactivityTimer);
     setInactivityTimer(time); // Reset inactivity timer to 3 minutes
     inactivityTimerRef = time;
@@ -369,7 +374,7 @@ function App({ domElement }) {
     localStorage.removeItem("conversation_id");
     const sessionId = localStorage.getItem("sessionId");
     localStorage.clear();
-    localStorage.setItem("sessionId",sessionId);
+    localStorage.setItem("sessionId", sessionId);
 
     let uuidConversation = uuid();
     uuidConversation = uuidConversation.replaceAll("-", "");
@@ -423,7 +428,10 @@ function App({ domElement }) {
       setOrgSettings(widgetSettings);
       debugger;
       const timeInMinutes = widgetSettings?.chat_bot?.chatTimeout;
-      const timeInSeconds = timeInMinutes && timeInMinutes !== "0" ? Number(timeInMinutes) * 60 : null;
+      const timeInSeconds =
+        timeInMinutes && timeInMinutes !== "0"
+          ? Number(timeInMinutes) * 60
+          : null;
       localStorage.setItem("timeInSeconds", timeInSeconds);
 
       setInactivityTimer(timeInSeconds);
@@ -498,7 +506,7 @@ function App({ domElement }) {
 
     if (lastId && org) {
       const url = `${backendUrl}/get-message-new?number=${number}`;
-      
+
       const postData = {
         msg_channel: "web",
         conversation_id: conversation_id,
@@ -626,7 +634,7 @@ function App({ domElement }) {
     const oldMsg = JSON.parse(localStorage.getItem("message"));
 
     const newVal = [...oldMsg, msgData];
-    if (!localStorage.getItem("routeAgent")) {
+    if (!localStorage.getItem("routeAgent") || message?.data?.text?.toLowerCase() === "exit") {
       localStorage.setItem("message", JSON.stringify(newVal));
       setMessageList(newVal);
     }
@@ -690,14 +698,7 @@ function App({ domElement }) {
       fetch(`${backendUrl}/rec-message`, requestOptions)
         .then((response) => response.json())
         .then(async (result) => {
-          try {
-            loadListNew();
-          } catch (error) {}
-
-          if (
-            message.data.text?.toLowerCase() == "exit" ||
-            message.data.text == "Exit"
-          ) {
+          if (message.data.text?.toLowerCase() === "exit") {
             // step 1 feedback template will be sent to the user and the entry for feedback logs need to be inserted in db
             // and chat will be closed so that the user can re-initiate the chat as well
 
@@ -720,11 +721,9 @@ function App({ domElement }) {
               key_from_me: 1,
               media_wa_type: 0,
             };
-            mggSend(msgData);
-
             localStorage.removeItem("routeAgent");
             localStorage.removeItem("conversation_id");
-
+            mggSend(msgData);
             return false;
           }
 
@@ -733,6 +732,10 @@ function App({ domElement }) {
             localStorage.removeItem("routeAgent");
             localStorage.removeItem("conversation_id");
           }
+
+          try {
+            loadListNew();
+          } catch (error) {}
           // if (feedBackMenuData) {
           //   const msgData = {
           //     data:"Thank you for your valuable feedback. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
@@ -1034,11 +1037,16 @@ function App({ domElement }) {
         //  const newVal = [...oldMsg,result.data]
         //  localStorage.setItem("message",JSON.stringify(newVal))
         //  setMessageList(newVal);
-        // if (result?.data?.outofOffice) {
+        // if (result?.data?.outOfOffice) {
         //   localStorage.removeItem("routeAgent");
         // }
         if (result?.route_to_agent) {
           localStorage.setItem("routeAgent", true);
+        } else if (result?.outOfOffice || result?.noAgentsAvailable) {
+          const oldMsg = JSON.parse(localStorage.getItem("message"));
+          const newVal = [...oldMsg, result?.data];
+          localStorage.setItem("message", JSON.stringify(newVal));
+          setMessageList(newVal);
         }
       })
       .catch((err) => {
@@ -1185,10 +1193,10 @@ function App({ domElement }) {
         const msgData = {
           data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
           media_url: "",
-          key_from_me: 0,
+          key_from_me: 1,
           media_wa_type: 0,
         };
-        sendBotMessage(msg, false);
+        mggSend(msgData, false);
 
         localStorage.removeItem("routeAgent");
         localStorage.removeItem("conversation_id");
