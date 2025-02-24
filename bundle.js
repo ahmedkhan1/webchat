@@ -36934,7 +36934,7 @@ var Header = class extends import_react16.Component {
     localStorage.setItem("sound", e2.target.checked);
   };
   isAvailableForChat = () => {
-    if (this.props.workingHours && this.props.workingHours?.length && this.props.widgetSettings?.chat_bot?.bot_id) {
+    if (this.props.workingHours && this.props.workingHours?.length && this.props.widgetSettings?.chat_bot?.bot_id || this.props.workingHours && this.props.workingHours?.length) {
       const today = /* @__PURE__ */ new Date();
       const { startTime, endTime } = this.props.workingHours[today.getDay()];
       const parseTime = (timeStr) => {
@@ -37111,7 +37111,8 @@ var ChatWindow = ({
     }
   };
   const isAvailableForChat = () => {
-    if (workingHours && workingHours?.length && widgetSettings?.chat_bot?.bot_id) {
+    console.log(workingHours);
+    if (workingHours && workingHours?.length && widgetSettings?.chat_bot?.bot_id || workingHours && workingHours?.length) {
       const today = /* @__PURE__ */ new Date();
       const { startTime, endTime } = workingHours[today.getDay()];
       const parseTime = (timeStr) => {
