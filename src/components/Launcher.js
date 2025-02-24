@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ChatWindow from './ChatWindow';
 import launcherIcon from './../assets/tdesign_chat.png';
-import incomingMessageSound from './../assets/sounds/notification.mp3';
 import launcherIconActive from './../assets/mingcute_close-fill.png';
 import ChatIcon from './ChatIcon';
 import ChannelsMenu from './ChannelsMenu/ChannelsMenu';
@@ -30,7 +29,7 @@ class Launcher extends React.PureComponent {
 
   async playIncomingMessageSound() {
     try{
-      var audio = new Audio(incomingMessageSound);
+      var audio = new Audio("https://eoceanwabaqa.com/sound/notification.mp3");
       await audio.play();
     } catch(err){
       console.log(err);
