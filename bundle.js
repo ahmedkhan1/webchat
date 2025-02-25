@@ -36802,6 +36802,7 @@ var UserInput = class extends import_react15.Component {
         messageSound: messageSound2
       });
       this.userInput.innerHTML = "";
+      this.setState({ inputHasText: !this.state.inputHasText });
     }
   }
   _onFilesSelected(event) {
@@ -40530,7 +40531,7 @@ function App({ domElement }) {
     let route_to_agent = false;
     const oldMsg = JSON.parse(localStorage.getItem("message"));
     const newVal = [...oldMsg, msgData];
-    if (!localStorage.getItem("routeAgent")) {
+    if (!localStorage.getItem("routeAgent") || message?.data?.text?.toLowerCase() === "exit") {
       localStorage.setItem("message", JSON.stringify(newVal));
       setMessageList(newVal);
     }
@@ -40579,26 +40580,26 @@ function App({ domElement }) {
     }
     if (localStorage.getItem("routeAgent")) {
       fetch(`${backendUrl}/rec-message`, requestOptions).then((response) => response.json()).then(async (result) => {
-        try {
-          loadListNew();
-        } catch (error2) {
-        }
-        if (message.data.text?.toLowerCase() == "exit" || message.data.text == "Exit") {
+        if (message.data.text?.toLowerCase() === "exit") {
           const msgData2 = {
             data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
             media_url: "",
             key_from_me: 1,
             media_wa_type: 0
           };
-          mggSend(msgData2);
           localStorage.removeItem("routeAgent");
           localStorage.removeItem("conversation_id");
+          mggSend(msgData2);
           return false;
         }
         if (feedBackMenuData) {
           feedBackMenuData = false;
           localStorage.removeItem("routeAgent");
           localStorage.removeItem("conversation_id");
+        }
+        try {
+          loadListNew();
+        } catch (error2) {
         }
       });
     }
@@ -40827,6 +40828,11 @@ function App({ domElement }) {
       }
       if (result?.route_to_agent) {
         localStorage.setItem("routeAgent", true);
+      } else if (result?.outOfOffice || result?.noAgentsAvailable) {
+        const oldMsg = JSON.parse(localStorage.getItem("message"));
+        const newVal = [...oldMsg, result?.data];
+        localStorage.setItem("message", JSON.stringify(newVal));
+        setMessageList(newVal);
       }
     }).catch((err) => {
       console.log(err);
@@ -40951,10 +40957,10 @@ function App({ domElement }) {
         const msgData2 = {
           data: "Thank you for contacting us. We would love to see you again.<br><br>Please type *Hi* to re-initiate this chat.",
           media_url: "",
-          key_from_me: 0,
+          key_from_me: 1,
           media_wa_type: 0
         };
-        sendBotMessage(msg, false);
+        mggSend(msgData2, false);
         localStorage.removeItem("routeAgent");
         localStorage.removeItem("conversation_id");
         return false;
