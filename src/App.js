@@ -152,7 +152,9 @@ function App({ domElement }) {
   const [open, setOpen] = useState(false);
   const [org, setOrg] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [audioSrc, setAudioSrc] = useState("https://eoceanwabaqa.com/sound/notification.mp3");
+  const [audioSrc, setAudioSrc] = useState(
+    "https://eoceanwabaqa.com/sound/notification.mp3"
+  );
 
   const [orgSettings, setOrgSettings] = useState({});
   const [officeHours, setOfficeHours] = useState({});
@@ -634,7 +636,10 @@ function App({ domElement }) {
     const oldMsg = JSON.parse(localStorage.getItem("message"));
 
     const newVal = [...oldMsg, msgData];
-    if (!localStorage.getItem("routeAgent") || message?.data?.text?.toLowerCase() === "exit") {
+    if (
+      !localStorage.getItem("routeAgent") ||
+      message?.data?.text?.toLowerCase() === "exit"
+    ) {
       localStorage.setItem("message", JSON.stringify(newVal));
       setMessageList(newVal);
     }
@@ -686,6 +691,12 @@ function App({ domElement }) {
           key_from_me: 1,
           media_wa_type: 0,
         };
+        const msg2 = {
+          data: "hi",
+          key_from_me: 0,
+          media_wa_type: 0,
+        };
+        sendBotMessage(msg2);
         sendBotMessage(msgData, true);
         // localStorage.setItem("routeAgent", true);
       } else {
@@ -721,9 +732,9 @@ function App({ domElement }) {
               key_from_me: 1,
               media_wa_type: 0,
             };
+            mggSend(msgData);
             localStorage.removeItem("routeAgent");
             localStorage.removeItem("conversation_id");
-            mggSend(msgData);
             return false;
           }
 
