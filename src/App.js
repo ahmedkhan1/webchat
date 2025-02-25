@@ -10,7 +10,6 @@ import { fetchWrapper } from "./components/helpers";
 import ErrorPage from "./components/ErrorPage";
 import { commonMethods } from "./helper";
 import reachBSHelper from "./components/helpers/britishReach";
-import notification from "./assets/sounds/notification.mp3";
 import SessionModal from "./components/modals/SessionModal";
 import CloseModal from "./components/modals/CloseModal";
 import WhatsAppRedirect from "./components/WhatsAppRedirect/WhatsAppRedirect";
@@ -153,7 +152,7 @@ function App({ domElement }) {
   const [open, setOpen] = useState(false);
   const [org, setOrg] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [audioSrc, setAudioSrc] = useState(notification);
+  const [audioSrc, setAudioSrc] = useState("https://eoceanwabaqa.com/sound/notification.mp3");
 
   const [orgSettings, setOrgSettings] = useState({});
   const [officeHours, setOfficeHours] = useState({});
