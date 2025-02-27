@@ -40830,7 +40830,7 @@ function App({ domElement }) {
   };
   const mggSend = (msg, route_to_agent = false) => {
     debugger;
-    if (!localStorage.getItem("routeAgent") && !route_to_agent) {
+    if (!localStorage.getItem("routeAgent") && !route_to_agent || msg?.data?.includes("Thank you for contacting us")) {
       const oldMsg = JSON.parse(localStorage.getItem("message"));
       const newVal = [...oldMsg, msg];
       localStorage.setItem("message", JSON.stringify(newVal));

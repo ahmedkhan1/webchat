@@ -501,8 +501,6 @@ function App({ domElement }) {
     let number = localStorage.getItem("sessionId");
     let conversation_id = localStorage.getItem("conversation_id");
 
-    const chat = {};
-
     const lastId = messageList[messageList?.length - 1]?._id;
     //console.log("messageList :::" , messageList);
 
@@ -1067,7 +1065,10 @@ function App({ domElement }) {
   const mggSend = (msg, route_to_agent = false) => {
     // For bot conversation
     debugger;
-    if (!localStorage.getItem("routeAgent") && !route_to_agent) {
+    if (
+      (!localStorage.getItem("routeAgent") && !route_to_agent) ||
+      msg?.data?.includes("Thank you for contacting us")
+    ) {
       const oldMsg = JSON.parse(localStorage.getItem("message"));
       const newVal = [...oldMsg, msg];
 
