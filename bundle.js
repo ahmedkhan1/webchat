@@ -40424,7 +40424,6 @@ function App({ domElement }) {
   const loadListNew = async () => {
     let number = localStorage.getItem("sessionId");
     let conversation_id = localStorage.getItem("conversation_id");
-    const chat = {};
     const lastId = messageList[messageList?.length - 1]?._id;
     if (lastId && org) {
       const url = `${backendUrl}/get-message-new?number=${number}`;
@@ -40564,7 +40563,6 @@ function App({ domElement }) {
         sendBotMessage(msg2);
         sendBotMessage(msgData2, true);
       } else {
-        botResponse(message?.data?.text);
         sendBotMessage(msgData, false);
       }
     }
@@ -40813,9 +40811,6 @@ function App({ domElement }) {
     requestOptions.headers["x-api-key"] = x_api_id;
     requestOptions.body = data;
     fetch(`${backendUrl}/send-bot-message`, requestOptions).then((response) => response.json()).then(async (result) => {
-      try {
-      } catch (error2) {
-      }
       if (result?.route_to_agent) {
         localStorage.setItem("routeAgent", true);
       } else if (result?.outOfOffice || result?.noAgentsAvailable) {
@@ -40823,6 +40818,9 @@ function App({ domElement }) {
         const newVal = [...oldMsg, result?.data];
         localStorage.setItem("message", JSON.stringify(newVal));
         setMessageList(newVal);
+      }
+      if (!localStorage.getItem("routeAgent")) {
+        botResponse(result?.data?.data);
       }
     }).catch((err) => {
       console.log(err);
