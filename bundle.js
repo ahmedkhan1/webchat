@@ -35842,7 +35842,7 @@ function request(method) {
       method,
       headers: authHeader(url, token)
     };
-    requestOptions.headers["x-api-key"] = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+    requestOptions.headers["x-api-key"] = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
     if (body) {
       requestOptions.headers["Content-Type"] = "application/json";
       requestOptions.body = JSON.stringify(body);
@@ -36862,7 +36862,7 @@ var UserInput = class extends import_react15.Component {
         onKeyDown: this.handleKeyDown.bind(this),
         onKeyUp: this.handleKeyUp.bind(this),
         contentEditable: "true",
-        placeholder: "Write a reply...",
+        placeholder: "Type your message here...",
         className: "sc-user-input--text"
       }
     ), /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--buttons" }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--button" }), /* @__PURE__ */ import_react15.default.createElement("div", { className: "sc-user-input--button" }, this.props.showEmoji && /* @__PURE__ */ import_react15.default.createElement(
@@ -36952,11 +36952,39 @@ var Header = class extends import_react16.Component {
   };
   render() {
     const { menuOpen, soundOn } = this.state;
-    return /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header" }, this.props.imageUrl && /* @__PURE__ */ import_react16.default.createElement("img", { className: "sc-header--img", src: this.props.imageUrl, alt: "logo" }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header--team-name" }, /* @__PURE__ */ import_react16.default.createElement("h3", null, this.props.widgetSettings?.widget_builder?.welcome_heading), /* @__PURE__ */ import_react16.default.createElement("p", null, this.props.widgetSettings?.widget_builder?.welcome_tagline)), /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header--options" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: this.isAvailableForChat() ? `sc-header--agent-status active ${this.showMenu() ? "menu-active" : "menu-inactive"}` : `sc-header--agent-status inactive ${this.showMenu() ? "menu-active" : "menu-inactive"}` }), this.showMenu() && /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header--settings-button", onClick: this.toggleMenu }, /* @__PURE__ */ import_react16.default.createElement("img", { src: dots_default, alt: "options" })), /* @__PURE__ */ import_react16.default.createElement(
+    return /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header" }, this.props.imageUrl && /* @__PURE__ */ import_react16.default.createElement(
+      "img",
+      {
+        className: "sc-header--img",
+        src: this.props.imageUrl,
+        alt: "logo"
+      }
+    ), /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header--team-name" }, /* @__PURE__ */ import_react16.default.createElement(
+      "span",
+      {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: "10px"
+        }
+      },
+      /* @__PURE__ */ import_react16.default.createElement("h3", null, this.props.widgetSettings?.widget_builder?.welcome_heading),
+      /* @__PURE__ */ import_react16.default.createElement(
+        "div",
+        {
+          className: this.isAvailableForChat() ? `sc-header--agent-status active ${this.showMenu() ? "menu-active" : "menu-inactive"}` : `sc-header--agent-status inactive ${this.showMenu() ? "menu-active" : "menu-inactive"}`
+        }
+      )
+    ), /* @__PURE__ */ import_react16.default.createElement("p", null, this.props.widgetSettings?.widget_builder?.welcome_tagline)), /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header--options" }, this.showMenu() && /* @__PURE__ */ import_react16.default.createElement(
       "div",
       {
-        className: `menu-dropdown ${menuOpen ? "open" : ""}`
+        className: "sc-header--settings-button",
+        onClick: this.toggleMenu
       },
+      /* @__PURE__ */ import_react16.default.createElement("img", { src: dots_default, alt: "options" })
+    ), /* @__PURE__ */ import_react16.default.createElement(
+      "div",
+      { className: `menu-dropdown ${menuOpen ? "open" : ""}` },
       // revert
       this.props.widgetSettings?.widget_builder?.incoming_msg_sound !== "0" && /* @__PURE__ */ import_react16.default.createElement("div", { className: "menu-item" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: sound_default, alt: "sound" }), /* @__PURE__ */ import_react16.default.createElement("span", { className: "sound-txt" }, "Sound ", soundOn ? "on" : "off"), /* @__PURE__ */ import_react16.default.createElement("label", { className: "switch" }, /* @__PURE__ */ import_react16.default.createElement(
         "input",
@@ -36966,20 +36994,41 @@ var Header = class extends import_react16.Component {
           onChange: this.toggleSound
         }
       ), /* @__PURE__ */ import_react16.default.createElement("span", { className: "slider" }))),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.whatsapp && /* @__PURE__ */ import_react16.default.createElement("a", { href: "#", className: "menu-item", onClick: () => {
-        this.toggleMenu();
-        this.props.openWhatsAppRedirect();
-      } }, /* @__PURE__ */ import_react16.default.createElement("img", { src: whatsapp_default, className: "insta-menu", alt: "WhatsApp" }), " Continue on WhatsApp"),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: messenger_default, alt: "Messenger" }), " Continue on Messenger"),
-      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram && /* @__PURE__ */ import_react16.default.createElement("a", { href: `https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram}`, className: "menu-item", target: "_blank" }, /* @__PURE__ */ import_react16.default.createElement("img", { src: instagram_default, alt: "Instagram" }), " Continue on Instagram")
-    ), menuOpen && /* @__PURE__ */ import_react16.default.createElement("div", { className: "settings-overlay", onClick: this.toggleMenu }), /* @__PURE__ */ import_react16.default.createElement(
-      "div",
-      {
-        className: "sc-header--close-button",
-        onClick: this.props.onClose
-      },
-      /* @__PURE__ */ import_react16.default.createElement("img", { src: close_icon_default, alt: "close" })
-    )));
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.whatsapp && /* @__PURE__ */ import_react16.default.createElement(
+        "a",
+        {
+          href: "#",
+          className: "menu-item",
+          onClick: () => {
+            this.toggleMenu();
+            this.props.openWhatsAppRedirect();
+          }
+        },
+        /* @__PURE__ */ import_react16.default.createElement("img", { src: whatsapp_default, className: "insta-menu", alt: "WhatsApp" }),
+        " ",
+        "Continue on WhatsApp"
+      ),
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger && /* @__PURE__ */ import_react16.default.createElement(
+        "a",
+        {
+          href: `https://www.facebook.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.messenger}`,
+          className: "menu-item",
+          target: "_blank"
+        },
+        /* @__PURE__ */ import_react16.default.createElement("img", { src: messenger_default, alt: "Messenger" }),
+        " Continue on Messenger"
+      ),
+      this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram && /* @__PURE__ */ import_react16.default.createElement(
+        "a",
+        {
+          href: `https://www.instagram.com/${this.props.widgetSettings?.other_channel && this.props.widgetSettings?.other_channel?.instagram}`,
+          className: "menu-item",
+          target: "_blank"
+        },
+        /* @__PURE__ */ import_react16.default.createElement("img", { src: instagram_default, alt: "Instagram" }),
+        " Continue on Instagram"
+      )
+    ), menuOpen && /* @__PURE__ */ import_react16.default.createElement("div", { className: "settings-overlay", onClick: this.toggleMenu }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "sc-header--close-button", onClick: this.props.onClose }, /* @__PURE__ */ import_react16.default.createElement("img", { src: close_icon_default, alt: "close" }))));
   }
 };
 var Header_default = Header;
@@ -37027,7 +37076,7 @@ var ChatWindow = ({
   );
   const classList = ["sc-chat-window", isOpen ? "opened" : "closed"];
   const saveUserInfo = async (data) => {
-    const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
     try {
       console.log("API request:", data);
       const result = await fetchWrapper.post(
@@ -40218,9 +40267,9 @@ function App({ domElement }) {
     uuidConversation = uuidConversation.replaceAll("-", "");
     localStorage.setItem("conversation_id", uuidConversation);
   }
-  const backendUrl = "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  const socketUrl = "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  const backendUrl = "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
+  const socketUrl = "wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production";
+  const x_api_id = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
   const [isTimerModalOpen, setIsTimerModalOpen] = (0, import_react27.useState)(false);
   const [inactivityTimer, setInactivityTimer] = (0, import_react27.useState)(inactiveTimer);
   const [modalTimer, setModalTimer] = (0, import_react27.useState)(extensionTimer);

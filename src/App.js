@@ -199,10 +199,11 @@ function App({ domElement }) {
     localStorage.setItem("conversation_id", uuidConversation);
   }
   //Prod
-  // const backendUrl = 'http://localhost:3000/dev'
-  // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev'
-  //  const socketUrl = 'wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production';
-  // const x_api_id = 'HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91';
+  // const backendUrl =
+  //   "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
+  // const socketUrl =
+  //   "wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production";
+  // const x_api_id = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
 
   // Stg
   const backendUrl =
@@ -625,7 +626,7 @@ function App({ domElement }) {
     messageSound = message.messageSound;
 
     let route_to_agent = false;
-    const oldMsg = JSON.parse(localStorage.getItem("message"));
+    const oldMsg = JSON.parse(localStorage.getItem("message")) || [];
 
     const newVal = [...oldMsg, msgData];
     if (

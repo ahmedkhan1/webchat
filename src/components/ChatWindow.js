@@ -46,10 +46,11 @@ const ChatWindow = ({
   const saveUserInfo = async (data) => {
     // Prod
     // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
-    // QA 
-    const backendUrl =  "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    // QA
+    const backendUrl =
+      "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     // local
-    // const backendUrl =  "http://localhost:3000/dev";
+    // const backendUrl = "http://localhost:3000/dev";
     try {
       console.log("API request:", data);
       const result = await fetchWrapper.post(
@@ -148,7 +149,12 @@ const ChatWindow = ({
 
   const isAvailableForChat = () => {
     console.log(workingHours);
-    if((workingHours && workingHours?.length && widgetSettings?.chat_bot?.bot_id) || workingHours && workingHours?.length){
+    if (
+      (workingHours &&
+        workingHours?.length &&
+        widgetSettings?.chat_bot?.bot_id) ||
+      (workingHours && workingHours?.length)
+    ) {
       const today = new Date();
 
       const { startTime, endTime } = workingHours[today.getDay()];
@@ -186,7 +192,11 @@ const ChatWindow = ({
 
       // Check if current time is within business hours
       return (isAfterStart && isBeforeEnd) || widgetSettings?.chat_bot?.bot_id;
-    } else if(workingHours && !workingHours?.length && widgetSettings?.chat_bot?.bot_id){
+    } else if (
+      workingHours &&
+      !workingHours?.length &&
+      widgetSettings?.chat_bot?.bot_id
+    ) {
       return true;
     }
     return false;
