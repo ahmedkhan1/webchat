@@ -1548,7 +1548,14 @@ function App({ domElement }) {
   };
 
   return (
-    <div className="App">
+    <div className="App"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top center',
+        height: '1180vh',
+      }}
+    >
       <style>
         {` .sc-launcher, .sc-message--dtext, .sc-header, .webchat-widget {
             background: ${orgSettings?.widget_builder?.widget_color} !important;
