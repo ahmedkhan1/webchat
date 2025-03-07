@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ChatWindow from './ChatWindow';
 import launcherIcon from './../assets/tdesign_chat.png';
 import launcherIconActive from './../assets/mingcute_close-fill.png';
-import ChatIcon from './ChatIcon';
+import ChatIcon from './ChatIcons';
 import ChannelsMenu from './ChannelsMenu/ChannelsMenu';
 
 class Launcher extends React.PureComponent {

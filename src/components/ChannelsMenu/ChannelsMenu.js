@@ -4,7 +4,7 @@ import "./ChannelsMenu.css"; // Import external CSS
 import whatsapp from "../../assets/socials/whatsapp.png";
 import messenger from "../../assets/socials/messenger.png";
 import instagram from "../../assets/socials/instagram.png";
-import ChatIcon from "../ChatIcon";
+import ChatIcon from "../ChatIcons";
 import launcherIconActive from "../../assets/mingcute_close-fill.png";
 
 export default function ChannelsMenu({
