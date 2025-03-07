@@ -35838,16 +35838,25 @@ __export(fetch_wrapper_exports, {
 });
 function request(method) {
   return (url, token, body) => {
-    const requestOptions = {
-      method,
-      headers: authHeader(url, token)
-    };
+    let requestOptions = {};
+    if (url?.includes("/saveUserInfo")) {
+      requestOptions = {
+        method,
+        mode: "no-cors",
+        headers: authHeader(url, token)
+      };
+    } else {
+      requestOptions = {
+        method,
+        headers: authHeader(url, token)
+      };
+    }
     requestOptions.headers["x-api-key"] = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
     if (body) {
       requestOptions.headers["Content-Type"] = "application/json";
       requestOptions.body = JSON.stringify(body);
     }
-    return fetch(url, requestOptions).then(handleResponse).catch((err) => []);
+    return fetch(url, requestOptions).then(handleResponse).catch((err) => [console.log(err)]);
   };
 }
 function authHeader(url, token) {
@@ -40561,7 +40570,7 @@ function App({ domElement }) {
     };
     messageSound = message.messageSound;
     let route_to_agent = false;
-    const oldMsg = JSON.parse(localStorage.getItem("message"));
+    const oldMsg = JSON.parse(localStorage.getItem("message")) || [];
     const newVal = [...oldMsg, msgData];
     if (!localStorage.getItem("routeAgent") || message?.data?.text?.toLowerCase() === "exit") {
       localStorage.setItem("message", JSON.stringify(newVal));

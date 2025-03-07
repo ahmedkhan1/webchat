@@ -199,18 +199,18 @@ function App({ domElement }) {
     localStorage.setItem("conversation_id", uuidConversation);
   }
   //Prod
-  // const backendUrl =
-  //   "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
-  // const socketUrl =
-  //   "wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production";
-  // const x_api_id = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
+  const backendUrl =
+    "https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev";
+  const socketUrl =
+    "wss://4d8ghnqckf.execute-api.us-east-1.amazonaws.com/production";
+  const x_api_id = "HoWDoSfC7y1rxywh98h1J94A9k9INlRi9L8qsZ91";
 
   // Stg
-  const backendUrl =
-    "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
-  const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
-  const socketUrl =
-    "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
+  // const backendUrl =
+  //   "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+  // const x_api_id = "43KXt44PjCa7axCTLVLZb60FLrIAyA5l4YBhugmd";
+  // const socketUrl =
+  //   "wss://obz6kgfz3f.execute-api.us-east-1.amazonaws.com/production";
 
   //   Local
   // const x_api_id = "d41d8cd98f00b204e9800998ecf8427e";

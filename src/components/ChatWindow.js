@@ -45,10 +45,10 @@ const ChatWindow = ({
   // Example: Send the filtered data to your API
   const saveUserInfo = async (data) => {
     // Prod
-    // const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
+    const backendUrl = 'https://7rpgggrlvh.execute-api.us-east-1.amazonaws.com/dev';
     // QA
-    const backendUrl =
-      "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
+    // const backendUrl =
+      // "https://bu4qbf7zu9.execute-api.us-east-1.amazonaws.com/dev";
     // local
     // const backendUrl = "http://localhost:3000/dev";
     try {
